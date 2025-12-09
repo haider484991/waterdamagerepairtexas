@@ -1,0 +1,373 @@
+/* Custom Fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Light theme - Primary Theme */
+:root {
+  --radius: 0.75rem;
+  
+  /* Backgrounds - warm off-white */
+  --background: oklch(0.98 0.005 80);
+  --foreground: oklch(0.18 0.02 250);
+  
+  /* Cards - pure white with subtle warmth */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 250);
+  
+  /* Popovers */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 250);
+  
+  /* Primary - rich amber/gold */
+  --primary: oklch(0.58 0.19 55);
+  --primary-foreground: oklch(1 0 0);
+  
+  /* Secondary - warm gray */
+  --secondary: oklch(0.94 0.01 80);
+  --secondary-foreground: oklch(0.25 0.02 250);
+  
+  /* Muted - subtle gray for less important elements */
+  --muted: oklch(0.95 0.008 80);
+  --muted-foreground: oklch(0.42 0.02 250);
+  
+  /* Accent - warm amber highlight */
+  --accent: oklch(0.92 0.05 70);
+  --accent-foreground: oklch(0.35 0.08 55);
+  
+  /* Destructive - clear red */
+  --destructive: oklch(0.55 0.22 25);
+  
+  /* Borders & inputs - warm subtle borders */
+  --border: oklch(0.88 0.015 80);
+  --input: oklch(0.92 0.01 80);
+  --ring: oklch(0.58 0.19 55);
+  
+  /* Charts */
+  --chart-1: oklch(0.58 0.19 55);
+  --chart-2: oklch(0.55 0.16 160);
+  --chart-3: oklch(0.50 0.16 280);
+  --chart-4: oklch(0.60 0.16 30);
+  --chart-5: oklch(0.55 0.18 340);
+  
+  /* Sidebar */
+  --sidebar: oklch(0.97 0.008 80);
+  --sidebar-foreground: oklch(0.18 0.02 250);
+  --sidebar-primary: oklch(0.58 0.19 55);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0.02 70);
+  --sidebar-accent-foreground: oklch(0.25 0.02 250);
+  --sidebar-border: oklch(0.88 0.015 80);
+  --sidebar-ring: oklch(0.58 0.19 55);
+  
+  /* Custom colors */
+  --amber: oklch(0.58 0.19 55);
+  --amber-light: oklch(0.72 0.14 65);
+  --amber-dark: oklch(0.48 0.18 50);
+  --success: oklch(0.55 0.18 145);
+  --warning: oklch(0.65 0.16 60);
+  --info: oklch(0.55 0.15 235);
+}
+
+/* Dark theme alternative */
+.dark {
+  --background: oklch(0.13 0.01 250);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.17 0.015 250);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.17 0.015 250);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.75 0.18 75);
+  --primary-foreground: oklch(0.15 0.02 75);
+  --secondary: oklch(0.22 0.02 250);
+  --secondary-foreground: oklch(0.95 0.01 250);
+  --muted: oklch(0.22 0.02 250);
+  --muted-foreground: oklch(0.65 0.02 250);
+  --accent: oklch(0.75 0.18 75);
+  --accent-foreground: oklch(0.15 0.02 75);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.28 0.02 250);
+  --input: oklch(0.22 0.02 250);
+  --ring: oklch(0.75 0.18 75);
+  --chart-1: oklch(0.75 0.18 75);
+  --chart-2: oklch(0.65 0.15 160);
+  --chart-3: oklch(0.55 0.15 280);
+  --chart-4: oklch(0.7 0.15 45);
+  --chart-5: oklch(0.6 0.18 340);
+  --sidebar: oklch(0.15 0.015 250);
+  --sidebar-foreground: oklch(0.98 0.005 250);
+  --sidebar-primary: oklch(0.75 0.18 75);
+  --sidebar-primary-foreground: oklch(0.15 0.02 75);
+  --sidebar-accent: oklch(0.22 0.02 250);
+  --sidebar-accent-foreground: oklch(0.95 0.01 250);
+  --sidebar-border: oklch(0.28 0.02 250);
+  --sidebar-ring: oklch(0.75 0.18 75);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-foreground;
+  }
+  
+  p, span, li {
+    @apply text-foreground;
+  }
+}
+
+@layer components {
+  /* Glass morphism cards - light version */
+  .glass-card {
+    @apply bg-card/90 backdrop-blur-xl border border-border shadow-lg shadow-black/5;
+  }
+  
+  /* Gradient backgrounds - warm light gradients */
+  .gradient-bg {
+    background: linear-gradient(135deg, 
+      oklch(0.98 0.008 80) 0%, 
+      oklch(0.96 0.015 70) 50%, 
+      oklch(0.97 0.01 85) 100%);
+  }
+  
+  .gradient-accent {
+    background: linear-gradient(135deg, 
+      oklch(0.65 0.18 55) 0%, 
+      oklch(0.55 0.20 40) 100%);
+  }
+  
+  /* Text gradient - warm amber gold */
+  .text-gradient {
+    background: linear-gradient(135deg, 
+      oklch(0.55 0.18 55) 0%, 
+      oklch(0.50 0.20 40) 50%,
+      oklch(0.48 0.18 35) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Glow effects - subtle warm glow */
+  .glow-amber {
+    box-shadow: 0 0 30px oklch(0.58 0.19 55 / 0.15),
+                0 0 60px oklch(0.58 0.19 55 / 0.08);
+  }
+  
+  /* Star rating styles */
+  .star-filled {
+    color: oklch(0.65 0.20 55);
+  }
+  
+  .star-empty {
+    color: oklch(0.80 0.02 80);
+  }
+  
+  /* Business card hover effect */
+  .business-card {
+    @apply transition-all duration-300 ease-out bg-card;
+  }
+  
+  .business-card:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 20px 40px oklch(0 0 0 / 0.08),
+                0 8px 16px oklch(0 0 0 / 0.04),
+                0 0 40px oklch(0.58 0.19 55 / 0.08);
+  }
+  
+  /* Category badge styles */
+  .category-badge {
+    @apply px-3 py-1.5 rounded-full text-sm font-medium;
+    @apply bg-primary/10 text-primary border border-primary/20;
+    @apply transition-all duration-200;
+  }
+  
+  .category-badge:hover {
+    @apply bg-primary/20 border-primary/30;
+  }
+  
+  /* Search input styling */
+  .search-input {
+    @apply w-full bg-white border border-border rounded-xl;
+    @apply px-5 py-4 text-lg text-foreground;
+    @apply placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50;
+    @apply transition-all duration-200;
+    @apply shadow-sm;
+  }
+  
+  /* Map container */
+  .map-container {
+    @apply rounded-xl overflow-hidden border border-border;
+    min-height: 400px;
+  }
+  
+  /* Mobile bottom navigation */
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    @apply bg-card/98 backdrop-blur-xl border-t border-border;
+    @apply px-6 py-3;
+    @apply md:hidden;
+    box-shadow: 0 -4px 20px oklch(0 0 0 / 0.06);
+  }
+  
+  /* Hero pattern background - warm light pattern */
+  .hero-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 80%, oklch(0.58 0.19 55 / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, oklch(0.60 0.15 70 / 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, oklch(0.55 0.12 280 / 0.04) 0%, transparent 50%);
+  }
+  
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+  
+  /* Price level indicator */
+  .price-level {
+    @apply text-muted-foreground;
+  }
+  
+  .price-level-active {
+    @apply text-primary;
+  }
+  
+  /* Button enhancements for contrast */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold;
+    @apply hover:brightness-95 active:brightness-90;
+    @apply shadow-md shadow-primary/20;
+  }
+  
+  /* Card text contrast helpers */
+  .text-heading {
+    @apply text-foreground font-semibold;
+  }
+  
+  .text-body {
+    @apply text-foreground/90;
+  }
+  
+  .text-caption {
+    @apply text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Custom scrollbar - light theme */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.78 0.02 80) transparent;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: oklch(0.78 0.02 80);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.68 0.02 80);
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* High contrast text utility */
+  .high-contrast {
+    @apply text-foreground;
+  }
+}
