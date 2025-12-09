@@ -61,13 +61,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
     ...result.business,
     photos: (result.business.photos as string[]) || [],
     hours: result.business.hours as Record<string, string> | null,
-    category: result.category
-      ? {
-          name: result.category.name,
-          slug: result.category.slug,
-          section: result.category.section,
-        }
-      : null,
+    category: result.category ?? null,
   }));
 
   const faqs = generatePickleballFAQs(city.name, state.name);
