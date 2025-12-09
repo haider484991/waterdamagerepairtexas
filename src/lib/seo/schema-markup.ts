@@ -60,7 +60,7 @@ export function generateLocalBusinessSchema(business: Business, category?: Categ
   }
 
   // Add rating if available
-  if (business.ratingAvg && Number(business.ratingAvg) > 0 && business.reviewCount > 0) {
+  if (business.ratingAvg && Number(business.ratingAvg) > 0 && (business.reviewCount ?? 0) > 0) {
     schema.aggregateRating = {
       "@type": "AggregateRating",
       ratingValue: parseFloat(business.ratingAvg),
