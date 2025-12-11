@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     });
 
     const emailSubject = subject && subject.trim().length > 0 ? subject : "Contact Form Submission";
-    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Plano Business Directory";
+    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "US Pickleball Directory";
 
     // HTML template for business owner
     const ownerEmailHtml = `

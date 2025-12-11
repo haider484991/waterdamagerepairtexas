@@ -10,21 +10,29 @@ import {
 } from "@/lib/auto-sync";
 
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-const PLANO_LOCATION = "33.0198,-96.6989";
 
-function determineNeighborhood(lat: number, lng: number): string {
-  if (lat > 33.05 && lng < -96.75) return "Legacy West";
-  if (lat > 33.04 && lng > -96.72) return "East Plano";
-  if (lat < 33.02 && lng > -96.72) return "Downtown Plano";
-  if (lng < -96.8) return "West Plano";
-  return "Plano";
+// Helper function to parse city and state from address
+function parseCityState(formattedAddress: string): { city: string; state: string } {
+  // Try to extract city and state from formatted address
+  // Format is usually: "Address, City, State ZIP, Country"
+  const parts = formattedAddress.split(",").map(s => s.trim());
+  if (parts.length >= 3) {
+    const statePart = parts[parts.length - 2]; // Usually "State ZIP"
+    const stateMatch = statePart.match(/\b([A-Z]{2})\b/);
+    const state = stateMatch ? stateMatch[1] : "";
+    const city = parts[parts.length - 3] || "";
+    return { city, state };
+  }
+  return { city: "", state: "" };
 }
 
 // Fetch from Google and auto-sync to database
 async function fetchAndSyncGooglePlaces(
   categorySlug: string,
   categoryName: string,
-  categoryId: string
+  categoryId: string,
+  stateFilter?: string,
+  cityFilter?: string
 ): Promise<BusinessData[]> {
   if (!GOOGLE_PLACES_API_KEY) return [];
 
@@ -32,12 +40,20 @@ async function fetchAndSyncGooglePlaces(
   const allPlaces: GooglePlaceResult[] = [];
 
   try {
+    // Build location query
+    let locationQuery = "";
+    if (cityFilter && cityFilter !== "all" && stateFilter && stateFilter !== "all") {
+      locationQuery = `${cityFilter}, ${stateFilter}`;
+    } else if (stateFilter && stateFilter !== "all") {
+      locationQuery = stateFilter;
+    } else {
+      locationQuery = "United States"; // Default to US-wide search
+    }
+
     // Fetch from each query
     for (const query of queries.slice(0, 3)) {
       const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-      url.searchParams.set("query", `${query} in Plano, TX`);
-      url.searchParams.set("location", PLANO_LOCATION);
-      url.searchParams.set("radius", "20000");
+      url.searchParams.set("query", `${query} in ${locationQuery}`);
       url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
 
       const response = await fetch(url.toString());
@@ -61,40 +77,40 @@ async function fetchAndSyncGooglePlaces(
     );
 
     // Return formatted for immediate display
-    return uniquePlaces.slice(0, 20).map((place, index) => ({
-      id: `temp-${place.place_id}`,
-      googlePlaceId: place.place_id,
-      name: place.name,
-      slug: `${place.place_id.substring(0, 20)}-${index}`,
-      description: null,
-      address: place.formatted_address || place.vicinity || "",
-      city: "Plano",
-      state: "TX",
-      zip: null,
-      phone: null,
-      website: null,
-      email: null,
-      lat: place.geometry.location.lat.toString(),
-      lng: place.geometry.location.lng.toString(),
-      neighborhood: determineNeighborhood(
-        place.geometry.location.lat,
-        place.geometry.location.lng
-      ),
-      hours: null,
-      photos: place.photos?.slice(0, 3).map((p) => p.photo_reference) || [],
-      priceLevel: place.price_level ?? null,
-      ratingAvg: place.rating?.toString() || "0",
-      reviewCount: place.user_ratings_total || 0,
-      isVerified: false,
-      isFeatured: (place.rating || 0) >= 4.5,
-      category: {
-        name: categoryName,
-        slug: categorySlug,
-        section: null,
-      },
-      isOpenNow: place.opening_hours?.open_now,
-      dataSource: "google" as const,
-    }));
+    return uniquePlaces.slice(0, 20).map((place, index) => {
+      const { city, state } = parseCityState(place.formatted_address || place.vicinity || "");
+      return {
+        id: `temp-${place.place_id}`,
+        googlePlaceId: place.place_id,
+        name: place.name,
+        slug: `${place.place_id.substring(0, 20)}-${index}`,
+        description: null,
+        address: place.formatted_address || place.vicinity || "",
+        city: city || "",
+        state: state || "",
+        zip: null,
+        phone: null,
+        website: null,
+        email: null,
+        lat: place.geometry.location.lat.toString(),
+        lng: place.geometry.location.lng.toString(),
+        neighborhood: null,
+        hours: null,
+        photos: place.photos?.slice(0, 3).map((p) => p.photo_reference) || [],
+        priceLevel: place.price_level ?? null,
+        ratingAvg: place.rating?.toString() || "0",
+        reviewCount: place.user_ratings_total || 0,
+        isVerified: false,
+        isFeatured: (place.rating || 0) >= 4.5,
+        category: {
+          name: categoryName,
+          slug: categorySlug,
+          section: null,
+        },
+        isOpenNow: place.opening_hours?.open_now,
+        dataSource: "google" as const,
+      };
+    });
   } catch (error) {
     console.error("Error fetching Google Places:", error);
     return [];
@@ -109,13 +125,20 @@ export async function GET(
     const { slug } = await params;
     const { searchParams } = new URL(request.url);
 
-    const neighborhood = searchParams.get("neighborhood") || "all";
+    const state = searchParams.get("state") || "all";
+    const city = searchParams.get("city") || "all";
     const minRating = parseFloat(searchParams.get("rating") || "0");
     const priceLevel = parseInt(searchParams.get("price") || "0");
     const sortBy = searchParams.get("sort") || "relevance";
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "12");
     const enrichPhotos = searchParams.get("enrich") !== "false";
+    
+    // Category-specific filters
+    const facilityType = searchParams.get("facilityType") || "all";
+    const courtSurface = searchParams.get("courtSurface") || "all";
+    const membershipType = searchParams.get("membershipType") || "all";
+    const skillLevel = searchParams.get("skillLevel") || "all";
 
     const offset = (page - 1) * limit;
 
@@ -133,18 +156,14 @@ export async function GET(
     // Build conditions for businesses
     const conditions = [eq(businesses.categoryId, category.id)];
 
-    if (neighborhood && neighborhood !== "all" && neighborhood !== "All Neighborhoods") {
-      const neighborhoodName = neighborhood
-        .split("-")
-        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-        .join(" ");
-      conditions.push(
-        or(
-          eq(businesses.neighborhood, neighborhoodName),
-          ilike(businesses.neighborhood, `%${neighborhoodName}%`),
-          ilike(businesses.neighborhood, `%${neighborhood}%`)
-        )!
-      );
+    // State filter
+    if (state && state !== "all") {
+      conditions.push(eq(businesses.state, state));
+    }
+
+    // City filter
+    if (city && city !== "all") {
+      conditions.push(eq(businesses.city, city));
     }
 
     if (minRating > 0) {
@@ -154,6 +173,10 @@ export async function GET(
     if (priceLevel > 0) {
       conditions.push(eq(businesses.priceLevel, priceLevel));
     }
+    
+    // Note: Category-specific filters (facilityType, courtSurface, etc.) 
+    // would need to be stored in business metadata or a separate table
+    // For now, we'll filter client-side if needed
 
     // Determine sort order
     let orderByClause;
@@ -212,22 +235,20 @@ export async function GET(
     if (formattedResults.length === 0 && GOOGLE_PLACES_API_KEY) {
       console.log(`[Category API] No DB results for ${category.name}, fetching from Google...`);
       
-      const googleResults = await fetchAndSyncGooglePlaces(slug, category.name, category.id);
+      const googleResults = await fetchAndSyncGooglePlaces(slug, category.name, category.id, state, city);
 
       if (googleResults.length > 0) {
         // Apply client-side filtering for Google results
         let filtered = googleResults;
 
-        if (neighborhood && neighborhood !== "all" && neighborhood !== "All Neighborhoods") {
-          const neighborhoodName = neighborhood
-            .split("-")
-            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" ");
-          filtered = filtered.filter(
-            (b) =>
-              b.neighborhood?.toLowerCase().includes(neighborhoodName.toLowerCase()) ||
-              b.neighborhood?.toLowerCase().includes(neighborhood.toLowerCase())
-          );
+        // State filter
+        if (state && state !== "all") {
+          filtered = filtered.filter((b) => b.state === state);
+        }
+
+        // City filter
+        if (city && city !== "all") {
+          filtered = filtered.filter((b) => b.city === city);
         }
 
         if (minRating > 0) {
@@ -313,10 +334,15 @@ export async function GET(
         hasMore: offset + enrichedResults.length < total,
       },
       filters: {
-        neighborhood,
+        state,
+        city,
         minRating,
         priceLevel,
         sort: sortBy,
+        facilityType,
+        courtSurface,
+        membershipType,
+        skillLevel,
       },
       dataSource,
       autoSynced: dataSource === "google", // Indicates data was just synced

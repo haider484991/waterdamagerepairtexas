@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     const adminEmail = "admin@uspickleballdirectory.com";
-    const adminPassword = "admin123"; // Change this after first login
+    const adminPassword = "Admin123!"; // Change this after first login
 
     // Check if admin already exists
     const existing = await db

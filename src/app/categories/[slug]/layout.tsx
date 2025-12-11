@@ -4,7 +4,7 @@ import { db, categories, businesses } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 import { generateCategoryMetadata } from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://henryharrisonplanotexas.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uspickleballdirectory.com";
 
 type LayoutProps = {
   children: ReactNode;
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   if (!data) {
     return {
-      title: "Category Not Found | Henry Harrison Plano Texas",
+      title: "Category Not Found | US Pickleball Directory",
       description: "The category you are looking for could not be found.",
     };
   }
@@ -106,7 +106,7 @@ export default async function CategoryLayout({ children, params }: LayoutProps) 
       ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: `${data.category.name} in Plano, Texas`,
+          name: `${data.category.name} Directory`,
           itemListOrder: "Descending",
           numberOfItems: data.topBusinesses.length,
           itemListElement: data.topBusinesses.map((b, index) => ({
@@ -146,7 +146,7 @@ export default async function CategoryLayout({ children, params }: LayoutProps) 
           {
             "@type": "ListItem",
             position: 3,
-            name: `${data.category.name} in Plano, Texas`,
+            name: `${data.category.name} Directory`,
             item: `${SITE_URL}/categories/${data.category.slug}`,
           },
         ],

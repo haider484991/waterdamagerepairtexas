@@ -7,7 +7,7 @@ import { eq, desc } from "drizzle-orm";
 function isAdmin(email: string | null | undefined) {
   if (!email) return false;
   return (
-    email === "admin@plano.directory" ||
+    email === "admin@uspickleballdirectory.com" ||
     email.endsWith("@admin.com") ||
     email === "admin@test.com"
   );

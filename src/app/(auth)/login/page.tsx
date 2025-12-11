@@ -140,7 +140,7 @@ function LoginForm() {
       <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border/50">
         <p className="text-sm text-muted-foreground text-center">
           <strong className="text-foreground">Demo:</strong>{" "}
-          demo@henryharrisonplanotexas.com / demo123
+          demo@uspickleballdirectory.com / demo123
         </p>
       </div>
     </>

@@ -75,7 +75,7 @@ export default function RegisterPage() {
           </Link>
           <h1 className="text-2xl font-bold mb-2">Create an Account</h1>
           <p className="text-muted-foreground">
-            Join the Plano community and discover local businesses
+            Join the pickleball community and discover businesses nationwide
           </p>
         </div>
 

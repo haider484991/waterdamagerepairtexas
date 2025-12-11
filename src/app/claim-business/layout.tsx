@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Claim Your Business – Verify Ownership | Henry Harrison Plano Texas",
+  title: "Claim Your Business – Verify Ownership | US Pickleball Directory",
   description:
-    "Claim your business listing on Henry Harrison Plano Texas to manage your profile, respond to reviews, and reach more customers. Verify ownership today.",
+    "Claim your business listing on US Pickleball Directory to manage your profile, respond to reviews, and reach more customers. Verify ownership today.",
 };
 
 export default function ClaimBusinessLayout({

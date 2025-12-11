@@ -95,7 +95,7 @@ const benefits = [
 const testimonials = [
   {
     name: "Sarah Johnson",
-    business: "Plano Coffee House",
+    business: "Pickleball Pro Shop",
     quote: "Since upgrading to Featured Listing, we've seen a 40% increase in new customers finding us online.",
     rating: 5,
   },
@@ -273,7 +273,7 @@ export default function AdvertisePage() {
                 Why Advertise with Us?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Join hundreds of Plano businesses that trust us to help them grow.
+                Join hundreds of pickleball businesses across the United States that trust us to help them grow.
               </p>
             </div>
 

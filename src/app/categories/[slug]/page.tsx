@@ -34,6 +34,7 @@ import {
 import { BusinessCard } from "@/components/business";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { getAllStates, getAllCities, getCitiesForState } from "@/lib/location-data";
 
 interface Business {
   id: string;
@@ -61,14 +62,122 @@ interface Category {
   section: string | null;
 }
 
-const neighborhoods = [
-  { value: "all", label: "All Neighborhoods" },
-  { value: "Legacy West", label: "Legacy West" },
-  { value: "Downtown Plano", label: "Downtown Plano" },
-  { value: "West Plano", label: "West Plano" },
-  { value: "East Plano", label: "East Plano" },
-  { value: "Plano", label: "Plano (Central)" },
-];
+// Pickleball-specific filters based on category
+const getCategorySpecificFilters = (categorySlug: string) => {
+  switch (categorySlug) {
+    case "pickleball-courts-facilities":
+      return {
+        facilityType: [
+          { value: "all", label: "All Types" },
+          { value: "indoor", label: "Indoor Courts" },
+          { value: "outdoor", label: "Outdoor Courts" },
+          { value: "both", label: "Indoor & Outdoor" },
+        ],
+        courtSurface: [
+          { value: "all", label: "Any Surface" },
+          { value: "hardcourt", label: "Hardcourt" },
+          { value: "cushion", label: "Cushion Court" },
+          { value: "grass", label: "Grass" },
+          { value: "clay", label: "Clay" },
+        ],
+        amenities: [
+          { value: "equipment-rental", label: "Equipment Rental" },
+          { value: "pro-shop", label: "Pro Shop" },
+          { value: "lighting", label: "Lighting" },
+          { value: "parking", label: "Parking" },
+          { value: "locker-rooms", label: "Locker Rooms" },
+        ],
+      };
+    case "pickleball-clubs-leagues":
+      return {
+        membershipType: [
+          { value: "all", label: "All Types" },
+          { value: "public", label: "Public Access" },
+          { value: "membership", label: "Membership Required" },
+          { value: "drop-in", label: "Drop-in Welcome" },
+        ],
+        skillLevel: [
+          { value: "all", label: "All Levels" },
+          { value: "beginner", label: "Beginner" },
+          { value: "intermediate", label: "Intermediate" },
+          { value: "advanced", label: "Advanced" },
+          { value: "competitive", label: "Competitive" },
+        ],
+        leagueType: [
+          { value: "all", label: "All Leagues" },
+          { value: "social", label: "Social Leagues" },
+          { value: "competitive", label: "Competitive Leagues" },
+          { value: "tournament", label: "Tournament Prep" },
+        ],
+      };
+    case "pickleball-equipment-stores":
+      return {
+        productType: [
+          { value: "all", label: "All Products" },
+          { value: "paddles", label: "Paddles" },
+          { value: "balls", label: "Balls" },
+          { value: "shoes", label: "Shoes" },
+          { value: "apparel", label: "Apparel" },
+          { value: "accessories", label: "Accessories" },
+        ],
+        priceRange: [
+          { value: "all", label: "Any Price" },
+          { value: "budget", label: "Budget ($)" },
+          { value: "moderate", label: "Moderate ($$)" },
+          { value: "premium", label: "Premium ($$$)" },
+        ],
+      };
+    case "pickleball-coaches-instructors":
+      return {
+        experienceLevel: [
+          { value: "all", label: "All Levels" },
+          { value: "beginner", label: "Beginner Coach" },
+          { value: "intermediate", label: "Intermediate Coach" },
+          { value: "advanced", label: "Advanced Coach" },
+          { value: "professional", label: "Professional" },
+        ],
+        certification: [
+          { value: "all", label: "Any Certification" },
+          { value: "certified", label: "Certified" },
+          { value: "usapa", label: "USAPA Certified" },
+          { value: "ipf", label: "IPF Certified" },
+        ],
+        lessonType: [
+          { value: "all", label: "All Types" },
+          { value: "private", label: "Private Lessons" },
+          { value: "group", label: "Group Lessons" },
+          { value: "clinic", label: "Clinics" },
+          { value: "workshop", label: "Workshops" },
+        ],
+      };
+    case "pickleball-tournaments-events":
+      return {
+        tournamentType: [
+          { value: "all", label: "All Types" },
+          { value: "local", label: "Local Tournaments" },
+          { value: "regional", label: "Regional" },
+          { value: "national", label: "National" },
+          { value: "charity", label: "Charity Events" },
+        ],
+        skillLevel: [
+          { value: "all", label: "All Levels" },
+          { value: "beginner", label: "Beginner" },
+          { value: "intermediate", label: "Intermediate" },
+          { value: "advanced", label: "Advanced" },
+          { value: "open", label: "Open Division" },
+        ],
+        entryFee: [
+          { value: "all", label: "Any Fee" },
+          { value: "free", label: "Free" },
+          { value: "low", label: "Low ($0-$50)" },
+          { value: "medium", label: "Medium ($50-$150)" },
+          { value: "high", label: "High ($150+)" },
+        ],
+      };
+    default:
+      return null;
+  }
+};
 
 const sortOptions = [
   { value: "relevance", label: "Most Relevant" },
@@ -107,23 +216,42 @@ function CategoryPageContent() {
 
   // Filter states
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "relevance");
-  const [neighborhood, setNeighborhood] = useState(
-    searchParams.get("neighborhood") || "all"
-  );
+  const [selectedState, setSelectedState] = useState(searchParams.get("state") || "all");
+  const [selectedCity, setSelectedCity] = useState(searchParams.get("city") || "all");
   const [minRating, setMinRating] = useState(searchParams.get("rating") || "0");
   const [priceLevel, setPriceLevel] = useState(searchParams.get("price") || "0");
   const [dataSource, setDataSource] = useState<"database" | "google" | "hybrid" | null>(null);
   const [autoSynced, setAutoSynced] = useState(false);
+  
+  // Category-specific filter states
+  const categoryFilters = getCategorySpecificFilters(slug);
+  const [facilityType, setFacilityType] = useState(searchParams.get("facilityType") || "all");
+  const [courtSurface, setCourtSurface] = useState(searchParams.get("courtSurface") || "all");
+  const [membershipType, setMembershipType] = useState(searchParams.get("membershipType") || "all");
+  const [skillLevel, setSkillLevel] = useState(searchParams.get("skillLevel") || "all");
+  
+  // Get states and cities for filters
+  const allStates = getAllStates();
+  const availableCities = selectedState !== "all" 
+    ? getCitiesForState(selectedState) 
+    : [];
 
   // Fetch data
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
       const params = new URLSearchParams();
-      if (neighborhood && neighborhood !== "all") params.set("neighborhood", neighborhood);
+      if (selectedState && selectedState !== "all") params.set("state", selectedState);
+      if (selectedCity && selectedCity !== "all") params.set("city", selectedCity);
       if (minRating !== "0") params.set("rating", minRating);
       if (priceLevel !== "0") params.set("price", priceLevel);
       if (sortBy !== "relevance") params.set("sort", sortBy);
+      
+      // Add category-specific filters
+      if (facilityType !== "all") params.set("facilityType", facilityType);
+      if (courtSurface !== "all") params.set("courtSurface", courtSurface);
+      if (membershipType !== "all") params.set("membershipType", membershipType);
+      if (skillLevel !== "all") params.set("skillLevel", skillLevel);
 
       const response = await fetch(`/api/categories/${slug}?${params.toString()}`);
       const data = await response.json();
@@ -139,7 +267,7 @@ function CategoryPageContent() {
     } finally {
       setIsLoading(false);
     }
-  }, [slug, neighborhood, minRating, priceLevel, sortBy]);
+  }, [slug, selectedState, selectedCity, minRating, priceLevel, sortBy, facilityType, courtSurface, membershipType, skillLevel]);
 
   useEffect(() => {
     fetchData();
@@ -157,44 +285,85 @@ function CategoryPageContent() {
 
   const clearFilters = () => {
     setSortBy("relevance");
-    setNeighborhood("all");
+    setSelectedState("all");
+    setSelectedCity("all");
     setMinRating("0");
     setPriceLevel("0");
+    setFacilityType("all");
+    setCourtSurface("all");
+    setMembershipType("all");
+    setSkillLevel("all");
     router.push(`/categories/${slug}`, { scroll: false });
   };
 
   const hasActiveFilters =
     sortBy !== "relevance" ||
-    neighborhood !== "all" ||
+    selectedState !== "all" ||
+    selectedCity !== "all" ||
     minRating !== "0" ||
-    priceLevel !== "0";
+    priceLevel !== "0" ||
+    facilityType !== "all" ||
+    courtSurface !== "all" ||
+    membershipType !== "all" ||
+    skillLevel !== "all";
 
   const FilterContent = () => (
     <div className="space-y-6">
-      {/* Neighborhood Filter */}
+      {/* State Filter */}
       <div>
         <label className="text-sm font-medium text-foreground mb-2 block">
-          Neighborhood
+          State
         </label>
         <Select
-          value={neighborhood}
+          value={selectedState}
           onValueChange={(value) => {
-            setNeighborhood(value);
-            updateFilters("neighborhood", value);
+            setSelectedState(value);
+            setSelectedCity("all"); // Reset city when state changes
+            updateFilters("state", value);
+            updateFilters("city", ""); // Clear city filter
           }}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select neighborhood" />
+            <SelectValue placeholder="Select state" />
           </SelectTrigger>
-          <SelectContent>
-            {neighborhoods.map((n) => (
-              <SelectItem key={n.value} value={n.value}>
-                {n.label}
+          <SelectContent className="max-h-[300px]">
+            <SelectItem value="all">All States</SelectItem>
+            {allStates.map((state) => (
+              <SelectItem key={state.code} value={state.code}>
+                {state.name}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
+
+      {/* City Filter (only shown when state is selected) */}
+      {selectedState !== "all" && availableCities.length > 0 && (
+        <div>
+          <label className="text-sm font-medium text-foreground mb-2 block">
+            City
+          </label>
+          <Select
+            value={selectedCity}
+            onValueChange={(value) => {
+              setSelectedCity(value);
+              updateFilters("city", value);
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select city" />
+            </SelectTrigger>
+            <SelectContent className="max-h-[300px]">
+              <SelectItem value="all">All Cities</SelectItem>
+              {availableCities.map((city) => (
+                <SelectItem key={city.slug} value={city.name}>
+                  {city.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       {/* Rating Filter */}
       <div>
@@ -224,30 +393,135 @@ function CategoryPageContent() {
         </Select>
       </div>
 
-      {/* Price Filter */}
-      <div>
-        <label className="text-sm font-medium text-foreground mb-2 block">
-          Price Level
-        </label>
-        <Select
-          value={priceLevel}
-          onValueChange={(value) => {
-            setPriceLevel(value);
-            updateFilters("price", value);
-          }}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Any price" />
-          </SelectTrigger>
-          <SelectContent>
-            {priceFilters.map((p) => (
-              <SelectItem key={p.value} value={p.value}>
-                {p.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      {/* Category-Specific Filters */}
+      {categoryFilters && slug === "pickleball-courts-facilities" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Facility Type
+            </label>
+            <Select
+              value={facilityType}
+              onValueChange={(value) => {
+                setFacilityType(value);
+                updateFilters("facilityType", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All types" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.facilityType?.map((f) => (
+                  <SelectItem key={f.value} value={f.value}>
+                    {f.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Court Surface
+            </label>
+            <Select
+              value={courtSurface}
+              onValueChange={(value) => {
+                setCourtSurface(value);
+                updateFilters("courtSurface", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any surface" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.courtSurface?.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "pickleball-clubs-leagues" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Membership Type
+            </label>
+            <Select
+              value={membershipType}
+              onValueChange={(value) => {
+                setMembershipType(value);
+                updateFilters("membershipType", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All types" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.membershipType?.map((m) => (
+                  <SelectItem key={m.value} value={m.value}>
+                    {m.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Skill Level
+            </label>
+            <Select
+              value={skillLevel}
+              onValueChange={(value) => {
+                setSkillLevel(value);
+                updateFilters("skillLevel", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All levels" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.skillLevel?.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {/* Price Filter (only for relevant categories) */}
+      {(slug === "pickleball-equipment-stores" || slug === "pickleball-tournaments-events") && (
+        <div>
+          <label className="text-sm font-medium text-foreground mb-2 block">
+            Price Level
+          </label>
+          <Select
+            value={priceLevel}
+            onValueChange={(value) => {
+              setPriceLevel(value);
+              updateFilters("price", value);
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Any price" />
+            </SelectTrigger>
+            <SelectContent>
+              {priceFilters.map((p) => (
+                <SelectItem key={p.value} value={p.value}>
+                  {p.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       {hasActiveFilters && (
         <Button variant="outline" onClick={clearFilters} className="w-full">
@@ -259,7 +533,7 @@ function CategoryPageContent() {
   );
 
   const displayName = category?.name || slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const displayDescription = category?.description || `Browse ${displayName} businesses in Plano, TX`;
+  const displayDescription = category?.description || `Browse ${displayName} businesses across the United States`;
   const displaySection = category?.section || "General";
 
   return (
@@ -289,7 +563,13 @@ function CategoryPageContent() {
               {displaySection}
             </Badge>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              {displayName} in Plano, TX
+              {displayName}
+              {selectedState !== "all" && (
+                <span className="text-muted-foreground font-normal">
+                  {" "}in {allStates.find(s => s.code === selectedState)?.name || selectedState}
+                  {selectedCity !== "all" && `, ${selectedCity}`}
+                </span>
+              )}
             </h1>
             <p className="text-muted-foreground max-w-2xl">{displayDescription}</p>
           </motion.div>
@@ -423,11 +703,52 @@ function CategoryPageContent() {
             {hasActiveFilters && (
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="text-sm text-muted-foreground">Active filters:</span>
-                {neighborhood !== "All Neighborhoods" && (
+                {selectedState !== "all" && (
                   <Badge variant="secondary" className="gap-1">
                     <MapPin className="w-3 h-3" />
-                    {neighborhood}
-                    <button onClick={() => { setNeighborhood("All Neighborhoods"); updateFilters("neighborhood", ""); }}>
+                    {allStates.find(s => s.code === selectedState)?.name || selectedState}
+                    <button onClick={() => { setSelectedState("all"); updateFilters("state", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {selectedCity !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    <MapPin className="w-3 h-3" />
+                    {selectedCity}
+                    <button onClick={() => { setSelectedCity("all"); updateFilters("city", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {facilityType !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    {categoryFilters?.facilityType?.find(f => f.value === facilityType)?.label}
+                    <button onClick={() => { setFacilityType("all"); updateFilters("facilityType", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {courtSurface !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    {categoryFilters?.courtSurface?.find(s => s.value === courtSurface)?.label}
+                    <button onClick={() => { setCourtSurface("all"); updateFilters("courtSurface", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {membershipType !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    {categoryFilters?.membershipType?.find(m => m.value === membershipType)?.label}
+                    <button onClick={() => { setMembershipType("all"); updateFilters("membershipType", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {skillLevel !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    {categoryFilters?.skillLevel?.find(s => s.value === skillLevel)?.label}
+                    <button onClick={() => { setSkillLevel("all"); updateFilters("skillLevel", ""); }}>
                       <X className="w-3 h-3" />
                     </button>
                   </Badge>

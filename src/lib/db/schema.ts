@@ -128,37 +128,6 @@ export const businessClaims = pgTable("business_claims", {
   index("business_claims_status_idx").on(table.status),
 ]);
 
-// States table
-export const states = pgTable("states", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  name: varchar("name", { length: 100 }).notNull(),
-  code: varchar("code", { length: 2 }).unique().notNull(),
-  population: integer("population"),
-  rank: integer("rank"),
-  slug: varchar("slug", { length: 100 }).unique().notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-}, (table) => [
-  index("states_code_idx").on(table.code),
-  index("states_slug_idx").on(table.slug),
-  index("states_rank_idx").on(table.rank),
-]);
-
-// Cities table
-export const cities = pgTable("cities", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  name: varchar("name", { length: 100 }).notNull(),
-  stateId: uuid("state_id").references(() => states.id, { onDelete: "cascade" }).notNull(),
-  population: integer("population"),
-  slug: varchar("slug", { length: 100 }).notNull(),
-  lat: decimal("lat", { precision: 10, scale: 7 }),
-  lng: decimal("lng", { precision: 10, scale: 7 }),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-}, (table) => [
-  index("cities_state_idx").on(table.stateId),
-  index("cities_slug_idx").on(table.slug),
-  index("cities_name_state_idx").on(table.name, table.stateId),
-]);
-
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   reviews: many(reviews),
@@ -223,6 +192,37 @@ export const businessClaimsRelations = relations(businessClaims, ({ one }) => ({
   }),
 }));
 
+// States table
+export const states = pgTable("states", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name", { length: 100 }).notNull(),
+  code: varchar("code", { length: 2 }).unique().notNull(),
+  population: integer("population"),
+  rank: integer("rank"),
+  slug: varchar("slug", { length: 100 }).unique().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("states_code_idx").on(table.code),
+  index("states_slug_idx").on(table.slug),
+  index("states_rank_idx").on(table.rank),
+]);
+
+// Cities table
+export const cities = pgTable("cities", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name", { length: 100 }).notNull(),
+  stateId: uuid("state_id").references(() => states.id, { onDelete: "cascade" }).notNull(),
+  population: integer("population"),
+  slug: varchar("slug", { length: 100 }).notNull(),
+  lat: decimal("lat", { precision: 10, scale: 7 }),
+  lng: decimal("lng", { precision: 10, scale: 7 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("cities_state_idx").on(table.stateId),
+  index("cities_slug_idx").on(table.slug),
+  index("cities_name_state_idx").on(table.name, table.stateId),
+]);
+
 export const statesRelations = relations(states, ({ many }) => ({
   cities: many(cities),
 }));
@@ -247,6 +247,35 @@ export type Favorite = typeof favorites.$inferSelect;
 export type NewFavorite = typeof favorites.$inferInsert;
 export type BusinessClaim = typeof businessClaims.$inferSelect;
 export type NewBusinessClaim = typeof businessClaims.$inferInsert;
+
+// Sync Jobs table - tracks bulk sync progress
+export const syncJobs = pgTable("sync_jobs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  status: varchar("status", { length: 50 }).notNull().default("pending"), // pending, running, completed, failed
+  totalCities: integer("total_cities").default(0),
+  completedCities: integer("completed_cities").default(0),
+  totalBusinessesFound: integer("total_businesses_found").default(0),
+  totalBusinessesInserted: integer("total_businesses_inserted").default(0),
+  totalBusinessesSkipped: integer("total_businesses_skipped").default(0),
+  totalApiCalls: integer("total_api_calls").default(0),
+  errorMessage: text("error_message"),
+  config: jsonb("config").$type<{
+    maxStates?: number;
+    citiesPerState?: number;
+    queriesPerCity?: number;
+    stateCode?: string;
+  }>(),
+  startedAt: timestamp("started_at"),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("sync_jobs_status_idx").on(table.status),
+  index("sync_jobs_created_at_idx").on(table.createdAt),
+]);
+
+export type SyncJob = typeof syncJobs.$inferSelect;
+export type NewSyncJob = typeof syncJobs.$inferInsert;
 export type State = typeof states.$inferSelect;
 export type NewState = typeof states.$inferInsert;
 export type City = typeof cities.$inferSelect;

@@ -110,13 +110,17 @@ function formatHours(weekdayText?: string[]): Record<string, string> | null {
   return Object.keys(hours).length > 0 ? hours : null;
 }
 
-// Determine neighborhood from coordinates
-function determineNeighborhood(lat: number, lng: number): string {
-  if (lat > 33.05 && lng < -96.75) return "Legacy West";
-  if (lat > 33.04 && lng > -96.72) return "East Plano";
-  if (lat < 33.02 && lng > -96.72) return "Downtown Plano";
-  if (lng < -96.8) return "West Plano";
-  return "Plano";
+// Helper function to parse city and state from address
+function parseCityState(formattedAddress: string): { city: string; state: string } {
+  const parts = formattedAddress.split(",").map(s => s.trim());
+  if (parts.length >= 3) {
+    const statePart = parts[parts.length - 2];
+    const stateMatch = statePart.match(/\b([A-Z]{2})\b/);
+    const state = stateMatch ? stateMatch[1] : "";
+    const city = parts[parts.length - 3] || "";
+    return { city, state };
+  }
+  return { city: "", state: "" };
 }
 
 // Save a Google Place to the database
@@ -153,12 +157,12 @@ async function saveGooglePlaceToDb(placeId: string, googleDetails: GooglePlaceDe
         name,
         slug,
         address: addressParts[0] || address,
-        city: "Plano",
-        state: "TX",
+        city: parseCityState(address).city || "",
+        state: parseCityState(address).state || "",
         zip,
         lat: lat?.toString() || null,
         lng: lng?.toString() || null,
-        neighborhood: lat && lng ? determineNeighborhood(lat, lng) : "Plano",
+        neighborhood: null,
         ratingAvg: googleDetails.rating?.toString() || "0",
         reviewCount: googleDetails.user_ratings_total || 0,
         priceLevel: googleDetails.price_level ?? null,

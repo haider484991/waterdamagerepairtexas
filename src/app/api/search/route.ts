@@ -92,13 +92,14 @@ async function searchGoogleAndSync(query: string): Promise<{
   }
 
   try {
-    // Search for pickleball-related results nationwide
+    // Search for pickleball-related results in USA only
     const searchQuery = query.toLowerCase().includes("pickleball") 
-      ? query 
-      : `${query} pickleball`;
+      ? `${query} USA`
+      : `${query} pickleball USA`;
     
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
     url.searchParams.set("query", searchQuery);
+    url.searchParams.set("region", "us"); // Bias results to USA
     url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
 
     const response = await fetch(url.toString());
@@ -109,7 +110,21 @@ async function searchGoogleAndSync(query: string): Promise<{
       return { results: [], synced: false };
     }
 
-    const places: GooglePlaceResult[] = data.results;
+    // Filter to only US results
+    const usStates = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'];
+    const places: GooglePlaceResult[] = data.results.filter((place: GooglePlaceResult) => {
+      const address = place.formatted_address || "";
+      // Check if address contains USA or a US state abbreviation
+      const isUS = address.includes("USA") || 
+                   address.includes("United States") ||
+                   usStates.some(state => address.includes(`, ${state} `) || address.includes(`, ${state},`) || address.endsWith(`, ${state}`));
+      if (!isUS) {
+        console.log(`[Search API] Filtered out non-US result: ${place.name} (${address})`);
+      }
+      return isUS;
+    });
+
+    console.log(`[Search API] Found ${places.length} US results out of ${data.results.length} total`);
 
     // Group places by detected category for sync
     const placesByCategory = new Map<string | null, GooglePlaceResult[]>();

@@ -1,6 +1,5 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
-import { eq } from "drizzle-orm";
 import * as dotenv from "dotenv";
 import { categories, businesses, users, states, cities } from "./schema";
 import bcrypt from "bcryptjs";
@@ -206,112 +205,72 @@ async function seed() {
     // Seed states (Top 25 US states)
     console.log("📍 Seeding states...");
     const statesData = getAllStates();
-    
-    // Check if states already exist
-    const existingStates = await db.select().from(states);
-    let insertedStates;
-    if (existingStates.length > 0) {
-      console.log(`⚠️  ${existingStates.length} states already exist. Skipping state insertion.`);
-      insertedStates = existingStates;
-    } else {
-      insertedStates = await db.insert(states).values(statesData).returning();
-      console.log(`✅ Inserted ${insertedStates.length} states`);
-    }
+    const insertedStates = await db.insert(states).values(statesData).returning();
+    console.log(`✅ Inserted ${insertedStates.length} states`);
 
     // Create state lookup map
     const stateMap = new Map(insertedStates.map(s => [s.code, s.id]));
 
     // Seed cities (Cities with population > 10k)
     console.log("🏙️ Seeding cities...");
-    const existingCities = await db.select().from(cities);
-    let insertedCities;
-    if (existingCities.length > 0) {
-      console.log(`⚠️  ${existingCities.length} cities already exist. Skipping city insertion.`);
-      insertedCities = existingCities;
-    } else {
-      const citiesData = getAllCities().map(city => ({
-        name: city.name,
-        stateId: stateMap.get(city.stateCode)!,
-        population: city.population,
-        slug: city.slug,
-        lat: city.lat.toString(),
-        lng: city.lng.toString(),
-      }));
-      insertedCities = await db.insert(cities).values(citiesData).returning();
-      console.log(`✅ Inserted ${insertedCities.length} cities`);
-    }
+    const citiesData = getAllCities().map(city => ({
+      name: city.name,
+      stateId: stateMap.get(city.stateCode)!,
+      population: city.population,
+      slug: city.slug,
+      lat: city.lat.toString(),
+      lng: city.lng.toString(),
+    }));
+    const insertedCities = await db.insert(cities).values(citiesData).returning();
+    console.log(`✅ Inserted ${insertedCities.length} cities`);
 
     // Seed pickleball categories
     console.log("🎾 Seeding pickleball categories...");
-    const existingCategories = await db.select().from(categories);
-    let insertedCategories;
-    if (existingCategories.length > 0) {
-      console.log(`⚠️  ${existingCategories.length} categories already exist. Skipping category insertion.`);
-      insertedCategories = existingCategories;
-    } else {
-      insertedCategories = await db.insert(categories).values(pickleballCategories).returning();
-      console.log(`✅ Inserted ${insertedCategories.length} pickleball categories`);
-    }
+    const insertedCategories = await db.insert(categories).values(pickleballCategories).returning();
+    console.log(`✅ Inserted ${insertedCategories.length} pickleball categories`);
 
     // Create category lookup map
     const categoryMap = new Map(insertedCategories.map(c => [c.slug, c.id]));
 
     // Seed sample pickleball businesses
     console.log("🏢 Seeding sample pickleball businesses...");
-    const existingBusinesses = await db.select().from(businesses);
-    let insertedBusinesses;
-    if (existingBusinesses.length > 0) {
-      console.log(`⚠️  ${existingBusinesses.length} businesses already exist. Skipping business insertion.`);
-      insertedBusinesses = existingBusinesses;
-    } else {
-      const categorySlugs = [
-        "pickleball-courts-facilities",
-        "pickleball-courts-facilities",
-        "pickleball-equipment-stores",
-        "pickleball-coaches-instructors",
-        "pickleball-clubs-leagues",
-      ];
-      
-      const businessesWithCategories = samplePickleballBusinesses.map((business, index) => ({
-        ...business,
-        categoryId: categoryMap.get(categorySlugs[index])!,
-      }));
+    const categorySlugs = [
+      "pickleball-courts-facilities",
+      "pickleball-courts-facilities",
+      "pickleball-equipment-stores",
+      "pickleball-coaches-instructors",
+      "pickleball-clubs-leagues",
+    ];
+    
+    const businessesWithCategories = samplePickleballBusinesses.map((business, index) => ({
+      ...business,
+      categoryId: categoryMap.get(categorySlugs[index])!,
+    }));
 
-      insertedBusinesses = await db.insert(businesses).values(businessesWithCategories).returning();
-      console.log(`✅ Inserted ${insertedBusinesses.length} sample pickleball businesses`);
-    }
+    const insertedBusinesses = await db.insert(businesses).values(businessesWithCategories).returning();
+    console.log(`✅ Inserted ${insertedBusinesses.length} sample pickleball businesses`);
 
     // Create a demo user
     console.log("👤 Creating demo user...");
-    const existingDemoUser = await db.select().from(users).where(eq(users.email, "demo@uspickleballdirectory.com")).limit(1);
-    if (existingDemoUser.length > 0) {
-      console.log(`⚠️  Demo user already exists: ${existingDemoUser[0].email}`);
-    } else {
-      const hashedPassword = await bcrypt.hash("demo123", 10);
-      const [demoUser] = await db.insert(users).values({
-        email: "demo@uspickleballdirectory.com",
-        passwordHash: hashedPassword,
-        name: "Demo User",
-        role: "user",
-      }).returning();
-      console.log(`✅ Created demo user: ${demoUser.email}`);
-    }
+    const hashedPassword = await bcrypt.hash("demo123", 10);
+    const [demoUser] = await db.insert(users).values({
+      email: "demo@uspickleballdirectory.com",
+      passwordHash: hashedPassword,
+      name: "Demo User",
+      role: "user",
+    }).returning();
+    console.log(`✅ Created demo user: ${demoUser.email}`);
 
     // Create an admin user
     console.log("👑 Creating admin user...");
-    const existingAdminUser = await db.select().from(users).where(eq(users.email, "admin@uspickleballdirectory.com")).limit(1);
-    if (existingAdminUser.length > 0) {
-      console.log(`⚠️  Admin user already exists: ${existingAdminUser[0].email}`);
-    } else {
-      const adminPassword = await bcrypt.hash("admin123", 10);
-      const [adminUser] = await db.insert(users).values({
-        email: "admin@uspickleballdirectory.com",
-        passwordHash: adminPassword,
-        name: "Admin User",
-        role: "admin",
-      }).returning();
-      console.log(`✅ Created admin user: ${adminUser.email}`);
-    }
+    const adminPassword = await bcrypt.hash("admin123", 10);
+    const [adminUser] = await db.insert(users).values({
+      email: "admin@uspickleballdirectory.com",
+      passwordHash: adminPassword,
+      name: "Admin User",
+      role: "admin",
+    }).returning();
+    console.log(`✅ Created admin user: ${adminUser.email}`);
 
     console.log("\n🎉 Seed completed successfully!");
     console.log("\n📋 Summary:");

@@ -299,7 +299,7 @@ export function HomePageClient({
               </h2>
               <p className="text-muted-foreground max-w-2xl">
                 {featuredBusinesses.length > 0
-                  ? "Discover top-rated businesses loved by the Plano community"
+                  ? "Discover top-rated pickleball businesses across the United States"
                   : "Newly added businesses in the directory"}
               </p>
             </div>
@@ -453,7 +453,7 @@ export function HomePageClient({
             className="max-w-3xl mx-auto text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Own a Business in Plano?
+              Own a Pickleball Business?
             </h2>
             <p className="text-muted-foreground mb-8 text-lg">
               Join thousands of local businesses already listed in our directory.

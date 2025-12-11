@@ -59,7 +59,7 @@ export default function AdminBusinessesPage() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const isAdmin =
-    session?.user?.email === "admin@plano.directory" ||
+    session?.user?.email === "admin@uspickleballdirectory.com" ||
     session?.user?.email?.endsWith("@admin.com") ||
     session?.user?.email === "admin@test.com";
 

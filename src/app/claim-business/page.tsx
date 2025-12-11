@@ -229,7 +229,7 @@ export default function ClaimBusinessPage() {
                 </h2>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Business owners across Plano trust us to help them manage their online presence
+                Business owners across the United States trust us to help them manage their online presence
                 and connect with local customers.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6 pt-4">

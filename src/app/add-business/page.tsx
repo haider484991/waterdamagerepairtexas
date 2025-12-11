@@ -59,13 +59,7 @@ const categories = [
   { value: "event-wedding-services", label: "Event & Wedding Services" },
 ];
 
-const neighborhoods = [
-  { value: "Legacy West", label: "Legacy West" },
-  { value: "Downtown Plano", label: "Downtown Plano" },
-  { value: "West Plano", label: "West Plano" },
-  { value: "East Plano", label: "East Plano" },
-  { value: "Plano", label: "Plano (Central)" },
-];
+// Neighborhood is optional and can be left empty for nationwide directory
 
 export default function AddBusinessPage() {
   const { data: session, status } = useSession();
@@ -76,8 +70,8 @@ export default function AddBusinessPage() {
     name: "",
     description: "",
     address: "",
-    city: "Plano",
-    state: "TX",
+    city: "",
+    state: "",
     zip: "",
     phone: "",
     website: "",
@@ -186,7 +180,7 @@ export default function AddBusinessPage() {
             <div>
               <h1 className="text-2xl font-bold">Add Your Business</h1>
               <p className="text-muted-foreground">
-                Submit your business to Henry Harrison Plano Texas
+                Submit your business to US Pickleball Directory
               </p>
             </div>
           </div>

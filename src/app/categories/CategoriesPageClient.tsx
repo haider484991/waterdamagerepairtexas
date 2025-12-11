@@ -111,7 +111,7 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
             Browse All Categories
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore {categories.length} categories covering everything Plano has to offer, from
+            Explore {categories.length} pickleball categories covering everything the United States has to offer, from
             dining and shopping to professional services and entertainment.
           </p>
         </motion.div>

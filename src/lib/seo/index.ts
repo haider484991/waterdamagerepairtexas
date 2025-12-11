@@ -199,10 +199,10 @@ export function generateCategoryMetadata(
       ? ` Top picks average ${extras.avgRating.toFixed(1)}★ across ${extras.totalReviews} reviews.`
       : "";
 
-  const title = `${category.name} in Plano, Texas | Top Local ${category.name}`;
+  const title = `${category.name} Directory | US Pickleball Directory`;
   const description =
     category.description ||
-    `Explore ${businessCount} ${category.name.toLowerCase()} options in Plano, TX. Compare ratings, reviews, hours, and contact details.${ratingSnippet}`;
+    `Explore ${businessCount} ${category.name.toLowerCase()} options across the United States. Compare ratings, reviews, hours, and contact details.${ratingSnippet}`;
 
   return {
     title,
@@ -214,12 +214,13 @@ export function generateCategoryMetadata(
       url: `${SITE_URL}/categories/${category.slug}`,
     },
     keywords: [
-      `${category.name} Plano`,
-      `${category.name} Plano Texas`,
+      `${category.name} USA`,
+      `${category.name} United States`,
       `${category.name} near me`,
-      `best ${category.name.toLowerCase()} Plano`,
-      `top rated ${category.name.toLowerCase()} Plano`,
-      `${category.name.toLowerCase()} directory Plano`,
+      `best ${category.name.toLowerCase()} USA`,
+      `top rated ${category.name.toLowerCase()}`,
+      `${category.name.toLowerCase()} directory`,
+      `pickleball ${category.name.toLowerCase()}`,
     ],
   };
 }

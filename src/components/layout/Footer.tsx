@@ -10,11 +10,9 @@ const footerLinks = {
     { href: "/categories/home-improvement", label: "Home Services" },
     { href: "/categories/automotive", label: "Automotive" },
   ],
-  neighborhoods: [
-    { href: "/neighborhoods/legacy-west", label: "Legacy West" },
-    { href: "/neighborhoods/downtown-plano", label: "Downtown Plano" },
-    { href: "/neighborhoods/west-plano", label: "West Plano" },
-    { href: "/neighborhoods/east-plano", label: "East Plano" },
+  locations: [
+    { href: "/states", label: "Browse by State" },
+    { href: "/categories", label: "Browse by Category" },
   ],
   company: [
     { href: "/about", label: "About Us" },
@@ -84,11 +82,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Neighborhoods */}
+          {/* Locations */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Neighborhoods</h3>
+            <h3 className="font-semibold text-foreground mb-4">Browse</h3>
             <ul className="space-y-3">
-              {footerLinks.neighborhoods.map((link) => (
+              {footerLinks.locations.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -125,7 +123,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Henry Harrison Plano Texas. All rights reserved.
+              © {new Date().getFullYear()} US Pickleball Directory. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               {footerLinks.legal.map((link) => (

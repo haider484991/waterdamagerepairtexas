@@ -70,7 +70,7 @@ export default function AdminPage() {
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check admin access
-  const isAdmin = session?.user?.email === "admin@plano.directory" || 
+  const isAdmin = session?.user?.email === "admin@uspickleballdirectory.com" || 
                   session?.user?.email?.endsWith("@admin.com") ||
                   session?.user?.email === "admin@test.com";
 

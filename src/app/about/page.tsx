@@ -30,16 +30,16 @@ export default function AboutPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-6 max-w-2xl">
               <Badge variant="secondary" className="text-sm">
-                About Henry Harrison Plano Texas
+                About US Pickleball Directory
               </Badge>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight text-foreground">
-                Your guide to the businesses that make Plano thrive.
+                Your guide to pickleball businesses across the United States.
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                HenryHarrisonPlanoTexas.com is a modern, easy-to-use directory that
-                showcases the best of Plano’s business community. Our mission is
-                simple: connect residents, visitors, and local professionals with
-                trusted businesses across every major category in Plano, Texas.
+                US Pickleball Directory is a modern, easy-to-use directory that
+                showcases the best pickleball businesses across the United States. Our mission is
+                simple: connect pickleball players, coaches, and enthusiasts with
+                trusted businesses including courts, clubs, equipment stores, coaches, and tournaments nationwide.
               </p>
             </div>
 
@@ -55,16 +55,15 @@ export default function AboutPage() {
           <CardContent className="p-8 lg:p-10 space-y-8">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                Why Henry Harrison Plano Texas?
+                Why US Pickleball Directory?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Plano continues to grow as one of the most dynamic economic hubs in
-                North Texas. With a thriving mix of small businesses, established
-                brands, family-owned shops, and innovative startups, the city offers
-                endless options—and we’re here to make them easier to find. Whether
-                you’re searching for home services, restaurants, medical providers,
-                local boutiques, financial professionals, or community resources, our
-                directory puts Plano’s top businesses right at your fingertips.
+                Pickleball is the fastest-growing sport in America, with millions of players
+                across all 50 states. With a thriving community of courts, clubs, equipment stores,
+                coaches, and tournaments, the sport offers endless opportunities—and we're here to
+                make them easier to find. Whether you're searching for indoor or outdoor courts,
+                competitive leagues, quality equipment, certified instructors, or upcoming tournaments,
+                our directory puts the best pickleball businesses right at your fingertips.
               </p>
             </div>
 
@@ -74,18 +73,18 @@ export default function AboutPage() {
               <div className="space-y-3">
                 <h3 className="text-xl font-semibold text-foreground">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Great cities are built on strong local economies. By helping Plano
-                  businesses increase their visibility and helping residents discover
-                  reliable local services, HenryHarrisonPlanoTexas.com aims to be a
-                  trusted guide for anyone looking to engage with the community.
+                  Great communities are built on strong connections. By helping pickleball
+                  businesses increase their visibility and helping players discover
+                  reliable services, US Pickleball Directory aims to be a
+                  trusted guide for anyone looking to engage with the pickleball community.
                 </p>
               </div>
               <div className="space-y-3">
                 <h3 className="text-xl font-semibold text-foreground">Always Up-to-Date</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our platform is continually expanding, updated to reflect new openings,
-                  growing companies, and standout organizations making an impact in Plano.
-                  If you’re a business owner interested in being listed or featured, you’ll
+                  Our platform is continually expanding, updated to reflect new courts,
+                  growing clubs, and standout organizations making an impact in the pickleball community.
+                  If you're a business owner interested in being listed or featured, you'll
                   find everything you need right here.
                 </p>
               </div>
@@ -108,10 +107,10 @@ export default function AboutPage() {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">Discover. Connect. Support Local.</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Henry Harrison Plano Texas is here to help you explore, compare, and connect with
-                the businesses that keep Plano moving forward. Whether you’re a resident looking
-                for a trusted service or a business owner ready to reach more of the community,
-                we’re glad you’re here.
+                US Pickleball Directory is here to help you explore, compare, and connect with
+                the businesses that keep the pickleball community thriving. Whether you're a player looking
+                for courts and equipment or a business owner ready to reach more of the community,
+                we're glad you're here.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
