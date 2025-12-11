@@ -264,6 +264,8 @@ export const syncJobs = pgTable("sync_jobs", {
     citiesPerState?: number;
     queriesPerCity?: number;
     stateCode?: string;
+    selectedStates?: string[];
+    selectedCities?: string[];
   }>(),
   startedAt: timestamp("started_at"),
   completedAt: timestamp("completed_at"),
