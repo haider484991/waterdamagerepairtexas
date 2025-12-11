@@ -50,18 +50,34 @@ async function fetchAndSyncGooglePlaces(
       locationQuery = "United States"; // Default to US-wide search
     }
 
-    // Fetch from each query
+    // Fetch from each query with pagination support
     for (const query of queries.slice(0, 3)) {
-      const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-      url.searchParams.set("query", `${query} in ${locationQuery}`);
-      url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
+      let pageToken: string | undefined;
+      let pageCount = 0;
+      const maxPages = 3; // Google allows up to 3 pages (60 results per query)
+      
+      do {
+        const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
+        url.searchParams.set("query", `${query} in ${locationQuery}`);
+        url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
+        
+        if (pageToken) {
+          // Wait 2 seconds before using next_page_token (Google requirement)
+          await new Promise(r => setTimeout(r, 2000));
+          url.searchParams.set("pagetoken", pageToken);
+        }
 
-      const response = await fetch(url.toString());
-      const data = await response.json();
+        const response = await fetch(url.toString());
+        const data = await response.json();
 
-      if (data.status === "OK" && data.results) {
-        allPlaces.push(...data.results);
-      }
+        if (data.status === "OK" && data.results) {
+          allPlaces.push(...data.results);
+          pageToken = data.next_page_token;
+          pageCount++;
+        } else {
+          break;
+        }
+      } while (pageToken && pageCount < maxPages);
     }
 
     // Deduplicate by place_id
@@ -76,8 +92,8 @@ async function fetchAndSyncGooglePlaces(
       console.error("[Category API] Auto-sync error:", err)
     );
 
-    // Return formatted for immediate display
-    return uniquePlaces.slice(0, 20).map((place, index) => {
+    // Return formatted for immediate display (no limit - return all results)
+    return uniquePlaces.map((place, index) => {
       const { city, state } = parseCityState(place.formatted_address || place.vicinity || "");
       return {
         id: `temp-${place.place_id}`,
@@ -131,7 +147,9 @@ export async function GET(
     const priceLevel = parseInt(searchParams.get("price") || "0");
     const sortBy = searchParams.get("sort") || "relevance";
     const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "12");
+    // Default to 100 businesses per page
+    const limitParam = searchParams.get("limit");
+    const limit = limitParam === "all" ? 10000 : parseInt(limitParam || "100");
     const enrichPhotos = searchParams.get("enrich") !== "false";
     
     // Category-specific filters
@@ -140,7 +158,8 @@ export async function GET(
     const membershipType = searchParams.get("membershipType") || "all";
     const skillLevel = searchParams.get("skillLevel") || "all";
 
-    const offset = (page - 1) * limit;
+    // When limit is "all", don't use offset/pagination
+    const offset = limit === 10000 ? 0 : (page - 1) * limit;
 
     // Get category
     const [category] = await db
@@ -202,13 +221,16 @@ export async function GET(
     }
 
     // Build and execute query
-    const businessResults = await db
+    const baseQuery = db
       .select()
       .from(businesses)
       .where(and(...conditions))
-      .orderBy(...orderByClause)
-      .limit(limit)
-      .offset(offset);
+      .orderBy(...orderByClause);
+    
+    // Only apply limit/offset if not requesting all
+    const businessResults = limit < 10000
+      ? await baseQuery.limit(limit).offset(offset)
+      : await baseQuery;
 
     // Get total count from database
     const [countResult] = await db
@@ -278,7 +300,10 @@ export async function GET(
             );
         }
 
-        formattedResults = filtered.slice(offset, offset + limit);
+        // Apply pagination only if not requesting all
+        formattedResults = limit < 10000 
+          ? filtered.slice(offset, offset + limit)
+          : filtered;
         total = filtered.length;
         dataSource = "google";
       }

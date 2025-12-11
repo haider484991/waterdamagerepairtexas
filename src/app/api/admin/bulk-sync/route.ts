@@ -3,6 +3,7 @@ import { db, categories, businesses, syncJobs } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import slugify from "slugify";
 import { TOP_25_STATES, MAJOR_CITIES, type CityData } from "@/lib/location-data";
+import { mapGoogleCategoryToPickleball } from "@/lib/google-places";
 
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
@@ -27,13 +28,32 @@ interface GooglePlacesResponse {
   status: string;
 }
 
-// Pickleball search queries - optimized for maximum results
+// Pickleball search queries - optimized for all categories
 const PICKLEBALL_QUERIES = [
+  // Courts & Facilities
   "pickleball courts",
   "pickleball facilities",
   "indoor pickleball",
-  "pickleball club",
   "pickleball center",
+  "pickleball recreation center",
+  // Clubs & Leagues
+  "pickleball club",
+  "pickleball league",
+  "pickleball association",
+  // Equipment Stores
+  "pickleball equipment",
+  "pickleball store",
+  "pickleball shop",
+  "pickleball gear",
+  // Coaches & Instructors
+  "pickleball coach",
+  "pickleball instructor",
+  "pickleball lessons",
+  "pickleball academy",
+  // Tournaments & Events
+  "pickleball tournament",
+  "pickleball event",
+  "pickleball championship",
 ];
 
 // Parse city and state from Google Places formatted address
@@ -183,10 +203,20 @@ export async function POST(request: Request) {
     
     // Create a map of category slugs to IDs
     const categoryMap = new Map(allCategories.map(c => [c.slug, c.id]));
-    const courtsCategory = allCategories.find(c => c.slug === "pickleball-courts-facilities");
     
-    if (!courtsCategory) {
-      return NextResponse.json({ error: "Pickleball courts category not found. Run category sync first." }, { status: 400 });
+    // Verify all categories exist
+    const requiredCategories = [
+      "pickleball-courts-facilities",
+      "pickleball-clubs-leagues",
+      "pickleball-equipment-stores",
+      "pickleball-coaches-instructors",
+      "pickleball-tournaments-events",
+    ];
+    
+    for (const slug of requiredCategories) {
+      if (!categoryMap.has(slug)) {
+        return NextResponse.json({ error: `Category ${slug} not found. Run category sync first.` }, { status: 400 });
+      }
     }
 
     // Determine which states and cities to sync
@@ -364,6 +394,14 @@ export async function POST(request: Request) {
 
               const thumbnailPhoto = place.photos?.[0]?.photo_reference || null;
 
+              // Detect the correct category based on business name and Google types
+              const detectedCategorySlug = mapGoogleCategoryToPickleball(
+                place.types || [],
+                place.name
+              ) || "pickleball-courts-facilities"; // Default to courts if can't detect
+              
+              const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("pickleball-courts-facilities")!;
+
               // Add to batch insert array
               businessesToInsert.push({
                 googlePlaceId: place.place_id,
@@ -375,7 +413,7 @@ export async function POST(request: Request) {
                 zip: zip || null,
                 lat: place.geometry.location.lat.toString(),
                 lng: place.geometry.location.lng.toString(),
-                categoryId: courtsCategory.id,
+                categoryId,
                 ratingAvg: place.rating?.toString() || "0",
                 reviewCount: place.user_ratings_total || 0,
                 priceLevel: place.price_level || null,

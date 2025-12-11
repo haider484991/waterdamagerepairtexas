@@ -13,6 +13,7 @@ import { db, categories, businesses, syncJobs } from "../src/lib/db/index";
 import { eq } from "drizzle-orm";
 import slugify from "slugify";
 import { TOP_25_STATES, MAJOR_CITIES } from "../src/lib/location-data";
+import { mapGoogleCategoryToPickleball } from "../src/lib/google-places";
 
 dotenv.config({ path: ".env.local" });
 
@@ -38,13 +39,32 @@ interface GooglePlacesResponse {
   status: string;
 }
 
-// Pickleball search queries
+// Pickleball search queries - optimized for all categories
 const PICKLEBALL_QUERIES = [
+  // Courts & Facilities
   "pickleball courts",
   "pickleball facilities",
   "indoor pickleball",
-  "pickleball club",
   "pickleball center",
+  "pickleball recreation center",
+  // Clubs & Leagues
+  "pickleball club",
+  "pickleball league",
+  "pickleball association",
+  // Equipment Stores
+  "pickleball equipment",
+  "pickleball store",
+  "pickleball shop",
+  "pickleball gear",
+  // Coaches & Instructors
+  "pickleball coach",
+  "pickleball instructor",
+  "pickleball lessons",
+  "pickleball academy",
+  // Tournaments & Events
+  "pickleball tournament",
+  "pickleball event",
+  "pickleball championship",
 ];
 
 function parseCityState(formattedAddress: string, fallbackCity: string, fallbackState: string): { city: string; state: string; zip: string } {
@@ -141,7 +161,7 @@ async function fetchAllPages(query: string, cityName: string, stateCode: string)
 async function processCity(
   city: { name: string; stateCode: string; stateName: string },
   queries: string[],
-  categoryId: string
+  categoryMap: Map<string, string>
 ): Promise<{ inserted: number; skipped: number; apiCalls: number }> {
   let inserted = 0;
   let skipped = 0;
@@ -216,6 +236,14 @@ async function processCity(
         const addressParts = address.split(",").map(p => p.trim());
         const { city: parsedCity, state: parsedState, zip } = parseCityState(address, city.name, city.stateCode);
         const thumbnailPhoto = place.photos?.[0]?.photo_reference || null;
+
+        // Detect the correct category based on business name and Google types
+        const detectedCategorySlug = mapGoogleCategoryToPickleball(
+          place.types || [],
+          place.name
+        ) || "pickleball-courts-facilities"; // Default to courts if can't detect
+        
+        const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("pickleball-courts-facilities")!;
 
         businessesToInsert.push({
           googlePlaceId: place.place_id,
@@ -292,11 +320,22 @@ async function main() {
   console.log(`📍 Config: ${maxStates} states, ${citiesPerState} cities/state, ${queriesPerCity} queries/city\n`);
 
   const allCategories = await db.select().from(categories);
-  const courtsCategory = allCategories.find(c => c.slug === "pickleball-courts-facilities");
+  const categoryMap = new Map(allCategories.map(c => [c.slug, c.id]));
   
-  if (!courtsCategory) {
-    console.error("❌ Pickleball courts category not found. Run category sync first.");
-    process.exit(1);
+  // Verify all categories exist
+  const requiredCategories = [
+    "pickleball-courts-facilities",
+    "pickleball-clubs-leagues",
+    "pickleball-equipment-stores",
+    "pickleball-coaches-instructors",
+    "pickleball-tournaments-events",
+  ];
+  
+  for (const slug of requiredCategories) {
+    if (!categoryMap.has(slug)) {
+      console.error(`❌ Category ${slug} not found. Run category sync first.`);
+      process.exit(1);
+    }
   }
 
   const statesToSync = stateCode
@@ -342,7 +381,7 @@ async function main() {
       const city = queue.shift();
       if (!city) break;
 
-      const result = await processCity(city, queries, courtsCategory.id);
+      const result = await processCity(city, queries, categoryMap);
       totalInserted += result.inserted;
       totalSkipped += result.skipped;
       totalApiCalls += result.apiCalls;

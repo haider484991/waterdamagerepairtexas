@@ -5,6 +5,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
+  ChevronLeft,
   ChevronRight,
   Filter,
   MapPin,
@@ -213,6 +214,9 @@ function CategoryPageContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [category, setCategory] = useState<Category | null>(null);
+  const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get("page") || "1"));
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBusinesses, setTotalBusinesses] = useState(0);
 
   // Filter states
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "relevance");
@@ -253,6 +257,10 @@ function CategoryPageContent() {
       if (membershipType !== "all") params.set("membershipType", membershipType);
       if (skillLevel !== "all") params.set("skillLevel", skillLevel);
 
+      // Pagination: 100 businesses per page
+      params.set("page", currentPage.toString());
+      params.set("limit", "100");
+      
       const response = await fetch(`/api/categories/${slug}?${params.toString()}`);
       const data = await response.json();
 
@@ -262,12 +270,31 @@ function CategoryPageContent() {
       setBusinesses(data.businesses || []);
       setDataSource(data.dataSource || null);
       setAutoSynced(data.autoSynced || false);
+      
+      // Update pagination info
+      if (data.pagination) {
+        setTotalPages(data.pagination.totalPages || 1);
+        setTotalBusinesses(data.pagination.total || 0);
+      }
     } catch (error) {
       console.error("Error fetching category data:", error);
     } finally {
       setIsLoading(false);
     }
-  }, [slug, selectedState, selectedCity, minRating, priceLevel, sortBy, facilityType, courtSurface, membershipType, skillLevel]);
+  }, [slug, selectedState, selectedCity, minRating, priceLevel, sortBy, facilityType, courtSurface, membershipType, skillLevel, currentPage]);
+
+  useEffect(() => {
+    // Update current page from URL params
+    const pageParam = searchParams.get("page");
+    if (pageParam) {
+      const page = parseInt(pageParam);
+      if (page !== currentPage) {
+        setCurrentPage(page);
+      }
+    } else {
+      setCurrentPage(1);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     fetchData();
@@ -280,7 +307,19 @@ function CategoryPageContent() {
     } else {
       params.delete(key);
     }
+    // Reset to page 1 when filters change
+    params.set("page", "1");
+    setCurrentPage(1);
     router.push(`/categories/${slug}?${params.toString()}`, { scroll: false });
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
+    router.push(`/categories/${slug}?${params.toString()}`, { scroll: false });
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const clearFilters = () => {
@@ -496,6 +535,184 @@ function CategoryPageContent() {
         </>
       )}
 
+      {categoryFilters && slug === "pickleball-equipment-stores" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Product Type
+            </label>
+            <Select
+              value={searchParams.get("productType") || "all"}
+              onValueChange={(value) => updateFilters("productType", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All products" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.productType?.map((p) => (
+                  <SelectItem key={p.value} value={p.value}>
+                    {p.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Price Range
+            </label>
+            <Select
+              value={searchParams.get("priceRange") || "all"}
+              onValueChange={(value) => updateFilters("priceRange", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any price" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.priceRange?.map((p) => (
+                  <SelectItem key={p.value} value={p.value}>
+                    {p.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "pickleball-coaches-instructors" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Experience Level
+            </label>
+            <Select
+              value={searchParams.get("experienceLevel") || "all"}
+              onValueChange={(value) => updateFilters("experienceLevel", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All levels" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.experienceLevel?.map((e) => (
+                  <SelectItem key={e.value} value={e.value}>
+                    {e.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Certification
+            </label>
+            <Select
+              value={searchParams.get("certification") || "all"}
+              onValueChange={(value) => updateFilters("certification", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any certification" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.certification?.map((c) => (
+                  <SelectItem key={c.value} value={c.value}>
+                    {c.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Lesson Type
+            </label>
+            <Select
+              value={searchParams.get("lessonType") || "all"}
+              onValueChange={(value) => updateFilters("lessonType", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All types" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.lessonType?.map((l) => (
+                  <SelectItem key={l.value} value={l.value}>
+                    {l.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "pickleball-tournaments-events" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Tournament Type
+            </label>
+            <Select
+              value={searchParams.get("tournamentType") || "all"}
+              onValueChange={(value) => updateFilters("tournamentType", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All types" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.tournamentType?.map((t) => (
+                  <SelectItem key={t.value} value={t.value}>
+                    {t.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Skill Level
+            </label>
+            <Select
+              value={searchParams.get("skillLevel") || "all"}
+              onValueChange={(value) => {
+                setSkillLevel(value);
+                updateFilters("skillLevel", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All levels" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.skillLevel?.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Entry Fee
+            </label>
+            <Select
+              value={searchParams.get("entryFee") || "all"}
+              onValueChange={(value) => updateFilters("entryFee", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any fee" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.entryFee?.map((e) => (
+                  <SelectItem key={e.value} value={e.value}>
+                    {e.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
       {/* Price Filter (only for relevant categories) */}
       {(slug === "pickleball-equipment-stores" || slug === "pickleball-tournaments-events") && (
         <div>
@@ -610,7 +827,7 @@ function CategoryPageContent() {
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-3">
                 <span className="text-sm text-muted-foreground">
-                  {businesses.length} businesses found
+                  Showing {businesses.length > 0 ? ((currentPage - 1) * 100 + 1) : 0}-{Math.min(currentPage * 100, totalBusinesses)} of {totalBusinesses} businesses
                 </span>
                 {dataSource && (
                   <Badge 
@@ -791,28 +1008,106 @@ function CategoryPageContent() {
                 ))}
               </div>
             ) : businesses.length > 0 ? (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className={cn(
-                  "grid gap-6",
-                  viewMode === "grid" ? "md:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className={cn(
+                    "grid gap-6",
+                    viewMode === "grid" ? "md:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"
+                  )}
+                >
+                  {businesses.map((business, index) => (
+                    <motion.div
+                      key={business.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <BusinessCard
+                        business={business as any}
+                        variant={viewMode === "list" ? "compact" : "default"}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-2 mt-8">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      Previous
+                    </Button>
+
+                    <div className="flex items-center gap-1">
+                      {currentPage > 3 && (
+                        <>
+                          <Button
+                            variant={currentPage === 1 ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(1)}
+                          >
+                            1
+                          </Button>
+                          {currentPage > 4 && <span className="px-2 text-muted-foreground">...</span>}
+                        </>
+                      )}
+
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={currentPage === pageNum ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(pageNum)}
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+
+                      {currentPage < totalPages - 2 && (
+                        <>
+                          {currentPage < totalPages - 3 && <span className="px-2 text-muted-foreground">...</span>}
+                          <Button
+                            variant={currentPage === totalPages ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(totalPages)}
+                          >
+                            {totalPages}
+                          </Button>
+                        </>
+                      )}
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                  </div>
                 )}
-              >
-                {businesses.map((business, index) => (
-                  <motion.div
-                    key={business.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <BusinessCard
-                      business={business as any}
-                      variant={viewMode === "list" ? "compact" : "default"}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
+              </>
             ) : (
               <div className="text-center py-16">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
