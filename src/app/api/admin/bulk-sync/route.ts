@@ -225,7 +225,7 @@ export async function POST(request: Request) {
 
     if (selectedCities && selectedCities.length > 0) {
       // If specific cities are selected, use those
-      citiesToSync = selectedCities.map(cityName => {
+      citiesToSync = selectedCities.map((cityName: string) => {
         const cityData = MAJOR_CITIES.find(c => c.name === cityName);
         if (!cityData) {
           throw new Error(`City "${cityName}" not found in location data`);
