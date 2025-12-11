@@ -31,6 +31,7 @@ interface GooglePlace {
   user_ratings_total?: number;
   price_level?: number;
   photos?: Array<{ photo_reference: string }>;
+  types?: string[];
 }
 
 interface GooglePlacesResponse {
