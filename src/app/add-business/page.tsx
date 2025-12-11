@@ -338,24 +338,16 @@ export default function AddBusinessPage() {
               </div>
 
               <div>
-                <Label htmlFor="neighborhood">Neighborhood</Label>
-                <Select
+                <Label htmlFor="neighborhood">Neighborhood (Optional)</Label>
+                <Input
+                  id="neighborhood"
+                  type="text"
+                  placeholder="Enter neighborhood if applicable"
                   value={formData.neighborhood}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, neighborhood: value })
+                  onChange={(e) =>
+                    setFormData({ ...formData, neighborhood: e.target.value })
                   }
-                >
-                  <SelectTrigger id="neighborhood">
-                    <SelectValue placeholder="Select neighborhood" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {neighborhoods.map((n) => (
-                      <SelectItem key={n.value} value={n.value}>
-                        {n.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                />
               </div>
             </div>
           </div>
