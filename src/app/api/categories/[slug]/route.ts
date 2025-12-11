@@ -26,13 +26,14 @@ function parseCityState(formattedAddress: string): { city: string; state: string
   return { city: "", state: "" };
 }
 
-// Fetch from Google and auto-sync to database
+// Fetch from Google and auto-sync to database - ENHANCED with continuous pagination
 async function fetchAndSyncGooglePlaces(
   categorySlug: string,
   categoryName: string,
   categoryId: string,
   stateFilter?: string,
-  cityFilter?: string
+  cityFilter?: string,
+  requestedPage: number = 1
 ): Promise<BusinessData[]> {
   if (!GOOGLE_PLACES_API_KEY) return [];
 
@@ -50,8 +51,13 @@ async function fetchAndSyncGooglePlaces(
       locationQuery = "United States"; // Default to US-wide search
     }
 
-    // Fetch from each query with pagination support
-    for (const query of queries.slice(0, 3)) {
+    // Determine how many queries to run based on requested page
+    // More pages = more queries to ensure we have enough data
+    const queriesNeeded = Math.min(queries.length, Math.ceil(requestedPage / 2) + 2);
+    console.log(`[Google Places] Running ${queriesNeeded} queries for page ${requestedPage}`);
+
+    // Fetch from each query with full pagination support
+    for (const query of queries.slice(0, queriesNeeded)) {
       let pageToken: string | undefined;
       let pageCount = 0;
       const maxPages = 3; // Google allows up to 3 pages (60 results per query)
@@ -74,7 +80,11 @@ async function fetchAndSyncGooglePlaces(
           allPlaces.push(...data.results);
           pageToken = data.next_page_token;
           pageCount++;
+          console.log(`[Google Places] Fetched page ${pageCount} for "${query}" - ${data.results.length} results`);
         } else {
+          if (data.status !== "ZERO_RESULTS") {
+            console.warn(`[Google Places] API returned ${data.status} for "${query}"`);
+          }
           break;
         }
       } while (pageToken && pageCount < maxPages);
@@ -86,14 +96,10 @@ async function fetchAndSyncGooglePlaces(
         index === self.findIndex((p) => p.place_id === place.place_id)
     );
 
-    // AUTO-SYNC: Save to database in background
-    console.log(`[Category API] Auto-syncing ${uniquePlaces.length} places for ${categoryName}`);
-    autoSyncGooglePlaces(uniquePlaces, categoryId).catch((err) =>
-      console.error("[Category API] Auto-sync error:", err)
-    );
+    console.log(`[Google Places] Total unique results: ${uniquePlaces.length} (from ${allPlaces.length} raw results)`);
 
-    // Return formatted for immediate display (no limit - return all results)
-    return uniquePlaces.map((place, index) => {
+    // Format results FIRST for immediate display
+    const formattedResults = uniquePlaces.map((place, index) => {
       const { city, state } = parseCityState(place.formatted_address || place.vicinity || "");
       return {
         id: `temp-${place.place_id}`,
@@ -127,6 +133,17 @@ async function fetchAndSyncGooglePlaces(
         dataSource: "google" as const,
       };
     });
+
+    // AUTO-SYNC: Save to database in background AFTER returning results
+    // This doesn't block the response - happens asynchronously
+    setImmediate(() => {
+      autoSyncGooglePlaces(uniquePlaces, categoryId).catch((err) =>
+        console.error("[Category API] Auto-sync error:", err)
+      );
+    });
+
+    // Return immediately - don't wait for database sync
+    return formattedResults;
   } catch (error) {
     console.error("Error fetching Google Places:", error);
     return [];
@@ -253,13 +270,23 @@ export async function GET(
       },
     }));
 
-    // If database is empty, fetch from Google and AUTO-SYNC
-    if (formattedResults.length === 0 && GOOGLE_PLACES_API_KEY) {
-      console.log(`[Category API] No DB results for ${category.name}, fetching from Google...`);
+    // SMART PAGINATION: Fetch more from Google if needed
+    // This triggers when:
+    // 1. Database is completely empty, OR
+    // 2. Current page has insufficient results (requesting more data than exists)
+    // 3. We're requesting a page beyond what's in the database
+    const needsMoreData = formattedResults.length < limit && GOOGLE_PLACES_API_KEY;
+    const isFirstPageEmpty = page === 1 && formattedResults.length === 0;
+    const hasInsufficientData = total < (page * limit);
+    
+    if ((needsMoreData || isFirstPageEmpty || hasInsufficientData) && GOOGLE_PLACES_API_KEY) {
+      console.log(`[Category API] Page ${page} needs more data. DB has ${total} total, fetching from Google...`);
       
-      const googleResults = await fetchAndSyncGooglePlaces(slug, category.name, category.id, state, city);
+      const googleResults = await fetchAndSyncGooglePlaces(slug, category.name, category.id, state, city, page);
 
       if (googleResults.length > 0) {
+        console.log(`[Category API] Fetched ${googleResults.length} results from Google, returning immediately...`);
+        
         // Apply client-side filtering for Google results
         let filtered = googleResults;
 
@@ -300,12 +327,47 @@ export async function GET(
             );
         }
 
-        // Apply pagination only if not requesting all
-        formattedResults = limit < 10000 
-          ? filtered.slice(offset, offset + limit)
-          : filtered;
-        total = filtered.length;
-        dataSource = "google";
+        // If we had some DB results, merge with Google results
+        if (formattedResults.length > 0 && dataSource === "database") {
+          // Remove duplicates by checking googlePlaceId
+          const existingPlaceIds = new Set(
+            formattedResults.map(b => b.googlePlaceId).filter(Boolean)
+          );
+          const newGoogleResults = filtered.filter(
+            b => !existingPlaceIds.has(b.googlePlaceId)
+          );
+          
+          // Combine DB results with new Google results
+          const combined = [...formattedResults, ...newGoogleResults];
+          
+          // Apply pagination to combined results
+          formattedResults = limit < 10000 
+            ? combined.slice(0, limit) // Return up to limit for current page
+            : combined;
+          total = combined.length;
+          dataSource = "hybrid";
+        } else {
+          // No DB results, use only Google results
+          formattedResults = limit < 10000 
+            ? filtered.slice(offset, offset + limit)
+            : filtered;
+          total = filtered.length;
+          dataSource = "google";
+        }
+        
+        // Re-query database to get updated count after auto-sync completes
+        // This is async, so next request will see more results
+        setTimeout(async () => {
+          try {
+            const [updatedCount] = await db
+              .select({ count: sql<number>`count(*)` })
+              .from(businesses)
+              .where(and(...conditions));
+            console.log(`[Category API] Updated DB count: ${updatedCount?.count || 0}`);
+          } catch (err) {
+            console.error("[Category API] Error updating count:", err);
+          }
+        }, 5000); // Check after 5 seconds to allow sync to complete
       }
     }
 
@@ -356,7 +418,8 @@ export async function GET(
         limit,
         total,
         totalPages: Math.ceil(total / limit),
-        hasMore: offset + enrichedResults.length < total,
+        hasMore: offset + enrichedResults.length < total || dataSource === "google", // Always show more if we just fetched from Google
+        canFetchMore: dataSource !== "database" || total < 1000, // Can fetch more if not purely DB or under 1000 results
       },
       filters: {
         state,

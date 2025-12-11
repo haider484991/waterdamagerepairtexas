@@ -235,7 +235,43 @@ async function searchGoogleAndSync(query: string): Promise<{
       };
     });
 
-    return { results, synced: true, syncedCount: totalSynced };
+    // AUTO-SYNC: Group and sync to database in background AFTER returning results
+    const placesForSync = [...places]; // Capture copy for async closure
+    setImmediate(async () => {
+      try {
+        const placesByCategory = new Map<string | null, GooglePlaceResult[]>();
+        for (const place of placesForSync) {
+          const categorySlug = detectCategorySlug(place.types || [], place.name);
+          if (!placesByCategory.has(categorySlug)) {
+            placesByCategory.set(categorySlug, []);
+          }
+          placesByCategory.get(categorySlug)!.push(place);
+        }
+
+        console.log(`[Search API Background] Syncing ${placesForSync.length} places across ${placesByCategory.size} categories`);
+        
+        let totalSynced = 0;
+        for (const [categorySlug, categoryPlaces] of placesByCategory) {
+          try {
+            let categoryId: string | null = null;
+            if (categorySlug) {
+              categoryId = await getOrCreateCategory(categorySlug);
+            }
+            const syncResult = await autoSyncGooglePlaces(categoryPlaces, categoryId || undefined);
+            totalSynced += syncResult.saved;
+            console.log(`[Search API Background] Synced ${syncResult.saved} new for ${categorySlug}`);
+          } catch (err) {
+            console.error("[Search API Background] Sync error:", err);
+          }
+        }
+        console.log(`[Search API Background] ✅ Complete: ${totalSynced} new businesses synced`);
+      } catch (error) {
+        console.error("[Search API Background] Error:", error);
+      }
+    });
+
+    // Return immediately - database sync happens in background
+    return { results, synced: true, syncedCount: 0 }; // syncedCount will be 0 since sync is async now
   } catch (error) {
     console.error("[Search API] Google search error:", error);
     return { results: [], synced: false };
