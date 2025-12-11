@@ -1,0 +1,37 @@
+# PickleballCourts.io - Robots.txt
+# Find pickleball courts, clubs, leagues near you
+
+User-agent: *
+Allow: /
+
+# High-value pages for crawling
+Allow: /categories/
+Allow: /states/
+Allow: /business/
+Allow: /search
+
+# Disallow admin and user-specific pages
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemaps
+Sitemap: https://pickleballcourts.io/sitemap.xml
+
+# Crawl delay to prevent overload
+Crawl-delay: 1
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+

@@ -4,8 +4,8 @@
 
 import type { Business, Category } from "@/lib/db/schema";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uspickleballdirectory.com";
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "US Pickleball Directory";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts";
 
 /**
  * Organization schema for the main site
@@ -16,7 +16,7 @@ export function generateOrganizationSchema() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/pickleball-logo.png`,
     description: "Discover pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States.",
     sameAs: [
       // Add social media profiles here when available

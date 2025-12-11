@@ -131,12 +131,12 @@ export function HomePageClient({
             </Badge>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              US Pickleball{" "}
-              <span className="text-gradient">Directory</span>
+              Find <span className="text-gradient">Pickleball Courts</span>{" "}
+              Near You
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              Find pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States. Your complete resource for everything pickleball.
+              Search 10,000+ indoor & outdoor pickleball courts, clubs, leagues, equipment stores, coaches & tournaments across all 50 US states. Free directory with ratings, reviews & directions.
             </p>
 
             <div className="max-w-2xl mx-auto mb-8">

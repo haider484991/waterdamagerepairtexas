@@ -254,7 +254,7 @@ async function seed() {
     console.log("👤 Creating demo user...");
     const hashedPassword = await bcrypt.hash("demo123", 10);
     const [demoUser] = await db.insert(users).values({
-      email: "demo@uspickleballdirectory.com",
+      email: "demo@pickleballcourts.io",
       passwordHash: hashedPassword,
       name: "Demo User",
       role: "user",
@@ -265,7 +265,7 @@ async function seed() {
     console.log("👑 Creating admin user...");
     const adminPassword = await bcrypt.hash("admin123", 10);
     const [adminUser] = await db.insert(users).values({
-      email: "admin@uspickleballdirectory.com",
+      email: "admin@pickleballcourts.io",
       passwordHash: adminPassword,
       name: "Admin User",
       role: "admin",
@@ -280,8 +280,8 @@ async function seed() {
     console.log(`   - Sample Businesses: ${insertedBusinesses.length}`);
     console.log(`   - Users: 2`);
     console.log("\n🔐 Login Credentials:");
-    console.log(`   Demo: demo@uspickleballdirectory.com / demo123`);
-    console.log(`   Admin: admin@uspickleballdirectory.com / admin123`);
+    console.log(`   Demo: demo@pickleballcourts.io / demo123`);
+    console.log(`   Admin: admin@pickleballcourts.io / admin123`);
     console.log("\n🏓 US Pickleball Directory is ready!");
     console.log("   Run migrations: npm run db:push");
     console.log("   Then seed: npm run db:seed");

@@ -4,11 +4,11 @@ import { Logo } from "@/components/layout/Logo";
 
 const footerLinks = {
   categories: [
-    { href: "/categories/restaurants-cafes", label: "Restaurants" },
-    { href: "/categories/fitness-gyms", label: "Fitness & Gyms" },
-    { href: "/categories/medical-dental", label: "Healthcare" },
-    { href: "/categories/home-improvement", label: "Home Services" },
-    { href: "/categories/automotive", label: "Automotive" },
+    { href: "/categories/pickleball-courts-facilities", label: "Pickleball Courts" },
+    { href: "/categories/pickleball-clubs-leagues", label: "Clubs & Leagues" },
+    { href: "/categories/pickleball-equipment-stores", label: "Equipment Stores" },
+    { href: "/categories/pickleball-coaches-instructors", label: "Coaches & Lessons" },
+    { href: "/categories/pickleball-tournaments-events", label: "Tournaments" },
   ],
   locations: [
     { href: "/states", label: "Browse by State" },
@@ -39,9 +39,7 @@ export function Footer() {
               <Logo size={44} textSize="text-xl" />
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Your comprehensive guide to discovering the best local businesses in
-              Plano, Texas. Find restaurants, services, shops, and more with reviews
-              and ratings from your community.
+              Find pickleball courts near you! The most comprehensive directory of pickleball courts, clubs, leagues, equipment stores, coaches & tournaments across all 50 US states.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -123,7 +121,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} US Pickleball Directory. All rights reserved.
+              © {new Date().getFullYear()} PickleballCourts.io. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               {footerLinks.legal.map((link) => (

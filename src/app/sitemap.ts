@@ -3,7 +3,7 @@ import { db, categories, businesses, states, cities } from "@/lib/db";
 import { desc, isNotNull, or, eq, and } from "drizzle-orm";
 import { getAllStates, getAllCities } from "@/lib/location-data";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uspickleballdirectory.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
 
 // Route segment config - allow dynamic rendering
 export const dynamic = 'force-dynamic';

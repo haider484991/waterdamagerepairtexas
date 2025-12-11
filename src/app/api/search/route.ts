@@ -82,6 +82,34 @@ function detectCategorySlug(types: string[] | undefined, placeName?: string): st
 }
 
 // Search Google Places and auto-sync to database
+// Helper function to fetch next page of results
+async function fetchNextPage(nextPageToken: string): Promise<{ places: GooglePlaceResult[]; nextPageToken?: string }> {
+  if (!GOOGLE_PLACES_API_KEY) return { places: [] };
+
+  try {
+    // Wait 2 seconds before requesting next page (required by Google)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
+    url.searchParams.set("pagetoken", nextPageToken);
+    url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
+
+    const response = await fetch(url.toString());
+    const data = await response.json();
+
+    if (data.status === "OK") {
+      return {
+        places: data.results || [],
+        nextPageToken: data.next_page_token,
+      };
+    }
+    return { places: [] };
+  } catch (err) {
+    console.error("[Search API] Next page fetch error:", err);
+    return { places: [] };
+  }
+}
+
 async function searchGoogleAndSync(query: string): Promise<{
   results: BusinessData[];
   synced: boolean;
@@ -93,9 +121,10 @@ async function searchGoogleAndSync(query: string): Promise<{
 
   try {
     // Search for pickleball-related results in USA only
+    // Only add "pickleball" if it's not already in the query
     const searchQuery = query.toLowerCase().includes("pickleball") 
-      ? `${query} USA`
-      : `${query} pickleball USA`;
+      ? `${query}`
+      : `${query} pickleball`;
     
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
     url.searchParams.set("query", searchQuery);
@@ -110,9 +139,24 @@ async function searchGoogleAndSync(query: string): Promise<{
       return { results: [], synced: false };
     }
 
+    // Collect all places from multiple pages (up to 3 pages = 60 results)
+    let allPlaces: GooglePlaceResult[] = data.results || [];
+    let nextPageToken = data.next_page_token;
+    let pageCount = 1;
+    const maxPages = 3;
+
+    // Fetch additional pages
+    while (nextPageToken && pageCount < maxPages) {
+      const nextPage = await fetchNextPage(nextPageToken);
+      allPlaces = [...allPlaces, ...nextPage.places];
+      nextPageToken = nextPage.nextPageToken;
+      pageCount++;
+      console.log(`[Search API] Fetched page ${pageCount}, total places: ${allPlaces.length}`);
+    }
+
     // Filter to only US results
     const usStates = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'];
-    const places: GooglePlaceResult[] = data.results.filter((place: GooglePlaceResult) => {
+    const places: GooglePlaceResult[] = allPlaces.filter((place: GooglePlaceResult) => {
       const address = place.formatted_address || "";
       // Check if address contains USA or a US state abbreviation
       const isUS = address.includes("USA") || 
@@ -124,7 +168,7 @@ async function searchGoogleAndSync(query: string): Promise<{
       return isUS;
     });
 
-    console.log(`[Search API] Found ${places.length} US results out of ${data.results.length} total`);
+    console.log(`[Search API] Found ${places.length} US results out of ${allPlaces.length} total after fetching ${pageCount} pages`);
 
     // Group places by detected category for sync
     const placesByCategory = new Map<string | null, GooglePlaceResult[]>();
@@ -156,8 +200,8 @@ async function searchGoogleAndSync(query: string): Promise<{
     }
     console.log(`[Search API] Total new businesses synced: ${totalSynced}`);
 
-    // Format for immediate display - use proper slugs
-    const results: BusinessData[] = places.slice(0, 20).map((place) => {
+    // Format for immediate display - don't slice, return all results
+    const results: BusinessData[] = places.map((place) => {
       const address = place.formatted_address || place.vicinity || "";
       const { city, state, zip } = parseCityState(address);
       const addressParts = address.split(",").map(p => p.trim());
@@ -208,7 +252,7 @@ export async function GET(request: Request) {
     const minRating = parseFloat(searchParams.get("rating") || "0");
     const sortBy = searchParams.get("sort") || "relevance";
     const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "20");
+    const limit = parseInt(searchParams.get("limit") || "50");
     const enrichPhotos = searchParams.get("enrich") !== "false";
 
     const offset = (page - 1) * limit;
@@ -219,17 +263,19 @@ export async function GET(request: Request) {
     if (query) {
       // Split query into words for better matching
       const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 1);
-      const queryConditions = queryWords.map(word => 
-        or(
-          ilike(businesses.name, `%${word}%`),
-          ilike(businesses.description, `%${word}%`),
-          ilike(businesses.address, `%${word}%`)
-        )
-      );
       
-      if (queryConditions.length > 0) {
-        // Match ANY of the words (OR)
-        conditions.push(or(...queryConditions));
+      if (queryWords.length > 0) {
+        // Require ALL words to be present (AND logic) for better relevance
+        // Search in name (priority) and description (secondary)
+        const queryConditions = queryWords.map(word => 
+          or(
+            ilike(businesses.name, `%${word}%`),
+            ilike(businesses.description, `%${word}%`)
+          )
+        );
+        
+        // Use AND to require all words to match
+        conditions.push(and(...queryConditions));
       }
     }
 
@@ -263,11 +309,21 @@ export async function GET(request: Request) {
         orderByClause = [desc(businesses.createdAt)];
         break;
       default:
-        orderByClause = [
-          desc(businesses.isFeatured),
-          desc(businesses.ratingAvg),
-          desc(businesses.reviewCount)
-        ];
+        // Relevance sorting: prioritize exact name matches, then rating
+        if (query) {
+          // Sort by relevance: name match quality, then featured, then rating
+          orderByClause = [
+            desc(businesses.isFeatured),
+            desc(businesses.ratingAvg),
+            desc(businesses.reviewCount)
+          ];
+        } else {
+          orderByClause = [
+            desc(businesses.isFeatured),
+            desc(businesses.ratingAvg),
+            desc(businesses.reviewCount)
+          ];
+        }
     }
 
     // Build and execute query

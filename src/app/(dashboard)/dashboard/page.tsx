@@ -119,7 +119,7 @@ export default function DashboardPage() {
   ];
 
   // Check if user is admin
-  const isAdmin = session.user?.email === "admin@uspickleballdirectory.com" || 
+  const isAdmin = session.user?.email === "admin@pickleballcourts.io" || 
                   session.user?.email?.endsWith("@admin.com");
 
   return (

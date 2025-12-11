@@ -4,7 +4,7 @@ import { db, categories, businesses } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 import { generateCategoryMetadata } from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uspickleballdirectory.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
 
 type LayoutProps = {
   children: ReactNode;

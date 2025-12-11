@@ -1,6 +1,6 @@
-# Henry Harrison Plano Texas
+# PickleballCourts.io
 
-A modern, SEO-optimized business directory for Plano, Texas built with Next.js 14, featuring Google Places API integration, user reviews, and a beautiful dark theme UI.
+The most comprehensive pickleball directory in the United States. Find 10,000+ pickleball courts, clubs, leagues, equipment stores, coaches & tournaments nationwide. Built with Next.js 16, featuring real-time Google Places API integration, advanced search, and beautiful UI.
 
 ## Features
 

@@ -3,42 +3,62 @@ import type { Business, Category, Review, State, City } from "@/lib/db/schema";
 import { generateBusinessDescription, detectAmenities, generateAmenitiesList } from "@/lib/content-generator";
 
 const SITE_NAME =
-  process.env.NEXT_PUBLIC_SITE_NAME || "US Pickleball Directory";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uspickleballdirectory.com";
+  process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts - Find Courts, Clubs & Leagues Near You";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
 
 export function generateSiteMetadata(): Metadata {
   return {
     title: {
-      default: "US Pickleball Directory – Find Pickleball Courts, Clubs & Equipment Nationwide",
-      template: `%s | ${SITE_NAME}`,
+      default: "Pickleball Courts Near Me | Find Local Courts, Clubs & Leagues - PickleballCourts.io",
+      template: `%s | Pickleball Courts`,
     },
     description:
-      "Discover pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States. Your comprehensive guide to pickleball locations and resources in all 50 states.",
+      "Find pickleball courts near you! Search 10,000+ indoor & outdoor pickleball courts, clubs, leagues, equipment stores, coaches & tournaments across all 50 US states. Free directory with ratings, reviews & directions.",
     keywords: [
-      "pickleball directory",
       "pickleball courts near me",
-      "pickleball clubs",
-      "pickleball leagues",
-      "pickleball equipment stores",
-      "pickleball coaches",
-      "pickleball tournaments",
+      "pickleball courts",
+      "find pickleball courts",
+      "pickleball locations",
       "where to play pickleball",
+      "pickleball clubs near me",
+      "pickleball leagues",
       "indoor pickleball courts",
-      "outdoor pickleball facilities",
+      "outdoor pickleball courts",
+      "pickleball facilities",
+      "pickleball directory",
+      "local pickleball courts",
+      "pickleball court finder",
+      "pickleball equipment stores",
+      "pickleball coaches near me",
+      "pickleball instructors",
+      "pickleball tournaments",
+      "public pickleball courts",
+      "free pickleball courts",
+      "best pickleball courts",
     ],
     authors: [{ name: SITE_NAME }],
     creator: SITE_NAME,
+    icons: {
+      icon: [
+        { url: "/pickleball-logo.png", sizes: "any" },
+        { url: "/pickleball-logo.png", sizes: "32x32", type: "image/png" },
+        { url: "/pickleball-logo.png", sizes: "16x16", type: "image/png" },
+      ],
+      apple: [
+        { url: "/pickleball-logo.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
     openGraph: {
       type: "website",
       locale: "en_US",
       url: SITE_URL,
-      siteName: SITE_NAME,
-      title: "US Pickleball Directory – Find Pickleball Courts, Clubs & Equipment Nationwide",
+      siteName: "PickleballCourts.io",
+      title: "Pickleball Courts Near Me | Find Local Courts, Clubs & Leagues",
       description:
-        "Discover pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States. Your complete resource for pickleball locations.",
+        "Find pickleball courts near you! Search 10,000+ indoor & outdoor courts, clubs, leagues, coaches & tournaments across all 50 states. Free directory with ratings & reviews.",
       images: [
         {
-          url: `${SITE_URL}/og-image.jpg`,
+          url: `${SITE_URL}/pickleball-logo.png`,
           width: 1200,
           height: 630,
           alt: SITE_NAME,
@@ -47,10 +67,12 @@ export function generateSiteMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "US Pickleball Directory – Find Pickleball Courts, Clubs & Equipment Nationwide",
+      title: "Pickleball Courts Near Me | Find Local Courts & Clubs",
       description:
-        "Discover pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States.",
-      images: [`${SITE_URL}/og-image.jpg`],
+        "Find pickleball courts near you! Search 10,000+ courts, clubs, leagues, coaches & tournaments. Free directory with ratings & reviews.",
+      images: [`${SITE_URL}/pickleball-logo.png`],
+      creator: "@pickleballcourts",
+      site: "@pickleballcourts",
     },
     robots: {
       index: true,
@@ -65,6 +87,25 @@ export function generateSiteMetadata(): Metadata {
     },
     verification: {
       google: process.env.GOOGLE_SITE_VERIFICATION,
+    },
+    category: "sports",
+    applicationName: "PickleballCourts.io",
+    referrer: "origin-when-cross-origin",
+    formatDetection: {
+      telephone: true,
+      address: true,
+      email: false,
+    },
+    alternates: {
+      canonical: SITE_URL,
+      types: {
+        "application/rss+xml": `${SITE_URL}/rss.xml`,
+      },
+    },
+    other: {
+      "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "",
+      "msapplication-TileColor": "#f97316",
+      "theme-color": "#ffffff",
     },
   };
 }
@@ -82,7 +123,7 @@ export function generateBusinessMetadata(
   const priceRange = business.priceLevel ? "$".repeat(business.priceLevel) : "";
   
   // SEO-optimized title with location
-  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state}`;
+  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state} | PickleballCourts.io`;
   
   // Generate dynamic description using content generator
   const dynamicDescription = generateBusinessDescription(business, category);
@@ -132,7 +173,7 @@ export function generateBusinessMetadata(
     ? (business.photos[0].startsWith("http") 
         ? business.photos[0] 
         : `${SITE_URL}/api/images?ref=${business.photos[0]}&maxwidth=1200`)
-    : `${SITE_URL}/og-image.jpg`;
+    : `${SITE_URL}/pickleball-logo.png`;
   
   const canonicalUrl = `${SITE_URL}/business/${business.slug}`;
 
@@ -199,27 +240,48 @@ export function generateCategoryMetadata(
       ? ` Top picks average ${extras.avgRating.toFixed(1)}★ across ${extras.totalReviews} reviews.`
       : "";
 
-  const title = `${category.name} Directory | US Pickleball Directory`;
+  const title = `${category.name} Near Me | Find ${businessCount}+ Locations Nationwide`;
   const description =
     category.description ||
-    `Explore ${businessCount} ${category.name.toLowerCase()} options across the United States. Compare ratings, reviews, hours, and contact details.${ratingSnippet}`;
+    `Find ${category.name.toLowerCase()} near you! Browse ${businessCount}+ verified locations across all 50 states. Compare ratings, reviews, hours & get directions.${ratingSnippet} Free directory.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `${SITE_URL}/categories/${category.slug}`,
+    },
     openGraph: {
-      title,
+      title: `${category.name} Near Me | ${businessCount}+ Locations`,
       description,
       type: "website",
       url: `${SITE_URL}/categories/${category.slug}`,
+      siteName: "PickleballCourts.io",
+      images: [
+        {
+          url: `${SITE_URL}/pickleball-logo.png`,
+          width: 1200,
+          height: 630,
+          alt: category.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.name} Near Me`,
+      description: description.substring(0, 200),
+      images: [`${SITE_URL}/pickleball-logo.png`],
     },
     keywords: [
-      `${category.name} USA`,
-      `${category.name} United States`,
       `${category.name} near me`,
-      `best ${category.name.toLowerCase()} USA`,
-      `top rated ${category.name.toLowerCase()}`,
+      `find ${category.name.toLowerCase()}`,
+      `${category.name.toLowerCase()} locations`,
+      `best ${category.name.toLowerCase()}`,
       `${category.name.toLowerCase()} directory`,
+      `local ${category.name.toLowerCase()}`,
+      `${category.name.toLowerCase()} finder`,
+      `top ${category.name.toLowerCase()}`,
+      `${category.name.toLowerCase()} USA`,
       `pickleball ${category.name.toLowerCase()}`,
     ],
   };

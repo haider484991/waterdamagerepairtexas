@@ -187,7 +187,7 @@ function SearchContent() {
         params.set("sort", searchParams.get("sort")!);
       }
       params.set("page", page.toString());
-      params.set("limit", "12");
+      params.set("limit", "50");
 
       const response = await fetch(`/api/search?${params.toString()}`);
       const data = await response.json();

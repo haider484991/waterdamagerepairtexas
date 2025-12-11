@@ -68,7 +68,7 @@ GOOGLE_PLACES_API_KEY="your-google-places-api-key"
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="your-google-maps-api-key"
 
 # Site Config (update)
-NEXT_PUBLIC_SITE_URL="https://uspickleballdirectory.com"
+NEXT_PUBLIC_SITE_URL="https://pickleballcourts.io"
 NEXT_PUBLIC_SITE_NAME="US Pickleball Directory"
 
 # Email (keep existing)
@@ -115,8 +115,8 @@ This will seed:
 - ✅ 2 users (demo + admin)
 
 **Login Credentials**:
-- Demo: `demo@uspickleballdirectory.com` / `demo123`
-- Admin: `admin@uspickleballdirectory.com` / `admin123`
+- Demo: `demo@pickleballcourts.io` / `demo123`
+- Admin: `admin@pickleballcourts.io` / `admin123`
 
 ### Step 6: Start Development Server
 

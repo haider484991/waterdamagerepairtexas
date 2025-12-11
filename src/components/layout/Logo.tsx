@@ -19,15 +19,22 @@ export function Logo({
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <div
-        className="relative flex-shrink-0 bg-primary/10 rounded-full flex items-center justify-center"
+        className="relative flex-shrink-0"
         style={{ width: size, height: size }}
         aria-hidden="true"
       >
-        <span className="text-2xl">🏓</span>
+        <Image
+          src="/pickleball-logo.png"
+          alt="PickleballCourts.io - Find Pickleball Courts Near You"
+          width={size}
+          height={size}
+          priority={priority}
+          className="object-contain"
+        />
       </div>
       {showText && (
         <span className={cn("font-bold leading-tight text-foreground", textSize)}>
-          US <span className="text-primary">Pickleball</span>
+          <span className="text-primary">Pickleball</span>Courts<span className="text-primary">.io</span>
         </span>
       )}
     </div>

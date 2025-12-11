@@ -15,7 +15,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const adminEmail = "admin@uspickleballdirectory.com";
+    const adminEmail = "admin@pickleballcourts.io";
     const adminPassword = "Admin123!"; // Change this after first login
 
     // Check if admin already exists
