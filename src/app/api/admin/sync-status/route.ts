@@ -50,9 +50,9 @@ export async function GET() {
 
     // Calculate progress percentage if job is running
     let progressPercentage = 0;
-    if (currentJob && currentJob.status === "running" && currentJob.totalCities > 0) {
+    if (currentJob && currentJob.status === "running" && currentJob.totalCities && currentJob.totalCities > 0) {
       progressPercentage = Math.round(
-        (currentJob.completedCities / currentJob.totalCities) * 100
+        ((currentJob.completedCities || 0) / currentJob.totalCities) * 100
       );
     }
 
