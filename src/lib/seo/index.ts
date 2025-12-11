@@ -86,7 +86,7 @@ export function generateSiteMetadata(): Metadata {
       },
     },
     verification: {
-      google: process.env.GOOGLE_SITE_VERIFICATION,
+      google: process.env.GOOGLE_SITE_VERIFICATION || "r5hyIHNeaYpBQG7yaQ-8CGaSjSC7tKEr_jkMNm4diH4",
     },
     category: "sports",
     applicationName: "PickleballCourts.io",
@@ -103,7 +103,7 @@ export function generateSiteMetadata(): Metadata {
       },
     },
     other: {
-      "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "",
+      "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "r5hyIHNeaYpBQG7yaQ-8CGaSjSC7tKEr_jkMNm4diH4",
       "msapplication-TileColor": "#f97316",
       "theme-color": "#ffffff",
     },

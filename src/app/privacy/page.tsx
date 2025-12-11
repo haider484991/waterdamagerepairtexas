@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | HenryHarrisonPlanoTexas.com",
+  title: "Privacy Policy | PickleballCourts.io",
   description:
-    "Privacy policy for HenryHarrisonPlanoTexas.com detailing what information we collect, how we use it, and your choices.",
+    "Privacy policy for PickleballCourts.io detailing what information we collect, how we use it, and your choices.",
 };
 
 export default function PrivacyPage() {
@@ -15,13 +15,16 @@ export default function PrivacyPage() {
       <section className="container mx-auto px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Last Updated: 12-4-25</p>
+            <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Privacy Policy</h1>
             <p className="text-muted-foreground leading-relaxed">
-              HenryHarrisonPlanoTexas.com (“we,” “us,” or “our”) is committed to protecting the
-              privacy of visitors who use our website and directory. This Privacy Policy explains
-              what information we collect, how we use it, and the choices available to you. By
-              accessing or using our website, you agree to the practices described below.
+              PickleballCourts.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a limited liability company based in the United States.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit PickleballCourts.io or use any of our services (collectively, the "Services").
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              By using the Site, you agree to the collection and use of information in accordance with this Privacy Policy.
             </p>
           </div>
 
@@ -30,40 +33,42 @@ export default function PrivacyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-foreground">1. Information We Collect</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We may collect the following types of information:
+                  We collect the following types of information:
                 </p>
 
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-foreground">a. Information You Provide Voluntarily</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    When you submit information through forms on our website—including the Contact form—we may collect
-                    details such as your name, business name, and any message you choose to provide.
+                    Name, email address, phone number, or other contact details when you:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1 text-muted-foreground ml-4">
+                    <li>Submit a court listing or update request</li>
+                    <li>Contact us via email or contact forms</li>
+                    <li>Sign up for newsletters or updates (if available)</li>
+                    <li>Create an account (if account functionality is implemented)</li>
+                  </ul>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Any additional information you choose to provide (e.g., photos, court descriptions, reviews, or comments)
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-foreground">b. Automatically Collected Information</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    When you visit our website, standard web analytics may collect:
+                    <strong className="text-foreground">Usage Data:</strong> IP address, browser type, device information, operating system, referring URLs, pages viewed, time spent on pages, and clickstream data.
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                    <li>IP address</li>
-                    <li>Browser type</li>
-                    <li>Device information</li>
-                    <li>Pages visited</li>
-                    <li>Referral sources</li>
-                    <li>Date and time of access</li>
-                  </ul>
                   <p className="text-muted-foreground leading-relaxed">
-                    This information helps us maintain and improve the performance of our directory.
+                    <strong className="text-foreground">Cookies and Similar Technologies:</strong> We use cookies, local storage, and similar tracking technologies to improve user experience, analyze traffic, and remember preferences.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    You can control cookies through your browser settings. Disabling cookies may limit some functionality.
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-foreground">c. Cookies and Tracking Technologies</h3>
+                  <h3 className="text-lg font-semibold text-foreground">c. Third-Party Data</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    We may use cookies or similar technologies to enhance your browsing experience, track usage patterns,
-                    and maintain website functionality.
+                    If you log in or interact via third-party services (e.g., Google, Facebook, or Apple login in the future), we may receive limited profile information from those services with your consent.
                   </p>
                 </div>
               </section>
@@ -73,112 +78,139 @@ export default function PrivacyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-foreground">2. How We Use Your Information</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We may use collected information to:
+                  We use the collected information for the following purposes:
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                  <li>Respond to inquiries submitted through our Contact form</li>
-                  <li>Improve our website and directory features</li>
-                  <li>Monitor website performance and security</li>
-                  <li>Maintain accurate business listings and user experience</li>
+                  <li>To operate, maintain, and improve the Site and Services</li>
+                  <li>To display and organize pickleball court listings and related community content</li>
+                  <li>To respond to your inquiries, comments, or court submission requests</li>
+                  <li>To send administrative or account-related communications</li>
+                  <li>To send marketing communications (e.g., newsletters), only if you opt in (you can unsubscribe at any time)</li>
+                  <li>To detect, prevent, and address technical issues, fraud, or abuse</li>
+                  <li>To comply with legal obligations</li>
                 </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  We do not sell or rent your information to third parties.
-                </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">3. Sharing of Information</h2>
+                <h2 className="text-2xl font-semibold text-foreground">3. Sharing Your Information</h2>
+                <p className="text-muted-foreground leading-relaxed font-semibold">
+                  We do not sell your personal information.
+                </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  We may share information only in the following limited situations:
+                  We may share your information only in the following circumstances:
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                   <li>
-                    <span className="font-semibold text-foreground">Service Providers:</span> Trusted third parties who
-                    assist in operating our website or analytics, under confidentiality agreements.
+                    <span className="font-semibold text-foreground">Service Providers:</span> With trusted third parties who assist us in operating the Site (e.g., hosting providers, analytics services, email delivery services) under strict confidentiality agreements.
                   </li>
                   <li>
-                    <span className="font-semibold text-foreground">Legal Requirements:</span> When required to comply
-                    with applicable law, regulation, or legal process.
+                    <span className="font-semibold text-foreground">Legal Requirements:</span> If required by law, regulation, legal process, or governmental request.
+                  </li>
+                  <li>
+                    <span className="font-semibold text-foreground">Business Transfers:</span> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.
+                  </li>
+                  <li>
+                    <span className="font-semibold text-foreground">Publicly Displayed Information:</span> Court listings, photos, reviews, or comments you submit may be publicly visible on the Site.
                   </li>
                 </ul>
+              </section>
+
+              <Separator />
+
+              <section className="space-y-3">
+                <h2 className="text-2xl font-semibold text-foreground">4. Data Security</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We do not share information for marketing purposes.
+                  We implement reasonable technical and organizational measures to protect your data from unauthorized access, loss, or misuse. However, no method of transmission over the internet or electronic storage is 100% secure.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">4. Third-Party Links</h2>
+                <h2 className="text-2xl font-semibold text-foreground">5. Data Retention</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  HenryHarrisonPlanoTexas.com may contain links to external websites. We are not responsible for the
-                  content, privacy practices, or policies of third-party sites. We encourage you to review their policies
-                  individually.
+                  We retain personal information only as long as necessary to fulfill the purposes outlined in this policy, or as required by law. Court listings and user-submitted content may remain on the Site indefinitely unless you request removal.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">5. Data Security</h2>
+                <h2 className="text-2xl font-semibold text-foreground">6. Your Rights and Choices</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We use reasonable administrative, technical, and physical safeguards to protect your information.
-                  However, no method of transmission or storage is completely secure, and we cannot guarantee absolute
-                  security.
+                  Depending on your location, you may have the right to:
+                </p>
+                <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                  <li>Access, correct, or delete your personal information</li>
+                  <li>Opt out of marketing communications</li>
+                  <li>Request restriction of processing or data portability</li>
+                  <li>Object to certain data processing activities</li>
+                </ul>
+                <p className="text-muted-foreground leading-relaxed">
+                  To exercise these rights, please contact us at{" "}
+                  <a
+                    href="mailto:shieldwebservices@gmail.com"
+                    className="text-primary hover:underline"
+                  >
+                    shieldwebservices@gmail.com
+                  </a>
+                  .
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  We will respond to verifiable requests within a reasonable timeframe, typically within 30 days.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">6. Children’s Privacy</h2>
+                <h2 className="text-2xl font-semibold text-foreground">7. Children's Privacy</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  This website is not directed toward individuals under the age of 18. We do not knowingly collect
-                  personal information from minors.
+                  Our Site is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we become aware of such collection, we will delete the information promptly.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">7. Your Choices</h2>
+                <h2 className="text-2xl font-semibold text-foreground">8. Third-Party Links</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  You may choose not to provide information, but doing so may limit your ability to use certain features
-                  of the website (such as submitting a Contact form).
+                  The Site may contain links to third-party websites. We are not responsible for the privacy practices or content of those sites.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">8. Contacting Us</h2>
+                <h2 className="text-2xl font-semibold text-foreground">9. Changes to This Privacy Policy</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  If you have questions about this Privacy Policy or how your information is handled, please reach out
-                  through the Contact Form on our Contact page:
-                </p>
-                <Link
-                  href="https://henryharrisonplanotexas.com/contact/"
-                  className="text-primary font-semibold hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://henryharrisonplanotexas.com/contact/
-                </Link>
-                <p className="text-muted-foreground leading-relaxed">
-                  All inquiries must be submitted through the form.
+                  We may update this Privacy Policy from time to time. The updated version will be posted on this page with a revised "Effective Date." Continued use of the Site after changes constitutes acceptance of the updated policy.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">9. Updates to This Policy</h2>
+                <h2 className="text-2xl font-semibold text-foreground">10. Contact Us</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated
-                  “Last Updated” date. Continued use of the website after any changes constitutes acceptance of the
-                  revised policy.
+                  If you have questions about this Privacy Policy or our data practices, please contact:
+                </p>
+                <div className="bg-secondary/50 p-4 rounded-lg space-y-1">
+                  <p className="text-foreground font-semibold">Shield Web Services, LLC</p>
+                  <p className="text-muted-foreground">
+                    Email:{" "}
+                    <a
+                      href="mailto:shieldwebservices@gmail.com"
+                      className="text-primary hover:underline"
+                    >
+                      shieldwebservices@gmail.com
+                    </a>
+                  </p>
+                </div>
+                <p className="text-muted-foreground leading-relaxed italic">
+                  Thank you for using PickleballCourts.io — the directory for all things pickleball! 🥒🏓
                 </p>
               </section>
             </CardContent>
@@ -188,4 +220,3 @@ export default function PrivacyPage() {
     </div>
   );
 }
-

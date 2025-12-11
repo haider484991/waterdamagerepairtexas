@@ -5,8 +5,9 @@ import { getAllStates, getAllCities } from "@/lib/location-data";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
 
-// Route segment config - allow dynamic rendering
-export const dynamic = 'force-dynamic';
+// Route segment config - ALWAYS fetch latest data from database
+export const dynamic = 'force-dynamic'; // Regenerates on every request
+export const revalidate = 3600; // Cache for 1 hour, then regenerate
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
@@ -133,13 +134,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       console.error("Error generating state-category pages for sitemap:", error);
     }
 
-    // Business pages - prioritize by rating and verification
+    // Business pages - NEWEST FIRST, then by rating
+    // This ensures newly added businesses appear in sitemap immediately
     let businessPages: MetadataRoute.Sitemap = [];
     try {
       if (db && businesses) {
         const allBusinesses = await db
           .select({
             slug: businesses.slug,
+            createdAt: businesses.createdAt,
             updatedAt: businesses.updatedAt,
             ratingAvg: businesses.ratingAvg,
             reviewCount: businesses.reviewCount,
@@ -157,14 +160,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
               )
             )
           )
-          .orderBy(desc(businesses.ratingAvg));
+          .orderBy(desc(businesses.createdAt)) // NEWEST FIRST for faster indexing
+          .limit(50000); // Google sitemap limit
 
         businessPages = allBusinesses.map((business) => {
-          // Calculate priority based on business quality signals
+          // Calculate priority based on business quality signals + recency
           let priority = 0.55; // Base priority
           
           const rating = Number(business.ratingAvg) || 0;
           const reviews = business.reviewCount || 0;
+          
+          // Boost for NEW businesses (added in last 7 days)
+          const createdAt = business.createdAt ? new Date(business.createdAt) : null;
+          if (createdAt) {
+            const daysSinceCreated = (now.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24);
+            if (daysSinceCreated < 7) priority += 0.15; // NEW businesses get priority boost
+            else if (daysSinceCreated < 30) priority += 0.08; // Recent businesses
+          }
           
           // Boost for high ratings
           if (rating >= 4.5) priority += 0.15;
@@ -185,7 +197,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           
           return {
             url: `${SITE_URL}/business/${business.slug}`,
-            lastModified: business.updatedAt || now,
+            lastModified: business.updatedAt || business.createdAt || now,
             changeFrequency: "weekly" as const,
             priority: Math.round(priority * 100) / 100,
           };

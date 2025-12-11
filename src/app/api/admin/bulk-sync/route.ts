@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 import { db, categories, businesses, syncJobs } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import slugify from "slugify";
@@ -160,10 +161,28 @@ async function fetchAllPages(
   return allPlaces;
 }
 
+// Admin authentication helper
+function isAdmin(email: string | null | undefined): boolean {
+  if (!email) return false;
+  return (
+    email === "admin@pickleballcourts.io" ||
+    email === "owner@pickleballcourts.io"
+  );
+}
+
 export async function POST(request: Request) {
   let syncJobId: string | null = null;
   
   try {
+    // 🔒 SECURITY: Require admin authentication
+    const session = await auth();
+    if (!session?.user?.email || !isAdmin(session.user.email)) {
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 }
+      );
+    }
+
     if (!GOOGLE_PLACES_API_KEY) {
       return NextResponse.json({ error: "Google Places API key not configured" }, { status: 500 });
     }

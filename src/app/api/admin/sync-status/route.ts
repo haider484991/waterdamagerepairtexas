@@ -1,9 +1,28 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 import { db, syncJobs, businesses, categories } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 
+// Admin authentication helper
+function isAdmin(email: string | null | undefined): boolean {
+  if (!email) return false;
+  return (
+    email === "admin@pickleballcourts.io" ||
+    email === "owner@pickleballcourts.io"
+  );
+}
+
 export async function GET() {
   try {
+    // 🔒 SECURITY: Require admin authentication
+    const session = await auth();
+    if (!session?.user?.email || !isAdmin(session.user.email)) {
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 }
+      );
+    }
+
     // Get current/latest sync job
     const [currentJob] = await db
       .select()

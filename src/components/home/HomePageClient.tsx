@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin,
   ArrowRight,
@@ -187,7 +188,18 @@ export function HomePageClient({
                   <stat.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-                  {stat.value}
+                  {stat.label === "Growing Fast" ? (
+                    <Image
+                      src="/pickleball directory logo.png"
+                      alt="Pickleball Directory Logo"
+                      width={160}
+                      height={36}
+                      className="mx-auto h-9 w-auto"
+                      priority
+                    />
+                  ) : (
+                    stat.value
+                  )}
                 </div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </motion.div>

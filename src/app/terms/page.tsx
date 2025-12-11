@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | HenryHarrisonPlanoTexas.com",
+  title: "Terms of Service | PickleballCourts.io",
   description:
-    "Terms of Service for HenryHarrisonPlanoTexas.com outlining acceptable use, business listings, and limitations.",
+    "Terms of Service for PickleballCourts.io outlining acceptable use, user content, and limitations.",
 };
 
 export default function TermsPage() {
@@ -15,141 +15,166 @@ export default function TermsPage() {
       <section className="container mx-auto px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Last Updated: 12-4-25</p>
+            <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Terms of Service</h1>
             <p className="text-muted-foreground leading-relaxed">
-              Welcome to HenryHarrisonPlanoTexas.com (“we,” “us,” or “our”). By accessing or using this website, you
-              agree to be bound by the following Terms of Service. If you do not agree, please discontinue use of the
-              site. These Terms apply to all visitors, users, and businesses listed on the site.
+              PickleballCourts.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a Washington State-based limited liability company.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              By accessing or using PickleballCourts.io and any related services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Services.
             </p>
           </div>
 
           <Card className="border-border/60 bg-card/80 backdrop-blur">
             <CardContent className="p-6 md:p-8 space-y-6">
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">1. Purpose of the Website</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  HenryHarrisonPlanoTexas.com is an online directory designed to help users discover businesses,
-                  services, and community resources located in or serving Plano, Texas. We provide informational
-                  listings only and do not guarantee the accuracy, quality, availability, or reliability of any business
-                  or service featured on our platform. We are not a service provider, contractor, advisor, or agent for
-                  any listed business.
-                </p>
+                <h2 className="text-2xl font-semibold text-foreground">1. Use of the Services</h2>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">1.1</strong> You must be at least 13 years old to use the Services.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">1.2</strong> You are responsible for maintaining the confidentiality of any account credentials (if accounts are implemented) and for all activities that occur under your account.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">1.3</strong> You agree to use the Services only for lawful purposes and in compliance with these Terms and all applicable laws.
+                  </p>
+                </div>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">2. Use of the Website</h2>
-                <p className="text-muted-foreground leading-relaxed">By using this site, you agree to:</p>
+                <h2 className="text-2xl font-semibold text-foreground">2. User-Submitted Content</h2>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">2.1</strong> You may submit pickleball court listings, photos, reviews, comments, ratings, corrections, or other content ("User Content").
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">2.2</strong> By submitting User Content, you grant Shield Web Services, LLC a worldwide, perpetual, irrevocable, royalty-free, transferable license (with the right to sublicense) to use, copy, modify, distribute, display, and create derivative works of that content for any purpose, including commercial use.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">2.3</strong> You represent and warrant that:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1 text-muted-foreground ml-4">
+                    <li>You own or have the necessary rights to submit the User Content</li>
+                    <li>The User Content does not violate any third-party rights (including copyright, trademark, privacy, or publicity rights)</li>
+                    <li>The User Content is accurate to the best of your knowledge</li>
+                  </ul>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">2.4</strong> We may (but are not obligated to) review, edit, or remove any User Content at our sole discretion.
+                  </p>
+                </div>
+              </section>
+
+              <Separator />
+
+              <section className="space-y-3">
+                <h2 className="text-2xl font-semibold text-foreground">3. Prohibited Conduct</h2>
+                <p className="text-muted-foreground leading-relaxed">You agree not to:</p>
                 <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                  <li>Use the directory for lawful purposes only</li>
-                  <li>Not attempt to disrupt or compromise website functionality</li>
-                  <li>Not collect data from the website for unsolicited marketing or commercial purposes</li>
-                  <li>Not impersonate any individual or business when submitting information</li>
+                  <li>Submit false, misleading, defamatory, obscene, harassing, or illegal content</li>
+                  <li>Impersonate any person or entity</li>
+                  <li>Interfere with or disrupt the Services or servers</li>
+                  <li>Attempt to gain unauthorized access to the Services or other users' accounts</li>
+                  <li>Use automated scripts, bots, scrapers, or crawlers on the Site without prior written permission</li>
+                  <li>Engage in commercial solicitation or spam</li>
                 </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  We reserve the right to suspend or restrict access to any user who violates these Terms.
+              </section>
+
+              <Separator />
+
+              <section className="space-y-3">
+                <h2 className="text-2xl font-semibold text-foreground">4. Intellectual Property</h2>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">4.1</strong> The Site, its design, software, databases, trademarks, and all content created by us (excluding User Content) are owned by Shield Web Services, LLC or its licensors and protected by copyright, trademark, and other laws.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">4.2</strong> You may not copy, modify, distribute, sell, or create derivative works of our content without express written permission.
+                  </p>
+                </div>
+              </section>
+
+              <Separator />
+
+              <section className="space-y-3">
+                <h2 className="text-2xl font-semibold text-foreground">5. Disclaimer of Warranties</h2>
+                <p className="text-muted-foreground leading-relaxed font-semibold">
+                  THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">3. Business Listings</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Businesses listed on HenryHarrisonPlanoTexas.com are responsible for providing accurate and up-to-date
-                  information. We may edit, update, or remove listings at our discretion for reasons including inaccurate
-                  information, inactivity, or policy violations. We do not endorse, vet, or verify any business or
-                  service listed on the site. Users should perform their own due diligence before engaging with any
-                  business.
+                <h2 className="text-2xl font-semibold text-foreground">6. Limitation of Liability</h2>
+                <p className="text-muted-foreground leading-relaxed font-semibold">
+                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, SHIELD WEB SERVICES, LLC, ITS OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUE, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM YOUR USE OF THE SERVICES.
+                </p>
+                <p className="text-muted-foreground leading-relaxed font-semibold">
+                  IN NO EVENT SHALL OUR TOTAL LIABILITY EXCEED ONE HUNDRED U.S. DOLLARS ($100 USD).
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">4. No Guarantees or Warranties</h2>
+                <h2 className="text-2xl font-semibold text-foreground">7. Indemnification</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  All content on this website is provided on an “as is” and “as available” basis. We make no warranties,
-                  express or implied, regarding:
-                </p>
-                <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                  <li>Accuracy of listings</li>
-                  <li>Availability of the website</li>
-                  <li>Quality or reliability of any business or service</li>
-                  <li>Outcomes of interactions with businesses found through the directory</li>
-                </ul>
-                <p className="text-muted-foreground leading-relaxed">Use the website at your own discretion.</p>
-              </section>
-
-              <Separator />
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">5. Limitation of Liability</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  To the fullest extent permitted by law, we are not liable for any damages arising from:
-                </p>
-                <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                  <li>Use of or inability to use the website</li>
-                  <li>Business interactions, disputes, or transactions resulting from directory listings</li>
-                  <li>Errors or omissions in listings</li>
-                  <li>Third-party links or external websites</li>
-                </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  You agree that HenryHarrisonPlanoTexas.com is not responsible for any losses, claims, or issues related
-                  to businesses listed on the site.
+                  You agree to defend, indemnify, and hold harmless Shield Web Services, LLC and its affiliates from any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of your use of the Services, your User Content, or your violation of these Terms.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">6. Third-Party Links</h2>
+                <h2 className="text-2xl font-semibold text-foreground">8. Termination</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  The website may include links to third-party websites. These are provided for convenience only. We do
-                  not control, endorse, or take responsibility for external content, policies, or practices.
+                  We may suspend or terminate your access to the Services at any time, with or without cause or notice. Upon termination, your right to use the Services ceases immediately.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">7. Intellectual Property</h2>
+                <h2 className="text-2xl font-semibold text-foreground">9. Governing Law & Dispute Resolution</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  All website content—including text, design, graphics, and layout—is owned by HenryHarrisonPlanoTexas.com
-                  or licensed for use. You may not reproduce, distribute, or republish content without prior written
-                  permission.
+                  These Terms are governed by the laws of the State of Washington, without regard to conflict of law principles. Any dispute arising from these Terms or the Services shall be resolved exclusively in the state or federal courts located in King County, Washington.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">8. Changes to the Website or Terms</h2>
+                <h2 className="text-2xl font-semibold text-foreground">10. Changes to These Terms</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We may update the site, modify features, or revise these Terms at any time. Changes become effective
-                  upon posting. Continued use of the site indicates acceptance of the updated Terms.
+                  We may update these Terms at any time. The updated version will be posted on this page with a new "Effective Date." Your continued use of the Services after changes constitutes acceptance of the revised Terms.
                 </p>
               </section>
 
               <Separator />
 
               <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-foreground">9. Contacting Us</h2>
+                <h2 className="text-2xl font-semibold text-foreground">11. Contact Us</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  For any questions regarding these Terms of Service, please use the Contact Form located on our Contact
-                  page:
+                  If you have questions about these Terms, please contact:
                 </p>
-                <Link
-                  href="https://henryharrisonplanotexas.com/contact/"
-                  className="text-primary font-semibold hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://henryharrisonplanotexas.com/contact/
-                </Link>
-                <p className="text-muted-foreground leading-relaxed">All inquiries must be submitted through the form.</p>
+                <div className="bg-secondary/50 p-4 rounded-lg space-y-1">
+                  <p className="text-foreground font-semibold">Shield Web Services, LLC</p>
+                  <p className="text-muted-foreground">
+                    Email:{" "}
+                    <a
+                      href="mailto:shieldwebservices@gmail.com"
+                      className="text-primary hover:underline"
+                    >
+                      shieldwebservices@gmail.com
+                    </a>
+                  </p>
+                </div>
+                <p className="text-muted-foreground leading-relaxed italic">
+                  Thank you for helping build the most complete pickleball court directory! 🥒🏓
+                </p>
               </section>
             </CardContent>
           </Card>
@@ -158,4 +183,3 @@ export default function TermsPage() {
     </div>
   );
 }
-
