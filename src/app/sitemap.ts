@@ -2,8 +2,9 @@ import { MetadataRoute } from "next";
 import { db, categories, businesses, states, cities } from "@/lib/db";
 import { desc, isNotNull, or, eq, and } from "drizzle-orm";
 import { getAllStates, getAllCities } from "@/lib/location-data";
+import { getSiteUrl } from "@/lib/site-url";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
+const SITE_URL = getSiteUrl();
 
 // Route segment config - ALWAYS fetch latest data from database
 export const dynamic = 'force-dynamic'; // Regenerates on every request

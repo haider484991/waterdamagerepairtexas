@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import type { Business, Category, Review, State, City } from "@/lib/db/schema";
 import { generateBusinessDescription, detectAmenities, generateAmenitiesList } from "@/lib/content-generator";
+import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_NAME =
   process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts - Find Courts, Clubs & Leagues Near You";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
+const SITE_URL = getSiteUrl();
 
 export function generateSiteMetadata(): Metadata {
   return {

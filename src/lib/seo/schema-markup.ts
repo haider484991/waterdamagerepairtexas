@@ -3,8 +3,9 @@
  */
 
 import type { Business, Category } from "@/lib/db/schema";
+import { getSiteUrl } from "@/lib/site-url";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
+const SITE_URL = getSiteUrl();
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts";
 
 /**
