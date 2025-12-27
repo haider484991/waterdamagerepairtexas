@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { notFound } from "next/navigation";
 import { db, categories, businesses } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 import { generateCategoryMetadata } from "@/lib/seo";
@@ -100,57 +101,62 @@ export default async function CategoryLayout({ children, params }: LayoutProps) 
   const { slug } = await params;
   const data = await getCategorySeoData(slug);
 
-  // Fallback to rendering children even if category not found (client handles error UI)
+  // Return proper 404 if category not found
+  if (!data) {
+    notFound();
+  }
+
+  // Schema data for SEO
   const itemListSchema =
     data && data.topBusinesses.length > 0
       ? {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: `${data.category.name} Directory`,
-          itemListOrder: "Descending",
-          numberOfItems: data.topBusinesses.length,
-          itemListElement: data.topBusinesses.map((b, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            url: `${SITE_URL}/business/${b.slug}`,
-            name: b.name,
-            address: `${b.address}, ${b.city}, ${b.state}`,
-            aggregateRating: b.rating
-              ? {
-                  "@type": "AggregateRating",
-                  ratingValue: Number(b.rating),
-                  reviewCount: b.reviews || 0,
-                }
-              : undefined,
-          })),
-        }
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `${data.category.name} Directory`,
+        itemListOrder: "Descending",
+        numberOfItems: data.topBusinesses.length,
+        itemListElement: data.topBusinesses.map((b, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${SITE_URL}/business/${b.slug}`,
+          name: b.name,
+          address: `${b.address}, ${b.city}, ${b.state}`,
+          aggregateRating: b.rating
+            ? {
+              "@type": "AggregateRating",
+              ratingValue: Number(b.rating),
+              reviewCount: b.reviews || 0,
+            }
+            : undefined,
+        })),
+      }
       : null;
 
   const breadcrumbSchema = data
     ? {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: SITE_URL,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Categories",
-            item: `${SITE_URL}/categories`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: `${data.category.name} Directory`,
-            item: `${SITE_URL}/categories/${data.category.slug}`,
-          },
-        ],
-      }
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: SITE_URL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Categories",
+          item: `${SITE_URL}/categories`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: `${data.category.name} Directory`,
+          item: `${SITE_URL}/categories/${data.category.slug}`,
+        },
+      ],
+    }
     : null;
 
   return (
