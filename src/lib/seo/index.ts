@@ -41,12 +41,12 @@ export function generateSiteMetadata(): Metadata {
     creator: SITE_NAME,
     icons: {
       icon: [
-        { url: "/pickleball-logo.png", sizes: "any" },
-        { url: "/pickleball-logo.png", sizes: "32x32", type: "image/png" },
-        { url: "/pickleball-logo.png", sizes: "16x16", type: "image/png" },
+        { url: "/fav-icon.jpeg", sizes: "any", type: "image/jpeg" },
+        { url: "/fav-icon.jpeg", sizes: "32x32", type: "image/jpeg" },
+        { url: "/fav-icon.jpeg", sizes: "16x16", type: "image/jpeg" },
       ],
       apple: [
-        { url: "/pickleball-logo.png", sizes: "180x180", type: "image/png" },
+        { url: "/fav-icon.jpeg", sizes: "180x180", type: "image/jpeg" },
       ],
     },
     openGraph: {
