@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
 import { Header, Footer, MobileNav } from "@/components/layout";
@@ -22,6 +23,16 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DTHG4XX0GK" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-DTHG4XX0GK');
+        `}
+      </Script>
       <body className="min-h-screen flex flex-col">
         <SessionProvider>
           <Header />
