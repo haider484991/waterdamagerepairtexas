@@ -91,7 +91,7 @@ export function MarkdownEditor({
   // Keep editor content in sync with external value changes (e.g. from DB load)
   useEffect(() => {
     if (editor && value !== (editor.storage as any).markdown.getMarkdown()) {
-      editor.commands.setContent(value, false);
+      editor.commands.setContent(value, { emitUpdate: false });
     }
   }, [value, editor]);
 
