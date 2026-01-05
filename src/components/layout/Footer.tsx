@@ -15,6 +15,8 @@ const footerLinks = {
     { href: "/categories", label: "Browse by Category" },
   ],
   company: [
+    { href: "/", label: "Home" },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
     { href: "/claim-business", label: "Claim Your Business" },

@@ -283,3 +283,290 @@ export type NewState = typeof states.$inferInsert;
 export type City = typeof cities.$inferSelect;
 export type NewCity = typeof cities.$inferInsert;
 
+// ============================================================================
+// BLOG SYSTEM TABLES
+// ============================================================================
+
+// Blog Keyword Lists - organize keywords by topic/campaign
+export const blogKeywordLists = pgTable("blog_keyword_lists", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  settings: jsonb("settings").$type<{
+    tone?: "conversational" | "professional" | "friendly" | "authoritative";
+    audience?: string;
+    targetWordCount?: { min: number; max: number };
+    language?: string;
+    brandVoice?: string;
+  }>().default({}),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_keyword_lists_active_idx").on(table.isActive),
+]);
+
+// Blog Keywords - individual keywords to target
+export const blogKeywords = pgTable("blog_keywords", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  listId: uuid("list_id").references(() => blogKeywordLists.id, { onDelete: "cascade" }).notNull(),
+  keyword: varchar("keyword", { length: 500 }).notNull(),
+  intent: varchar("intent", { length: 50 }).$type<"informational" | "transactional" | "navigational" | "commercial">().default("informational"),
+  locale: varchar("locale", { length: 10 }).default("en-US"),
+  priority: integer("priority").default(5), // 1-10, higher = more important
+  status: varchar("status", { length: 50 }).$type<"pending" | "used" | "skipped" | "exhausted">().default("pending"),
+  lastUsedAt: timestamp("last_used_at"),
+  usageCount: integer("usage_count").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_keywords_list_idx").on(table.listId),
+  index("blog_keywords_status_idx").on(table.status),
+  index("blog_keywords_priority_idx").on(table.priority),
+  index("blog_keywords_keyword_idx").on(table.keyword),
+]);
+
+// Blog Topics - generated topic ideas from keywords
+export const blogTopics = pgTable("blog_topics", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  keywordId: uuid("keyword_id").references(() => blogKeywords.id, { onDelete: "cascade" }).notNull(),
+  title: varchar("title", { length: 500 }).notNull(),
+  angle: text("angle"), // The unique perspective/angle for this topic
+  outline: jsonb("outline").$type<{
+    sections: Array<{
+      heading: string;
+      subheadings?: string[];
+      keyPoints?: string[];
+    }>;
+  }>(),
+  score: integer("score").default(50), // 0-100 relevance/quality score
+  status: varchar("status", { length: 50 }).$type<"pending" | "approved" | "rejected" | "used">().default("pending"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_topics_keyword_idx").on(table.keywordId),
+  index("blog_topics_status_idx").on(table.status),
+  index("blog_topics_score_idx").on(table.score),
+]);
+
+// Blog Posts - the actual blog articles
+export const blogPosts = pgTable("blog_posts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  topicId: uuid("topic_id").references(() => blogTopics.id, { onDelete: "set null" }),
+  authorId: uuid("author_id").references(() => users.id, { onDelete: "set null" }),
+  
+  // Content
+  title: varchar("title", { length: 500 }).notNull(),
+  slug: varchar("slug", { length: 500 }).unique().notNull(),
+  excerpt: text("excerpt"), // Short summary for listings
+  contentMd: text("content_md").notNull(), // Markdown content
+  contentHtml: text("content_html"), // Rendered HTML
+  
+  // SEO fields
+  seoTitle: varchar("seo_title", { length: 70 }), // <= 60 chars recommended
+  metaDescription: varchar("meta_description", { length: 170 }), // <= 160 chars recommended
+  canonicalUrl: text("canonical_url"),
+  
+  // Images
+  coverImageUrl: text("cover_image_url"),
+  ogImageUrl: text("og_image_url"),
+  coverImageAlt: varchar("cover_image_alt", { length: 255 }),
+  
+  // Structured data (stored as JSON for flexibility)
+  faqJson: jsonb("faq_json").$type<Array<{ question: string; answer: string }>>().default([]),
+  tocJson: jsonb("toc_json").$type<Array<{ id: string; text: string; level: number }>>().default([]),
+  
+  // Metrics
+  readingTime: integer("reading_time"), // in minutes
+  wordCount: integer("word_count"),
+  
+  // Publishing
+  status: varchar("status", { length: 50 }).$type<"draft" | "scheduled" | "published" | "archived">().default("draft"),
+  publishedAt: timestamp("published_at"),
+  scheduledAt: timestamp("scheduled_at"),
+  
+  // Timestamps
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_posts_slug_idx").on(table.slug),
+  index("blog_posts_status_idx").on(table.status),
+  index("blog_posts_published_at_idx").on(table.publishedAt),
+  index("blog_posts_topic_idx").on(table.topicId),
+  index("blog_posts_author_idx").on(table.authorId),
+]);
+
+// Blog Post Keywords - many-to-many relationship
+export const blogPostKeywords = pgTable("blog_post_keywords", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  postId: uuid("post_id").references(() => blogPosts.id, { onDelete: "cascade" }).notNull(),
+  keywordId: uuid("keyword_id").references(() => blogKeywords.id, { onDelete: "cascade" }).notNull(),
+  isPrimary: boolean("is_primary").default(false), // Primary keyword for the post
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_post_keywords_post_idx").on(table.postId),
+  index("blog_post_keywords_keyword_idx").on(table.keywordId),
+]);
+
+// Blog Internal Links - track internal linking between posts and entities
+export const blogInternalLinks = pgTable("blog_internal_links", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  sourcePostId: uuid("source_post_id").references(() => blogPosts.id, { onDelete: "cascade" }).notNull(),
+  targetPostId: uuid("target_post_id").references(() => blogPosts.id, { onDelete: "cascade" }),
+  targetBusinessId: uuid("target_business_id").references(() => businesses.id, { onDelete: "cascade" }),
+  anchorText: varchar("anchor_text", { length: 255 }).notNull(),
+  inserted: boolean("inserted").default(false), // Whether the link was actually inserted
+  position: integer("position"), // Character position in content where link was inserted
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_internal_links_source_idx").on(table.sourcePostId),
+  index("blog_internal_links_target_post_idx").on(table.targetPostId),
+  index("blog_internal_links_target_biz_idx").on(table.targetBusinessId),
+]);
+
+// Blog Job Runs - track automation job execution
+export const blogJobRuns = pgTable("blog_job_runs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  type: varchar("type", { length: 50 }).$type<"topic_generation" | "article_generation" | "seo_optimization" | "image_generation" | "publishing" | "full_pipeline">().notNull(),
+  status: varchar("status", { length: 50 }).$type<"pending" | "running" | "completed" | "failed">().default("pending"),
+  
+  // Related entities
+  keywordId: uuid("keyword_id").references(() => blogKeywords.id, { onDelete: "set null" }),
+  topicId: uuid("topic_id").references(() => blogTopics.id, { onDelete: "set null" }),
+  postId: uuid("post_id").references(() => blogPosts.id, { onDelete: "set null" }),
+  
+  // Execution details
+  startedAt: timestamp("started_at"),
+  finishedAt: timestamp("finished_at"),
+  durationMs: integer("duration_ms"),
+  
+  // Logging
+  logs: jsonb("logs").$type<Array<{ timestamp: string; level: string; message: string }>>().default([]),
+  error: text("error"),
+  
+  // AI usage tracking
+  tokenUsage: jsonb("token_usage").$type<{
+    promptTokens?: number;
+    completionTokens?: number;
+    totalTokens?: number;
+    model?: string;
+  }>(),
+  imageGenerated: boolean("image_generated").default(false),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_job_runs_type_idx").on(table.type),
+  index("blog_job_runs_status_idx").on(table.status),
+  index("blog_job_runs_created_at_idx").on(table.createdAt),
+]);
+
+// Blog Settings - global automation settings
+export const blogSettings = pgTable("blog_settings", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  key: varchar("key", { length: 100 }).unique().notNull(),
+  value: jsonb("value").notNull(),
+  description: text("description"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("blog_settings_key_idx").on(table.key),
+]);
+
+// Blog Relations
+export const blogKeywordListsRelations = relations(blogKeywordLists, ({ many }) => ({
+  keywords: many(blogKeywords),
+}));
+
+export const blogKeywordsRelations = relations(blogKeywords, ({ one, many }) => ({
+  list: one(blogKeywordLists, {
+    fields: [blogKeywords.listId],
+    references: [blogKeywordLists.id],
+  }),
+  topics: many(blogTopics),
+  postKeywords: many(blogPostKeywords),
+  jobRuns: many(blogJobRuns),
+}));
+
+export const blogTopicsRelations = relations(blogTopics, ({ one, many }) => ({
+  keyword: one(blogKeywords, {
+    fields: [blogTopics.keywordId],
+    references: [blogKeywords.id],
+  }),
+  posts: many(blogPosts),
+  jobRuns: many(blogJobRuns),
+}));
+
+export const blogPostsRelations = relations(blogPosts, ({ one, many }) => ({
+  topic: one(blogTopics, {
+    fields: [blogPosts.topicId],
+    references: [blogTopics.id],
+  }),
+  author: one(users, {
+    fields: [blogPosts.authorId],
+    references: [users.id],
+  }),
+  postKeywords: many(blogPostKeywords),
+  outgoingLinks: many(blogInternalLinks, { relationName: "sourcePost" }),
+  incomingLinks: many(blogInternalLinks, { relationName: "targetPost" }),
+  jobRuns: many(blogJobRuns),
+}));
+
+export const blogPostKeywordsRelations = relations(blogPostKeywords, ({ one }) => ({
+  post: one(blogPosts, {
+    fields: [blogPostKeywords.postId],
+    references: [blogPosts.id],
+  }),
+  keyword: one(blogKeywords, {
+    fields: [blogPostKeywords.keywordId],
+    references: [blogKeywords.id],
+  }),
+}));
+
+export const blogInternalLinksRelations = relations(blogInternalLinks, ({ one }) => ({
+  sourcePost: one(blogPosts, {
+    fields: [blogInternalLinks.sourcePostId],
+    references: [blogPosts.id],
+    relationName: "sourcePost",
+  }),
+  targetPost: one(blogPosts, {
+    fields: [blogInternalLinks.targetPostId],
+    references: [blogPosts.id],
+    relationName: "targetPost",
+  }),
+  targetBusiness: one(businesses, {
+    fields: [blogInternalLinks.targetBusinessId],
+    references: [businesses.id],
+  }),
+}));
+
+export const blogJobRunsRelations = relations(blogJobRuns, ({ one }) => ({
+  keyword: one(blogKeywords, {
+    fields: [blogJobRuns.keywordId],
+    references: [blogKeywords.id],
+  }),
+  topic: one(blogTopics, {
+    fields: [blogJobRuns.topicId],
+    references: [blogTopics.id],
+  }),
+  post: one(blogPosts, {
+    fields: [blogJobRuns.postId],
+    references: [blogPosts.id],
+  }),
+}));
+
+// Blog Types
+export type BlogKeywordList = typeof blogKeywordLists.$inferSelect;
+export type NewBlogKeywordList = typeof blogKeywordLists.$inferInsert;
+export type BlogKeyword = typeof blogKeywords.$inferSelect;
+export type NewBlogKeyword = typeof blogKeywords.$inferInsert;
+export type BlogTopic = typeof blogTopics.$inferSelect;
+export type NewBlogTopic = typeof blogTopics.$inferInsert;
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type NewBlogPost = typeof blogPosts.$inferInsert;
+export type BlogPostKeyword = typeof blogPostKeywords.$inferSelect;
+export type NewBlogPostKeyword = typeof blogPostKeywords.$inferInsert;
+export type BlogInternalLink = typeof blogInternalLinks.$inferSelect;
+export type NewBlogInternalLink = typeof blogInternalLinks.$inferInsert;
+export type BlogJobRun = typeof blogJobRuns.$inferSelect;
+export type NewBlogJobRun = typeof blogJobRuns.$inferInsert;
+export type BlogSetting = typeof blogSettings.$inferSelect;
+export type NewBlogSetting = typeof blogSettings.$inferInsert;

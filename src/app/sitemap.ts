@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { db, categories, businesses, states, cities } from "@/lib/db";
+import { db, categories, businesses, states, cities, blogPosts } from "@/lib/db";
 import { desc, isNotNull, or, eq, and } from "drizzle-orm";
 import { getAllStates, getAllCities } from "@/lib/location-data";
 import { getSiteUrl } from "@/lib/site-url";
@@ -208,6 +208,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       console.error("Error fetching businesses for sitemap:", error);
     }
 
+    // Blog pages - high priority for content SEO
+    let blogPages: MetadataRoute.Sitemap = [];
+    try {
+      if (db && blogPosts) {
+        const publishedPosts = await db
+          .select({
+            slug: blogPosts.slug,
+            publishedAt: blogPosts.publishedAt,
+            updatedAt: blogPosts.updatedAt,
+          })
+          .from(blogPosts)
+          .where(eq(blogPosts.status, "published"))
+          .orderBy(desc(blogPosts.publishedAt))
+          .limit(1000);
+
+        // Blog listing page
+        blogPages.push({
+          url: `${SITE_URL}/blog`,
+          lastModified: publishedPosts[0]?.publishedAt || now,
+          changeFrequency: "daily" as const,
+          priority: 0.9,
+        });
+
+        // Individual blog posts
+        blogPages.push(
+          ...publishedPosts.map((post) => ({
+            url: `${SITE_URL}/blog/${post.slug}`,
+            lastModified: post.updatedAt || post.publishedAt || now,
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
+          }))
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching blog posts for sitemap:", error);
+    }
+
     // Pickleball-specific search queries for long-tail SEO
     const pickleballSearches = [
       "pickleball courts",
@@ -234,6 +271,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Combine all pages
     return [
       ...staticPages,
+      ...blogPages,
       ...statePages,
       ...categoryPages,
       ...cityPages,
@@ -266,6 +304,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
       {
         url: `${SITE_URL}/search`,
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 0.9,
+      },
+      {
+        url: `${SITE_URL}/blog`,
         lastModified: now,
         changeFrequency: "daily",
         priority: 0.9,

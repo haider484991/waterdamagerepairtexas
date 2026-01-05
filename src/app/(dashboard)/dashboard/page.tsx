@@ -14,6 +14,10 @@ import {
   MessageSquare,
   Loader2,
   Shield,
+  FileText,
+  Tag,
+  Lightbulb,
+  BarChart3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -200,6 +204,76 @@ export default function DashboardPage() {
             </Link>
           ))}
         </motion.div>
+
+        {/* Blog Management - Admin Only */}
+        {isAdmin && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-8"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-amber-600" />
+                  Blog Management
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Manage your automated blog content system
+                </p>
+              </div>
+              <Button asChild variant="outline">
+                <Link href="/admin/blog">
+                  View All
+                  <ChevronRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link href="/admin/blog">
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  className="glass-card rounded-xl p-5 hover:border-amber-500/30 transition-colors"
+                >
+                  <FileText className="w-6 h-6 text-amber-600 mb-2" />
+                  <div className="font-semibold mb-1">Posts</div>
+                  <div className="text-sm text-muted-foreground">Manage articles</div>
+                </motion.div>
+              </Link>
+              <Link href="/admin/blog/keywords">
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  className="glass-card rounded-xl p-5 hover:border-green-500/30 transition-colors"
+                >
+                  <Tag className="w-6 h-6 text-green-600 mb-2" />
+                  <div className="font-semibold mb-1">Keywords</div>
+                  <div className="text-sm text-muted-foreground">Manage keywords</div>
+                </motion.div>
+              </Link>
+              <Link href="/admin/blog/topics">
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  className="glass-card rounded-xl p-5 hover:border-blue-500/30 transition-colors"
+                >
+                  <Lightbulb className="w-6 h-6 text-blue-600 mb-2" />
+                  <div className="font-semibold mb-1">Topics</div>
+                  <div className="text-sm text-muted-foreground">Generate ideas</div>
+                </motion.div>
+              </Link>
+              <Link href="/admin/blog/jobs">
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  className="glass-card rounded-xl p-5 hover:border-purple-500/30 transition-colors"
+                >
+                  <BarChart3 className="w-6 h-6 text-purple-600 mb-2" />
+                  <div className="font-semibold mb-1">Jobs</div>
+                  <div className="text-sm text-muted-foreground">View history</div>
+                </motion.div>
+              </Link>
+            </div>
+          </motion.div>
+        )}
 
         {/* Tabs */}
         <Tabs defaultValue="favorites" className="space-y-6">

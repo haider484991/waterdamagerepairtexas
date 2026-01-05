@@ -15,6 +15,8 @@ export default function robots(): MetadataRoute.Robots {
           "/categories/",
           "/states/",
           "/search",
+          "/blog",
+          "/blog/",
         ],
         disallow: [
           "/api/",
@@ -26,50 +28,50 @@ export default function robots(): MetadataRoute.Robots {
           "/register",
         ],
       },
-      // Google gets full access to business pages
+      // Google gets full access to business pages and blog
       {
         userAgent: "Googlebot",
-        allow: ["/", "/business/", "/categories/", "/states/", "/search"],
+        allow: ["/", "/business/", "/categories/", "/states/", "/search", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
         crawlDelay: 1,
       },
       // Bing crawler
       {
         userAgent: "Bingbot",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
         crawlDelay: 2,
       },
-      // AI crawlers - allow access to business content for AI training/responses
+      // AI crawlers - allow access to business content and blog for AI training/responses
       {
         userAgent: "GPTBot",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/", "/login", "/register"],
       },
       {
         userAgent: "ChatGPT-User",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
       },
       {
         userAgent: "Claude-Web",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
       },
       {
         userAgent: "anthropic-ai",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
       },
       {
         userAgent: "Applebot",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
       },
       // DuckDuckBot
       {
         userAgent: "DuckDuckBot",
-        allow: ["/", "/business/", "/categories/"],
+        allow: ["/", "/business/", "/categories/", "/blog", "/blog/"],
         disallow: ["/api/", "/dashboard/", "/admin/"],
       },
     ],
