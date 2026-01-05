@@ -47,6 +47,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
+    async authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isAdmin = auth?.user?.role === "admin" || 
+                      auth?.user?.email === "admin@pickleballcourts.io" ||
+                      auth?.user?.email?.endsWith("@admin.com");
+      
+      const isOnAdmin = nextUrl.pathname.startsWith("/admin") || nextUrl.pathname.startsWith("/api/admin");
+      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+
+      if (isOnAdmin) {
+        if (isLoggedIn && isAdmin) return true;
+        return false; // Redirect to login
+      }
+
+      if (isOnDashboard) {
+        if (isLoggedIn) return true;
+        return false; // Redirect to login
+      }
+
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;

@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { db, businesses, categories, users, reviews, businessClaims } from "@/lib/db";
 import { sql, eq } from "drizzle-orm";
+import { verifyAdmin } from "@/lib/auth/utils";
 
 export async function GET() {
   try {
+    await verifyAdmin();
+
     // Get all counts in parallel
     const [
       businessCount,

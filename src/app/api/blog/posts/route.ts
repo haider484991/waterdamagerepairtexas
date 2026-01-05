@@ -6,20 +6,10 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { db, blogPosts, blogPostKeywords, blogKeywords, users } from "@/lib/db";
 import { eq, desc, asc, and, or, like, sql, count } from "drizzle-orm";
 import { processMarkdown, generateSlug, generateCanonicalUrl } from "@/lib/blog";
-
-// Admin check helper
-function isAdmin(email: string | null | undefined): boolean {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { isAdmin, verifyAdmin } from "@/lib/auth/utils";
 
 export async function GET(request: NextRequest) {
   try {
@@ -39,8 +29,7 @@ export async function GET(request: NextRequest) {
     const conditions = [];
     
     // Check if user is admin for non-published posts
-    const session = await auth();
-    const userIsAdmin = isAdmin(session?.user?.email);
+    const userIsAdmin = await isAdmin();
     
     if (!userIsAdmin || !includeAll) {
       // Non-admins or when not requesting all: only show published
@@ -138,13 +127,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const body = await request.json();
     const { title, contentMd, seoTitle, metaDescription, coverImageUrl, status, publishedAt, keywordIds } = body;

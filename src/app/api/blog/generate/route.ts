@@ -5,29 +5,13 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { runGenerationPipeline, type GenerationConfig } from "@/lib/blog";
-
-// Admin check helper
-function isAdmin(email: string | null | undefined): boolean {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { verifyAdmin } from "@/lib/auth/utils";
 
 export async function POST(request: NextRequest) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const body = await request.json().catch(() => ({}));
     
@@ -40,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     if (background) {
       // In background mode, we start the pipeline and return the jobRunId immediately
-      return new Promise((resolve) => {
+      return new Promise<NextResponse>((resolve) => {
         let resolved = false;
         runGenerationPipeline(keywordId, topicId, config, (jobId) => {
           if (!resolved) {
@@ -50,7 +34,11 @@ export async function POST(request: NextRequest) {
         }).catch(err => {
           console.error("Background generation failed:", err);
           // If we already resolved with the jobId, we can't do much here
-          // The job status in DB will be 'failed'
+          // But if we haven't, we should reject or resolve with error
+          if (!resolved) {
+            resolved = true;
+            resolve(NextResponse.json({ success: false, error: "Background job failed to start" }, { status: 500 }));
+          }
         });
       });
     }

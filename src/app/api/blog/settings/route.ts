@@ -6,19 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { db, blogSettings } from "@/lib/db";
 import { eq } from "drizzle-orm";
-
-// Admin check helper
-function isAdmin(email: string | null | undefined): boolean {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { verifyAdmin } from "@/lib/auth/utils";
 
 // Default settings
 const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
@@ -76,13 +66,7 @@ const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
 export async function GET(request: NextRequest) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     // Get all settings from database
     const settings = await db.select().from(blogSettings);
@@ -126,13 +110,7 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const body = await request.json();
     

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db, categories, businesses } from "@/lib/db";
 import { eq, sql } from "drizzle-orm";
 import slugify from "slugify";
+import { verifyAdmin } from "@/lib/auth/utils";
 import {
   resetSyncProgress,
   updateSyncProgress,
@@ -261,6 +262,8 @@ async function syncBusinessesForCategory(
 
 export async function POST() {
   try {
+    await verifyAdmin();
+
     // Initialize progress tracking
     resetSyncProgress(pickleballCategories.length);
     updateSyncProgress({
@@ -387,6 +390,8 @@ export async function POST() {
 
 export async function GET() {
   try {
+    await verifyAdmin();
+
     const existingCategories = await db.select().from(categories);
     const validSlugs = new Set(pickleballCategories.map(c => c.slug));
     

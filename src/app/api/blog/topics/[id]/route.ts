@@ -7,19 +7,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { db, blogTopics, blogKeywords, blogPosts } from "@/lib/db";
 import { eq } from "drizzle-orm";
-
-// Admin check helper
-function isAdmin(email: string | null | undefined): boolean {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { verifyAdmin } from "@/lib/auth/utils";
 
 export async function GET(
   request: NextRequest,
@@ -27,13 +17,7 @@ export async function GET(
 ) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const { id } = await params;
 
@@ -89,13 +73,7 @@ export async function PUT(
 ) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const { id } = await params;
     const body = await request.json();
@@ -162,13 +140,7 @@ export async function DELETE(
 ) {
   try {
     // Auth check
-    const session = await auth();
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
+    await verifyAdmin();
 
     const { id } = await params;
 
