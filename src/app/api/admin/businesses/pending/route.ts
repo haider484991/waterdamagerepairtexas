@@ -1,24 +1,11 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { db, businesses, categories } from "@/lib/db";
 import { eq, desc, isNull, and } from "drizzle-orm";
-
-function isAdmin(email: string | null | undefined) {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { verifyAdmin } from "@/lib/auth/utils";
 
 export async function GET() {
   try {
-    const session = await auth();
-
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    await verifyAdmin();
 
     // Get unverified businesses submitted through website (not from API)
     // Only show businesses where googlePlaceId is null (website submissions)

@@ -46,6 +46,7 @@ interface RecentJob {
   keywordText?: string;
   postTitle?: string;
   postSlug?: string;
+  postId?: string;
   logs?: Array<{ timestamp: string; level: string; message: string }>;
 }
 

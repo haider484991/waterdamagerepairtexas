@@ -1,27 +1,14 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { db, businesses } from "@/lib/db";
 import { eq } from "drizzle-orm";
-
-function isAdmin(email: string | null | undefined) {
-  if (!email) return false;
-  return (
-    email === "admin@pickleballcourts.io" ||
-    email.endsWith("@admin.com") ||
-    email === "admin@test.com"
-  );
-}
+import { verifyAdmin } from "@/lib/auth/utils";
 
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.email || !isAdmin(session.user.email)) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    await verifyAdmin();
 
     const { id } = await params;
 
