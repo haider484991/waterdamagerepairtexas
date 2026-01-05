@@ -78,7 +78,7 @@ export function MarkdownEditor({
     content: value,
     onUpdate: ({ editor }) => {
       // Get the markdown content
-      const markdown = editor.storage.markdown.getMarkdown();
+      const markdown = (editor.storage as any).markdown.getMarkdown();
       onChange(markdown);
     },
     editorProps: {
@@ -90,7 +90,7 @@ export function MarkdownEditor({
 
   // Keep editor content in sync with external value changes (e.g. from DB load)
   useEffect(() => {
-    if (editor && value !== editor.storage.markdown.getMarkdown()) {
+    if (editor && value !== (editor.storage as any).markdown.getMarkdown()) {
       editor.commands.setContent(value, false);
     }
   }, [value, editor]);
