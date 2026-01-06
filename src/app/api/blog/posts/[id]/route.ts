@@ -7,6 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db, blogPosts, blogPostKeywords, blogInternalLinks } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import { processMarkdown, generateSlug, generateCanonicalUrl } from "@/lib/blog";
@@ -186,6 +187,17 @@ export async function PUT(
       .where(eq(blogPosts.id, id))
       .returning();
 
+    // Revalidate paths to clear cache
+    try {
+      revalidatePath("/blog");
+      revalidatePath(`/blog/${existing.slug}`);
+      if (updated.slug !== existing.slug) {
+        revalidatePath(`/blog/${updated.slug}`);
+      }
+    } catch (e) {
+      console.error("Error revalidating blog paths:", e);
+    }
+
     // Update keywords if provided
     if (body.keywordIds !== undefined) {
       // Remove existing
@@ -250,6 +262,14 @@ export async function DELETE(
     await db
       .delete(blogPosts)
       .where(eq(blogPosts.id, id));
+
+    // Revalidate paths to clear cache
+    try {
+      revalidatePath("/blog");
+      revalidatePath(`/blog/${existing.slug}`);
+    } catch (e) {
+      console.error("Error revalidating blog paths:", e);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db, blogPosts, blogPostKeywords, blogKeywords, users } from "@/lib/db";
 import { eq, desc, asc, and, or, like, sql, count } from "drizzle-orm";
 import { processMarkdown, generateSlug, generateCanonicalUrl } from "@/lib/blog";
@@ -168,6 +169,14 @@ export async function POST(request: NextRequest) {
         faqJson: [],
       })
       .returning();
+
+    // Revalidate paths to clear cache
+    try {
+      revalidatePath("/blog");
+      revalidatePath(`/blog/${post.slug}`);
+    } catch (e) {
+      console.error("Error revalidating blog paths:", e);
+    }
 
     // Associate keywords if provided
     if (keywordIds && keywordIds.length > 0) {
