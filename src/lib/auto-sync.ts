@@ -203,7 +203,7 @@ export async function searchAndSync(
 
   try {
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-    url.searchParams.set("query", `${query} pickleball`);
+    url.searchParams.set("query", `${query} water damage restoration Texas`);
     url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
 
     const response = await fetch(url.toString());
@@ -253,8 +253,8 @@ export async function getOrCreateCategory(
           name,
           slug,
           icon: "MapPin",
-          description: `${name} - Pickleball businesses across the United States`,
-          section: "Pickleball",
+          description: `${name} - Water damage restoration services across Texas`,
+          section: "Restoration",
           displayOrder: 99,
         })
         .returning({ id: categories.id });
@@ -271,36 +271,37 @@ export async function getOrCreateCategory(
 }
 
 /**
- * Pickleball category to Google search queries mapping
+ * Water damage category to Google search queries mapping
  */
 export const categorySearchQueries: Record<string, string[]> = {
-  "pickleball-courts-facilities": [
-    "pickleball courts",
-    "pickleball facilities",
-    "indoor pickleball courts",
-    "pickleball recreation center",
+  "water-damage-restoration": [
+    "water damage restoration Texas",
+    "water damage repair Texas",
+    "water extraction services",
+    "flood restoration company",
   ],
-  "pickleball-clubs-leagues": [
-    "pickleball club",
-    "pickleball league",
-    "pickleball association",
+  "flood-cleanup": [
+    "flood cleanup Texas",
+    "flood damage restoration",
+    "emergency flood service",
+    "water removal service",
   ],
-  "pickleball-equipment-stores": [
-    "pickleball equipment",
-    "pickleball store",
-    "pickleball shop",
-    "pickleball gear",
+  "mold-remediation": [
+    "mold remediation Texas",
+    "mold removal service",
+    "mold inspection",
+    "mold testing",
   ],
-  "pickleball-coaches-instructors": [
-    "pickleball coach",
-    "pickleball instructor",
-    "pickleball lessons",
-    "pickleball academy",
+  "emergency-services": [
+    "24 hour water damage Texas",
+    "emergency restoration service",
+    "emergency water extraction",
   ],
-  "pickleball-tournaments-events": [
-    "pickleball tournament",
-    "pickleball event",
-    "pickleball championship",
+  "storm-damage": [
+    "storm damage repair Texas",
+    "hurricane damage restoration",
+    "wind damage repair",
+    "hail damage restoration",
   ],
 };
 

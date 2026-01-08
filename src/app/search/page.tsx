@@ -68,29 +68,28 @@ interface Suggestion {
 }
 
 const categories = [
-  { value: "all", label: "All Categories" },
-  { value: "pickleball-courts-facilities", label: "Pickleball Courts & Facilities" },
-  { value: "pickleball-clubs-leagues", label: "Pickleball Clubs & Leagues" },
-  { value: "pickleball-equipment-stores", label: "Pickleball Equipment Stores" },
-  { value: "pickleball-coaches-instructors", label: "Pickleball Coaches & Instructors" },
-  { value: "pickleball-tournaments-events", label: "Pickleball Tournaments & Events" },
+  { value: "all", label: "All Services" },
+  { value: "water-damage-restoration", label: "Water Damage Restoration" },
+  { value: "flood-cleanup", label: "Flood Cleanup" },
+  { value: "mold-remediation", label: "Mold Remediation" },
+  { value: "emergency-services", label: "Emergency Services" },
+  { value: "storm-damage", label: "Storm Damage Repair" },
 ];
 
 const stateFilters = [
-  { value: "all", label: "All States" },
-  { value: "CA", label: "California" },
-  { value: "TX", label: "Texas" },
-  { value: "FL", label: "Florida" },
-  { value: "NY", label: "New York" },
-  { value: "AZ", label: "Arizona" },
-  { value: "PA", label: "Pennsylvania" },
-  { value: "IL", label: "Illinois" },
-  { value: "OH", label: "Ohio" },
-  { value: "GA", label: "Georgia" },
-  { value: "NC", label: "North Carolina" },
-  { value: "MI", label: "Michigan" },
-  { value: "WA", label: "Washington" },
-  { value: "CO", label: "Colorado" },
+  { value: "all", label: "All Regions" },
+  { value: "DFW", label: "Dallas-Fort Worth" },
+  { value: "HOU", label: "Houston" },
+  { value: "AUS", label: "Austin" },
+  { value: "SAT", label: "San Antonio" },
+  { value: "ELP", label: "El Paso" },
+  { value: "RGV", label: "Rio Grande Valley" },
+  { value: "CRP", label: "Corpus Christi" },
+  { value: "LBB", label: "Lubbock" },
+  { value: "AMA", label: "Amarillo" },
+  { value: "TYL", label: "Tyler/East Texas" },
+  { value: "WF", label: "Wichita Falls" },
+  { value: "MID", label: "Midland/Odessa" },
 ];
 
 const sortOptions = [
@@ -526,7 +525,7 @@ function SearchContent() {
             <p className="text-center mt-4 text-muted-foreground">
               Showing results for &quot;<span className="text-foreground font-medium">{query}</span>&quot;
               {stateFilter !== "all" && ` in ${stateFilters.find((s: { value: string; label: string }) => s.value === stateFilter)?.label}`}
-              {stateFilter === "all" && " across the United States"}
+              {stateFilter === "all" && " across Texas"}
             </p>
           )}
         </motion.div>

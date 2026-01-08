@@ -10,30 +10,18 @@ import {
   Users,
   Building2,
   TrendingUp,
-  Utensils,
-  ShoppingBasket,
-  Shirt,
-  Sofa,
-  Smartphone,
-  Stethoscope,
-  Dumbbell,
-  Sparkles,
-  Scale,
+  Droplets,
+  ShieldCheck,
+  Clock,
+  Phone,
+  Wrench,
   Home,
   Hammer,
-  Car,
-  GraduationCap,
-  Baby,
-  PawPrint,
-  Palette,
-  Trees,
-  Wine,
-  Megaphone,
-  Heart,
+  AlertTriangle,
+  ThermometerSun,
+  Wind,
+  Sparkles,
   Building,
-  Bed,
-  Bus,
-  Monitor,
   LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,30 +32,18 @@ import type { Category } from "@/lib/db/schema";
 import { getImageUrl, type BusinessData } from "@/lib/hybrid-data";
 
 const iconMap: Record<string, LucideIcon> = {
-  Utensils,
-  ShoppingBasket,
-  Shirt,
-  Sofa,
-  Smartphone,
-  Stethoscope,
-  Dumbbell,
-  Sparkles,
-  Scale,
+  Droplets,
+  ShieldCheck,
+  Clock,
+  Phone,
+  Wrench,
   Home,
   Hammer,
-  Car,
-  GraduationCap,
-  Baby,
-  PawPrint,
-  Palette,
-  Trees,
-  Wine,
-  Megaphone,
-  Heart,
+  AlertTriangle,
+  ThermometerSun,
+  Wind,
+  Sparkles,
   Building2,
-  Bed,
-  Bus,
-  Monitor,
   Building,
 };
 
@@ -77,18 +53,18 @@ interface HomePageClientProps {
   recentBusinesses: BusinessData[];
 }
 
-const topStates = [
-  { name: "California", slug: "california", description: "Most pickleball facilities" },
-  { name: "Texas", slug: "texas", description: "Rapidly growing community" },
-  { name: "Florida", slug: "florida", description: "Year-round outdoor play" },
-  { name: "New York", slug: "new-york", description: "Indoor & outdoor courts" },
+const topRegions = [
+  { name: "Dallas-Fort Worth", slug: "dallas-fort-worth", description: "Largest metro coverage" },
+  { name: "Houston", slug: "houston", description: "24/7 emergency services" },
+  { name: "Austin", slug: "austin", description: "Fast response times" },
+  { name: "San Antonio", slug: "san-antonio", description: "Certified professionals" },
 ];
 
 const stats = [
-  { label: "US States", value: "25", icon: MapPin },
+  { label: "Texas Regions", value: "12+", icon: MapPin },
   { label: "Cities", value: "200+", icon: Building2 },
-  { label: "Categories", value: "5", icon: TrendingUp },
-  { label: "Growing Fast", value: "🏓", icon: Users },
+  { label: "Services", value: "5", icon: TrendingUp },
+  { label: "24/7 Available", value: "✓", icon: Clock },
 ];
 
 const containerVariants = {
@@ -118,7 +94,7 @@ export function HomePageClient({
       <section className="relative py-20 md:py-32 hero-pattern overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        
+
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -128,16 +104,16 @@ export function HomePageClient({
           >
             <Badge className="mb-6 px-4 py-1.5 text-sm bg-primary/10 text-primary border-primary/20">
               <MapPin className="w-4 h-4 mr-1.5" />
-              United States
+              Texas
             </Badge>
-            
+
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Find <span className="text-gradient">Pickleball Courts</span>{" "}
-              Near You
+              Find <span className="text-gradient">Water Damage Repair</span>{" "}
+              Services in Texas
             </h1>
-            
+
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              Search 10,000+ indoor & outdoor pickleball courts, clubs, leagues, equipment stores, coaches & tournaments across all 50 US states. Free directory with ratings, reviews & directions.
+              Connect with trusted water damage restoration professionals across Texas. Emergency flood cleanup, mold remediation, and 24/7 restoration services. Free directory with ratings, reviews & instant contact.
             </p>
 
             <div className="max-w-2xl mx-auto mb-8">
@@ -145,20 +121,20 @@ export function HomePageClient({
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-muted-foreground">
-              <span>🏓 Courts & Facilities</span>
+              <span>💧 Water Damage Restoration</span>
               <span>•</span>
-              <span>👥 Clubs & Leagues</span>
+              <span>🌊 Flood Cleanup</span>
               <span>•</span>
-              <span>🛒 Equipment Stores</span>
+              <span>🦠 Mold Remediation</span>
               <span>•</span>
-              <span>🎓 Coaches & Instructors</span>
+              <span>⚡ Emergency Services</span>
               <span>•</span>
-              <span>🏆 Tournaments & Events</span>
+              <span>🏠 Storm Damage Repair</span>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
               <span className="text-sm text-muted-foreground">Popular:</span>
-              {["Pickleball Courts", "Indoor Courts", "Clubs & Leagues", "Equipment Stores", "Coaches"].map((term) => (
+              {["Water Damage Restoration", "Emergency Flood Cleanup", "Mold Removal", "24 Hour Service", "Storm Damage"].map((term) => (
                 <Link
                   key={term}
                   href={`/search?q=${encodeURIComponent(term)}`}
@@ -188,18 +164,7 @@ export function HomePageClient({
                   <stat.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-                  {stat.label === "Growing Fast" ? (
-                    <Image
-                      src="/pickleball directory logo.png"
-                      alt="Pickleball Directory Logo"
-                      width={160}
-                      height={36}
-                      className="mx-auto h-9 w-auto"
-                      priority
-                    />
-                  ) : (
-                    stat.value
-                  )}
+                  {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </motion.div>
@@ -218,13 +183,13 @@ export function HomePageClient({
             className="text-center mb-14"
           >
             <Badge className="mb-4 px-3 py-1 text-xs bg-primary/10 text-primary border-primary/20">
-              Browse by Category
+              Browse by Service
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Find Your Perfect <span className="text-gradient">Pickleball</span> Spot
+              Find the Right <span className="text-gradient">Restoration</span> Service
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Whether you&apos;re looking for courts, clubs, gear, coaching, or tournaments — we&apos;ve got you covered
+              Whether you need emergency water extraction, mold remediation, or storm damage repair — we connect you with certified professionals
             </p>
           </motion.div>
 
@@ -238,25 +203,25 @@ export function HomePageClient({
             {categories.slice(0, 5).map((category, index) => {
               const Icon = iconMap[category.icon || "Building"] || Building;
               const categoryDescriptions: Record<string, string> = {
-                "pickleball-courts-facilities": "Find indoor & outdoor courts near you",
-                "pickleball-clubs-leagues": "Join local clubs and competitive leagues",
-                "pickleball-equipment-stores": "Shop paddles, balls, and gear",
-                "pickleball-coaches-instructors": "Learn from certified professionals",
-                "pickleball-tournaments-events": "Compete in local & national events",
+                "water-damage-restoration": "24/7 water extraction & drying",
+                "flood-cleanup": "Emergency flood damage services",
+                "mold-remediation": "Professional mold removal & prevention",
+                "emergency-services": "Immediate response available",
+                "storm-damage": "Wind, hail & storm repair",
               };
               const categoryColors = [
                 "from-blue-500/20 to-blue-600/10 border-blue-500/30 hover:border-blue-500/50",
+                "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 hover:border-cyan-500/50",
                 "from-green-500/20 to-green-600/10 border-green-500/30 hover:border-green-500/50",
-                "from-amber-500/20 to-amber-600/10 border-amber-500/30 hover:border-amber-500/50",
+                "from-orange-500/20 to-orange-600/10 border-orange-500/30 hover:border-orange-500/50",
                 "from-purple-500/20 to-purple-600/10 border-purple-500/30 hover:border-purple-500/50",
-                "from-rose-500/20 to-rose-600/10 border-rose-500/30 hover:border-rose-500/50",
               ];
               const iconColors = [
                 "bg-blue-500/20 text-blue-500",
+                "bg-cyan-500/20 text-cyan-500",
                 "bg-green-500/20 text-green-500",
-                "bg-amber-500/20 text-amber-500",
+                "bg-orange-500/20 text-orange-500",
                 "bg-purple-500/20 text-purple-500",
-                "bg-rose-500/20 text-rose-500",
               ];
               return (
                 <motion.div key={category.slug} variants={itemVariants}>
@@ -273,10 +238,10 @@ export function HomePageClient({
                         {category.name}
                       </h3>
                       <p className="text-sm text-muted-foreground text-center">
-                        {categoryDescriptions[category.slug] || category.description || "Explore this category"}
+                        {categoryDescriptions[category.slug] || category.description || "Explore this service"}
                       </p>
                       <div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        Explore <ArrowRight className="w-4 h-4 ml-1" />
+                        Find Services <ArrowRight className="w-4 h-4 ml-1" />
                       </div>
                     </motion.div>
                   </Link>
@@ -288,7 +253,7 @@ export function HomePageClient({
           <div className="text-center mt-12">
             <Button asChild size="lg" className="px-8">
               <Link href="/categories">
-                Browse All Categories
+                Browse All Services
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
@@ -307,12 +272,12 @@ export function HomePageClient({
           >
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {featuredBusinesses.length > 0 ? "Featured Businesses" : "Recent Businesses"}
+                {featuredBusinesses.length > 0 ? "Featured Restoration Companies" : "Recent Listings"}
               </h2>
               <p className="text-muted-foreground max-w-2xl">
                 {featuredBusinesses.length > 0
-                  ? "Discover top-rated pickleball businesses across the United States"
-                  : "Newly added businesses in the directory"}
+                  ? "Discover top-rated water damage restoration companies across Texas"
+                  : "Newly added restoration services in the directory"}
               </p>
             </div>
             <Button asChild variant="ghost" className="mt-4 md:mt-0">
@@ -409,7 +374,7 @@ export function HomePageClient({
         </div>
       </section>
 
-      {/* Top States Section */}
+      {/* Top Regions Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <motion.div
@@ -418,9 +383,9 @@ export function HomePageClient({
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Browse by State</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Browse by Region</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Discover pickleball courts, clubs, and facilities in top US states
+              Find water damage restoration services in major Texas metropolitan areas
             </p>
           </motion.div>
 
@@ -431,9 +396,9 @@ export function HomePageClient({
             viewport={{ once: true }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {topStates.map((state) => (
-              <motion.div key={state.slug} variants={itemVariants}>
-                <Link href={`/states/${state.slug}`}>
+            {topRegions.map((region) => (
+              <motion.div key={region.slug} variants={itemVariants}>
+                <Link href={`/states/${region.slug}`}>
                   <motion.div
                     whileHover={{ y: -4 }}
                     className="group p-6 rounded-xl bg-card border border-border/50 hover:border-primary/30 transition-all"
@@ -442,10 +407,10 @@ export function HomePageClient({
                       <MapPin className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {state.name}
+                      {region.name}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      {state.description}
+                      {region.description}
                     </p>
                   </motion.div>
                 </Link>
@@ -465,11 +430,11 @@ export function HomePageClient({
             className="max-w-3xl mx-auto text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Own a Pickleball Business?
+              Own a Restoration Business?
             </h2>
             <p className="text-muted-foreground mb-8 text-lg">
-              Join thousands of local businesses already listed in our directory.
-              Claim your listing today and reach more customers in your community.
+              Join trusted restoration companies already listed in our directory.
+              Claim your listing today and reach more customers in Texas.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto">
@@ -485,4 +450,3 @@ export function HomePageClient({
     </div>
   );
 }
-

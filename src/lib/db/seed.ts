@@ -10,196 +10,196 @@ dotenv.config({ path: ".env.local" });
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
-// Pickleball-specific categories (5 categories)
-const pickleballCategories = [
+// Water damage restoration categories (5 categories for Texas)
+const waterDamageCategories = [
   {
-    name: "Pickleball Courts & Facilities",
-    slug: "pickleball-courts-facilities",
-    icon: "MapPin",
-    description: "Indoor and outdoor pickleball courts, multi-sport facilities, community centers, and recreation centers with dedicated pickleball amenities across the United States",
-    section: "Facilities",
+    name: "Water Damage Restoration",
+    slug: "water-damage-restoration",
+    icon: "Droplets",
+    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across Texas",
+    section: "Restoration",
     displayOrder: 1,
   },
   {
-    name: "Pickleball Clubs & Leagues",
-    slug: "pickleball-clubs-leagues",
-    icon: "Users",
-    description: "Local pickleball clubs, competitive leagues, recreational play groups, meetups, and organized pickleball communities for players of all skill levels",
-    section: "Community",
+    name: "Flood Cleanup",
+    slug: "flood-cleanup",
+    icon: "Waves",
+    description: "Emergency flood cleanup services, water removal, sewage cleanup, and flood damage repair for residential and commercial properties",
+    section: "Emergency",
     displayOrder: 2,
   },
   {
-    name: "Pickleball Equipment Stores",
-    slug: "pickleball-equipment-stores",
-    icon: "ShoppingBag",
-    description: "Specialty stores selling pickleball paddles, balls, nets, apparel, accessories, and gear from top brands for recreational and competitive players",
-    section: "Shopping",
+    name: "Mold Remediation",
+    slug: "mold-remediation",
+    icon: "ShieldCheck",
+    description: "Professional mold inspection, testing, removal, and remediation services to ensure safe and healthy indoor environments",
+    section: "Health",
     displayOrder: 3,
   },
   {
-    name: "Pickleball Coaches & Instructors",
-    slug: "pickleball-coaches-instructors",
-    icon: "GraduationCap",
-    description: "Certified pickleball coaches, instructors, personal trainers, clinics, and lessons for beginners, intermediate, and advanced players",
-    section: "Education",
+    name: "Emergency Services",
+    slug: "emergency-services",
+    icon: "AlertTriangle",
+    description: "24/7 emergency water damage response, immediate water extraction, and rapid disaster recovery services available around the clock",
+    section: "Emergency",
     displayOrder: 4,
   },
   {
-    name: "Pickleball Tournaments & Events",
-    slug: "pickleball-tournaments-events",
-    icon: "Trophy",
-    description: "Pickleball tournaments, competitions, events, championships, social gatherings, and community pickleball activities across the country",
-    section: "Events",
+    name: "Storm Damage Repair",
+    slug: "storm-damage",
+    icon: "Wind",
+    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across Texas",
+    section: "Repair",
     displayOrder: 5,
   },
 ];
 
-// Sample pickleball businesses from various cities
-const samplePickleballBusinesses = [
+// Sample water damage restoration businesses from Texas cities
+const sampleWaterDamageBusinesses = [
   {
-    name: "LA Pickleball Club",
-    slug: "la-pickleball-club",
-    description: "Premier pickleball facility in Los Angeles featuring 12 indoor courts, pro shop, and coaching services for all skill levels.",
-    address: "1234 Olympic Blvd",
-    city: "Los Angeles",
-    state: "CA",
-    zip: "90015",
-    phone: "(310) 555-0100",
-    website: "https://lapickleballclub.com",
-    lat: "34.0522",
-    lng: "-118.2437",
-    neighborhood: "Downtown LA",
+    name: "Houston Water Damage Pros",
+    slug: "houston-water-damage-pros",
+    description: "Premier water damage restoration company in Houston providing 24/7 emergency services, water extraction, and structural drying.",
+    address: "1234 Westheimer Rd",
+    city: "Houston",
+    state: "TX",
+    zip: "77006",
+    phone: "(713) 555-0100",
+    website: "https://houstonwaterdamagepros.com",
+    lat: "29.7604",
+    lng: "-95.3698",
+    neighborhood: "Montrose",
     priceLevel: 2,
     ratingAvg: "4.70",
     reviewCount: 187,
     isFeatured: true,
     photos: [],
     hours: {
-      monday: "6:00 AM - 10:00 PM",
-      tuesday: "6:00 AM - 10:00 PM",
-      wednesday: "6:00 AM - 10:00 PM",
-      thursday: "6:00 AM - 10:00 PM",
-      friday: "6:00 AM - 10:00 PM",
-      saturday: "7:00 AM - 9:00 PM",
-      sunday: "7:00 AM - 9:00 PM",
+      monday: "Open 24 hours",
+      tuesday: "Open 24 hours",
+      wednesday: "Open 24 hours",
+      thursday: "Open 24 hours",
+      friday: "Open 24 hours",
+      saturday: "Open 24 hours",
+      sunday: "Open 24 hours",
     },
   },
   {
-    name: "Austin Pickleball Center",
-    slug: "austin-pickleball-center",
-    description: "Central Texas's largest pickleball complex with 16 outdoor courts, tournament hosting, and community leagues.",
+    name: "Austin Flood Recovery",
+    slug: "austin-flood-recovery",
+    description: "Central Texas's trusted flood cleanup and water damage restoration experts. Fast response, professional service.",
     address: "5678 Congress Ave",
     city: "Austin",
     state: "TX",
     zip: "78701",
     phone: "(512) 555-0200",
-    website: "https://austinpickleballcenter.com",
+    website: "https://austinfloodrecovery.com",
     lat: "30.2672",
     lng: "-97.7431",
-    neighborhood: "South Congress",
+    neighborhood: "Downtown",
     priceLevel: 2,
     ratingAvg: "4.80",
     reviewCount: 245,
     isFeatured: true,
     photos: [],
     hours: {
-      monday: "7:00 AM - 9:00 PM",
-      tuesday: "7:00 AM - 9:00 PM",
-      wednesday: "7:00 AM - 9:00 PM",
-      thursday: "7:00 AM - 9:00 PM",
-      friday: "7:00 AM - 9:00 PM",
-      saturday: "8:00 AM - 8:00 PM",
-      sunday: "8:00 AM - 8:00 PM",
+      monday: "Open 24 hours",
+      tuesday: "Open 24 hours",
+      wednesday: "Open 24 hours",
+      thursday: "Open 24 hours",
+      friday: "Open 24 hours",
+      saturday: "Open 24 hours",
+      sunday: "Open 24 hours",
     },
   },
   {
-    name: "Miami Pickleball Pro Shop",
-    slug: "miami-pickleball-pro-shop",
-    description: "Complete selection of pickleball paddles, balls, and accessories from all major brands. Expert staff to help you find the perfect gear.",
-    address: "9876 Biscayne Blvd",
-    city: "Miami",
-    state: "FL",
-    zip: "33138",
-    phone: "(305) 555-0300",
-    website: "https://miamipickleballshop.com",
-    lat: "25.7617",
-    lng: "-80.1918",
-    neighborhood: "Biscayne",
+    name: "DFW Mold Remediation",
+    slug: "dfw-mold-remediation",
+    description: "Expert mold inspection, testing, and remediation services for Dallas-Fort Worth. Certified professionals ensure safe environments.",
+    address: "9876 Commerce St",
+    city: "Dallas",
+    state: "TX",
+    zip: "75201",
+    phone: "(214) 555-0300",
+    website: "https://dfwmoldremediation.com",
+    lat: "32.7767",
+    lng: "-96.7970",
+    neighborhood: "Deep Ellum",
     priceLevel: 2,
     ratingAvg: "4.60",
     reviewCount: 132,
     isFeatured: false,
     photos: [],
     hours: {
-      monday: "10:00 AM - 7:00 PM",
-      tuesday: "10:00 AM - 7:00 PM",
-      wednesday: "10:00 AM - 7:00 PM",
-      thursday: "10:00 AM - 7:00 PM",
-      friday: "10:00 AM - 8:00 PM",
-      saturday: "10:00 AM - 8:00 PM",
-      sunday: "11:00 AM - 6:00 PM",
+      monday: "7:00 AM - 7:00 PM",
+      tuesday: "7:00 AM - 7:00 PM",
+      wednesday: "7:00 AM - 7:00 PM",
+      thursday: "7:00 AM - 7:00 PM",
+      friday: "7:00 AM - 7:00 PM",
+      saturday: "8:00 AM - 5:00 PM",
+      sunday: "Closed",
     },
   },
   {
-    name: "Chicago Pickleball Academy",
-    slug: "chicago-pickleball-academy",
-    description: "Professional pickleball coaching and training programs. Private lessons, group clinics, and competitive training for tournament players.",
-    address: "321 Lake Shore Dr",
-    city: "Chicago",
-    state: "IL",
-    zip: "60601",
-    phone: "(312) 555-0400",
-    website: "https://chicagopickleballacademy.com",
-    lat: "41.8781",
-    lng: "-87.6298",
-    neighborhood: "Loop",
+    name: "San Antonio Emergency Restoration",
+    slug: "san-antonio-emergency-restoration",
+    description: "24/7 emergency water damage and storm damage restoration. Rapid response team serving all of San Antonio and surrounding areas.",
+    address: "321 River Walk",
+    city: "San Antonio",
+    state: "TX",
+    zip: "78205",
+    phone: "(210) 555-0400",
+    website: "https://saemergencyrestoration.com",
+    lat: "29.4241",
+    lng: "-98.4936",
+    neighborhood: "River Walk",
     priceLevel: 3,
     ratingAvg: "4.90",
     reviewCount: 298,
     isFeatured: true,
     photos: [],
     hours: {
-      monday: "6:00 AM - 9:00 PM",
-      tuesday: "6:00 AM - 9:00 PM",
-      wednesday: "6:00 AM - 9:00 PM",
-      thursday: "6:00 AM - 9:00 PM",
-      friday: "6:00 AM - 9:00 PM",
-      saturday: "7:00 AM - 7:00 PM",
-      sunday: "7:00 AM - 7:00 PM",
+      monday: "Open 24 hours",
+      tuesday: "Open 24 hours",
+      wednesday: "Open 24 hours",
+      thursday: "Open 24 hours",
+      friday: "Open 24 hours",
+      saturday: "Open 24 hours",
+      sunday: "Open 24 hours",
     },
   },
   {
-    name: "Phoenix Pickleball League",
-    slug: "phoenix-pickleball-league",
-    description: "Year-round competitive and recreational pickleball leagues for all ages and skill levels. Join our vibrant community of players.",
-    address: "4567 Camelback Rd",
-    city: "Phoenix",
-    state: "AZ",
-    zip: "85018",
-    phone: "(602) 555-0500",
-    website: "https://phoenixpickleballleague.com",
-    lat: "33.4484",
-    lng: "-112.0740",
-    neighborhood: "Arcadia",
+    name: "Fort Worth Storm Damage Repair",
+    slug: "fort-worth-storm-damage-repair",
+    description: "Comprehensive storm damage repair including roof repair, hail damage, and wind damage restoration for Fort Worth area.",
+    address: "4567 Main St",
+    city: "Fort Worth",
+    state: "TX",
+    zip: "76102",
+    phone: "(817) 555-0500",
+    website: "https://fwstormdamage.com",
+    lat: "32.7555",
+    lng: "-97.3308",
+    neighborhood: "Sundance Square",
     priceLevel: 2,
     ratingAvg: "4.75",
     reviewCount: 421,
     isFeatured: true,
     photos: [],
     hours: {
-      monday: "6:00 AM - 10:00 PM",
-      tuesday: "6:00 AM - 10:00 PM",
-      wednesday: "6:00 AM - 10:00 PM",
-      thursday: "6:00 AM - 10:00 PM",
-      friday: "6:00 AM - 10:00 PM",
-      saturday: "6:00 AM - 10:00 PM",
-      sunday: "6:00 AM - 10:00 PM",
+      monday: "Open 24 hours",
+      tuesday: "Open 24 hours",
+      wednesday: "Open 24 hours",
+      thursday: "Open 24 hours",
+      friday: "Open 24 hours",
+      saturday: "Open 24 hours",
+      sunday: "Open 24 hours",
     },
   },
 ];
 
 async function seed() {
-  console.log("🏓 Starting US Pickleball Directory database seed...");
+  console.log("💧 Starting Water Damage Repair Texas database seed...");
 
   try {
     // Seed states (Top 25 US states)
@@ -224,37 +224,37 @@ async function seed() {
     const insertedCities = await db.insert(cities).values(citiesData).returning();
     console.log(`✅ Inserted ${insertedCities.length} cities`);
 
-    // Seed pickleball categories
-    console.log("🎾 Seeding pickleball categories...");
-    const insertedCategories = await db.insert(categories).values(pickleballCategories).returning();
-    console.log(`✅ Inserted ${insertedCategories.length} pickleball categories`);
+    // Seed water damage categories
+    console.log("💧 Seeding water damage categories...");
+    const insertedCategories = await db.insert(categories).values(waterDamageCategories).returning();
+    console.log(`✅ Inserted ${insertedCategories.length} water damage categories`);
 
     // Create category lookup map
     const categoryMap = new Map(insertedCategories.map(c => [c.slug, c.id]));
 
-    // Seed sample pickleball businesses
-    console.log("🏢 Seeding sample pickleball businesses...");
+    // Seed sample water damage businesses
+    console.log("🏢 Seeding sample water damage businesses...");
     const categorySlugs = [
-      "pickleball-courts-facilities",
-      "pickleball-courts-facilities",
-      "pickleball-equipment-stores",
-      "pickleball-coaches-instructors",
-      "pickleball-clubs-leagues",
+      "water-damage-restoration",
+      "flood-cleanup",
+      "mold-remediation",
+      "emergency-services",
+      "storm-damage",
     ];
-    
-    const businessesWithCategories = samplePickleballBusinesses.map((business, index) => ({
+
+    const businessesWithCategories = sampleWaterDamageBusinesses.map((business, index) => ({
       ...business,
       categoryId: categoryMap.get(categorySlugs[index])!,
     }));
 
     const insertedBusinesses = await db.insert(businesses).values(businessesWithCategories).returning();
-    console.log(`✅ Inserted ${insertedBusinesses.length} sample pickleball businesses`);
+    console.log(`✅ Inserted ${insertedBusinesses.length} sample water damage businesses`);
 
     // Create a demo user
     console.log("👤 Creating demo user...");
     const hashedPassword = await bcrypt.hash("demo123", 10);
     const [demoUser] = await db.insert(users).values({
-      email: "demo@pickleballcourts.io",
+      email: "demo@waterdamagerepairtexas.net",
       passwordHash: hashedPassword,
       name: "Demo User",
       role: "user",
@@ -265,7 +265,7 @@ async function seed() {
     console.log("👑 Creating admin user...");
     const adminPassword = await bcrypt.hash("admin123", 10);
     const [adminUser] = await db.insert(users).values({
-      email: "admin@pickleballcourts.io",
+      email: "admin@waterdamagerepairtexas.net",
       passwordHash: adminPassword,
       name: "Admin User",
       role: "admin",
@@ -276,13 +276,13 @@ async function seed() {
     console.log("\n📋 Summary:");
     console.log(`   - States: ${insertedStates.length}`);
     console.log(`   - Cities: ${insertedCities.length}`);
-    console.log(`   - Pickleball Categories: ${insertedCategories.length}`);
+    console.log(`   - Water Damage Categories: ${insertedCategories.length}`);
     console.log(`   - Sample Businesses: ${insertedBusinesses.length}`);
     console.log(`   - Users: 2`);
     console.log("\n🔐 Login Credentials:");
-    console.log(`   Demo: demo@pickleballcourts.io / demo123`);
-    console.log(`   Admin: admin@pickleballcourts.io / admin123`);
-    console.log("\n🏓 US Pickleball Directory is ready!");
+    console.log(`   Demo: demo@waterdamagerepairtexas.net / demo123`);
+    console.log(`   Admin: admin@waterdamagerepairtexas.net / admin123`);
+    console.log("\n💧 Water Damage Repair Texas is ready!");
     console.log("   Run migrations: npm run db:push");
     console.log("   Then seed: npm run db:seed");
 

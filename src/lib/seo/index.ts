@@ -1,65 +1,64 @@
 import type { Metadata } from "next";
-import type { Business, Category, Review, State, City } from "@/lib/db/schema";
+import type { Business, Category, Review } from "@/lib/db/schema";
 import { generateBusinessDescription, detectAmenities, generateAmenitiesList } from "@/lib/content-generator";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_NAME =
-  process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts - Find Courts, Clubs & Leagues Near You";
+  process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair Texas - Emergency Restoration Services";
 const SITE_URL = getSiteUrl();
 
 export function generateSiteMetadata(): Metadata {
   return {
     title: {
-      default: "Pickleball Courts Near Me | Find Local Courts, Clubs & Leagues - PickleballCourts.io",
-      template: `%s | Pickleball Courts`,
+      default: "Water Damage Repair Texas | Emergency Restoration Services - WaterDamageRepairTexas.net",
+      template: `%s | Water Damage Repair Texas`,
     },
     description:
-      "Find pickleball courts near you! Search 10,000+ indoor & outdoor pickleball courts, clubs, leagues, equipment stores, coaches & tournaments across all 50 US states. Free directory with ratings, reviews & directions.",
+      "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation, water extraction & storm damage repair. Free directory with ratings, reviews & instant contact.",
     keywords: [
-      "pickleball courts near me",
-      "pickleball courts",
-      "find pickleball courts",
-      "pickleball locations",
-      "where to play pickleball",
-      "pickleball clubs near me",
-      "pickleball leagues",
-      "indoor pickleball courts",
-      "outdoor pickleball courts",
-      "pickleball facilities",
-      "pickleball directory",
-      "local pickleball courts",
-      "pickleball court finder",
-      "pickleball equipment stores",
-      "pickleball coaches near me",
-      "pickleball instructors",
-      "pickleball tournaments",
-      "public pickleball courts",
-      "free pickleball courts",
-      "best pickleball courts",
+      "water damage repair texas",
+      "water damage restoration",
+      "flood cleanup texas",
+      "emergency water damage",
+      "mold remediation texas",
+      "water extraction services",
+      "storm damage repair",
+      "24 hour water damage",
+      "water damage near me",
+      "flood damage restoration",
+      "water damage company",
+      "residential water damage",
+      "commercial water damage",
+      "water damage contractors",
+      "emergency flood cleanup",
+      "water damage houston",
+      "water damage dallas",
+      "water damage austin",
+      "water damage san antonio",
     ],
     authors: [{ name: SITE_NAME }],
     creator: SITE_NAME,
     icons: {
       icon: [
-        { url: "/fav-icon.jpeg", sizes: "any", type: "image/jpeg" },
-        { url: "/fav-icon.jpeg", sizes: "32x32", type: "image/jpeg" },
-        { url: "/fav-icon.jpeg", sizes: "16x16", type: "image/jpeg" },
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.ico", sizes: "32x32" },
+        { url: "/favicon.ico", sizes: "16x16" },
       ],
       apple: [
-        { url: "/fav-icon.jpeg", sizes: "180x180", type: "image/jpeg" },
+        { url: "/favicon.ico", sizes: "180x180" },
       ],
     },
     openGraph: {
       type: "website",
       locale: "en_US",
       url: SITE_URL,
-      siteName: "PickleballCourts.io",
-      title: "Pickleball Courts Near Me | Find Local Courts, Clubs & Leagues",
+      siteName: "WaterDamageRepairTexas.net",
+      title: "Water Damage Repair Texas | Emergency Restoration Services",
       description:
-        "Find pickleball courts near you! Search 10,000+ indoor & outdoor courts, clubs, leagues, coaches & tournaments across all 50 states. Free directory with ratings & reviews.",
+        "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation & storm damage repair. Free directory with ratings & reviews.",
       images: [
         {
-          url: `${SITE_URL}/pickleball-logo.png`,
+          url: `${SITE_URL}/logo.svg`,
           width: 1200,
           height: 630,
           alt: SITE_NAME,
@@ -68,12 +67,12 @@ export function generateSiteMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Pickleball Courts Near Me | Find Local Courts & Clubs",
+      title: "Water Damage Repair Texas | Emergency Restoration",
       description:
-        "Find pickleball courts near you! Search 10,000+ courts, clubs, leagues, coaches & tournaments. Free directory with ratings & reviews.",
-      images: [`${SITE_URL}/pickleball-logo.png`],
-      creator: "@pickleballcourts",
-      site: "@pickleballcourts",
+        "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation & storm damage repair.",
+      images: [`${SITE_URL}/logo.svg`],
+      creator: "@waterdamagetx",
+      site: "@waterdamagetx",
     },
     robots: {
       index: true,
@@ -87,10 +86,10 @@ export function generateSiteMetadata(): Metadata {
       },
     },
     verification: {
-      google: process.env.GOOGLE_SITE_VERIFICATION || "r5hyIHNeaYpBQG7yaQ-8CGaSjSC7tKEr_jkMNm4diH4",
+      google: process.env.GOOGLE_SITE_VERIFICATION || "",
     },
-    category: "sports",
-    applicationName: "PickleballCourts.io",
+    category: "home services",
+    applicationName: "WaterDamageRepairTexas.net",
     referrer: "origin-when-cross-origin",
     formatDetection: {
       telephone: true,
@@ -104,8 +103,8 @@ export function generateSiteMetadata(): Metadata {
       },
     },
     other: {
-      "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "r5hyIHNeaYpBQG7yaQ-8CGaSjSC7tKEr_jkMNm4diH4",
-      "msapplication-TileColor": "#f97316",
+      "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "",
+      "msapplication-TileColor": "#1e40af",
       "theme-color": "#ffffff",
     },
   };
@@ -113,45 +112,45 @@ export function generateSiteMetadata(): Metadata {
 
 // Enhanced business metadata for maximum SEO
 export function generateBusinessMetadata(
-  business: Business, 
+  business: Business,
   category?: Category | null,
   reviewCount?: number
 ): Metadata {
-  const categoryName = category?.name || "Pickleball Business";
+  const categoryName = category?.name || "Water Damage Restoration";
   const neighborhood = business.neighborhood || business.city;
   const rating = Number(business.ratingAvg) || 0;
   const reviews = reviewCount || business.reviewCount || 0;
   const priceRange = business.priceLevel ? "$".repeat(business.priceLevel) : "";
-  
+
   // SEO-optimized title with location
-  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state} | PickleballCourts.io`;
-  
+  const title = `${business.name} - ${categoryName} in ${business.city}, TX | WaterDamageRepairTexas.net`;
+
   // Generate dynamic description using content generator
   const dynamicDescription = generateBusinessDescription(business, category);
-  
+
   // Build SEO description with rating info + dynamic content
   const descriptionParts = [];
-  
+
   if (rating > 0 && reviews > 0) {
     descriptionParts.push(`${rating.toFixed(1)}★ rated with ${reviews} reviews.`);
   }
-  
+
   descriptionParts.push(dynamicDescription);
-  
+
   if (priceRange) {
     descriptionParts.push(`Price range: ${priceRange}.`);
   }
-  
+
   // Get amenities for keywords
   const amenities = detectAmenities(business, category);
   const amenitiesList = generateAmenitiesList(amenities);
-  
+
   const description = descriptionParts.join(" ").substring(0, 320);
-  
-  // Generate keywords specific to this pickleball business
+
+  // Generate keywords specific to this water damage business
   const keywords = [
     business.name,
-    "pickleball",
+    "water damage restoration",
     `${business.name} ${business.city}`,
     `${business.name} ${neighborhood}`,
     `${categoryName} ${business.city}`,
@@ -160,22 +159,22 @@ export function generateBusinessMetadata(
     `best ${categoryName.toLowerCase()} ${business.city}`,
     `${neighborhood} ${categoryName.toLowerCase()}`,
     business.address,
-    `${business.city} ${business.state} ${categoryName.toLowerCase()}`,
-    `pickleball ${business.city}`,
+    `${business.city} Texas ${categoryName.toLowerCase()}`,
+    `water damage ${business.city}`,
     // Add amenity-based keywords
     ...amenitiesList.map(a => `${a.toLowerCase()} ${business.city}`),
-    ...(amenities.hasIndoorCourts ? [`indoor pickleball ${business.city}`, "indoor pickleball courts"] : []),
-    ...(amenities.offersLessons ? [`pickleball lessons ${business.city}`, "pickleball coaching"] : []),
-    ...(amenities.offersLeagues ? [`pickleball league ${business.city}`, "pickleball club"] : []),
+    ...(amenities.offers24HourService ? [`24 hour water damage ${business.city}`, "emergency water damage"] : []),
+    ...(amenities.offersEmergencyService ? [`emergency restoration ${business.city}`, "emergency flood cleanup"] : []),
+    ...(amenities.offersMoldRemediation ? [`mold remediation ${business.city}`, "mold removal"] : []),
   ].filter(Boolean);
-  
+
   // Get image URL
-  const imageUrl = business.photos?.[0] 
-    ? (business.photos[0].startsWith("http") 
-        ? business.photos[0] 
+  const imageUrl = business.photos?.[0]
+    ? (business.photos[0].startsWith("http")
+        ? business.photos[0]
         : `${SITE_URL}/api/images?ref=${business.photos[0]}&maxwidth=1200`)
-    : `${SITE_URL}/pickleball-logo.png`;
-  
+    : `${SITE_URL}/logo.svg`;
+
   const canonicalUrl = `${SITE_URL}/business/${business.slug}`;
 
   return {
@@ -186,7 +185,7 @@ export function generateBusinessMetadata(
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${business.name} | ${categoryName} in ${business.city}, ${business.state}`,
+      title: `${business.name} | ${categoryName} in ${business.city}, TX`,
       description,
       type: "website",
       url: canonicalUrl,
@@ -197,7 +196,7 @@ export function generateBusinessMetadata(
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${business.name} - ${categoryName} in ${business.city}, ${business.state}`,
+          alt: `${business.name} - ${categoryName} in ${business.city}, TX`,
         },
       ],
     },
@@ -220,12 +219,12 @@ export function generateBusinessMetadata(
     },
     other: {
       // Additional meta tags for AI and rich snippets
-      "geo.region": `US-${business.state}`,
+      "geo.region": "US-TX",
       "geo.placename": business.city,
       "geo.position": business.lat && business.lng ? `${business.lat};${business.lng}` : "",
       "ICBM": business.lat && business.lng ? `${business.lat}, ${business.lng}` : "",
       "business:contact_data:locality": business.city,
-      "business:contact_data:region": business.state,
+      "business:contact_data:region": "TX",
       "business:contact_data:country_name": "United States",
     },
   };
@@ -241,10 +240,10 @@ export function generateCategoryMetadata(
       ? ` Top picks average ${extras.avgRating.toFixed(1)}★ across ${extras.totalReviews} reviews.`
       : "";
 
-  const title = `${category.name} Near Me | Find ${businessCount}+ Locations Nationwide`;
+  const title = `${category.name} in Texas | Find ${businessCount}+ Service Providers`;
   const description =
     category.description ||
-    `Find ${category.name.toLowerCase()} near you! Browse ${businessCount}+ verified locations across all 50 states. Compare ratings, reviews, hours & get directions.${ratingSnippet} Free directory.`;
+    `Find ${category.name.toLowerCase()} in Texas! Browse ${businessCount}+ verified service providers across all Texas regions. Compare ratings, reviews, hours & get directions.${ratingSnippet} Free directory.`;
 
   return {
     title,
@@ -253,14 +252,14 @@ export function generateCategoryMetadata(
       canonical: `${SITE_URL}/categories/${category.slug}`,
     },
     openGraph: {
-      title: `${category.name} Near Me | ${businessCount}+ Locations`,
+      title: `${category.name} in Texas | ${businessCount}+ Providers`,
       description,
       type: "website",
       url: `${SITE_URL}/categories/${category.slug}`,
-      siteName: "PickleballCourts.io",
+      siteName: "WaterDamageRepairTexas.net",
       images: [
         {
-          url: `${SITE_URL}/pickleball-logo.png`,
+          url: `${SITE_URL}/logo.svg`,
           width: 1200,
           height: 630,
           alt: category.name,
@@ -269,53 +268,43 @@ export function generateCategoryMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: `${category.name} Near Me`,
+      title: `${category.name} in Texas`,
       description: description.substring(0, 200),
-      images: [`${SITE_URL}/pickleball-logo.png`],
+      images: [`${SITE_URL}/logo.svg`],
     },
     keywords: [
-      `${category.name} near me`,
+      `${category.name} texas`,
       `find ${category.name.toLowerCase()}`,
-      `${category.name.toLowerCase()} locations`,
+      `${category.name.toLowerCase()} services`,
       `best ${category.name.toLowerCase()}`,
       `${category.name.toLowerCase()} directory`,
       `local ${category.name.toLowerCase()}`,
-      `${category.name.toLowerCase()} finder`,
+      `${category.name.toLowerCase()} near me`,
       `top ${category.name.toLowerCase()}`,
-      `${category.name.toLowerCase()} USA`,
-      `pickleball ${category.name.toLowerCase()}`,
+      `${category.name.toLowerCase()} Texas`,
+      `water damage ${category.name.toLowerCase()}`,
     ],
   };
 }
 
 // Comprehensive LocalBusiness schema with all available data
 export function generateLocalBusinessSchema(
-  business: Business, 
+  business: Business,
   category?: Category | null,
   reviews?: Review[]
 ) {
   const rating = Number(business.ratingAvg) || 0;
-  
+
   // Determine more specific business type based on category
   const businessTypeMap: Record<string, string> = {
-    "restaurants-cafes": "Restaurant",
-    "coffee-tea": "CafeOrCoffeeShop",
-    "bars-nightlife": "BarOrPub",
-    "hotels-accommodations": "Hotel",
-    "medical-dental": "MedicalBusiness",
-    "dental": "Dentist",
-    "legal-financial": "ProfessionalService",
-    "automotive": "AutoRepair",
-    "fitness-gyms": "HealthClub",
-    "spas-beauty": "BeautySalon",
-    "hair-salons": "HairSalon",
-    "real-estate": "RealEstateAgent",
-    "schools-tutoring": "EducationalOrganization",
-    "pet-care": "AnimalShelter",
-    "grocery-specialty-food": "GroceryStore",
+    "water-damage-restoration": "HomeAndConstructionBusiness",
+    "flood-cleanup": "HomeAndConstructionBusiness",
+    "mold-remediation": "HomeAndConstructionBusiness",
+    "emergency-services": "EmergencyService",
+    "storm-damage": "HomeAndConstructionBusiness",
   };
-  
-  const businessType = category?.slug 
+
+  const businessType = category?.slug
     ? (businessTypeMap[category.slug] || "LocalBusiness")
     : "LocalBusiness";
 
@@ -324,7 +313,7 @@ export function generateLocalBusinessSchema(
     "@type": businessType,
     "@id": `${SITE_URL}/business/${business.slug}#localbusiness`,
     name: business.name,
-    description: business.description || `${business.name} is a ${category?.name || "business"} located in ${business.city}, ${business.state}.`,
+    description: business.description || `${business.name} is a ${category?.name || "water damage restoration service"} located in ${business.city}, TX.`,
     url: `${SITE_URL}/business/${business.slug}`,
     telephone: business.phone,
     email: business.email,
@@ -332,7 +321,7 @@ export function generateLocalBusinessSchema(
       "@type": "PostalAddress",
       streetAddress: business.address,
       addressLocality: business.city,
-      addressRegion: business.state,
+      addressRegion: "TX",
       postalCode: business.zip,
       addressCountry: "US",
     },
@@ -341,7 +330,7 @@ export function generateLocalBusinessSchema(
       name: business.city,
       containedIn: {
         "@type": "State",
-        name: business.state,
+        name: "Texas",
       },
     },
     priceRange: business.priceLevel ? "$".repeat(business.priceLevel) : undefined,
@@ -391,8 +380,8 @@ export function generateLocalBusinessSchema(
         name: "Customer",
       },
       reviewBody: review.content || review.title,
-      datePublished: review.createdAt instanceof Date 
-        ? review.createdAt.toISOString() 
+      datePublished: review.createdAt instanceof Date
+        ? review.createdAt.toISOString()
         : review.createdAt,
     }));
   }
@@ -414,7 +403,7 @@ export function generateLocalBusinessSchema(
         return null;
       })
       .filter(Boolean);
-    
+
     if (hoursSpec.length > 0) {
       schema.openingHoursSpecification = hoursSpec;
     }
@@ -422,7 +411,7 @@ export function generateLocalBusinessSchema(
 
   // Add photos
   if (business.photos && business.photos.length > 0) {
-    schema.image = business.photos.map(photo => 
+    schema.image = business.photos.map(photo =>
       photo.startsWith("http") ? photo : `${SITE_URL}/api/images?ref=${photo}&maxwidth=800`
     );
   }
@@ -438,20 +427,20 @@ export function generateLocalBusinessSchema(
 // Helper function to convert 12h to 24h time format
 function convertTo24Hour(time12h: string): string {
   if (!time12h) return "00:00";
-  
+
   const match = time12h.match(/(\d{1,2}):?(\d{2})?\s*(AM|PM|am|pm)?/i);
   if (!match) return time12h;
-  
+
   let hours = parseInt(match[1], 10);
   const minutes = match[2] || "00";
   const period = match[3]?.toUpperCase();
-  
+
   if (period === "PM" && hours !== 12) {
     hours += 12;
   } else if (period === "AM" && hours === 12) {
     hours = 0;
   }
-  
+
   return `${hours.toString().padStart(2, "0")}:${minutes}`;
 }
 
@@ -462,28 +451,28 @@ export function generateBusinessPageSchema(
   reviews?: Review[]
 ) {
   const schemas = [];
-  
+
   // 1. Main LocalBusiness schema
   schemas.push(generateLocalBusinessSchema(business, category, reviews));
-  
+
   // 2. Breadcrumb schema
   const breadcrumbItems = [
     { name: "Home", url: SITE_URL },
-    { name: "Categories", url: `${SITE_URL}/categories` },
+    { name: "Services", url: `${SITE_URL}/categories` },
   ];
-  
+
   if (category) {
     breadcrumbItems.push({
       name: category.name,
       url: `${SITE_URL}/categories/${category.slug}`,
     });
   }
-  
+
   breadcrumbItems.push({
     name: business.name,
     url: `${SITE_URL}/business/${business.slug}`,
   });
-  
+
   schemas.push({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -494,15 +483,15 @@ export function generateBusinessPageSchema(
       item: item.url,
     })),
   });
-  
+
   // 3. WebPage schema
   schemas.push({
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${SITE_URL}/business/${business.slug}#webpage`,
     url: `${SITE_URL}/business/${business.slug}`,
-    name: `${business.name} - ${category?.name || "Business"} in ${business.city}, ${business.state}`,
-    description: business.description || `Find ${business.name} in ${business.city}, ${business.state}. View hours, reviews, and contact information.`,
+    name: `${business.name} - ${category?.name || "Water Damage Restoration"} in ${business.city}, TX`,
+    description: business.description || `Find ${business.name} in ${business.city}, TX. View hours, reviews, and contact information.`,
     isPartOf: {
       "@type": "WebSite",
       "@id": `${SITE_URL}#website`,
@@ -512,18 +501,18 @@ export function generateBusinessPageSchema(
     about: {
       "@id": `${SITE_URL}/business/${business.slug}#localbusiness`,
     },
-    primaryImageOfPage: business.photos?.[0] 
+    primaryImageOfPage: business.photos?.[0]
       ? (business.photos[0].startsWith("http") ? business.photos[0] : `${SITE_URL}/api/images?ref=${business.photos[0]}&maxwidth=800`)
       : undefined,
-    dateModified: business.updatedAt instanceof Date 
-      ? business.updatedAt.toISOString() 
+    dateModified: business.updatedAt instanceof Date
+      ? business.updatedAt.toISOString()
       : business.updatedAt,
     inLanguage: "en-US",
   });
-  
+
   // 4. FAQPage schema if we have common questions
   const faqItems = [];
-  
+
   if (business.hours) {
     faqItems.push({
       "@type": "Question",
@@ -536,7 +525,7 @@ export function generateBusinessPageSchema(
       },
     });
   }
-  
+
   if (business.phone) {
     faqItems.push({
       "@type": "Question",
@@ -547,18 +536,18 @@ export function generateBusinessPageSchema(
       },
     });
   }
-  
+
   if (business.address) {
     faqItems.push({
       "@type": "Question",
       name: `Where is ${business.name} located?`,
       acceptedAnswer: {
         "@type": "Answer",
-        text: `${business.name} is located at ${business.address}, ${business.city}, ${business.state} ${business.zip || ""}.`,
+        text: `${business.name} is located at ${business.address}, ${business.city}, TX ${business.zip || ""}.`,
       },
     });
   }
-  
+
   if (business.priceLevel) {
     faqItems.push({
       "@type": "Question",
@@ -568,12 +557,12 @@ export function generateBusinessPageSchema(
         text: `${business.name} has a price range of ${"$".repeat(business.priceLevel)} (${
           business.priceLevel === 1 ? "Budget-friendly" :
           business.priceLevel === 2 ? "Moderate" :
-          business.priceLevel === 3 ? "Upscale" : "Fine Dining"
+          business.priceLevel === 3 ? "Premium" : "Premium+"
         }).`,
       },
     });
   }
-  
+
   if (faqItems.length > 0) {
     schemas.push({
       "@context": "https://schema.org",
@@ -581,7 +570,7 @@ export function generateBusinessPageSchema(
       mainEntity: faqItems,
     });
   }
-  
+
   return schemas;
 }
 
@@ -616,4 +605,3 @@ export function generateSearchActionSchema() {
     },
   };
 }
-

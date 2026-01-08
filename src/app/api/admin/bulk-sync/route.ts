@@ -29,32 +29,33 @@ interface GooglePlacesResponse {
   status: string;
 }
 
-// Pickleball search queries - optimized for all categories
-const PICKLEBALL_QUERIES = [
-  // Courts & Facilities
-  "pickleball courts",
-  "pickleball facilities",
-  "indoor pickleball",
-  "pickleball center",
-  "pickleball recreation center",
-  // Clubs & Leagues
-  "pickleball club",
-  "pickleball league",
-  "pickleball association",
-  // Equipment Stores
-  "pickleball equipment",
-  "pickleball store",
-  "pickleball shop",
-  "pickleball gear",
-  // Coaches & Instructors
-  "pickleball coach",
-  "pickleball instructor",
-  "pickleball lessons",
-  "pickleball academy",
-  // Tournaments & Events
-  "pickleball tournament",
-  "pickleball event",
-  "pickleball championship",
+// Water damage search queries - optimized for all categories
+const WATER_DAMAGE_QUERIES = [
+  // Water Damage Restoration
+  "water damage restoration",
+  "water damage repair",
+  "water extraction services",
+  "flood restoration company",
+  "water damage cleanup",
+  // Flood Cleanup
+  "flood cleanup",
+  "flood damage restoration",
+  "emergency flood service",
+  "water removal service",
+  // Mold Remediation
+  "mold remediation",
+  "mold removal service",
+  "mold inspection",
+  "mold testing",
+  // Emergency Services
+  "24 hour water damage",
+  "emergency restoration service",
+  "emergency water extraction",
+  // Storm Damage
+  "storm damage repair",
+  "hurricane damage restoration",
+  "wind damage repair",
+  "hail damage restoration",
 ];
 
 // Parse city and state from Google Places formatted address
@@ -198,25 +199,25 @@ export async function POST(request: Request) {
     
     syncJobId = syncJob.id;
 
-    // Get all pickleball categories
+    // Get all water damage categories
     const allCategories = await db.select().from(categories);
-    
+
     if (allCategories.length === 0) {
       return NextResponse.json({ error: "No categories found. Run category sync first." }, { status: 400 });
     }
-    
+
     // Create a map of category slugs to IDs
     const categoryMap = new Map(allCategories.map(c => [c.slug, c.id]));
-    
+
     // Verify all categories exist
     const requiredCategories = [
-      "pickleball-courts-facilities",
-      "pickleball-clubs-leagues",
-      "pickleball-equipment-stores",
-      "pickleball-coaches-instructors",
-      "pickleball-tournaments-events",
+      "water-damage-restoration",
+      "flood-cleanup",
+      "mold-remediation",
+      "emergency-services",
+      "storm-damage",
     ];
-    
+
     for (const slug of requiredCategories) {
       if (!categoryMap.has(slug)) {
         return NextResponse.json({ error: `Category ${slug} not found. Run category sync first.` }, { status: 400 });
@@ -289,7 +290,7 @@ export async function POST(request: Request) {
     const seenPlaceIds = new Set<string>();
     const seenSlugs = new Set<string>(); // Track slugs in current batch
 
-    console.log(`\n🏓 BULK SYNC STARTED (Job ID: ${syncJobId})`);
+    console.log(`\n💧 BULK SYNC STARTED (Job ID: ${syncJobId})`);
     console.log(`📍 Syncing ${statesToSync.length} states, ${citiesPerState} cities each`);
     console.log(`🔍 ${queriesPerCity} queries per city\n`);
 
@@ -320,7 +321,7 @@ export async function POST(request: Request) {
       console.log(`\n📍 ${state.name} (${state.code}) - ${citiesInState.length} cities`);
 
       for (const city of citiesInState) {
-        const queriesToUse = PICKLEBALL_QUERIES.slice(0, queriesPerCity);
+        const queriesToUse = WATER_DAMAGE_QUERIES.slice(0, queriesPerCity);
         let cityInserted = 0;
         let citySkipped = 0;
 
@@ -402,9 +403,9 @@ export async function POST(request: Request) {
               const detectedCategorySlug = mapGoogleCategoryToWaterDamage(
                 place.types || [],
                 place.name
-              ) || "pickleball-courts-facilities"; // Default to courts if can't detect
-              
-              const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("pickleball-courts-facilities")!;
+              ) || "water-damage-restoration"; // Default to water damage restoration if can't detect
+
+              const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("water-damage-restoration")!;
 
               // Add to batch insert array
               businessesToInsert.push({
@@ -546,7 +547,7 @@ export async function POST(request: Request) {
         apiCallsMade: totalApiCalls,
       },
       byState: stateResults,
-      message: `Synced ${totalInserted} pickleball businesses across ${Object.keys(stateResults).length} states`,
+      message: `Synced ${totalInserted} water damage businesses across ${Object.keys(stateResults).length} states`,
     });
   } catch (error) {
     console.error("Bulk sync error:", error);
@@ -582,7 +583,7 @@ export async function GET() {
   const cityCount = MAJOR_CITIES.length;
 
   return NextResponse.json({
-    endpoint: "Bulk Sync - Populate database with pickleball businesses",
+    endpoint: "Bulk Sync - Populate database with water damage restoration businesses",
     availableData: {
       states: stateCount,
       cities: cityCount,

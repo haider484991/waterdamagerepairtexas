@@ -12,7 +12,7 @@ import bcrypt from "bcryptjs";
 
 async function createAdmin() {
   try {
-    const adminEmail = "admin@pickleballcourts.io";
+    const adminEmail = "admin@waterdamagerepairtexas.net";
     const adminPassword = "admin123";
 
     // Check if admin already exists

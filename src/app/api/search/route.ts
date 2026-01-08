@@ -31,44 +31,37 @@ function parseCityState(formattedAddress: string): { city: string; state: string
   return { city, state, zip };
 }
 
-// Detect pickleball category from Google place types and name
+// Detect water damage service category from Google place types and name
 function detectCategorySlug(types: string[] | undefined, placeName?: string): string | null {
   const name = (placeName || "").toLowerCase();
-  
-  // Check for pickleball-specific keywords in name
-  if (name.includes("pickleball")) {
-    if (name.includes("court") || name.includes("center") || name.includes("facility") || name.includes("recreation")) {
-      return "pickleball-courts-facilities";
-    }
-    if (name.includes("club") || name.includes("league") || name.includes("association")) {
-      return "pickleball-clubs-leagues";
-    }
-    if (name.includes("store") || name.includes("shop") || name.includes("equipment") || name.includes("pro shop")) {
-      return "pickleball-equipment-stores";
-    }
-    if (name.includes("coach") || name.includes("lesson") || name.includes("instructor") || name.includes("academy") || name.includes("training")) {
-      return "pickleball-coaches-instructors";
-    }
-    if (name.includes("tournament") || name.includes("championship") || name.includes("event")) {
-      return "pickleball-tournaments-events";
-    }
-    // Default to courts if just "pickleball" in name
-    return "pickleball-courts-facilities";
+
+  // Check for water damage-specific keywords in name
+  if (name.includes("mold") || name.includes("mould")) {
+    return "mold-remediation";
   }
-  
+  if (name.includes("flood") || name.includes("flooding")) {
+    return "flood-cleanup";
+  }
+  if (name.includes("storm") || name.includes("wind") || name.includes("hail")) {
+    return "storm-damage";
+  }
+  if (name.includes("emergency") || name.includes("24 hour") || name.includes("24/7")) {
+    return "emergency-services";
+  }
+  if (name.includes("water damage") || name.includes("restoration") || name.includes("water extraction")) {
+    return "water-damage-restoration";
+  }
+
   // Check Google place types
-  if (!types) return "pickleball-courts-facilities"; // Default for pickleball searches
-  
+  if (!types) return "water-damage-restoration"; // Default for water damage searches
+
   const typeToCategory: Record<string, string> = {
-    gym: "pickleball-courts-facilities",
-    health: "pickleball-courts-facilities",
-    stadium: "pickleball-courts-facilities",
-    park: "pickleball-courts-facilities",
-    sports_complex: "pickleball-courts-facilities",
-    recreation_center: "pickleball-courts-facilities",
-    store: "pickleball-equipment-stores",
-    sporting_goods_store: "pickleball-equipment-stores",
-    school: "pickleball-coaches-instructors",
+    plumber: "water-damage-restoration",
+    roofing_contractor: "storm-damage",
+    general_contractor: "water-damage-restoration",
+    home_improvement_store: "water-damage-restoration",
+    insurance_agency: "water-damage-restoration",
+    cleaning_service: "flood-cleanup",
   };
 
   for (const type of types) {
@@ -77,8 +70,8 @@ function detectCategorySlug(types: string[] | undefined, placeName?: string): st
     }
   }
 
-  // Default to courts for pickleball searches
-  return "pickleball-courts-facilities";
+  // Default to water damage restoration
+  return "water-damage-restoration";
 }
 
 // Search Google Places and auto-sync to database
@@ -120,12 +113,14 @@ async function searchGoogleAndSync(query: string): Promise<{
   }
 
   try {
-    // Search for pickleball-related results in USA only
-    // Only add "pickleball" if it's not already in the query
-    const searchQuery = query.toLowerCase().includes("pickleball") 
-      ? `${query}`
-      : `${query} pickleball`;
-    
+    // Search for water damage-related results in Texas only
+    // Only add "water damage restoration" if it's not already in the query
+    const waterDamageTerms = ["water damage", "restoration", "flood", "mold", "remediation"];
+    const hasWaterDamageTerm = waterDamageTerms.some(term => query.toLowerCase().includes(term));
+    const searchQuery = hasWaterDamageTerm
+      ? `${query} Texas`
+      : `${query} water damage restoration Texas`;
+
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
     url.searchParams.set("query", searchQuery);
     url.searchParams.set("region", "us"); // Bias results to USA

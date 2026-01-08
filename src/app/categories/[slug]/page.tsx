@@ -63,116 +63,90 @@ interface Category {
   section: string | null;
 }
 
-// Pickleball-specific filters based on category
+// Water damage service-specific filters based on category
 const getCategorySpecificFilters = (categorySlug: string) => {
   switch (categorySlug) {
-    case "pickleball-courts-facilities":
+    case "water-damage-restoration":
       return {
-        facilityType: [
+        serviceType: [
+          { value: "all", label: "All Services" },
+          { value: "residential", label: "Residential" },
+          { value: "commercial", label: "Commercial" },
+          { value: "both", label: "Both" },
+        ],
+        availability: [
+          { value: "all", label: "Any Availability" },
+          { value: "24-7", label: "24/7 Service" },
+          { value: "emergency", label: "Emergency Response" },
+          { value: "scheduled", label: "Scheduled Only" },
+        ],
+        certification: [
+          { value: "all", label: "Any Certification" },
+          { value: "iicrc", label: "IICRC Certified" },
+          { value: "rrt", label: "RRT Certified" },
+          { value: "insured", label: "Fully Insured" },
+        ],
+      };
+    case "flood-cleanup":
+      return {
+        serviceType: [
           { value: "all", label: "All Types" },
-          { value: "indoor", label: "Indoor Courts" },
-          { value: "outdoor", label: "Outdoor Courts" },
-          { value: "both", label: "Indoor & Outdoor" },
+          { value: "residential", label: "Residential" },
+          { value: "commercial", label: "Commercial" },
+          { value: "industrial", label: "Industrial" },
         ],
-        courtSurface: [
-          { value: "all", label: "Any Surface" },
-          { value: "hardcourt", label: "Hardcourt" },
-          { value: "cushion", label: "Cushion Court" },
-          { value: "grass", label: "Grass" },
-          { value: "clay", label: "Clay" },
-        ],
-        amenities: [
-          { value: "equipment-rental", label: "Equipment Rental" },
-          { value: "pro-shop", label: "Pro Shop" },
-          { value: "lighting", label: "Lighting" },
-          { value: "parking", label: "Parking" },
-          { value: "locker-rooms", label: "Locker Rooms" },
+        responseTime: [
+          { value: "all", label: "Any Response Time" },
+          { value: "immediate", label: "Immediate (< 1 hour)" },
+          { value: "same-day", label: "Same Day" },
+          { value: "next-day", label: "Next Day" },
         ],
       };
-    case "pickleball-clubs-leagues":
+    case "mold-remediation":
       return {
-        membershipType: [
-          { value: "all", label: "All Types" },
-          { value: "public", label: "Public Access" },
-          { value: "membership", label: "Membership Required" },
-          { value: "drop-in", label: "Drop-in Welcome" },
-        ],
-        skillLevel: [
-          { value: "all", label: "All Levels" },
-          { value: "beginner", label: "Beginner" },
-          { value: "intermediate", label: "Intermediate" },
-          { value: "advanced", label: "Advanced" },
-          { value: "competitive", label: "Competitive" },
-        ],
-        leagueType: [
-          { value: "all", label: "All Leagues" },
-          { value: "social", label: "Social Leagues" },
-          { value: "competitive", label: "Competitive Leagues" },
-          { value: "tournament", label: "Tournament Prep" },
-        ],
-      };
-    case "pickleball-equipment-stores":
-      return {
-        productType: [
-          { value: "all", label: "All Products" },
-          { value: "paddles", label: "Paddles" },
-          { value: "balls", label: "Balls" },
-          { value: "shoes", label: "Shoes" },
-          { value: "apparel", label: "Apparel" },
-          { value: "accessories", label: "Accessories" },
-        ],
-        priceRange: [
-          { value: "all", label: "Any Price" },
-          { value: "budget", label: "Budget ($)" },
-          { value: "moderate", label: "Moderate ($$)" },
-          { value: "premium", label: "Premium ($$$)" },
-        ],
-      };
-    case "pickleball-coaches-instructors":
-      return {
-        experienceLevel: [
-          { value: "all", label: "All Levels" },
-          { value: "beginner", label: "Beginner Coach" },
-          { value: "intermediate", label: "Intermediate Coach" },
-          { value: "advanced", label: "Advanced Coach" },
-          { value: "professional", label: "Professional" },
+        serviceType: [
+          { value: "all", label: "All Services" },
+          { value: "inspection", label: "Inspection Only" },
+          { value: "removal", label: "Removal" },
+          { value: "prevention", label: "Prevention" },
+          { value: "full-service", label: "Full Service" },
         ],
         certification: [
           { value: "all", label: "Any Certification" },
           { value: "certified", label: "Certified" },
-          { value: "usapa", label: "USAPA Certified" },
-          { value: "ipf", label: "IPF Certified" },
-        ],
-        lessonType: [
-          { value: "all", label: "All Types" },
-          { value: "private", label: "Private Lessons" },
-          { value: "group", label: "Group Lessons" },
-          { value: "clinic", label: "Clinics" },
-          { value: "workshop", label: "Workshops" },
+          { value: "licensed", label: "Licensed" },
+          { value: "both", label: "Certified & Licensed" },
         ],
       };
-    case "pickleball-tournaments-events":
+    case "emergency-services":
       return {
-        tournamentType: [
+        availability: [
+          { value: "all", label: "Any Availability" },
+          { value: "24-7", label: "24/7 Available" },
+          { value: "weekends", label: "Weekends" },
+          { value: "holidays", label: "Holidays" },
+        ],
+        responseTime: [
+          { value: "all", label: "Any Response Time" },
+          { value: "30-min", label: "Under 30 Minutes" },
+          { value: "1-hour", label: "Under 1 Hour" },
+          { value: "2-hours", label: "Under 2 Hours" },
+        ],
+      };
+    case "storm-damage":
+      return {
+        damageType: [
           { value: "all", label: "All Types" },
-          { value: "local", label: "Local Tournaments" },
-          { value: "regional", label: "Regional" },
-          { value: "national", label: "National" },
-          { value: "charity", label: "Charity Events" },
+          { value: "wind", label: "Wind Damage" },
+          { value: "hail", label: "Hail Damage" },
+          { value: "flood", label: "Flood Damage" },
+          { value: "tornado", label: "Tornado Damage" },
         ],
-        skillLevel: [
-          { value: "all", label: "All Levels" },
-          { value: "beginner", label: "Beginner" },
-          { value: "intermediate", label: "Intermediate" },
-          { value: "advanced", label: "Advanced" },
-          { value: "open", label: "Open Division" },
-        ],
-        entryFee: [
-          { value: "all", label: "Any Fee" },
-          { value: "free", label: "Free" },
-          { value: "low", label: "Low ($0-$50)" },
-          { value: "medium", label: "Medium ($50-$150)" },
-          { value: "high", label: "High ($150+)" },
+        serviceType: [
+          { value: "all", label: "All Services" },
+          { value: "assessment", label: "Assessment" },
+          { value: "repair", label: "Repair" },
+          { value: "restoration", label: "Full Restoration" },
         ],
       };
     default:
@@ -433,7 +407,7 @@ function CategoryPageContent() {
       </div>
 
       {/* Category-Specific Filters */}
-      {categoryFilters && slug === "pickleball-courts-facilities" && (
+      {categoryFilters && slug === "water-damage-restoration" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -484,7 +458,7 @@ function CategoryPageContent() {
         </>
       )}
 
-      {categoryFilters && slug === "pickleball-clubs-leagues" && (
+      {categoryFilters && slug === "flood-cleanup" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -535,7 +509,7 @@ function CategoryPageContent() {
         </>
       )}
 
-      {categoryFilters && slug === "pickleball-equipment-stores" && (
+      {categoryFilters && slug === "mold-remediation" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -580,7 +554,7 @@ function CategoryPageContent() {
         </>
       )}
 
-      {categoryFilters && slug === "pickleball-coaches-instructors" && (
+      {categoryFilters && slug === "emergency-services" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -645,7 +619,7 @@ function CategoryPageContent() {
         </>
       )}
 
-      {categoryFilters && slug === "pickleball-tournaments-events" && (
+      {categoryFilters && slug === "storm-damage" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -714,7 +688,7 @@ function CategoryPageContent() {
       )}
 
       {/* Price Filter (only for relevant categories) */}
-      {(slug === "pickleball-equipment-stores" || slug === "pickleball-tournaments-events") && (
+      {(slug === "mold-remediation" || slug === "storm-damage") && (
         <div>
           <label className="text-sm font-medium text-foreground mb-2 block">
             Price Level
@@ -750,7 +724,7 @@ function CategoryPageContent() {
   );
 
   const displayName = category?.name || slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const displayDescription = category?.description || `Browse ${displayName} businesses across the United States`;
+  const displayDescription = category?.description || `Browse ${displayName} services across Texas`;
   const displaySection = category?.section || "General";
 
   return (

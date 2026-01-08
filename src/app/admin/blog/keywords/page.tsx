@@ -395,7 +395,7 @@ export default function KeywordsPage() {
                       <Textarea
                         value={bulkKeywords}
                         onChange={(e) => setBulkKeywords(e.target.value)}
-                        placeholder="best pickleball paddles&#10;how to play pickleball&#10;pickleball court near me"
+                        placeholder="water damage restoration&#10;emergency flood cleanup&#10;mold remediation near me"
                         rows={10}
                       />
                       <Button onClick={addKeywords} className="w-full">

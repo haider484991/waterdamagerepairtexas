@@ -1,5 +1,5 @@
-# PickleballCourts.io - Robots.txt
-# Find pickleball courts, clubs, leagues near you
+# WaterDamageRepairTexas.net - Robots.txt
+# Find water damage restoration services near you in Texas
 
 User-agent: *
 Allow: /
@@ -17,7 +17,7 @@ Disallow: /api/
 Disallow: /_next/
 
 # Sitemaps
-Sitemap: https://pickleballcourts.io/sitemap.xml
+Sitemap: https://waterdamagerepairtexas.net/sitemap.xml
 
 # Crawl delay to prevent overload
 Crawl-delay: 1
@@ -34,4 +34,3 @@ Crawl-delay: 1
 User-agent: Slurp
 Allow: /
 Crawl-delay: 1
-

@@ -32,79 +32,80 @@ interface GooglePlace {
   }>;
 }
 
-// Pickleball-specific categories (5 categories matching seed file)
-const pickleballCategories = [
+// Water damage service categories (5 categories for Texas)
+const waterDamageCategories = [
   {
-    name: "Pickleball Courts & Facilities",
-    slug: "pickleball-courts-facilities",
-    icon: "MapPin",
-    description: "Indoor and outdoor pickleball courts, multi-sport facilities, community centers, and recreation centers with dedicated pickleball amenities across the United States",
-    section: "Facilities",
+    name: "Water Damage Restoration",
+    slug: "water-damage-restoration",
+    icon: "Droplets",
+    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across Texas",
+    section: "Restoration",
     displayOrder: 1,
   },
   {
-    name: "Pickleball Clubs & Leagues",
-    slug: "pickleball-clubs-leagues",
-    icon: "Users",
-    description: "Local pickleball clubs, competitive leagues, recreational play groups, meetups, and organized pickleball communities for players of all skill levels",
-    section: "Community",
+    name: "Flood Cleanup",
+    slug: "flood-cleanup",
+    icon: "Waves",
+    description: "Emergency flood cleanup services, water removal, sewage cleanup, and flood damage repair for residential and commercial properties",
+    section: "Emergency",
     displayOrder: 2,
   },
   {
-    name: "Pickleball Equipment Stores",
-    slug: "pickleball-equipment-stores",
-    icon: "ShoppingBag",
-    description: "Specialty stores selling pickleball paddles, balls, nets, apparel, accessories, and gear from top brands for recreational and competitive players",
-    section: "Shopping",
+    name: "Mold Remediation",
+    slug: "mold-remediation",
+    icon: "ShieldCheck",
+    description: "Professional mold inspection, testing, removal, and remediation services to ensure safe and healthy indoor environments",
+    section: "Health",
     displayOrder: 3,
   },
   {
-    name: "Pickleball Coaches & Instructors",
-    slug: "pickleball-coaches-instructors",
-    icon: "GraduationCap",
-    description: "Certified pickleball coaches, instructors, personal trainers, clinics, and lessons for beginners, intermediate, and advanced players",
-    section: "Education",
+    name: "Emergency Services",
+    slug: "emergency-services",
+    icon: "AlertTriangle",
+    description: "24/7 emergency water damage response, immediate water extraction, and rapid disaster recovery services available around the clock",
+    section: "Emergency",
     displayOrder: 4,
   },
   {
-    name: "Pickleball Tournaments & Events",
-    slug: "pickleball-tournaments-events",
-    icon: "Trophy",
-    description: "Pickleball tournaments, competitions, events, championships, social gatherings, and community pickleball activities across the country",
-    section: "Events",
+    name: "Storm Damage Repair",
+    slug: "storm-damage",
+    icon: "Wind",
+    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across Texas",
+    section: "Repair",
     displayOrder: 5,
   },
 ];
 
-// Pickleball-specific search queries for Google Places API
+// Water damage service search queries for Google Places API
 const categorySearchQueries: Record<string, string[]> = {
-  "pickleball-courts-facilities": [
-    "pickleball courts",
-    "pickleball facilities",
-    "indoor pickleball courts",
-    "pickleball recreation center",
+  "water-damage-restoration": [
+    "water damage restoration Texas",
+    "water damage repair Texas",
+    "water extraction services",
+    "flood restoration company",
   ],
-  "pickleball-clubs-leagues": [
-    "pickleball club",
-    "pickleball league",
-    "pickleball association",
+  "flood-cleanup": [
+    "flood cleanup Texas",
+    "flood damage restoration",
+    "emergency flood service",
+    "water removal service",
   ],
-  "pickleball-equipment-stores": [
-    "pickleball equipment",
-    "pickleball store",
-    "pickleball shop",
-    "pickleball gear",
+  "mold-remediation": [
+    "mold remediation Texas",
+    "mold removal service",
+    "mold inspection",
+    "mold testing",
   ],
-  "pickleball-coaches-instructors": [
-    "pickleball coach",
-    "pickleball instructor",
-    "pickleball lessons",
-    "pickleball academy",
+  "emergency-services": [
+    "24 hour water damage Texas",
+    "emergency restoration service",
+    "emergency water extraction",
   ],
-  "pickleball-tournaments-events": [
-    "pickleball tournament",
-    "pickleball event",
-    "pickleball championship",
+  "storm-damage": [
+    "storm damage repair Texas",
+    "hurricane damage restoration",
+    "wind damage repair",
+    "hail damage restoration",
   ],
 };
 
@@ -265,9 +266,9 @@ export async function POST() {
     await verifyAdmin();
 
     // Initialize progress tracking
-    resetSyncProgress(pickleballCategories.length);
+    resetSyncProgress(waterDamageCategories.length);
     updateSyncProgress({
-      currentStep: "Syncing pickleball categories...",
+      currentStep: "Syncing water damage categories...",
       categoriesAdded: 0,
       categoriesUpdated: 0,
       categoriesRemoved: 0,
@@ -276,13 +277,13 @@ export async function POST() {
     let added = 0;
     let updated = 0;
     let removed = 0;
-    const validSlugs = new Set(pickleballCategories.map(c => c.slug));
+    const validSlugs = new Set(waterDamageCategories.map(c => c.slug));
 
     // Step 1: Add missing categories and update existing ones
-    for (let i = 0; i < pickleballCategories.length; i++) {
-      const cat = pickleballCategories[i];
+    for (let i = 0; i < waterDamageCategories.length; i++) {
+      const cat = waterDamageCategories[i];
       updateSyncProgress({
-        currentStep: `Processing category ${i + 1}/${pickleballCategories.length}: ${cat.name}`,
+        currentStep: `Processing category ${i + 1}/${waterDamageCategories.length}: ${cat.name}`,
         currentCategory: cat.name,
         categoriesProcessed: i,
       });
@@ -359,7 +360,7 @@ export async function POST() {
       .from(categories);
 
     updateSyncProgress({
-      categoriesProcessed: pickleballCategories.length,
+      categoriesProcessed: waterDamageCategories.length,
       currentStep: "Category sync completed.",
     });
 
@@ -372,7 +373,7 @@ export async function POST() {
         added,
         updated,
         removed,
-        totalExpected: pickleballCategories.length,
+        totalExpected: waterDamageCategories.length,
         totalInDatabase: Number(finalCount?.count || 0),
       },
       message: `Sync complete: ${added} categories added, ${updated} updated, ${removed} removed. Use /api/admin/sync-multi-location to sync businesses.`,
@@ -393,9 +394,9 @@ export async function GET() {
     await verifyAdmin();
 
     const existingCategories = await db.select().from(categories);
-    const validSlugs = new Set(pickleballCategories.map(c => c.slug));
+    const validSlugs = new Set(waterDamageCategories.map(c => c.slug));
     
-    const missingCategories = pickleballCategories.filter(
+    const missingCategories = waterDamageCategories.filter(
       (cat) => !existingCategories.some((e) => e.slug === cat.slug)
     );
 
@@ -427,7 +428,7 @@ export async function GET() {
     }
 
     return NextResponse.json({
-      totalExpected: pickleballCategories.length,
+      totalExpected: waterDamageCategories.length,
       totalInDatabase: existingCategories.length,
       missing: missingCategories.length,
       missingList: missingCategories.map((c) => c.name),
@@ -437,7 +438,7 @@ export async function GET() {
         slug: c.slug,
         hasBusinesses: orphanedWithBusinesses.some(o => o.id === c.id),
       })),
-      status: existingCategories.length === pickleballCategories.length && orphanedCategories.length === 0 
+      status: existingCategories.length === waterDamageCategories.length && orphanedCategories.length === 0 
         ? "synced" 
         : "needs_sync",
     });

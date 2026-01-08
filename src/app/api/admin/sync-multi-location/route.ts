@@ -25,13 +25,13 @@ interface GooglePlace {
   }>;
 }
 
-// Pickleball search queries
+// Water damage restoration search queries
 const categorySearchQueries: Record<string, string[]> = {
-  "pickleball-courts-facilities": ["pickleball courts", "pickleball facilities"],
-  "pickleball-clubs-leagues": ["pickleball club", "pickleball league"],
-  "pickleball-equipment-stores": ["pickleball store", "pickleball equipment"],
-  "pickleball-coaches-instructors": ["pickleball coach", "pickleball lessons"],
-  "pickleball-tournaments-events": ["pickleball tournament"],
+  "water-damage-restoration": ["water damage restoration", "water damage repair", "water extraction services"],
+  "flood-cleanup": ["flood cleanup", "flood damage restoration", "water removal service"],
+  "mold-remediation": ["mold remediation", "mold removal service", "mold inspection"],
+  "emergency-services": ["24 hour water damage", "emergency restoration service", "emergency water extraction"],
+  "storm-damage": ["storm damage repair", "hurricane damage restoration", "hail damage restoration"],
 };
 
 async function searchGooglePlaces(query: string, cityName: string, stateCode: string): Promise<GooglePlace[]> {
@@ -113,10 +113,10 @@ export async function POST(request: Request) {
     let totalSkipped = 0;
     const results: Record<string, Record<string, { inserted: number; skipped: number }>> = {};
 
-    console.log(`🏓 Starting multi-location sync for ${categoriesToSync.length} categories across ${citiesToSync.length} cities`);
+    console.log(`💧 Starting multi-location sync for ${categoriesToSync.length} categories across ${citiesToSync.length} cities`);
 
     for (const category of categoriesToSync) {
-      const queries = categorySearchQueries[category.slug] || ["pickleball"];
+      const queries = categorySearchQueries[category.slug] || ["water damage restoration Texas"];
       results[category.slug] = {};
 
       for (const city of citiesToSync) {
@@ -205,7 +205,7 @@ export async function POST(request: Request) {
       categoriesSynced: categoriesToSync.length,
       citiesSynced: citiesToSync.length,
       results,
-      message: `Synced ${totalInserted} new pickleball businesses across ${citiesToSync.length} cities, skipped ${totalSkipped} existing`,
+      message: `Synced ${totalInserted} new water damage businesses across ${citiesToSync.length} cities, skipped ${totalSkipped} existing`,
     });
   } catch (error) {
     console.error("Error in multi-location sync:", error);
@@ -218,17 +218,17 @@ export async function POST(request: Request) {
 
 export async function GET() {
   return NextResponse.json({
-    message: "POST to sync pickleball businesses across multiple locations",
+    message: "POST to sync water damage restoration businesses across Texas locations",
     parameters: {
-      stateCode: "Optional: 2-letter state code (e.g., 'CA')",
+      stateCode: "Optional: 2-letter state code (e.g., 'TX')",
       cityName: "Optional: City name (requires stateCode)",
       categorySlug: "Optional: Specific category slug",
       limit: "Optional: Limit cities per state (default: 5)",
     },
     examples: [
-      { stateCode: "CA", limit: 10 },
-      { stateCode: "TX", cityName: "Austin" },
-      { categorySlug: "pickleball-courts-facilities", limit: 3 },
+      { stateCode: "TX", limit: 10 },
+      { stateCode: "TX", cityName: "Houston" },
+      { categorySlug: "water-damage-restoration", limit: 3 },
     ],
   });
 }

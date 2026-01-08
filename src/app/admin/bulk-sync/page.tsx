@@ -671,7 +671,7 @@ export default function BulkSyncPage() {
             </p>
             <p>
               <strong>3. Focus on Popular States:</strong> California, Texas, Florida, and Arizona have 
-              the most pickleball activity.
+              the most water damage service activity.
             </p>
             <p>
               <strong>4. Monitor API Usage:</strong> Each sync uses Google Places API calls (~$0.017 per call). 

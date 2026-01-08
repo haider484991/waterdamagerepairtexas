@@ -24,8 +24,8 @@ export function Logo({
         aria-hidden="true"
       >
         <Image
-          src="/pickleball-logo.png"
-          alt="PickleballCourts.io - Find Pickleball Courts Near You"
+          src="/logo.svg"
+          alt="Water Damage Repair Texas - Emergency Restoration Services"
           width={size}
           height={size}
           priority={priority}
@@ -34,10 +34,10 @@ export function Logo({
       </div>
       {showText && (
         <span className={cn("font-bold leading-tight text-foreground", textSize)}>
-          <span className="text-primary">Pickleball</span>Courts<span className="text-primary">.io</span>
+          <span className="text-primary">Water Damage</span> Repair
+          <span className="text-primary"> TX</span>
         </span>
       )}
     </div>
   );
 }
-

@@ -12,7 +12,7 @@ import bcrypt from "bcryptjs";
 
 async function resetAdmin() {
   try {
-    const adminEmail = "admin@pickleballcourts.io";
+    const adminEmail = "admin@waterdamagerepairtexas.net";
     const adminPassword = "admin123";
 
     console.log("🔍 Checking for admin user...");

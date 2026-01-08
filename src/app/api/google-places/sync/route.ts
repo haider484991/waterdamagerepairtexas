@@ -29,26 +29,24 @@ interface GooglePlace {
   };
 }
 
-// Map Google Places types to pickleball categories
+// Map Google Places types to water damage service categories
 const typeToCategory: Record<string, string> = {
-  stadium: "pickleball-courts-facilities",
-  gym: "pickleball-courts-facilities",
-  recreation_center: "pickleball-courts-facilities",
-  sports_complex: "pickleball-courts-facilities",
-  community_center: "pickleball-courts-facilities",
-  sporting_goods_store: "pickleball-equipment-stores",
-  store: "pickleball-equipment-stores",
-  school: "pickleball-coaches-instructors",
-  event_venue: "pickleball-tournaments-events",
+  plumber: "water-damage-restoration",
+  general_contractor: "water-damage-restoration",
+  roofing_contractor: "storm-damage",
+  home_improvement_store: "water-damage-restoration",
+  moving_company: "flood-cleanup",
+  fire_station: "emergency-services",
+  local_government_office: "emergency-services",
 };
 
-// Pickleball-specific search queries
+// Water damage restoration search queries
 const categorySearchQueries: Record<string, string[]> = {
-  "pickleball-courts-facilities": ["pickleball courts", "pickleball facilities", "indoor pickleball"],
-  "pickleball-clubs-leagues": ["pickleball club", "pickleball league"],
-  "pickleball-equipment-stores": ["pickleball store", "pickleball equipment", "pickleball shop"],
-  "pickleball-coaches-instructors": ["pickleball coach", "pickleball lessons", "pickleball instructor"],
-  "pickleball-tournaments-events": ["pickleball tournament", "pickleball event"],
+  "water-damage-restoration": ["water damage restoration Texas", "water damage repair", "water extraction"],
+  "flood-cleanup": ["flood cleanup Texas", "flood damage restoration", "water removal"],
+  "mold-remediation": ["mold remediation Texas", "mold removal", "mold inspection"],
+  "emergency-services": ["24 hour water damage", "emergency restoration", "emergency water extraction"],
+  "storm-damage": ["storm damage repair Texas", "hurricane damage restoration", "hail damage repair"],
 };
 
 async function searchGooglePlaces(query: string, cityName?: string, stateCode?: string, location?: string): Promise<GooglePlace[]> {
@@ -275,11 +273,11 @@ export async function GET() {
   }
 
   return NextResponse.json({
-    message: "Use POST to sync pickleball businesses. Provide cityName and stateCode for location-specific sync.",
+    message: "Use POST to sync water damage restoration businesses. Provide cityName and stateCode for location-specific sync.",
     availableCategories: Object.keys(categorySearchQueries),
     examples: [
-      { categorySlug: "pickleball-courts-facilities", cityName: "Austin", stateCode: "TX" },
-      { query: "pickleball courts", cityName: "Los Angeles", stateCode: "CA" },
+      { categorySlug: "water-damage-restoration", cityName: "Houston", stateCode: "TX" },
+      { query: "water damage restoration", cityName: "Dallas", stateCode: "TX" },
     ],
   });
 }

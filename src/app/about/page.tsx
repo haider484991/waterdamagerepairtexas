@@ -6,17 +6,17 @@ import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/layout/Logo";
 
 export const metadata: Metadata = {
-  title: "About Henry Harrison Plano Texas – Your Guide to Plano’s Business Community",
+  title: "About Water Damage Repair Texas - Your Guide to Restoration Services",
   description:
-    "Learn about Henry Harrison Plano Texas, a dedicated directory highlighting top Plano businesses and helping locals discover reliable, community-focused services.",
+    "Learn about Water Damage Repair Texas, a dedicated directory connecting Texas property owners with trusted water damage restoration, flood cleanup, and mold remediation professionals.",
 };
 
 const highlightPoints = [
-  "Modern, easy-to-use directory for Plano’s best businesses",
-  "Mission: connect residents, visitors, and professionals with trusted local services",
-  "Coverage across every major category: home services, restaurants, medical, retail, financial, and more",
-  "Continuously updated to reflect new openings, growth, and standout organizations",
-  "Built to support a thriving local economy by boosting business visibility",
+  "Modern, easy-to-use directory for Texas water damage restoration services",
+  "Mission: connect property owners with trusted, certified restoration professionals",
+  "Coverage across all Texas regions: DFW, Houston, Austin, San Antonio, and more",
+  "Continuously updated with verified service providers and customer reviews",
+  "Built to help Texans recover quickly from water damage emergencies",
 ];
 
 export default function AboutPage() {
@@ -30,16 +30,17 @@ export default function AboutPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-6 max-w-2xl">
               <Badge variant="secondary" className="text-sm">
-                About US Pickleball Directory
+                About Water Damage Repair Texas
               </Badge>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight text-foreground">
-                Your guide to pickleball businesses across the United States.
+                Your guide to water damage restoration services across Texas.
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                US Pickleball Directory is a modern, easy-to-use directory that
-                showcases the best pickleball businesses across the United States. Our mission is
-                simple: connect pickleball players, coaches, and enthusiasts with
-                trusted businesses including courts, clubs, equipment stores, coaches, and tournaments nationwide.
+                Water Damage Repair Texas is a comprehensive directory that
+                connects property owners with the best water damage restoration
+                professionals across the Lone Star State. Our mission is simple:
+                help Texans quickly find trusted, certified restoration services
+                when water damage strikes.
               </p>
             </div>
 
@@ -55,15 +56,15 @@ export default function AboutPage() {
           <CardContent className="p-8 lg:p-10 space-y-8">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                Why US Pickleball Directory?
+                Why Water Damage Repair Texas?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Pickleball is the fastest-growing sport in America, with millions of players
-                across all 50 states. With a thriving community of courts, clubs, equipment stores,
-                coaches, and tournaments, the sport offers endless opportunities—and we're here to
-                make them easier to find. Whether you're searching for indoor or outdoor courts,
-                competitive leagues, quality equipment, certified instructors, or upcoming tournaments,
-                our directory puts the best pickleball businesses right at your fingertips.
+                Texas faces unique water damage challenges—from Gulf Coast hurricanes and
+                tropical storms to flash floods, burst pipes, and appliance failures. When
+                disaster strikes, you need fast access to reliable restoration professionals.
+                Whether you're dealing with emergency flood cleanup, mold remediation, water
+                extraction, or storm damage repair, our directory puts trusted service
+                providers right at your fingertips.
               </p>
             </div>
 
@@ -73,19 +74,19 @@ export default function AboutPage() {
               <div className="space-y-3">
                 <h3 className="text-xl font-semibold text-foreground">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Great communities are built on strong connections. By helping pickleball
-                  businesses increase their visibility and helping players discover
-                  reliable services, US Pickleball Directory aims to be a
-                  trusted guide for anyone looking to engage with the pickleball community.
+                  Quick response is critical in water damage situations. By helping
+                  restoration companies increase their visibility and helping property
+                  owners find reliable services fast, Water Damage Repair Texas aims
+                  to be the trusted resource for anyone dealing with water damage emergencies.
                 </p>
               </div>
               <div className="space-y-3">
                 <h3 className="text-xl font-semibold text-foreground">Always Up-to-Date</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our platform is continually expanding, updated to reflect new courts,
-                  growing clubs, and standout organizations making an impact in the pickleball community.
-                  If you're a business owner interested in being listed or featured, you'll
-                  find everything you need right here.
+                  Our platform is continually expanding, updated to reflect new service
+                  providers, verified certifications, and customer reviews. If you're a
+                  restoration business owner interested in being listed or featured,
+                  you'll find everything you need right here.
                 </p>
               </div>
             </div>
@@ -105,25 +106,25 @@ export default function AboutPage() {
             <Separator />
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-foreground">Discover. Connect. Support Local.</h3>
+              <h3 className="text-xl font-semibold text-foreground">Find Help Fast. Recover Quickly.</h3>
               <p className="text-muted-foreground leading-relaxed">
-                US Pickleball Directory is here to help you explore, compare, and connect with
-                the businesses that keep the pickleball community thriving. Whether you're a player looking
-                for courts and equipment or a business owner ready to reach more of the community,
-                we're glad you're here.
+                Water Damage Repair Texas is here to help you find, compare, and connect with
+                the restoration professionals who can get your property back to normal.
+                Whether you're a homeowner facing an emergency or a business owner ready
+                to reach more customers, we're glad you're here.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/search"
                   className="btn-primary px-4 py-2 rounded-lg"
                 >
-                  Start Exploring Businesses
+                  Find Restoration Services
                 </Link>
                 <Link
                   href="/add-business"
                   className="px-4 py-2 rounded-lg border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
                 >
-                  Add or Feature Your Business
+                  List Your Business
                 </Link>
               </div>
             </div>
@@ -133,4 +134,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

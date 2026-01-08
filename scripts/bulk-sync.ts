@@ -40,32 +40,33 @@ interface GooglePlacesResponse {
   status: string;
 }
 
-// Pickleball search queries - optimized for all categories
-const PICKLEBALL_QUERIES = [
-  // Courts & Facilities
-  "pickleball courts",
-  "pickleball facilities",
-  "indoor pickleball",
-  "pickleball center",
-  "pickleball recreation center",
-  // Clubs & Leagues
-  "pickleball club",
-  "pickleball league",
-  "pickleball association",
-  // Equipment Stores
-  "pickleball equipment",
-  "pickleball store",
-  "pickleball shop",
-  "pickleball gear",
-  // Coaches & Instructors
-  "pickleball coach",
-  "pickleball instructor",
-  "pickleball lessons",
-  "pickleball academy",
-  // Tournaments & Events
-  "pickleball tournament",
-  "pickleball event",
-  "pickleball championship",
+// Water damage restoration search queries - optimized for all categories
+const WATER_DAMAGE_QUERIES = [
+  // Water Damage Restoration
+  "water damage restoration",
+  "water damage repair",
+  "water extraction services",
+  "flood restoration company",
+  "water damage cleanup",
+  // Flood Cleanup
+  "flood cleanup",
+  "flood damage restoration",
+  "emergency flood service",
+  "water removal service",
+  // Mold Remediation
+  "mold remediation",
+  "mold removal service",
+  "mold inspection",
+  "mold testing",
+  // Emergency Services
+  "24 hour water damage",
+  "emergency restoration service",
+  "emergency water extraction",
+  // Storm Damage
+  "storm damage repair",
+  "hurricane damage restoration",
+  "wind damage repair",
+  "hail damage restoration",
 ];
 
 function parseCityState(formattedAddress: string, fallbackCity: string, fallbackState: string): { city: string; state: string; zip: string } {
@@ -242,9 +243,9 @@ async function processCity(
         const detectedCategorySlug = mapGoogleCategoryToWaterDamage(
           place.types || [],
           place.name
-        ) || "pickleball-courts-facilities"; // Default to courts if can't detect
-        
-        const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("pickleball-courts-facilities")!;
+        ) || "water-damage-restoration"; // Default to water damage restoration if can't detect
+
+        const categoryId = categoryMap.get(detectedCategorySlug) || categoryMap.get("water-damage-restoration")!;
 
         businessesToInsert.push({
           googlePlaceId: place.place_id,
@@ -317,19 +318,19 @@ async function main() {
   const queriesPerCity = parseInt(args.find(a => a.startsWith("--queries="))?.split("=")[1] || "3");
   const stateCode = args.find(a => a.startsWith("--state="))?.split("=")[1];
 
-  console.log("\n🏓 BULK SYNC CLI STARTED");
+  console.log("\n💧 BULK SYNC CLI STARTED");
   console.log(`📍 Config: ${maxStates} states, ${citiesPerState} cities/state, ${queriesPerCity} queries/city\n`);
 
   const allCategories = await db.select().from(categories);
   const categoryMap = new Map(allCategories.map(c => [c.slug, c.id]));
-  
+
   // Verify all categories exist
   const requiredCategories = [
-    "pickleball-courts-facilities",
-    "pickleball-clubs-leagues",
-    "pickleball-equipment-stores",
-    "pickleball-coaches-instructors",
-    "pickleball-tournaments-events",
+    "water-damage-restoration",
+    "flood-cleanup",
+    "mold-remediation",
+    "emergency-services",
+    "storm-damage",
   ];
   
   for (const slug of requiredCategories) {
@@ -365,7 +366,7 @@ async function main() {
     startedAt: new Date(),
   }).returning();
 
-  const queries = PICKLEBALL_QUERIES.slice(0, queriesPerCity);
+  const queries = WATER_DAMAGE_QUERIES.slice(0, queriesPerCity);
   let totalInserted = 0;
   let totalSkipped = 0;
   let totalApiCalls = 0;
