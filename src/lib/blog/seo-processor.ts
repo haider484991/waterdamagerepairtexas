@@ -238,23 +238,23 @@ export function generateArticleSchema(post: {
     dateModified: modifiedDate,
     author: {
       "@type": "Organization",
-      name: post.authorName || "PickleballCourts.io",
+      name: post.authorName || "Water Damage Repair Texas",
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "PickleballCourts.io",
+      name: "Water Damage Repair Texas",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/pickleball-logo.png`,
+        url: `${SITE_URL}/water-damage-logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
-    image: post.coverImageUrl || `${SITE_URL}/pickleball-logo.png`,
+    image: post.coverImageUrl || `${SITE_URL}/water-damage-logo.png`,
     wordCount: post.wordCount,
     inLanguage: "en-US",
     isAccessibleForFree: true,

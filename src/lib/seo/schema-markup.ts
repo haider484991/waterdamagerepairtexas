@@ -6,7 +6,7 @@ import type { Business, Category } from "@/lib/db/schema";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Pickleball Courts";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair Texas";
 
 /**
  * Organization schema for the main site
@@ -17,8 +17,8 @@ export function generateOrganizationSchema() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/pickleball-logo.png`,
-    description: "Discover pickleball courts, clubs, leagues, equipment stores, coaches, and tournaments across the United States.",
+    logo: `${SITE_URL}/water-damage-logo.png`,
+    description: "Find trusted water damage restoration professionals, emergency flood cleanup, and mold remediation services across Texas.",
     sameAs: [
       // Add social media profiles here when available
     ],
@@ -31,16 +31,16 @@ export function generateOrganizationSchema() {
 }
 
 /**
- * LocalBusiness schema for pickleball businesses
+ * LocalBusiness schema for water damage restoration businesses
  */
 export function generateLocalBusinessSchema(business: Business, category?: Category | null) {
   const schema: Record<string, any> = {
     "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
+    "@type": "LocalBusiness",
     "@id": `${SITE_URL}/business/${business.slug}`,
     name: business.name,
     url: business.website || `${SITE_URL}/business/${business.slug}`,
-    description: business.description || `${business.name} - Pickleball facility in ${business.city}, ${business.state}`,
+    description: business.description || `${business.name} - Water damage restoration in ${business.city}, ${business.state}`,
     address: {
       "@type": "PostalAddress",
       streetAddress: business.address,

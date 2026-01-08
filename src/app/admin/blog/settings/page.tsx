@@ -46,8 +46,8 @@ interface BlogSettings {
 const defaultSettings: BlogSettings = {
   autopublish: false,
   scheduleFrequency: "daily",
-  writingStyle: "conversational",
-  brandVoice: "We are passionate about pickleball and want to help everyone from beginners to advanced players improve their game and find great places to play.",
+  writingStyle: "professional",
+  brandVoice: "We are experts in water damage restoration, helping Texas property owners navigate the challenges of water damage, flooding, and mold issues. Our goal is to connect you with trusted restoration professionals who can respond quickly and restore your property efficiently.",
   targetWordCountMin: 1500,
   targetWordCountMax: 2500,
   internalLinksMin: 3,
@@ -67,7 +67,8 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
 
-  const isAdmin = session?.user?.email === "admin@pickleballcourts.io" ||
+  const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
+                  session?.user?.email === "admin@waterdamagerepairtexas.net" ||
                   session?.user?.email?.endsWith("@admin.com") ||
                   session?.user?.email === "admin@test.com";
 

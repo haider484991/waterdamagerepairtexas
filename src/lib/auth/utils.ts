@@ -13,8 +13,8 @@ export async function isAdmin() {
   
   // Fallback to email list for existing setups
   const adminEmails = [
-    "admin@pickleballcourts.io",
-    "owner@pickleballcourts.io",
+    "admin@waterdamagerepairtexas.net",
+    "owner@waterdamagerepairtexas.net",
     "admin@test.com",
   ];
   

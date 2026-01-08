@@ -245,23 +245,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       console.error("Error fetching blog posts for sitemap:", error);
     }
 
-    // Pickleball-specific search queries for long-tail SEO
-    const pickleballSearches = [
-      "pickleball courts",
-      "indoor pickleball",
-      "outdoor pickleball",
-      "pickleball clubs",
-      "pickleball leagues",
-      "pickleball equipment",
-      "pickleball paddles",
-      "pickleball lessons",
-      "pickleball coaches",
-      "pickleball tournaments",
-      "where to play pickleball",
-      "beginner pickleball",
+    // Water damage-specific search queries for long-tail SEO
+    const waterDamageSearches = [
+      "water damage restoration",
+      "emergency flood cleanup",
+      "mold remediation",
+      "water extraction services",
+      "flood damage repair",
+      "storm damage restoration",
+      "24 hour water damage",
+      "water damage near me",
+      "residential water damage",
+      "commercial water damage",
+      "insurance claim water damage",
+      "water damage Texas",
     ];
 
-    const searchPages: MetadataRoute.Sitemap = pickleballSearches.map((query) => ({
+    const searchPages: MetadataRoute.Sitemap = waterDamageSearches.map((query) => ({
       url: `${SITE_URL}/search?q=${encodeURIComponent(query)}`,
       lastModified: now,
       changeFrequency: "daily" as const,

@@ -23,7 +23,7 @@ export function FAQSection({ faqs, title = "Frequently Asked Questions", descrip
   return (
     <>
       <JsonLd data={generateFAQSchema(faqs)} id="faq-schema" />
-      
+
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
@@ -57,66 +57,65 @@ export function FAQSection({ faqs, title = "Frequently Asked Questions", descrip
 }
 
 /**
- * Generate location-specific FAQs for pickleball
+ * Generate location-specific FAQs for water damage services
  */
-export function generatePickleballFAQs(cityName?: string, stateName?: string, categoryName?: string): FAQ[] {
-  const location = cityName && stateName 
-    ? `${cityName}, ${stateName}` 
-    : stateName 
-    ? stateName 
-    : "the United States";
+export function generateWaterDamageFAQs(cityName?: string, regionName?: string, categoryName?: string): FAQ[] {
+  const location = cityName && regionName
+    ? `${cityName}, Texas`
+    : regionName
+    ? regionName
+    : "Texas";
 
-  const category = categoryName || "pickleball facilities";
+  const service = categoryName || "water damage restoration services";
 
   return [
     {
-      question: `Where can I find ${category} in ${location}?`,
-      answer: `Our comprehensive directory lists all ${category} in ${location}. Browse our curated list of pickleball courts, clubs, equipment stores, coaches, and tournaments. Each listing includes detailed information such as location, hours, contact details, and user reviews to help you find the perfect pickleball venue.`,
+      question: `Where can I find ${service} in ${location}?`,
+      answer: `Our comprehensive directory lists all ${service} in ${location}. Browse our curated list of water damage restoration companies, emergency flood cleanup services, mold remediation specialists, and insurance claim assistance providers. Each listing includes detailed information such as location, hours, contact details, and user reviews to help you find the right professional for your needs.`,
     },
     {
-      question: `Are the ${category} listings in ${location} verified?`,
-      answer: `Yes, we work to verify all pickleball businesses in our directory through multiple sources including Google Places API integration and direct business verification. We continuously update our listings to ensure accuracy and reliability.`,
+      question: `Are the ${service} listings in ${location} verified?`,
+      answer: `Yes, we work to verify all water damage restoration businesses in our directory through multiple sources including Google Places API integration and direct business verification. We continuously update our listings to ensure accuracy and reliability.`,
     },
     {
-      question: `How can I find indoor vs outdoor pickleball courts in ${location}?`,
-      answer: `When browsing pickleball courts and facilities in ${location}, check the business descriptions and amenities listed for each location. Many facilities specify whether they offer indoor courts, outdoor courts, or both. You can also use our search filters to narrow down results based on your preferences.`,
+      question: `Do water damage restoration companies in ${location} offer 24/7 emergency services?`,
+      answer: `Many water damage restoration companies in ${location} offer 24/7 emergency services for urgent situations like burst pipes, flooding, or storm damage. Check the business descriptions and contact information for each listing to confirm their emergency availability. Time is critical in water damage situations to prevent mold growth and structural damage.`,
     },
     {
-      question: `Can I leave reviews for ${category} in ${location}?`,
-      answer: `Yes! Creating an account allows you to leave reviews, rate businesses, and share your experiences with other pickleball players. Your reviews help the community make informed decisions about where to play, buy equipment, or take lessons.`,
+      question: `Can I leave reviews for ${service} in ${location}?`,
+      answer: `Yes! Creating an account allows you to leave reviews, rate businesses, and share your experiences with other property owners. Your reviews help the community make informed decisions about which water damage restoration company to hire for their emergency or restoration needs.`,
     },
     {
-      question: `How do I add my pickleball business to the ${location} directory?`,
-      answer: `Business owners can easily submit their pickleball facility, club, store, or coaching service through our "Add Business" page. We'll review your submission and add it to our directory. Verified business owners can claim their listings to manage information, respond to reviews, and access analytics.`,
+      question: `How do I add my water damage restoration business to the ${location} directory?`,
+      answer: `Business owners can easily submit their water damage restoration company, mold remediation service, or flood cleanup business through our "Add Business" page. We'll review your submission and add it to our directory. Verified business owners can claim their listings to manage information, respond to reviews, and access analytics.`,
     },
   ];
 }
 
 /**
- * Generate general pickleball FAQs
+ * Generate general water damage restoration FAQs
  */
-export function generateGeneralPickleballFAQs(): FAQ[] {
+export function generateGeneralWaterDamageFAQs(): FAQ[] {
   return [
     {
-      question: "What is pickleball?",
-      answer: `Pickleball is a paddle sport that combines elements of tennis, badminton, and table tennis. Played on a court similar to a doubles badminton court, with a net slightly lower than a tennis net, players use solid paddles to hit a perforated plastic ball over the net. The game can be played as singles or doubles and is enjoyed by people of all ages and skill levels.`,
+      question: "What should I do immediately after water damage occurs?",
+      answer: `First, ensure safety by turning off electricity if water levels are high. Document the damage with photos and videos for insurance purposes. Contact your insurance company to report the claim. Then, call a professional water damage restoration company immediately - the first 24-48 hours are critical to prevent mold growth and minimize damage.`,
     },
     {
-      question: "How do I find pickleball courts near me?",
-      answer: `Use our search feature to find pickleball courts in your area. Simply enter your city, state, or zip code to discover nearby courts, clubs, and facilities. Our directory includes both public and private courts, with details about availability, fees, and amenities.`,
+      question: "How do I find water damage restoration services near me?",
+      answer: `Use our search feature to find water damage restoration companies in your area. Simply enter your city or region to discover nearby services including emergency water extraction, flood cleanup, mold remediation, and structural drying. Our directory includes both residential and commercial service providers with details about availability, services offered, and customer reviews.`,
     },
     {
-      question: "What equipment do I need to play pickleball?",
-      answer: `To play pickleball, you'll need a paddle, pickleballs (indoor or outdoor depending on where you play), and appropriate court shoes. Many facilities provide equipment for beginners, but as you progress, you may want to invest in your own paddle. Our directory includes pickleball equipment stores where you can find quality gear.`,
+      question: "What services do water damage restoration companies provide?",
+      answer: `Water damage restoration companies typically offer emergency water extraction, structural drying, dehumidification, mold remediation, content restoration, and reconstruction services. Many also provide assistance with insurance claims documentation. Our directory helps you find specialists for each type of service based on your specific needs.`,
     },
     {
-      question: "How do I learn to play pickleball?",
-      answer: `Many pickleball facilities offer beginner lessons, clinics, and drop-in sessions. Check our directory for certified pickleball coaches and instructors in your area. Many clubs also welcome beginners and offer introductory programs to help you learn the basics and meet other players.`,
+      question: "How long does water damage restoration take?",
+      answer: `The timeline depends on the extent of damage. Minor water damage may be resolved in 3-5 days, while severe flooding or structural damage can take several weeks. A professional assessment will provide a more accurate timeline. Quick action is essential - call a restoration company immediately to minimize damage and reduce restoration time.`,
     },
     {
-      question: "Where can I find pickleball tournaments?",
-      answer: `Browse our tournaments and events category to find upcoming pickleball competitions in your area. From local club tournaments to regional championships, our directory features events for all skill levels. Many clubs and facilities also host regular social play and competitive leagues.`,
+      question: "Will my insurance cover water damage restoration?",
+      answer: `Many homeowner's insurance policies cover water damage from sudden, accidental events like burst pipes or appliance failures. Flood damage typically requires separate flood insurance. Our directory includes insurance claim assistance specialists who can help you navigate the claims process and maximize your coverage.`,
     },
   ];
 }
-

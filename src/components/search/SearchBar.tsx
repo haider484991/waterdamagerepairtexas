@@ -16,20 +16,20 @@ interface SearchBarProps {
 }
 
 const popularSearches = [
-  "Pickleball courts",
-  "Indoor pickleball",
-  "Pickleball clubs",
-  "Pickleball equipment",
-  "Pickleball lessons",
+  "Water damage restoration",
+  "Emergency flood cleanup",
+  "Mold remediation",
+  "24/7 water damage",
+  "Insurance claim help",
 ];
 
 const recentSearches = [
-  "Pickleball courts near me",
-  "Pickleball tournaments",
+  "Water damage near me",
+  "Flood repair services",
 ];
 
 export function SearchBar({
-  placeholder = "Search pickleball courts, clubs, equipment, coaches...",
+  placeholder = "Search water damage restoration, mold remediation, flood cleanup...",
   size = "default",
   showSuggestions = true,
   className,
@@ -180,7 +180,7 @@ export function SearchBar({
             <div className="mt-4 pt-4 border-t border-border/50">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Searching across <strong className="text-foreground">United States</strong></span>
+                <span>Searching across <strong className="text-foreground">Texas</strong></span>
               </div>
             </div>
           </motion.div>

@@ -44,17 +44,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: "Post Not Found | PickleballCourts.io",
+      title: "Post Not Found | Water Damage Repair Texas",
     };
   }
 
   const title = post.seoTitle || post.title;
   const description = post.metaDescription || post.excerpt || "";
   const canonicalUrl = post.canonicalUrl || `${SITE_URL}/blog/${post.slug}`;
-  const ogImage = post.ogImageUrl || post.coverImageUrl || `${SITE_URL}/pickleball-logo.png`;
+  const ogImage = post.ogImageUrl || post.coverImageUrl || `${SITE_URL}/water-damage-logo.png`;
 
   return {
-    title: `${title} | PickleballCourts.io`,
+    title: `${title} | Water Damage Repair Texas`,
     description,
     alternates: {
       canonical: canonicalUrl,
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description,
       url: canonicalUrl,
       type: "article",
-      siteName: "PickleballCourts.io",
+      siteName: "Water Damage Repair Texas",
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt?.toISOString(),
       images: [

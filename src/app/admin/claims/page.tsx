@@ -60,7 +60,7 @@ export default function AdminClaimsPage() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const isAdmin =
-    session?.user?.email === "admin@pickleballcourts.io" ||
+    session?.user?.email === "admin@waterdamagerepairtexas.net" ||
     session?.user?.email?.endsWith("@admin.com") ||
     session?.user?.email === "admin@test.com";
 

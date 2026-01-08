@@ -257,7 +257,7 @@ export default function BulkSyncPage() {
             Bulk Data Sync
           </h1>
           <p className="text-muted-foreground">
-            Rapidly populate your database with pickleball businesses from Google Places API
+            Rapidly populate your database with water damage businesses from Google Places API
           </p>
         </div>
 

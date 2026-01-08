@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Advertise With Us – Reach Pickleball Players Nationwide | US Pickleball Directory",
+  title: "Advertise With Us – Reach Texas Property Owners | Water Damage Repair Texas",
   description:
-    "Advertise your pickleball business on US Pickleball Directory and reach thousands of players across the United States. Featured listings, sponsored content, and premium advertising packages available.",
+    "Advertise your water damage restoration business on Water Damage Repair Texas and reach thousands of property owners across Texas. Featured listings, sponsored content, and premium advertising packages available.",
 };
 
 export default function AdvertiseLayout({

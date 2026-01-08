@@ -1,6 +1,6 @@
 /**
  * Blog Listing Page
- * 
+ *
  * Public page displaying all published blog posts with pagination
  */
 
@@ -20,30 +20,30 @@ interface BlogPageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Pickleball Blog | Tips, Guides & News | PickleballCourts.io",
-    description: "Explore our pickleball blog for expert tips, court guides, equipment reviews, and the latest news. Everything you need to improve your game and find great places to play.",
+    title: "Water Damage Blog | Tips, Guides & News | Water Damage Repair Texas",
+    description: "Explore our water damage blog for expert restoration tips, flood cleanup guides, mold prevention advice, and the latest industry news. Everything you need to protect your Texas property.",
     alternates: {
       canonical: `${SITE_URL}/blog`,
     },
     openGraph: {
-      title: "Pickleball Blog | Tips, Guides & News",
-      description: "Expert tips, court guides, equipment reviews, and the latest pickleball news.",
+      title: "Water Damage Blog | Tips, Guides & News",
+      description: "Expert tips, restoration guides, and the latest water damage news for Texas property owners.",
       url: `${SITE_URL}/blog`,
       type: "website",
-      siteName: "PickleballCourts.io",
+      siteName: "Water Damage Repair Texas",
       images: [
         {
-          url: `${SITE_URL}/pickleball-logo.png`,
+          url: `${SITE_URL}/water-damage-logo.png`,
           width: 1200,
           height: 630,
-          alt: "PickleballCourts.io Blog",
+          alt: "Water Damage Repair Texas Blog",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Pickleball Blog | PickleballCourts.io",
-      description: "Expert tips, court guides, equipment reviews, and the latest pickleball news.",
+      title: "Water Damage Blog | Water Damage Repair Texas",
+      description: "Expert tips, restoration guides, and the latest water damage news for Texas property owners.",
     },
   };
 }
@@ -58,7 +58,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     .select({ count: count() })
     .from(blogPosts)
     .where(eq(blogPosts.status, "published"));
-  
+
   const total = totalResult?.count || 0;
   const totalPages = Math.ceil(total / POSTS_PER_PAGE);
 
@@ -84,16 +84,16 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "PickleballCourts.io Blog",
-    description: "Expert tips, guides, and news for pickleball enthusiasts",
+    name: "Water Damage Repair Texas Blog",
+    description: "Expert tips, guides, and news for Texas property owners dealing with water damage",
     url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",
-      name: "PickleballCourts.io",
+      name: "Water Damage Repair Texas",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/pickleball-logo.png`,
+        url: `${SITE_URL}/water-damage-logo.png`,
       },
     },
     blogPost: posts.map(post => ({
@@ -114,15 +114,15 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         {/* Hero Section */}
         <section className="relative py-16 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-green-500/5" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-green-600 bg-clip-text text-transparent">
-                Pickleball Blog
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                Water Damage Blog
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Expert tips, court guides, equipment reviews, and everything you need 
-                to improve your game and find great places to play.
+                Expert tips, restoration guides, and everything you need
+                to protect your Texas property from water damage.
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               <BookOpen className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
               <h2 className="text-2xl font-semibold mb-2">No Posts Yet</h2>
               <p className="text-muted-foreground">
-                Check back soon for new pickleball content!
+                Check back soon for new water damage restoration content!
               </p>
             </div>
           ) : (
@@ -159,8 +159,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                             loading={index < 3 ? "eager" : "lazy"}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-green-100 dark:from-amber-900/20 dark:to-green-900/20">
-                            <BookOpen className="w-12 h-12 text-amber-600/50" />
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20">
+                            <BookOpen className="w-12 h-12 text-blue-600/50" />
                           </div>
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -170,11 +170,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     {/* Content */}
                     <div className="p-6">
                       <Link href={`/blog/${post.slug}`}>
-                        <h2 className="text-xl font-semibold mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
+                        <h2 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                           {post.title}
                         </h2>
                       </Link>
-                      
+
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
@@ -202,7 +202,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="inline-flex items-center gap-1 mt-4 text-amber-600 hover:text-amber-700 font-medium text-sm group/link"
+                        className="inline-flex items-center gap-1 mt-4 text-blue-600 hover:text-blue-700 font-medium text-sm group/link"
                       >
                         Read more
                         <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
@@ -223,7 +223,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                       Previous
                     </Link>
                   )}
-                  
+
                   <div className="flex items-center gap-1">
                     {Array.from({ length: totalPages }, (_, i) => i + 1)
                       .filter(page => {
@@ -238,7 +238,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                         // Add ellipsis
                         const prevPage = array[index - 1];
                         const showEllipsis = prevPage && page - prevPage > 1;
-                        
+
                         return (
                           <span key={page} className="flex items-center gap-1">
                             {showEllipsis && (
@@ -248,7 +248,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                               href={`/blog?page=${page}`}
                               className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors ${
                                 page === currentPage
-                                  ? "bg-amber-600 text-white"
+                                  ? "bg-blue-600 text-white"
                                   : "bg-muted hover:bg-muted/80"
                               }`}
                               aria-current={page === currentPage ? "page" : undefined}

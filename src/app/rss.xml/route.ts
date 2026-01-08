@@ -10,8 +10,8 @@ import { eq, desc } from "drizzle-orm";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
-const SITE_NAME = "PickleballCourts.io Blog";
-const SITE_DESCRIPTION = "Expert tips, court guides, equipment reviews, and the latest pickleball news.";
+const SITE_NAME = "Water Damage Repair Texas Blog";
+const SITE_DESCRIPTION = "Expert tips, restoration guides, and the latest water damage news for Texas property owners.";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Cache for 1 hour
@@ -55,7 +55,7 @@ export async function GET() {
     <lastBuildDate>${lastBuildDate.toUTCString()}</lastBuildDate>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>${SITE_URL}/pickleball-logo.png</url>
+      <url>${SITE_URL}/water-damage-logo.png</url>
       <title>${escapeXml(SITE_NAME)}</title>
       <link>${SITE_URL}</link>
     </image>

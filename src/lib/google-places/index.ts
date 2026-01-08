@@ -133,39 +133,36 @@ export function parseHoursFromGoogle(weekdayText?: string[]): Record<string, str
   return hours;
 }
 
-export function mapGoogleCategoryToPickleball(types: string[], businessName: string): string | null {
+export function mapGoogleCategoryToWaterDamage(types: string[], businessName: string): string | null {
   const nameLower = businessName.toLowerCase();
-  
-  // Check business name for pickleball keywords first
-  if (nameLower.includes("pickleball")) {
-    if (nameLower.includes("club") || nameLower.includes("league") || nameLower.includes("association")) {
-      return "pickleball-clubs-leagues";
+
+  // Check business name for water damage keywords first
+  if (nameLower.includes("water damage") || nameLower.includes("restoration") || nameLower.includes("flood")) {
+    if (nameLower.includes("mold") || nameLower.includes("remediation")) {
+      return "mold-remediation";
     }
-    if (nameLower.includes("shop") || nameLower.includes("store") || nameLower.includes("equipment") || nameLower.includes("gear")) {
-      return "pickleball-equipment-stores";
+    if (nameLower.includes("emergency") || nameLower.includes("24") || nameLower.includes("rapid")) {
+      return "emergency-water-removal";
     }
-    if (nameLower.includes("coach") || nameLower.includes("instructor") || nameLower.includes("lesson") || nameLower.includes("academy")) {
-      return "pickleball-coaches-instructors";
+    if (nameLower.includes("flood") || nameLower.includes("storm")) {
+      return "flood-damage-restoration";
     }
-    if (nameLower.includes("tournament") || nameLower.includes("event") || nameLower.includes("championship")) {
-      return "pickleball-tournaments-events";
+    if (nameLower.includes("dry") || nameLower.includes("dehumidif")) {
+      return "structural-drying-services";
     }
-    // Default to courts & facilities if pickleball is mentioned
-    return "pickleball-courts-facilities";
+    // Default to water damage restoration
+    return "water-damage-restoration";
   }
-  
-  // Map Google types to pickleball categories
+
+  // Map Google types to water damage categories
   const categoryMapping: Record<string, string> = {
-    stadium: "pickleball-courts-facilities",
-    gym: "pickleball-courts-facilities",
-    recreation_center: "pickleball-courts-facilities",
-    sports_complex: "pickleball-courts-facilities",
-    athletic_field: "pickleball-courts-facilities",
-    community_center: "pickleball-courts-facilities",
-    sporting_goods_store: "pickleball-equipment-stores",
-    store: "pickleball-equipment-stores",
-    school: "pickleball-coaches-instructors",
-    event_venue: "pickleball-tournaments-events",
+    plumber: "water-damage-restoration",
+    contractor: "water-damage-restoration",
+    general_contractor: "water-damage-restoration",
+    home_improvement_store: "water-damage-restoration",
+    roofing_contractor: "flood-damage-restoration",
+    fire_damage_restoration_service: "water-damage-restoration",
+    water_damage_restoration_service: "water-damage-restoration",
   };
 
   for (const type of types) {
@@ -173,7 +170,7 @@ export function mapGoogleCategoryToPickleball(types: string[], businessName: str
       return categoryMapping[type];
     }
   }
-  
+
   return null;
 }
 

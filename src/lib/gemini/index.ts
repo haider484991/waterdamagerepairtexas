@@ -258,7 +258,7 @@ export class GeminiClient {
   async analyzeIntent(keyword: string): Promise<GenerationResult<IntentAnalysis>> {
     const prompt = `Analyze the search intent for the keyword: "${keyword}"
 
-Consider this is for a pickleball-focused website (PickleballCourts.io).
+Consider this is for a water damage restoration website serving Texas (WaterDamageRepairTexas.net).
 
 Return a JSON object with:
 {
@@ -269,7 +269,7 @@ Return a JSON object with:
   "relatedQueries": ["array of 3-5 related search queries"]
 }`;
 
-    const systemInstruction = `You are an SEO expert specializing in pickleball content. Analyze keywords to understand user intent and suggest content strategies. Always respond with valid JSON.`;
+    const systemInstruction = `You are an SEO expert specializing in water damage restoration content. Analyze keywords to understand user intent and suggest content strategies. Always respond with valid JSON.`;
 
     return this.makeRequest<IntentAnalysis>(
       this.textModel,
@@ -293,7 +293,7 @@ Return a JSON object with:
 
     const prompt = `Generate ${count} unique blog post topic ideas for the keyword: "${keyword}"
 
-This is for PickleballCourts.io, a directory and resource site for pickleball enthusiasts.
+This is for WaterDamageRepairTexas.net, a directory and resource site for Texas property owners dealing with water damage.
 ${existingContext}
 
 Return a JSON array of objects:
@@ -303,7 +303,7 @@ Return a JSON array of objects:
     "angle": "Unique perspective or approach",
     "targetKeywords": ["primary keyword", "secondary keywords"],
     "estimatedDifficulty": 1-10 (1=easy to rank, 10=very competitive),
-    "relevanceScore": 0-100 (relevance to pickleball audience)
+    "relevanceScore": 0-100 (relevance to water damage restoration audience)
   }
 ]
 
@@ -315,7 +315,7 @@ Focus on:
 - Local/regional angles
 - Beginner to advanced topics`;
 
-    const systemInstruction = `You are a content strategist for a pickleball website. Generate unique, SEO-optimized topic ideas that would rank well and provide value to readers. Always respond with valid JSON array.`;
+    const systemInstruction = `You are a content strategist for a water damage restoration website. Generate unique, SEO-optimized topic ideas that would rank well and provide value to readers. Always respond with valid JSON array.`;
 
     return this.makeRequest<TopicIdea[]>(
       this.textModel,
@@ -359,7 +359,7 @@ Return a JSON object:
 Create 4-7 main sections that thoroughly cover the topic.
 Include practical tips, examples, and actionable advice.`;
 
-    const systemInstruction = `You are an expert pickleball content writer. Create comprehensive outlines that result in helpful, well-structured articles. Always respond with valid JSON.`;
+    const systemInstruction = `You are an expert water damage restoration content writer. Create comprehensive outlines that result in helpful, well-structured articles. Always respond with valid JSON.`;
 
     return this.makeRequest<ArticleOutline>(
       this.textModel,
@@ -404,7 +404,7 @@ Write naturally for humans, not search engines. Be helpful and informative.
 Do NOT include the title in the output (it will be added separately).
 Do NOT include any JSON wrapping - just return the Markdown content.`;
 
-    const systemInstruction = `You are a professional pickleball content writer for PickleballCourts.io. Write engaging, helpful articles that provide real value to readers. Your content should be well-researched, accurate, and actionable. Avoid fluff, keyword stuffing, and generic advice. Return only the Markdown article content.`;
+    const systemInstruction = `You are a professional water damage restoration content writer for WaterDamageRepairTexas.net. Write engaging, helpful articles that provide real value to readers. Your content should be well-researched, accurate, and actionable. Avoid fluff, keyword stuffing, and generic advice. Return only the Markdown article content.`;
 
     const result = await this.makeRequest<string>(
       this.textModel,
@@ -453,7 +453,7 @@ Requirements:
 - Include a mix of basic and advanced questions
 - Answers should be standalone (not reference the article)`;
 
-    const systemInstruction = `You are creating FAQ content for a pickleball website. Generate questions that real people search for, with helpful, accurate answers. Always respond with valid JSON array.`;
+    const systemInstruction = `You are creating FAQ content for a water damage restoration website. Generate questions that real people search for, with helpful, accurate answers. Always respond with valid JSON array.`;
 
     return this.makeRequest<FAQ[]>(
       this.textModel,
@@ -524,7 +524,7 @@ Return a JSON object:
 
 The prompt should describe:
 - A clean, professional blog header image
-- Pickleball-related imagery (courts, paddles, balls, players)
+- Water damage restoration imagery (flooded homes, restoration equipment, professionals at work)
 - Modern, vibrant style suitable for social sharing
 - No text in the image (title will be overlaid separately)
 - Landscape orientation (1200x630)`;
@@ -558,7 +558,7 @@ The prompt should describe:
 
 Style: Modern, clean, professional blog header image for social media sharing.
 Aspect ratio: 1200x630 (landscape)
-Colors: Use amber/gold theme (#f97316, #fbbf24) with vibrant pickleball imagery.
+Colors: Use blue/cyan theme (#0ea5e9, #22d3ee) with professional water damage restoration imagery.
 No text overlay - image only.`;
 
     try {
@@ -643,7 +643,7 @@ No text overlay - image only.`;
       // Fallback to placeholder if generation fails
       console.error("OG image generation failed:", error);
       return {
-        data: `/pickleball-logo.png`, // Fallback to default image
+        data: `/water-damage-logo.png`, // Fallback to default image
         tokenUsage: {
           promptTokens: 0,
           completionTokens: 0,
@@ -661,7 +661,7 @@ No text overlay - image only.`;
     topic: string,
     style: string = "modern"
   ): Promise<GenerationResult<string>> {
-    const prompt = `Generate a professional blog cover image for a pickleball article.
+    const prompt = `Generate a professional blog cover image for a water damage restoration article.
 Topic: ${topic}
 Style: ${style}, vibrant, engaging, action-oriented. No text overlay.`;
 
@@ -740,7 +740,7 @@ Style: ${style}, vibrant, engaging, action-oriented. No text overlay.`;
     } catch (error) {
       console.error("Cover image generation failed:", error);
       return {
-        data: `/pickleball-logo.png`, // Fallback
+        data: `/water-damage-logo.png`, // Fallback
         tokenUsage: {
           promptTokens: 0,
           completionTokens: 0,
@@ -786,7 +786,7 @@ Check for:
 - Missing headings structure
 - Generic/placeholder text
 - Spammy patterns
-- Factual accuracy for pickleball content`;
+- Factual accuracy for water damage restoration content`;
 
     const systemInstruction = `You are a content quality analyst. Evaluate articles for SEO quality, readability, and helpfulness. Be thorough but fair. Always respond with valid JSON.`;
 

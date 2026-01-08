@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | PickleballCourts.io",
+  title: "Terms of Service | WaterDamageRepairTexas.net",
   description:
-    "Terms of Service for PickleballCourts.io outlining acceptable use, user content, and limitations.",
+    "Terms of Service for WaterDamageRepairTexas.net outlining acceptable use, user content, and limitations.",
 };
 
 export default function TermsPage() {
@@ -18,10 +18,10 @@ export default function TermsPage() {
             <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Terms of Service</h1>
             <p className="text-muted-foreground leading-relaxed">
-              PickleballCourts.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a Washington State-based limited liability company.
+              WaterDamageRepairTexas.net (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a Washington State-based limited liability company.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              By accessing or using PickleballCourts.io and any related services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Services.
+              By accessing or using WaterDamageRepairTexas.net and any related services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Services.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-semibold text-foreground">2. User-Submitted Content</h2>
                 <div className="space-y-2">
                   <p className="text-muted-foreground leading-relaxed">
-                    <strong className="text-foreground">2.1</strong> You may submit pickleball court listings, photos, reviews, comments, ratings, corrections, or other content ("User Content").
+                    <strong className="text-foreground">2.1</strong> You may submit water damage restoration business listings, photos, reviews, comments, ratings, corrections, or other content ("User Content").
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     <strong className="text-foreground">2.2</strong> By submitting User Content, you grant Shield Web Services, LLC a worldwide, perpetual, irrevocable, royalty-free, transferable license (with the right to sublicense) to use, copy, modify, distribute, display, and create derivative works of that content for any purpose, including commercial use.
@@ -173,7 +173,7 @@ export default function TermsPage() {
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  Thank you for helping build the most complete pickleball court directory! 🥒🏓
+                  Thank you for helping build the most complete water damage restoration directory in Texas!
                 </p>
               </section>
             </CardContent>

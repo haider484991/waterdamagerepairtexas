@@ -180,7 +180,7 @@ export default function AddBusinessPage() {
             <div>
               <h1 className="text-2xl font-bold">Add Your Business</h1>
               <p className="text-muted-foreground">
-                Submit your business to US Pickleball Directory
+                Submit your business to Water Damage Repair Texas
               </p>
             </div>
           </div>

@@ -17,7 +17,7 @@ const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
       autopublish: false,
       tone: "conversational",
       targetWordCount: { min: 1500, max: 2500 },
-      brandVoice: "We're pickleball enthusiasts helping you find the best places to play. Our content is friendly, informative, and focused on helping players of all skill levels enjoy the sport.",
+      brandVoice: "We are water damage restoration experts helping Texas property owners navigate the challenges of water damage, flooding, and mold issues. Our content is informative, trustworthy, and focused on helping you find the right restoration professionals.",
       includeExamples: true,
       includeTips: true,
       maxInternalLinks: 5,
@@ -52,9 +52,9 @@ const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
   },
   seo_config: {
     value: {
-      defaultOgImage: "/pickleball-logo.png",
-      siteName: "PickleballCourts.io",
-      authorName: "PickleballCourts.io Team",
+      defaultOgImage: "/water-damage-logo.png",
+      siteName: "Water Damage Repair Texas",
+      authorName: "Water Damage Repair Texas Team",
       enableFAQSchema: true,
       enableArticleSchema: true,
       enableBreadcrumbSchema: true,

@@ -1,31 +1,31 @@
 /**
  * Dynamic Content Generator
- * Generates unique, SEO-friendly descriptions and tips for pickleball businesses
+ * Generates unique, SEO-friendly descriptions and tips for water damage restoration businesses
  */
 
 import type { Business, Category } from "@/lib/db/schema";
 
-// Amenity detection based on business name, types, and category
+// Service detection based on business name, types, and category
 export interface DetectedAmenities {
-  hasIndoorCourts: boolean;
-  hasOutdoorCourts: boolean;
-  hasLighting: boolean;
-  hasProShop: boolean;
-  hasRestrooms: boolean;
-  hasParking: boolean;
-  hasWaterFountain: boolean;
-  hasBenchSeating: boolean;
-  offersLessons: boolean;
-  offersLeagues: boolean;
-  offersTournaments: boolean;
-  hasEquipmentRental: boolean;
-  isPrivateClub: boolean;
-  isPublicFacility: boolean;
-  hasReservationSystem: boolean;
-  wheelchairAccessible: boolean;
+  offers24HourService: boolean;
+  offersEmergencyService: boolean;
+  hasInsuranceAssistance: boolean;
+  offersMoldRemediation: boolean;
+  offersFloodCleanup: boolean;
+  offersWaterExtraction: boolean;
+  offersStructuralDrying: boolean;
+  offersContentRestoration: boolean;
+  hasCertifiedTechnicians: boolean;
+  hasCommercialServices: boolean;
+  hasResidentialServices: boolean;
+  offersFreeEstimates: boolean;
+  isLocallyOwned: boolean;
+  isNationalCompany: boolean;
+  hasWarranty: boolean;
+  servesRuralAreas: boolean;
 }
 
-// Detect amenities from business data
+// Detect services from business data
 export function detectAmenities(business: Business, category?: Category | null): DetectedAmenities {
   const name = business.name.toLowerCase();
   const description = (business.description || "").toLowerCase();
@@ -33,67 +33,66 @@ export function detectAmenities(business: Business, category?: Category | null):
   const combined = `${name} ${description}`;
 
   return {
-    hasIndoorCourts: /indoor|covered|climate|heated|air.?condition/i.test(combined),
-    hasOutdoorCourts: /outdoor|open.?air|outside/i.test(combined) || !(/indoor/i.test(combined)),
-    hasLighting: /light|night|evening|lit courts/i.test(combined),
-    hasProShop: /pro.?shop|store|retail|equipment/i.test(combined) || categorySlug.includes("equipment"),
-    hasRestrooms: true, // Assume most facilities have restrooms
-    hasParking: true, // Assume most facilities have parking
-    hasWaterFountain: /recreation|community|park|center/i.test(combined),
-    hasBenchSeating: true, // Assume most courts have seating
-    offersLessons: /lesson|coach|instruction|training|academy|clinic/i.test(combined) || categorySlug.includes("coach"),
-    offersLeagues: /league|club|association|member/i.test(combined) || categorySlug.includes("club"),
-    offersTournaments: /tournament|competition|championship|event/i.test(combined) || categorySlug.includes("tournament"),
-    hasEquipmentRental: /rental|rent|borrow|equipment/i.test(combined),
-    isPrivateClub: /private|member|club|country/i.test(combined),
-    isPublicFacility: /public|community|recreation|park|ymca|city/i.test(combined),
-    hasReservationSystem: /reserv|book|schedule|appointment/i.test(combined),
-    wheelchairAccessible: /accessible|wheelchair|ada|handicap/i.test(combined) || /recreation|community|public/i.test(combined),
+    offers24HourService: /24.?hour|24\/7|round.?the.?clock|always.?available/i.test(combined),
+    offersEmergencyService: /emergency|urgent|immediate|rapid|fast.?response/i.test(combined),
+    hasInsuranceAssistance: /insurance|claim|billing|direct.?bill/i.test(combined),
+    offersMoldRemediation: /mold|mildew|fungus|remediation/i.test(combined) || categorySlug.includes("mold"),
+    offersFloodCleanup: /flood|storm|hurricane|natural.?disaster/i.test(combined) || categorySlug.includes("flood"),
+    offersWaterExtraction: /extraction|pump|remove.?water|water.?removal/i.test(combined),
+    offersStructuralDrying: /dry|dehumidif|structural|air.?mover/i.test(combined),
+    offersContentRestoration: /content|furniture|belong|personal.?item/i.test(combined),
+    hasCertifiedTechnicians: /certified|iicrc|license|trained|professional/i.test(combined),
+    hasCommercialServices: /commercial|business|office|industrial/i.test(combined),
+    hasResidentialServices: /residential|home|house|apartment/i.test(combined) || !(/commercial/i.test(combined)),
+    offersFreeEstimates: /free.?estimate|free.?quote|free.?inspection|no.?cost/i.test(combined),
+    isLocallyOwned: /local|family.?owned|community|neighborhood/i.test(combined),
+    isNationalCompany: /national|franchise|servpro|servicemaster|belfor/i.test(combined),
+    hasWarranty: /warranty|guarantee|satisfaction/i.test(combined),
+    servesRuralAreas: /rural|county|region|surrounding/i.test(combined),
   };
 }
 
-// Generate amenities list for display
+// Generate services list for display
 export function generateAmenitiesList(amenities: DetectedAmenities): string[] {
   const list: string[] = [];
 
-  if (amenities.hasIndoorCourts) list.push("Indoor Courts");
-  if (amenities.hasOutdoorCourts && !amenities.hasIndoorCourts) list.push("Outdoor Courts");
-  if (amenities.hasIndoorCourts && amenities.hasOutdoorCourts) list.push("Indoor & Outdoor Courts");
-  if (amenities.hasLighting) list.push("Court Lighting");
-  if (amenities.hasProShop) list.push("Pro Shop");
-  if (amenities.offersLessons) list.push("Lessons Available");
-  if (amenities.offersLeagues) list.push("League Play");
-  if (amenities.offersTournaments) list.push("Tournaments");
-  if (amenities.hasEquipmentRental) list.push("Equipment Rental");
-  if (amenities.hasReservationSystem) list.push("Online Reservations");
-  if (amenities.hasRestrooms) list.push("Restrooms");
-  if (amenities.hasParking) list.push("Parking Available");
-  if (amenities.wheelchairAccessible) list.push("Wheelchair Accessible");
+  if (amenities.offers24HourService) list.push("24/7 Service");
+  if (amenities.offersEmergencyService) list.push("Emergency Response");
+  if (amenities.hasInsuranceAssistance) list.push("Insurance Assistance");
+  if (amenities.offersMoldRemediation) list.push("Mold Remediation");
+  if (amenities.offersFloodCleanup) list.push("Flood Cleanup");
+  if (amenities.offersWaterExtraction) list.push("Water Extraction");
+  if (amenities.offersStructuralDrying) list.push("Structural Drying");
+  if (amenities.offersContentRestoration) list.push("Content Restoration");
+  if (amenities.hasCertifiedTechnicians) list.push("Certified Technicians");
+  if (amenities.hasCommercialServices) list.push("Commercial Services");
+  if (amenities.hasResidentialServices) list.push("Residential Services");
+  if (amenities.offersFreeEstimates) list.push("Free Estimates");
 
   return list;
 }
 
-// Skill level suggestions based on facility type
-type SkillLevel = "beginner" | "intermediate" | "advanced" | "all";
+// Service type classification
+type ServiceType = "emergency" | "residential" | "commercial" | "specialty" | "all";
 
-function determineSkillLevels(business: Business, amenities: DetectedAmenities): SkillLevel[] {
-  const levels: SkillLevel[] = [];
+function determineServiceTypes(business: Business, amenities: DetectedAmenities): ServiceType[] {
+  const types: ServiceType[] = [];
   const name = business.name.toLowerCase();
 
-  if (amenities.offersLessons || /beginner|learn|intro|starter/i.test(name)) {
-    levels.push("beginner");
+  if (amenities.offersEmergencyService || amenities.offers24HourService) {
+    types.push("emergency");
   }
-  if (amenities.offersLeagues || /club|league/i.test(name)) {
-    levels.push("intermediate");
+  if (amenities.hasResidentialServices) {
+    types.push("residential");
   }
-  if (amenities.offersTournaments || /competitive|tournament|championship/i.test(name)) {
-    levels.push("advanced");
+  if (amenities.hasCommercialServices) {
+    types.push("commercial");
   }
-  if (/recreation|community|public|park/i.test(name)) {
-    levels.push("all");
+  if (amenities.offersMoldRemediation || /specialty|special/i.test(name)) {
+    types.push("specialty");
   }
 
-  return levels.length > 0 ? levels : ["all"];
+  return types.length > 0 ? types : ["all"];
 }
 
 // Generate dynamic description
@@ -103,61 +102,59 @@ export function generateBusinessDescription(
 ): string {
   const amenities = detectAmenities(business, category);
   const cityState = `${business.city}, ${business.state}`;
-  const categoryName = category?.name || "pickleball facility";
+  const categoryName = category?.name || "water damage restoration company";
   const rating = Number(business.ratingAvg) || 0;
   const reviews = business.reviewCount || 0;
 
   // Build description parts
   const parts: string[] = [];
 
-  // Opening line based on facility type
-  if (amenities.isPrivateClub) {
-    parts.push(`${business.name} is a premier private ${categoryName.toLowerCase()} located in ${cityState}.`);
-  } else if (amenities.isPublicFacility) {
-    parts.push(`${business.name} is a public ${categoryName.toLowerCase()} serving the ${cityState} community.`);
+  // Opening line based on company type
+  if (amenities.isLocallyOwned) {
+    parts.push(`${business.name} is a locally-owned ${categoryName.toLowerCase()} proudly serving ${cityState} and surrounding areas.`);
+  } else if (amenities.isNationalCompany) {
+    parts.push(`${business.name} is a trusted ${categoryName.toLowerCase()} with a ${cityState} location, backed by national resources and expertise.`);
   } else {
-    parts.push(`${business.name} is a ${categoryName.toLowerCase()} located in ${cityState}.`);
+    parts.push(`${business.name} is a professional ${categoryName.toLowerCase()} serving the ${cityState} area.`);
   }
 
-  // Court type
-  if (amenities.hasIndoorCourts && amenities.hasOutdoorCourts) {
-    parts.push("The facility features both indoor and outdoor pickleball courts, allowing year-round play regardless of weather conditions.");
-  } else if (amenities.hasIndoorCourts) {
-    parts.push("This indoor facility offers climate-controlled courts for comfortable play in any season.");
-  } else {
-    parts.push("The facility offers outdoor courts for pickleball enthusiasts.");
+  // Emergency services
+  if (amenities.offers24HourService && amenities.offersEmergencyService) {
+    parts.push("They offer 24/7 emergency response services to minimize water damage and get your property restored quickly.");
+  } else if (amenities.offersEmergencyService) {
+    parts.push("Emergency services are available for urgent water damage situations.");
   }
 
   // Rating mention
   if (rating >= 4.5 && reviews >= 20) {
-    parts.push(`Highly rated by the local pickleball community with ${rating.toFixed(1)} stars from ${reviews} reviews.`);
+    parts.push(`Highly rated by Texas property owners with ${rating.toFixed(1)} stars from ${reviews} reviews.`);
   } else if (rating >= 4.0 && reviews >= 10) {
-    parts.push(`Well-reviewed by players with a ${rating.toFixed(1)}-star rating.`);
+    parts.push(`Well-reviewed by customers with a ${rating.toFixed(1)}-star rating.`);
   }
 
   // Services
   const services: string[] = [];
-  if (amenities.offersLessons) services.push("professional coaching and lessons");
-  if (amenities.offersLeagues) services.push("organized league play");
-  if (amenities.offersTournaments) services.push("tournament hosting");
-  if (amenities.hasEquipmentRental) services.push("equipment rental");
+  if (amenities.offersWaterExtraction) services.push("water extraction");
+  if (amenities.offersStructuralDrying) services.push("structural drying");
+  if (amenities.offersMoldRemediation) services.push("mold remediation");
+  if (amenities.offersContentRestoration) services.push("content restoration");
 
   if (services.length > 0) {
     parts.push(`Services include ${services.join(", ")}.`);
   }
 
-  // Amenities highlight
-  if (amenities.hasProShop) {
-    parts.push("An on-site pro shop offers paddles, balls, and accessories.");
+  // Additional highlights
+  if (amenities.hasInsuranceAssistance) {
+    parts.push("They work directly with insurance companies to help streamline your claims process.");
   }
-  if (amenities.hasLighting) {
-    parts.push("Court lighting enables evening play sessions.");
+  if (amenities.hasCertifiedTechnicians) {
+    parts.push("Their team includes IICRC-certified technicians trained in the latest restoration techniques.");
   }
 
   return parts.join(" ");
 }
 
-// Generate playing tips based on facility type
+// Generate tips for property owners
 export function generatePlayingTips(
   business: Business,
   category?: Category | null
@@ -165,60 +162,48 @@ export function generatePlayingTips(
   const amenities = detectAmenities(business, category);
   const tips: string[] = [];
 
-  // General tips
-  tips.push("Arrive 10-15 minutes early to warm up and secure your court time.");
-  tips.push("Bring water and stay hydrated, especially during longer sessions.");
+  // General emergency tips
+  tips.push("Document all damage with photos and videos before any cleanup begins for insurance purposes.");
+  tips.push("Turn off electricity to affected areas if safe to do so to prevent electrical hazards.");
 
-  // Indoor vs outdoor tips
-  if (amenities.hasIndoorCourts) {
-    tips.push("Indoor courts may have different ball bounce characteristics - consider using indoor-specific balls.");
-    tips.push("Court shoes with non-marking soles are typically required for indoor play.");
+  // Emergency service tips
+  if (amenities.offersEmergencyService || amenities.offers24HourService) {
+    tips.push("Don't wait to call - water damage worsens rapidly, and quick response prevents mold growth.");
+    tips.push("Keep the company's emergency number saved in your phone for quick access.");
   } else {
-    tips.push("Check weather conditions before heading out for outdoor play.");
-    tips.push("Outdoor balls (with smaller holes) perform better in windy conditions.");
-    tips.push("Apply sunscreen and wear a hat for daytime outdoor sessions.");
+    tips.push("Call during business hours to schedule an inspection and get a detailed assessment.");
   }
 
-  // Reservation tips
-  if (amenities.hasReservationSystem) {
-    tips.push("Book courts in advance, especially during peak hours (evenings and weekends).");
-  } else {
-    tips.push("Courts may operate on a first-come, first-served basis - arrive early for best availability.");
+  // Insurance tips
+  if (amenities.hasInsuranceAssistance) {
+    tips.push("Ask about their direct insurance billing process to simplify your claims.");
+    tips.push("Request detailed documentation of all work performed for your insurance records.");
   }
 
-  // Club/league tips
-  if (amenities.offersLeagues) {
-    tips.push("Ask about league schedules and skill-level divisions to find the right competitive match.");
-    tips.push("Open play sessions are great for meeting other players and improving your game.");
+  // Mold tips
+  if (amenities.offersMoldRemediation) {
+    tips.push("If you suspect mold, avoid disturbing it - professional remediation prevents spore spread.");
+    tips.push("Ask about mold testing services to identify hidden moisture problems.");
   }
 
-  // Lesson tips
-  if (amenities.offersLessons) {
-    tips.push("Beginners should consider taking a few lessons to learn proper technique and court etiquette.");
-    tips.push("Group clinics offer affordable instruction and a chance to meet fellow players.");
+  // Service tips
+  if (amenities.hasCertifiedTechnicians) {
+    tips.push("Ask about their IICRC certifications and training to ensure quality restoration work.");
   }
 
-  // Equipment tips
-  if (amenities.hasEquipmentRental) {
-    tips.push("Equipment rental is available if you're new to the sport or forgot your gear.");
-  }
-  if (amenities.hasProShop) {
-    tips.push("Visit the pro shop for paddle demos - trying before buying helps find the right fit.");
+  // Free estimate tips
+  if (amenities.offersFreeEstimates) {
+    tips.push("Take advantage of free estimates to understand the full scope of needed repairs.");
   }
 
-  // Private club tips
-  if (amenities.isPrivateClub) {
-    tips.push("Contact the club about membership options, guest policies, and trial visits.");
+  // Commercial vs residential
+  if (amenities.hasCommercialServices) {
+    tips.push("For businesses, ask about their plan to minimize downtime during restoration.");
   }
 
-  // Public facility tips
-  if (amenities.isPublicFacility) {
-    tips.push("Public courts may have time limits during busy periods - be courteous to waiting players.");
-  }
-
-  // Lighting tips
-  if (amenities.hasLighting) {
-    tips.push("Evening sessions under lights offer cooler temperatures during summer months.");
+  // Local company tips
+  if (amenities.isLocallyOwned) {
+    tips.push("Local companies often provide faster response times and personalized service.");
   }
 
   return tips.slice(0, 6); // Return top 6 most relevant tips
@@ -232,58 +217,53 @@ export function generateWhatToExpect(
   const amenities = detectAmenities(business, category);
   const expectations: string[] = [];
 
-  // Facility type expectations
-  if (amenities.isPrivateClub) {
-    expectations.push("Private club atmosphere with dedicated pickleball facilities");
-    expectations.push("Membership may be required for regular play");
-  } else if (amenities.isPublicFacility) {
-    expectations.push("Community-friendly environment welcoming all skill levels");
-    expectations.push("Affordable or free court access for residents");
+  // Company type expectations
+  if (amenities.isLocallyOwned) {
+    expectations.push("Personalized service from a locally-owned company");
+    expectations.push("Quick response times from technicians who know the area");
+  } else if (amenities.isNationalCompany) {
+    expectations.push("Backed by national resources and standardized processes");
+    expectations.push("Consistent quality with brand accountability");
   }
 
-  // Court expectations
-  if (amenities.hasIndoorCourts) {
-    expectations.push("Climate-controlled indoor courts for year-round comfort");
+  // Emergency service expectations
+  if (amenities.offers24HourService) {
+    expectations.push("24/7 availability for water damage emergencies");
   }
-  if (amenities.hasOutdoorCourts) {
-    expectations.push("Outdoor courts with fresh air and natural lighting");
-  }
-  if (amenities.hasLighting) {
-    expectations.push("Lighted courts for extended evening play hours");
+  if (amenities.offersEmergencyService) {
+    expectations.push("Rapid response to minimize property damage");
   }
 
-  // Service expectations
-  if (amenities.offersLessons) {
-    expectations.push("Professional instruction available for skill development");
+  // Service process expectations
+  expectations.push("Thorough damage assessment and detailed restoration plan");
+  if (amenities.offersWaterExtraction) {
+    expectations.push("Professional water extraction using industrial equipment");
   }
-  if (amenities.offersLeagues) {
-    expectations.push("Organized league play and competitive opportunities");
+  if (amenities.offersStructuralDrying) {
+    expectations.push("Complete structural drying with moisture monitoring");
   }
-  if (amenities.offersTournaments) {
-    expectations.push("Tournament hosting with competitive play options");
-  }
-
-  // Amenity expectations
-  if (amenities.hasProShop) {
-    expectations.push("On-site pro shop for equipment and accessories");
-  }
-  if (amenities.hasEquipmentRental) {
-    expectations.push("Equipment rental for beginners or visitors");
+  if (amenities.offersMoldRemediation) {
+    expectations.push("Comprehensive mold inspection and remediation services");
   }
 
-  // Standard expectations
-  expectations.push("Dedicated pickleball courts with proper lines and nets");
-  if (amenities.hasRestrooms) {
-    expectations.push("Restroom facilities available on-site");
+  // Additional service expectations
+  if (amenities.hasCertifiedTechnicians) {
+    expectations.push("IICRC-certified technicians with professional training");
   }
-  if (amenities.hasParking) {
-    expectations.push("Convenient parking for players");
+  if (amenities.hasInsuranceAssistance) {
+    expectations.push("Direct coordination with your insurance company");
+  }
+  if (amenities.offersFreeEstimates) {
+    expectations.push("Free initial inspection and damage assessment");
+  }
+  if (amenities.hasWarranty) {
+    expectations.push("Workmanship warranty for peace of mind");
   }
 
   return expectations.slice(0, 8);
 }
 
-// Generate best times to visit
+// Generate best times to contact
 export function generateBestTimes(
   business: Business,
   category?: Category | null
@@ -291,48 +271,44 @@ export function generateBestTimes(
   const amenities = detectAmenities(business, category);
   const times: { time: string; description: string }[] = [];
 
-  // Morning
-  times.push({
-    time: "Early Morning (6-9 AM)",
-    description: amenities.hasOutdoorCourts 
-      ? "Beat the heat and crowds. Great for serious players."
-      : "Quieter courts before the day gets busy.",
-  });
-
-  // Mid-morning
-  times.push({
-    time: "Mid-Morning (9 AM - 12 PM)",
-    description: "Popular time for retirees and flexible schedules. Expect moderate activity.",
-  });
-
-  // Afternoon
-  times.push({
-    time: "Afternoon (12-5 PM)",
-    description: amenities.hasIndoorCourts
-      ? "Good availability as many players take a break."
-      : "Can be hot outdoors in summer. Indoor courts recommended.",
-  });
-
-  // Evening
-  if (amenities.hasLighting || amenities.hasIndoorCourts) {
+  // Emergency situations
+  if (amenities.offers24HourService) {
     times.push({
-      time: "Evening (5-9 PM)",
-      description: "Peak hours - most popular time for working professionals. Book ahead if possible.",
+      time: "Emergency (24/7)",
+      description: "For active flooding or major water damage, call immediately - they respond around the clock.",
     });
   }
 
-  // Weekends
+  // Business hours
   times.push({
-    time: "Weekends",
-    description: amenities.offersLeagues
-      ? "League play and tournaments often scheduled. Check calendar for open play times."
-      : "Busiest time - arrive early for best court availability.",
+    time: "Business Hours (8 AM - 6 PM)",
+    description: "Best time for scheduling inspections, getting estimates, and discussing non-emergency repairs.",
+  });
+
+  // Morning
+  times.push({
+    time: "Early Morning (8-10 AM)",
+    description: "Ideal for scheduling same-day appointments and getting quick responses to your inquiry.",
+  });
+
+  // Off-peak
+  times.push({
+    time: "Mid-Week",
+    description: amenities.offersEmergencyService
+      ? "Tuesdays through Thursdays often have better availability for scheduled work."
+      : "Better availability for inspections and estimates during mid-week.",
+  });
+
+  // Planning ahead
+  times.push({
+    time: "After Discovery",
+    description: "Don't wait - water damage worsens within 24-48 hours. Contact them as soon as you discover the problem.",
   });
 
   return times;
 }
 
-// Generate skill level recommendations
+// Generate service recommendations based on damage type
 export function generateSkillRecommendations(
   business: Business,
   category?: Category | null
@@ -340,31 +316,39 @@ export function generateSkillRecommendations(
   const amenities = detectAmenities(business, category);
   const recommendations: { level: string; recommendation: string }[] = [];
 
-  // Beginners
-  if (amenities.offersLessons || amenities.isPublicFacility) {
+  // Residential customers
+  if (amenities.hasResidentialServices) {
     recommendations.push({
-      level: "Beginners (1.0-2.5)",
-      recommendation: amenities.offersLessons
-        ? "Great choice! Take advantage of beginner lessons and clinics to build proper fundamentals."
-        : "Welcoming environment for new players. Look for beginner-friendly open play sessions.",
+      level: "Homeowners",
+      recommendation: amenities.hasInsuranceAssistance
+        ? "Great choice for homeowners - they handle insurance coordination and provide comprehensive home restoration."
+        : "Experienced with residential water damage, from minor leaks to major flooding.",
     });
   }
 
-  // Intermediate
-  recommendations.push({
-    level: "Intermediate (3.0-3.5)",
-    recommendation: amenities.offersLeagues
-      ? "Join league play to find consistent partners at your skill level and improve through competition."
-      : "Open play sessions offer good opportunities to challenge yourself against varied opponents.",
-  });
-
-  // Advanced
-  if (amenities.offersTournaments || amenities.offersLeagues) {
+  // Commercial customers
+  if (amenities.hasCommercialServices) {
     recommendations.push({
-      level: "Advanced (4.0+)",
-      recommendation: amenities.offersTournaments
-        ? "Competitive environment with tournament play. Great for serious players looking to compete."
-        : "Strong player community with challenging competition available.",
+      level: "Business Owners",
+      recommendation: amenities.offers24HourService
+        ? "Ideal for businesses - 24/7 availability minimizes downtime and gets you back to operations quickly."
+        : "Experienced with commercial properties and understands the urgency of business restoration.",
+    });
+  }
+
+  // Emergency situations
+  if (amenities.offersEmergencyService || amenities.offers24HourService) {
+    recommendations.push({
+      level: "Emergency Situations",
+      recommendation: "Perfect for urgent water damage - rapid response prevents mold growth and structural damage.",
+    });
+  }
+
+  // Mold concerns
+  if (amenities.offersMoldRemediation) {
+    recommendations.push({
+      level: "Mold Concerns",
+      recommendation: "Equipped for mold remediation - they can test, contain, and remove mold safely and effectively.",
     });
   }
 

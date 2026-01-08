@@ -123,7 +123,7 @@ export default function DashboardPage() {
   ];
 
   // Check if user is admin
-  const isAdmin = session.user?.email === "admin@pickleballcourts.io" || 
+  const isAdmin = session.user?.email === "admin@waterdamagerepairtexas.net" || 
                   session.user?.email?.endsWith("@admin.com");
 
   return (
@@ -404,7 +404,7 @@ export default function DashboardPage() {
                   <Star className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">No reviews yet</h3>
                   <p className="text-muted-foreground mb-4">
-                    Share your experiences with the pickleball community
+                    Share your experiences with other property owners
                   </p>
                   <Button asChild>
                     <Link href="/search">Find a Business to Review</Link>
@@ -423,7 +423,7 @@ export default function DashboardPage() {
               <Building2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="font-semibold mb-2">No claimed businesses</h3>
               <p className="text-muted-foreground mb-4">
-                Own a pickleball business? Claim your listing to manage it.
+                Own a water damage restoration business? Claim your listing to manage it.
               </p>
               <Button asChild>
                 <Link href="/dashboard/claim">Claim a Business</Link>

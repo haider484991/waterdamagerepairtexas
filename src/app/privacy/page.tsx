@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | PickleballCourts.io",
+  title: "Privacy Policy | WaterDamageRepairTexas.net",
   description:
-    "Privacy policy for PickleballCourts.io detailing what information we collect, how we use it, and your choices.",
+    "Privacy policy for WaterDamageRepairTexas.net detailing what information we collect, how we use it, and your choices.",
 };
 
 export default function PrivacyPage() {
@@ -18,10 +18,10 @@ export default function PrivacyPage() {
             <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Privacy Policy</h1>
             <p className="text-muted-foreground leading-relaxed">
-              PickleballCourts.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a limited liability company based in the United States.
+              WaterDamageRepairTexas.net (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a limited liability company based in the United States.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit PickleballCourts.io or use any of our services (collectively, the "Services").
+              We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit WaterDamageRepairTexas.net or use any of our services (collectively, the "Services").
             </p>
             <p className="text-muted-foreground leading-relaxed">
               By using the Site, you agree to the collection and use of information in accordance with this Privacy Policy.
@@ -42,13 +42,13 @@ export default function PrivacyPage() {
                     Name, email address, phone number, or other contact details when you:
                   </p>
                   <ul className="list-disc pl-5 space-y-1 text-muted-foreground ml-4">
-                    <li>Submit a court listing or update request</li>
+                    <li>Submit a business listing or update request</li>
                     <li>Contact us via email or contact forms</li>
                     <li>Sign up for newsletters or updates (if available)</li>
                     <li>Create an account (if account functionality is implemented)</li>
                   </ul>
                   <p className="text-muted-foreground leading-relaxed">
-                    Any additional information you choose to provide (e.g., photos, court descriptions, reviews, or comments)
+                    Any additional information you choose to provide (e.g., photos, business descriptions, reviews, or comments)
                   </p>
                 </div>
 
@@ -82,8 +82,8 @@ export default function PrivacyPage() {
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                   <li>To operate, maintain, and improve the Site and Services</li>
-                  <li>To display and organize pickleball court listings and related community content</li>
-                  <li>To respond to your inquiries, comments, or court submission requests</li>
+                  <li>To display and organize water damage restoration business listings and related content</li>
+                  <li>To respond to your inquiries, comments, or business submission requests</li>
                   <li>To send administrative or account-related communications</li>
                   <li>To send marketing communications (e.g., newsletters), only if you opt in (you can unsubscribe at any time)</li>
                   <li>To detect, prevent, and address technical issues, fraud, or abuse</li>
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
                     <span className="font-semibold text-foreground">Business Transfers:</span> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.
                   </li>
                   <li>
-                    <span className="font-semibold text-foreground">Publicly Displayed Information:</span> Court listings, photos, reviews, or comments you submit may be publicly visible on the Site.
+                    <span className="font-semibold text-foreground">Publicly Displayed Information:</span> Business listings, photos, reviews, or comments you submit may be publicly visible on the Site.
                   </li>
                 </ul>
               </section>
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-foreground">5. Data Retention</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  We retain personal information only as long as necessary to fulfill the purposes outlined in this policy, or as required by law. Court listings and user-submitted content may remain on the Site indefinitely unless you request removal.
+                  We retain personal information only as long as necessary to fulfill the purposes outlined in this policy, or as required by law. Business listings and user-submitted content may remain on the Site indefinitely unless you request removal.
                 </p>
               </section>
 
@@ -210,7 +210,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  Thank you for using PickleballCourts.io — the directory for all things pickleball! 🥒🏓
+                  Thank you for using WaterDamageRepairTexas.net — connecting Texas property owners with trusted water damage restoration professionals.
                 </p>
               </section>
             </CardContent>

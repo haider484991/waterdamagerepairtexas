@@ -180,7 +180,7 @@ export function BusinessDetailClient({
 
   const handleShare = async (platform?: string) => {
     const url = typeof window !== "undefined" ? window.location.href : "";
-    const text = `Check out ${business.name} on PickleballCourts.io`;
+    const text = `Check out ${business.name} on WaterDamageRepairTexas.net`;
 
     if (platform === "copy") {
       await navigator.clipboard.writeText(url);

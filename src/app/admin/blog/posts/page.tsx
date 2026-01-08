@@ -69,7 +69,7 @@ export default function PostsPage() {
   });
   const [saving, setSaving] = useState(false);
 
-  const isAdmin = session?.user?.email === "admin@pickleballcourts.io" ||
+  const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
                   session?.user?.email?.endsWith("@admin.com") ||
                   session?.user?.email === "admin@test.com";
 

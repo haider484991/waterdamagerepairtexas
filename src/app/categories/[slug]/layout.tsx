@@ -5,7 +5,7 @@ import { db, categories, businesses } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 import { generateCategoryMetadata } from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pickleballcourts.io";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://waterdamagerepairtexas.net";
 
 type LayoutProps = {
   children: ReactNode;
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   if (!data) {
     return {
-      title: "Category Not Found | US Pickleball Directory",
+      title: "Category Not Found | Water Damage Repair Texas",
       description: "The category you are looking for could not be found.",
     };
   }

@@ -50,7 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isAdmin = auth?.user?.role === "admin" || 
-                      auth?.user?.email === "admin@pickleballcourts.io" ||
+                      auth?.user?.email === "admin@waterdamagerepairtexas.net" ||
                       auth?.user?.email?.endsWith("@admin.com");
       
       const isOnAdmin = nextUrl.pathname.startsWith("/admin") || nextUrl.pathname.startsWith("/api/admin");

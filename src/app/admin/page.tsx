@@ -70,7 +70,8 @@ export default function AdminPage() {
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check admin access
-  const isAdmin = session?.user?.email === "admin@pickleballcourts.io" || 
+  const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
+                  session?.user?.email === "admin@waterdamagerepairtexas.net" ||
                   session?.user?.email?.endsWith("@admin.com") ||
                   session?.user?.email === "admin@test.com";
 
@@ -321,7 +322,7 @@ export default function AdminPage() {
   const adminActions = [
     {
       title: "Sync Categories",
-      description: "Sync all 5 pickleball categories and update category data",
+      description: "Sync all 5 water damage service categories and update category data",
       icon: Tag,
       action: handleSyncCategories,
       loading: syncingCategories,
@@ -329,15 +330,15 @@ export default function AdminPage() {
     },
     {
       title: "Quick Sync",
-      description: "Pull pickleball businesses from Google Places API",
+      description: "Pull water damage restoration businesses from Google Places API",
       icon: RefreshCw,
       action: handleSyncAll,
       loading: isSyncing,
       color: "text-blue-500",
     },
     {
-      title: "Bulk Sync (All States)",
-      description: "Populate database with pickleball businesses from all 25 states - grows your data fast!",
+      title: "Bulk Sync (All Texas Cities)",
+      description: "Populate database with water damage businesses across all major Texas cities",
       icon: Database,
       action: handleBulkSync,
       loading: isBulkSyncing,

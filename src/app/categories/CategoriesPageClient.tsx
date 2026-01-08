@@ -111,8 +111,8 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
             Browse All Categories
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore {categories.length} pickleball categories covering everything the United States has to offer, from
-            dining and shopping to professional services and entertainment.
+            Explore {categories.length} water damage restoration categories covering everything Texas has to offer, from
+            emergency services to specialized restoration professionals.
           </p>
         </motion.div>
 

@@ -141,7 +141,7 @@ export default function AdminSyncPage() {
           <CardHeader>
             <CardTitle>Sync All Categories</CardTitle>
             <CardDescription>
-              This will fetch businesses from Google Places API for all 5 pickleball categories.
+              This will fetch businesses from Google Places API for all 5 water damage service categories.
               The sync stores only essential data (name, address, contact info) to keep
               the database lean. Photos and reviews are fetched live from Google API.
             </CardDescription>

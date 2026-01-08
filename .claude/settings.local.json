@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx drizzle-kit:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm run build:*)",
+      "Bash(find:*)",
+      "Bash(npm run db:push:*)",
+      "Bash(ls:*)",
+      "Bash(git stash:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)"
+    ]
+  }
+}

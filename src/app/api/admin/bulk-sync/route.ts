@@ -3,7 +3,7 @@ import { db, categories, businesses, syncJobs } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import slugify from "slugify";
 import { TOP_25_STATES, MAJOR_CITIES, type CityData } from "@/lib/location-data";
-import { mapGoogleCategoryToPickleball } from "@/lib/google-places";
+import { mapGoogleCategoryToWaterDamage } from "@/lib/google-places";
 import { verifyAdmin } from "@/lib/auth/utils";
 
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
@@ -399,7 +399,7 @@ export async function POST(request: Request) {
               const thumbnailPhoto = place.photos?.[0]?.photo_reference || null;
 
               // Detect the correct category based on business name and Google types
-              const detectedCategorySlug = mapGoogleCategoryToPickleball(
+              const detectedCategorySlug = mapGoogleCategoryToWaterDamage(
                 place.types || [],
                 place.name
               ) || "pickleball-courts-facilities"; // Default to courts if can't detect

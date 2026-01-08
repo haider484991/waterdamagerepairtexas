@@ -1,8 +1,8 @@
 #!/usr/bin/env tsx
 /**
  * Bulk Sync CLI Script
- * Fetches thousands of pickleball businesses across USA using Google Places API
- * 
+ * Fetches water damage restoration businesses across Texas using Google Places API
+ *
  * Usage: npx tsx scripts/bulk-sync.ts [options]
  */
 
@@ -13,7 +13,7 @@ import { db, categories, businesses, syncJobs } from "../src/lib/db/index";
 import { eq } from "drizzle-orm";
 import slugify from "slugify";
 import { TOP_25_STATES, MAJOR_CITIES } from "../src/lib/location-data";
-import { mapGoogleCategoryToPickleball } from "../src/lib/google-places";
+import { mapGoogleCategoryToWaterDamage } from "../src/lib/google-places";
 
 dotenv.config({ path: ".env.local" });
 
@@ -239,7 +239,7 @@ async function processCity(
         const thumbnailPhoto = place.photos?.[0]?.photo_reference || null;
 
         // Detect the correct category based on business name and Google types
-        const detectedCategorySlug = mapGoogleCategoryToPickleball(
+        const detectedCategorySlug = mapGoogleCategoryToWaterDamage(
           place.types || [],
           place.name
         ) || "pickleball-courts-facilities"; // Default to courts if can't detect
