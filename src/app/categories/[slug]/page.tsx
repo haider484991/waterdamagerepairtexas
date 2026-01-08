@@ -201,12 +201,13 @@ function CategoryPageContent() {
   const [dataSource, setDataSource] = useState<"database" | "google" | "hybrid" | null>(null);
   const [autoSynced, setAutoSynced] = useState(false);
   
-  // Category-specific filter states
+  // Category-specific filter states for water damage services
   const categoryFilters = getCategorySpecificFilters(slug);
-  const [facilityType, setFacilityType] = useState(searchParams.get("facilityType") || "all");
-  const [courtSurface, setCourtSurface] = useState(searchParams.get("courtSurface") || "all");
-  const [membershipType, setMembershipType] = useState(searchParams.get("membershipType") || "all");
-  const [skillLevel, setSkillLevel] = useState(searchParams.get("skillLevel") || "all");
+  const [serviceType, setServiceType] = useState(searchParams.get("serviceType") || "all");
+  const [availability, setAvailability] = useState(searchParams.get("availability") || "all");
+  const [certification, setCertification] = useState(searchParams.get("certification") || "all");
+  const [responseTime, setResponseTime] = useState(searchParams.get("responseTime") || "all");
+  const [damageType, setDamageType] = useState(searchParams.get("damageType") || "all");
   
   // Get states and cities for filters
   const allStates = getAllStates();
@@ -225,11 +226,12 @@ function CategoryPageContent() {
       if (priceLevel !== "0") params.set("price", priceLevel);
       if (sortBy !== "relevance") params.set("sort", sortBy);
       
-      // Add category-specific filters
-      if (facilityType !== "all") params.set("facilityType", facilityType);
-      if (courtSurface !== "all") params.set("courtSurface", courtSurface);
-      if (membershipType !== "all") params.set("membershipType", membershipType);
-      if (skillLevel !== "all") params.set("skillLevel", skillLevel);
+      // Add category-specific filters for water damage services
+      if (serviceType !== "all") params.set("serviceType", serviceType);
+      if (availability !== "all") params.set("availability", availability);
+      if (certification !== "all") params.set("certification", certification);
+      if (responseTime !== "all") params.set("responseTime", responseTime);
+      if (damageType !== "all") params.set("damageType", damageType);
 
       // Pagination: 100 businesses per page
       params.set("page", currentPage.toString());
@@ -255,7 +257,7 @@ function CategoryPageContent() {
     } finally {
       setIsLoading(false);
     }
-  }, [slug, selectedState, selectedCity, minRating, priceLevel, sortBy, facilityType, courtSurface, membershipType, skillLevel, currentPage]);
+  }, [slug, selectedState, selectedCity, minRating, priceLevel, sortBy, serviceType, availability, certification, responseTime, damageType, currentPage]);
 
   useEffect(() => {
     // Update current page from URL params
@@ -302,10 +304,11 @@ function CategoryPageContent() {
     setSelectedCity("all");
     setMinRating("0");
     setPriceLevel("0");
-    setFacilityType("all");
-    setCourtSurface("all");
-    setMembershipType("all");
-    setSkillLevel("all");
+    setServiceType("all");
+    setAvailability("all");
+    setCertification("all");
+    setResponseTime("all");
+    setDamageType("all");
     router.push(`/categories/${slug}`, { scroll: false });
   };
 
@@ -315,10 +318,11 @@ function CategoryPageContent() {
     selectedCity !== "all" ||
     minRating !== "0" ||
     priceLevel !== "0" ||
-    facilityType !== "all" ||
-    courtSurface !== "all" ||
-    membershipType !== "all" ||
-    skillLevel !== "all";
+    serviceType !== "all" ||
+    availability !== "all" ||
+    certification !== "all" ||
+    responseTime !== "all" ||
+    damageType !== "all";
 
   const FilterContent = () => (
     <div className="space-y-6">
@@ -406,48 +410,25 @@ function CategoryPageContent() {
         </Select>
       </div>
 
-      {/* Category-Specific Filters */}
+      {/* Category-Specific Filters for Water Damage Services */}
       {categoryFilters && slug === "water-damage-restoration" && (
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Facility Type
+              Service Type
             </label>
             <Select
-              value={facilityType}
+              value={serviceType}
               onValueChange={(value) => {
-                setFacilityType(value);
-                updateFilters("facilityType", value);
+                setServiceType(value);
+                updateFilters("serviceType", value);
               }}
             >
               <SelectTrigger>
-                <SelectValue placeholder="All types" />
+                <SelectValue placeholder="All services" />
               </SelectTrigger>
               <SelectContent>
-                {categoryFilters.facilityType?.map((f) => (
-                  <SelectItem key={f.value} value={f.value}>
-                    {f.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Court Surface
-            </label>
-            <Select
-              value={courtSurface}
-              onValueChange={(value) => {
-                setCourtSurface(value);
-                updateFilters("courtSurface", value);
-              }}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Any surface" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.courtSurface?.map((s) => (
+                {categoryFilters.serviceType?.map((s) => (
                   <SelectItem key={s.value} value={s.value}>
                     {s.label}
                   </SelectItem>
@@ -455,122 +436,24 @@ function CategoryPageContent() {
               </SelectContent>
             </Select>
           </div>
-        </>
-      )}
-
-      {categoryFilters && slug === "flood-cleanup" && (
-        <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Membership Type
+              Availability
             </label>
             <Select
-              value={membershipType}
+              value={availability}
               onValueChange={(value) => {
-                setMembershipType(value);
-                updateFilters("membershipType", value);
+                setAvailability(value);
+                updateFilters("availability", value);
               }}
             >
               <SelectTrigger>
-                <SelectValue placeholder="All types" />
+                <SelectValue placeholder="Any availability" />
               </SelectTrigger>
               <SelectContent>
-                {categoryFilters.membershipType?.map((m) => (
-                  <SelectItem key={m.value} value={m.value}>
-                    {m.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Skill Level
-            </label>
-            <Select
-              value={skillLevel}
-              onValueChange={(value) => {
-                setSkillLevel(value);
-                updateFilters("skillLevel", value);
-              }}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="All levels" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.skillLevel?.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>
-                    {s.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </>
-      )}
-
-      {categoryFilters && slug === "mold-remediation" && (
-        <>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Product Type
-            </label>
-            <Select
-              value={searchParams.get("productType") || "all"}
-              onValueChange={(value) => updateFilters("productType", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="All products" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.productType?.map((p) => (
-                  <SelectItem key={p.value} value={p.value}>
-                    {p.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Price Range
-            </label>
-            <Select
-              value={searchParams.get("priceRange") || "all"}
-              onValueChange={(value) => updateFilters("priceRange", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Any price" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.priceRange?.map((p) => (
-                  <SelectItem key={p.value} value={p.value}>
-                    {p.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </>
-      )}
-
-      {categoryFilters && slug === "emergency-services" && (
-        <>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Experience Level
-            </label>
-            <Select
-              value={searchParams.get("experienceLevel") || "all"}
-              onValueChange={(value) => updateFilters("experienceLevel", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="All levels" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.experienceLevel?.map((e) => (
-                  <SelectItem key={e.value} value={e.value}>
-                    {e.label}
+                {categoryFilters.availability?.map((a) => (
+                  <SelectItem key={a.value} value={a.value}>
+                    {a.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -581,8 +464,11 @@ function CategoryPageContent() {
               Certification
             </label>
             <Select
-              value={searchParams.get("certification") || "all"}
-              onValueChange={(value) => updateFilters("certification", value)}
+              value={certification}
+              onValueChange={(value) => {
+                setCertification(value);
+                updateFilters("certification", value);
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Any certification" />
@@ -596,21 +482,154 @@ function CategoryPageContent() {
               </SelectContent>
             </Select>
           </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "flood-cleanup" && (
+        <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Lesson Type
+              Service Type
             </label>
             <Select
-              value={searchParams.get("lessonType") || "all"}
-              onValueChange={(value) => updateFilters("lessonType", value)}
+              value={serviceType}
+              onValueChange={(value) => {
+                setServiceType(value);
+                updateFilters("serviceType", value);
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
               </SelectTrigger>
               <SelectContent>
-                {categoryFilters.lessonType?.map((l) => (
-                  <SelectItem key={l.value} value={l.value}>
-                    {l.label}
+                {categoryFilters.serviceType?.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Response Time
+            </label>
+            <Select
+              value={responseTime}
+              onValueChange={(value) => {
+                setResponseTime(value);
+                updateFilters("responseTime", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any response time" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.responseTime?.map((r) => (
+                  <SelectItem key={r.value} value={r.value}>
+                    {r.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "mold-remediation" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Service Type
+            </label>
+            <Select
+              value={serviceType}
+              onValueChange={(value) => {
+                setServiceType(value);
+                updateFilters("serviceType", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All services" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.serviceType?.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Certification
+            </label>
+            <Select
+              value={certification}
+              onValueChange={(value) => {
+                setCertification(value);
+                updateFilters("certification", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any certification" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.certification?.map((c) => (
+                  <SelectItem key={c.value} value={c.value}>
+                    {c.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+
+      {categoryFilters && slug === "emergency-services" && (
+        <>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Availability
+            </label>
+            <Select
+              value={availability}
+              onValueChange={(value) => {
+                setAvailability(value);
+                updateFilters("availability", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any availability" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.availability?.map((a) => (
+                  <SelectItem key={a.value} value={a.value}>
+                    {a.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Response Time
+            </label>
+            <Select
+              value={responseTime}
+              onValueChange={(value) => {
+                setResponseTime(value);
+                updateFilters("responseTime", value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any response time" />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryFilters.responseTime?.map((r) => (
+                  <SelectItem key={r.value} value={r.value}>
+                    {r.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -623,19 +642,22 @@ function CategoryPageContent() {
         <>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Tournament Type
+              Damage Type
             </label>
             <Select
-              value={searchParams.get("tournamentType") || "all"}
-              onValueChange={(value) => updateFilters("tournamentType", value)}
+              value={damageType}
+              onValueChange={(value) => {
+                setDamageType(value);
+                updateFilters("damageType", value);
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
               </SelectTrigger>
               <SelectContent>
-                {categoryFilters.tournamentType?.map((t) => (
-                  <SelectItem key={t.value} value={t.value}>
-                    {t.label}
+                {categoryFilters.damageType?.map((d) => (
+                  <SelectItem key={d.value} value={d.value}>
+                    {d.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -643,42 +665,22 @@ function CategoryPageContent() {
           </div>
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Skill Level
+              Service Type
             </label>
             <Select
-              value={searchParams.get("skillLevel") || "all"}
+              value={serviceType}
               onValueChange={(value) => {
-                setSkillLevel(value);
-                updateFilters("skillLevel", value);
+                setServiceType(value);
+                updateFilters("serviceType", value);
               }}
             >
               <SelectTrigger>
-                <SelectValue placeholder="All levels" />
+                <SelectValue placeholder="All services" />
               </SelectTrigger>
               <SelectContent>
-                {categoryFilters.skillLevel?.map((s) => (
+                {categoryFilters.serviceType?.map((s) => (
                   <SelectItem key={s.value} value={s.value}>
                     {s.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Entry Fee
-            </label>
-            <Select
-              value={searchParams.get("entryFee") || "all"}
-              onValueChange={(value) => updateFilters("entryFee", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Any fee" />
-              </SelectTrigger>
-              <SelectContent>
-                {categoryFilters.entryFee?.map((e) => (
-                  <SelectItem key={e.value} value={e.value}>
-                    {e.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -687,8 +689,8 @@ function CategoryPageContent() {
         </>
       )}
 
-      {/* Price Filter (only for relevant categories) */}
-      {(slug === "mold-remediation" || slug === "storm-damage") && (
+      {/* Price Filter */}
+      {categoryFilters && (
         <div>
           <label className="text-sm font-medium text-foreground mb-2 block">
             Price Level
@@ -912,34 +914,42 @@ function CategoryPageContent() {
                     </button>
                   </Badge>
                 )}
-                {facilityType !== "all" && (
+                {serviceType !== "all" && (
                   <Badge variant="secondary" className="gap-1">
-                    {categoryFilters?.facilityType?.find(f => f.value === facilityType)?.label}
-                    <button onClick={() => { setFacilityType("all"); updateFilters("facilityType", ""); }}>
+                    {categoryFilters?.serviceType?.find(s => s.value === serviceType)?.label}
+                    <button onClick={() => { setServiceType("all"); updateFilters("serviceType", ""); }}>
                       <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 )}
-                {courtSurface !== "all" && (
+                {availability !== "all" && (
                   <Badge variant="secondary" className="gap-1">
-                    {categoryFilters?.courtSurface?.find(s => s.value === courtSurface)?.label}
-                    <button onClick={() => { setCourtSurface("all"); updateFilters("courtSurface", ""); }}>
+                    {categoryFilters?.availability?.find(a => a.value === availability)?.label}
+                    <button onClick={() => { setAvailability("all"); updateFilters("availability", ""); }}>
                       <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 )}
-                {membershipType !== "all" && (
+                {certification !== "all" && (
                   <Badge variant="secondary" className="gap-1">
-                    {categoryFilters?.membershipType?.find(m => m.value === membershipType)?.label}
-                    <button onClick={() => { setMembershipType("all"); updateFilters("membershipType", ""); }}>
+                    {categoryFilters?.certification?.find(c => c.value === certification)?.label}
+                    <button onClick={() => { setCertification("all"); updateFilters("certification", ""); }}>
                       <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 )}
-                {skillLevel !== "all" && (
+                {responseTime !== "all" && (
                   <Badge variant="secondary" className="gap-1">
-                    {categoryFilters?.skillLevel?.find(s => s.value === skillLevel)?.label}
-                    <button onClick={() => { setSkillLevel("all"); updateFilters("skillLevel", ""); }}>
+                    {categoryFilters?.responseTime?.find(r => r.value === responseTime)?.label}
+                    <button onClick={() => { setResponseTime("all"); updateFilters("responseTime", ""); }}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                {damageType !== "all" && (
+                  <Badge variant="secondary" className="gap-1">
+                    {categoryFilters?.damageType?.find(d => d.value === damageType)?.label}
+                    <button onClick={() => { setDamageType("all"); updateFilters("damageType", ""); }}>
                       <X className="w-3 h-3" />
                     </button>
                   </Badge>

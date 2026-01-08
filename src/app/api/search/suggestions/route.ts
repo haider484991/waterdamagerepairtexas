@@ -42,20 +42,20 @@ export async function GET(request: Request) {
       )
       .limit(3);
 
-    // Common search terms
+    // Common search terms for water damage restoration
     const popularSearches = [
-      "restaurants",
-      "coffee",
-      "pizza",
-      "sushi",
-      "gyms",
-      "dentist",
-      "doctor",
-      "salon",
-      "spa",
-      "auto repair",
-      "plumber",
-      "electrician",
+      "water damage restoration",
+      "flood cleanup",
+      "mold remediation",
+      "emergency water extraction",
+      "storm damage repair",
+      "water removal",
+      "basement flooding",
+      "roof leak repair",
+      "sewage cleanup",
+      "fire damage restoration",
+      "24 hour emergency",
+      "insurance claim help",
     ].filter((term) => term.toLowerCase().includes(query.toLowerCase()));
 
     return NextResponse.json({

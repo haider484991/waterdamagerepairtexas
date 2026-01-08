@@ -34,29 +34,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 
 const categories = [
-  { value: "restaurants-cafes", label: "Restaurants & Cafes" },
-  { value: "grocery-specialty-food", label: "Grocery & Specialty Food" },
-  { value: "clothing-accessories", label: "Clothing & Accessories" },
-  { value: "home-goods-furniture", label: "Home Goods & Furniture" },
-  { value: "electronics-tech", label: "Electronics & Tech" },
-  { value: "medical-dental", label: "Medical & Dental" },
-  { value: "fitness-gyms", label: "Fitness & Gyms" },
-  { value: "spas-beauty", label: "Spas & Beauty" },
-  { value: "automotive", label: "Automotive Services" },
-  { value: "home-improvement", label: "Home Improvement" },
-  { value: "legal-financial", label: "Legal & Financial" },
-  { value: "real-estate", label: "Real Estate" },
-  { value: "pet-care", label: "Pet Care" },
-  { value: "schools-tutoring", label: "Schools & Tutoring" },
-  { value: "childcare-daycares", label: "Childcare & Daycares" },
-  { value: "arts-culture-events", label: "Arts, Culture & Events" },
-  { value: "parks-recreation", label: "Parks & Recreation" },
-  { value: "nightlife-bars", label: "Nightlife & Bars" },
-  { value: "hotels-accommodations", label: "Hotels & Accommodations" },
-  { value: "transportation", label: "Transportation" },
-  { value: "it-tech-services", label: "IT & Tech Services" },
-  { value: "photography-video", label: "Photography & Video" },
-  { value: "event-wedding-services", label: "Event & Wedding Services" },
+  { value: "water-damage-restoration", label: "Water Damage Restoration" },
+  { value: "flood-cleanup", label: "Flood Cleanup" },
+  { value: "mold-remediation", label: "Mold Remediation" },
+  { value: "emergency-services", label: "Emergency Services" },
+  { value: "storm-damage", label: "Storm Damage Repair" },
 ];
 
 // Neighborhood is optional and can be left empty for nationwide directory
