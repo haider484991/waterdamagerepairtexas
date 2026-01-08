@@ -33,6 +33,11 @@ export default function RootLayout({
           gtag('config', 'G-DTHG4XX0GK');
         `}
       </Script>
+      <Script
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="DWNLXGPmrWIQQPPXr+HyLQ"
+        async
+      />
       <body className="min-h-screen flex flex-col">
         <SessionProvider>
           <Header />
@@ -44,5 +49,5 @@ export default function RootLayout({
         </SessionProvider>
       </body>
     </html>
-  ); 
+  );
 }
