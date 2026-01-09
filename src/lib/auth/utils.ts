@@ -2,32 +2,15 @@ import { auth } from "./index";
 
 /**
  * Check if a user is an admin based on their session
+ * Only checks the role field - no email-based fallbacks for security
  */
 export async function isAdmin() {
   const session = await auth();
-  
+
   if (!session?.user) return false;
-  
-  // Check role first (recommended)
-  if (session.user.role === "admin") return true;
-  
-  // Fallback to email list for existing setups
-  const adminEmails = [
-    "admin@waterdamagerepairtexas.net",
-    "owner@waterdamagerepairtexas.net",
-    "admin@test.com",
-  ];
-  
-  if (session.user.email && adminEmails.includes(session.user.email)) {
-    return true;
-  }
-  
-  // Specific email patterns
-  if (session.user.email?.endsWith("@admin.com")) {
-    return true;
-  }
-  
-  return false;
+
+  // Only check role - strict admin verification
+  return session.user.role === "admin";
 }
 
 /**

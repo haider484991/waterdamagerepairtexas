@@ -49,10 +49,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isAdmin = auth?.user?.role === "admin" || 
-                      auth?.user?.email === "admin@waterdamagerepairtexas.net" ||
-                      auth?.user?.email?.endsWith("@admin.com");
-      
+      // Strict role-based admin check only
+      const isAdmin = auth?.user?.role === "admin";
+
       const isOnAdmin = nextUrl.pathname.startsWith("/admin") || nextUrl.pathname.startsWith("/api/admin");
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
 
