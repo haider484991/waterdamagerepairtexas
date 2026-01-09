@@ -31,14 +31,25 @@ function checkRateLimit(key: string, max: number): boolean {
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Rate limiting for API routes
+  // Skip proxy logic for auth routes - let NextAuth handle them directly
+  if (pathname.startsWith("/api/auth/")) {
+    // Only rate limit login attempts
+    if (pathname.includes("/callback") && request.method === "POST") {
+      const key = getRateLimitKey(request);
+      if (!checkRateLimit(`auth:${key}`, MAX_AUTH_ATTEMPTS)) {
+        return new NextResponse(
+          JSON.stringify({ error: "Too many requests" }),
+          { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
+        );
+      }
+    }
+    return NextResponse.next();
+  }
+
+  // Rate limiting for other API routes
   if (pathname.startsWith("/api/")) {
     const key = getRateLimitKey(request);
-    // Only rate limit actual login attempts (POST to callback), not session checks
-    const isLoginAttempt = pathname.includes("/api/auth/callback") && request.method === "POST";
-    const max = isLoginAttempt ? MAX_AUTH_ATTEMPTS : MAX_REQUESTS;
-
-    if (!checkRateLimit(isLoginAttempt ? `auth:${key}` : key, max)) {
+    if (!checkRateLimit(key, MAX_REQUESTS)) {
       return new NextResponse(
         JSON.stringify({ error: "Too many requests" }),
         { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
@@ -46,7 +57,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Use NextAuth for authentication
+  // Use NextAuth for authentication (only for non-auth routes)
   const session = await auth();
 
   // Admin routes require admin role
