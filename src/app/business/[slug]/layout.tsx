@@ -1,13 +1,43 @@
 import type { Metadata } from "next";
 import { db, businesses, categories, reviews } from "@/lib/db";
 import { eq } from "drizzle-orm";
-import { generateBusinessMetadata, generateBusinessPageSchema } from "@/lib/seo";
+import { generateBusinessMetadata, generateBusinessPageSchema, GoogleReviewData } from "@/lib/seo";
 import Script from "next/script";
-import { notFound } from "next/navigation";
+
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 interface LayoutProps {
   children: React.ReactNode;
   params: Promise<{ slug: string }>;
+}
+
+// Fetch Google reviews for schema enrichment
+async function fetchGoogleReviews(placeId: string): Promise<GoogleReviewData[]> {
+  if (!GOOGLE_PLACES_API_KEY || !placeId) return [];
+
+  try {
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${GOOGLE_PLACES_API_KEY}`;
+    const response = await fetch(url, {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    if (data.status !== "OK" || !data.result?.reviews) return [];
+
+    return data.result.reviews.map((review: GoogleReviewData & { profile_photo_url?: string; relative_time_description?: string }) => ({
+      author_name: review.author_name,
+      rating: review.rating,
+      text: review.text,
+      time: review.time,
+      profile_photo_url: review.profile_photo_url,
+      relative_time_description: review.relative_time_description,
+    }));
+  } catch (error) {
+    console.error("Error fetching Google reviews:", error);
+    return [];
+  }
 }
 
 // Fetch business data for metadata generation
@@ -19,7 +49,7 @@ async function getBusinessData(slug: string) {
       .from(businesses)
       .where(eq(businesses.slug, slug))
       .limit(1);
-    
+
     // If not found by slug, try googlePlaceId (for Google Places results)
     if (!business) {
       [business] = await db
@@ -28,9 +58,9 @@ async function getBusinessData(slug: string) {
         .where(eq(businesses.googlePlaceId, slug))
         .limit(1);
     }
-    
+
     if (!business) return null;
-    
+
     // Get category
     let category = null;
     if (business.categoryId) {
@@ -40,15 +70,20 @@ async function getBusinessData(slug: string) {
         .where(eq(categories.id, business.categoryId))
         .limit(1);
     }
-    
-    // Get reviews for structured data
+
+    // Get database reviews for structured data
     const businessReviews = await db
       .select()
       .from(reviews)
       .where(eq(reviews.businessId, business.id))
       .limit(10);
-    
-    return { business, category, reviews: businessReviews };
+
+    // Fetch Google reviews with actual reviewer names for enhanced schema
+    const googleReviews = business.googlePlaceId
+      ? await fetchGoogleReviews(business.googlePlaceId)
+      : [];
+
+    return { business, category, reviews: businessReviews, googleReviews };
   } catch (error) {
     console.error("Error fetching business for metadata:", error);
     return null;
@@ -77,12 +112,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 export default async function BusinessLayout({ children, params }: LayoutProps) {
   const { slug } = await params;
   const data = await getBusinessData(slug);
-  
-  // Generate structured data schemas
-  const schemas = data 
-    ? generateBusinessPageSchema(data.business, data.category, data.reviews)
+
+  // Generate structured data schemas with Google reviews for actual reviewer names
+  const schemas = data
+    ? generateBusinessPageSchema(data.business, data.category, data.reviews, data.googleReviews)
     : [];
-  
+
   return (
     <>
       {/* Structured Data for SEO and AI */}

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { db, categories, businesses } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
 import { generateCategoryMetadata } from "@/lib/seo";
+import { generateServiceSchema } from "@/lib/seo/schema-markup";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://waterdamagerepairtexas.net";
 
@@ -159,20 +160,33 @@ export default async function CategoryLayout({ children, params }: LayoutProps) 
     }
     : null;
 
+  // Service schema for AI search engines to understand service offerings
+  const serviceSchema = data
+    ? generateServiceSchema(data.category, data.stats.count)
+    : null;
+
   return (
     <>
       {itemListSchema && (
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
+           
           dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
       )}
       {breadcrumbSchema && (
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
+           
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      {/* Service schema for AI search engines */}
+      {serviceSchema && (
+        <script
+          type="application/ld+json"
+           
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
       )}
       {children}

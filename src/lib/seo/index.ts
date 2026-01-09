@@ -286,11 +286,23 @@ export function generateCategoryMetadata(
   };
 }
 
+// Google Review interface for enriched review data
+export interface GoogleReviewData {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+  relative_time_description?: string;
+}
+
 // Comprehensive LocalBusiness schema with all available data
+// Enhanced for AI search engines with detailed E-E-A-T signals
 export function generateLocalBusinessSchema(
   business: Business,
   category?: Category | null,
-  reviews?: Review[]
+  reviews?: Review[],
+  googleReviews?: GoogleReviewData[]
 ) {
   const rating = Number(business.ratingAvg) || 0;
 
@@ -298,9 +310,12 @@ export function generateLocalBusinessSchema(
   const businessTypeMap: Record<string, string> = {
     "water-damage-restoration": "HomeAndConstructionBusiness",
     "flood-cleanup": "HomeAndConstructionBusiness",
+    "flood-damage-restoration": "HomeAndConstructionBusiness",
     "mold-remediation": "HomeAndConstructionBusiness",
     "emergency-services": "EmergencyService",
+    "emergency-water-removal": "EmergencyService",
     "storm-damage": "HomeAndConstructionBusiness",
+    "structural-drying-services": "HomeAndConstructionBusiness",
   };
 
   const businessType = category?.slug
@@ -334,7 +349,11 @@ export function generateLocalBusinessSchema(
     },
     priceRange: business.priceLevel ? "$".repeat(business.priceLevel) : undefined,
     currenciesAccepted: "USD",
-    paymentAccepted: "Cash, Credit Card",
+    paymentAccepted: "Cash, Credit Card, Check",
+    // Link to parent organization for E-E-A-T
+    isPartOf: {
+      "@id": `${SITE_URL}/#organization`,
+    },
   };
 
   // Add geo coordinates
@@ -347,9 +366,16 @@ export function generateLocalBusinessSchema(
     schema.hasMap = `https://www.google.com/maps?q=${business.lat},${business.lng}`;
   }
 
-  // Add website with sameAs for social signals
+  // Add website and Google Maps as sameAs for social signals
+  const sameAsLinks: string[] = [];
   if (business.website) {
-    schema.sameAs = [business.website];
+    sameAsLinks.push(business.website);
+  }
+  if (business.googlePlaceId) {
+    sameAsLinks.push(`https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}`);
+  }
+  if (sameAsLinks.length > 0) {
+    schema.sameAs = sameAsLinks;
   }
 
   // Add aggregate rating
@@ -363,8 +389,27 @@ export function generateLocalBusinessSchema(
     };
   }
 
-  // Add individual reviews
-  if (reviews && reviews.length > 0) {
+  // Add Google reviews with actual reviewer names (preferred for AI search)
+  if (googleReviews && googleReviews.length > 0) {
+    schema.review = googleReviews.slice(0, 10).map((review, index) => ({
+      "@type": "Review",
+      "@id": `${SITE_URL}/business/${business.slug}#review-google-${index}`,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      author: {
+        "@type": "Person",
+        name: review.author_name || "Google Reviewer",
+      },
+      reviewBody: review.text,
+      datePublished: new Date(review.time * 1000).toISOString(),
+    }));
+  }
+  // Fallback to database reviews if no Google reviews
+  else if (reviews && reviews.length > 0) {
     schema.review = reviews.slice(0, 10).map((review) => ({
       "@type": "Review",
       "@id": `${SITE_URL}/business/${business.slug}#review-${review.id}`,
@@ -376,7 +421,7 @@ export function generateLocalBusinessSchema(
       },
       author: {
         "@type": "Person",
-        name: "Customer",
+        name: "Verified Customer",
       },
       reviewBody: review.content || review.title,
       datePublished: review.createdAt instanceof Date
@@ -444,15 +489,17 @@ function convertTo24Hour(time12h: string): string {
 }
 
 // Generate comprehensive page schema with multiple types
+// Enhanced with Google reviews support for actual reviewer names
 export function generateBusinessPageSchema(
   business: Business,
   category?: Category | null,
-  reviews?: Review[]
+  reviews?: Review[],
+  googleReviews?: GoogleReviewData[]
 ) {
   const schemas = [];
 
-  // 1. Main LocalBusiness schema
-  schemas.push(generateLocalBusinessSchema(business, category, reviews));
+  // 1. Main LocalBusiness schema with Google reviews for real reviewer names
+  schemas.push(generateLocalBusinessSchema(business, category, reviews, googleReviews));
 
   // 2. Breadcrumb schema
   const breadcrumbItems = [
