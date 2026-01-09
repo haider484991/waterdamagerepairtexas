@@ -24,7 +24,7 @@ export function Logo({
         aria-hidden="true"
       >
         <Image
-          src="/logo.svg"
+          src={showText ? "/logo-icon.svg" : "/logo-icon.svg"}
           alt="Water Damage Repair Texas - Emergency Restoration Services"
           width={size}
           height={size}

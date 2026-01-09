@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
+  <!-- Water droplet with house -->
+  <path d="M25 2C25 2 8 22 8 34C8 44 15.5 48 25 48C34.5 48 42 44 42 34C42 22 25 2 25 2Z" fill="url(#iconGradient)" stroke="#0369a1" stroke-width="2"/>
+  <!-- Inner wave -->
+  <path d="M14 36C18 32 22 38 25 35C28 32 32 38 36 34" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <!-- House outline -->
+  <path d="M25 18L15 27V40H21V33H29V40H35V27L25 18Z" fill="white" opacity="0.95"/>
+
+  <defs>
+    <linearGradient id="iconGradient" x1="25" y1="2" x2="25" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+</svg>

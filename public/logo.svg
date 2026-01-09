@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Water droplet icon -->
+  <g transform="translate(5, 5)">
+    <!-- Main droplet -->
+    <path d="M25 5C25 5 10 22 10 32C10 42 16.5 50 25 50C33.5 50 40 42 40 32C40 22 25 5 25 5Z" fill="url(#dropGradient)" stroke="#0369a1" stroke-width="2"/>
+    <!-- Inner wave -->
+    <path d="M15 35C18 32 22 38 25 35C28 32 32 38 35 35" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <!-- House outline inside droplet -->
+    <path d="M25 20L17 27V38H22V32H28V38H33V27L25 20Z" fill="white" opacity="0.9"/>
+  </g>
+
+  <!-- Text -->
+  <text x="55" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0c4a6e">
+    Water Damage
+  </text>
+  <text x="55" y="46" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#0ea5e9">
+    Repair Texas
+  </text>
+
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="dropGradient" x1="25" y1="5" x2="25" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+</svg>

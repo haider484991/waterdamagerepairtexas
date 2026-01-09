@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Compact water droplet with house -->
+  <path d="M16 1C16 1 4 14 4 22C4 28 9 31 16 31C23 31 28 28 28 22C28 14 16 1 16 1Z" fill="url(#favGradient)"/>
+  <!-- Wave -->
+  <path d="M8 24C11 21 13 25 16 23C19 21 21 25 24 22" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <!-- Mini house -->
+  <path d="M16 11L10 16V24H13V20H19V24H22V16L16 11Z" fill="white" opacity="0.95"/>
+
+  <defs>
+    <linearGradient id="favGradient" x1="16" y1="1" x2="16" y2="31" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -40,12 +40,11 @@ export function generateSiteMetadata(): Metadata {
     creator: SITE_NAME,
     icons: {
       icon: [
-        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
         { url: "/favicon.ico", sizes: "32x32" },
-        { url: "/favicon.ico", sizes: "16x16" },
       ],
       apple: [
-        { url: "/favicon.ico", sizes: "180x180" },
+        { url: "/logo-icon.svg", sizes: "180x180", type: "image/svg+xml" },
       ],
     },
     openGraph: {
