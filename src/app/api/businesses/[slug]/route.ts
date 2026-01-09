@@ -123,12 +123,12 @@ function parseCityState(formattedAddress: string): { city: string; state: string
   return { city: "", state: "" };
 }
 
-// Save a Google Place to the database
+// Save a Google Place to the database with hours, phone, website
 async function saveGooglePlaceToDb(placeId: string, googleDetails: GooglePlaceDetails) {
   try {
     const name = googleDetails.name || "Unknown Business";
     const baseSlug = slugify(name, { lower: true, strict: true });
-    
+
     // Generate unique slug
     let slug = baseSlug;
     let counter = 1;
@@ -150,6 +150,9 @@ async function saveGooglePlaceToDb(placeId: string, googleDetails: GooglePlaceDe
     const lat = googleDetails.geometry?.location.lat;
     const lng = googleDetails.geometry?.location.lng;
 
+    // Parse hours from Google's weekday_text format
+    const hours = formatHours(googleDetails.opening_hours?.weekday_text);
+
     const [inserted] = await db
       .insert(businesses)
       .values({
@@ -167,6 +170,8 @@ async function saveGooglePlaceToDb(placeId: string, googleDetails: GooglePlaceDe
         reviewCount: googleDetails.user_ratings_total || 0,
         priceLevel: googleDetails.price_level ?? null,
         photos: googleDetails.photos?.slice(0, 3).map((p) => p.photo_reference) || [],
+        // Hours, phone, website from Google Place Details
+        hours,
         website: googleDetails.website || null,
         phone: googleDetails.formatted_phone_number || null,
         isFeatured: (googleDetails.rating || 0) >= 4.5,

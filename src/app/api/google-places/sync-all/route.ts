@@ -18,7 +18,71 @@ interface GooglePlace {
   price_level?: number;
   types?: string[];
   photos?: Array<{ photo_reference: string }>;
-  opening_hours?: { open_now?: boolean };
+  opening_hours?: { open_now?: boolean; weekday_text?: string[] };
+  website?: string;
+  formatted_phone_number?: string;
+}
+
+interface PlaceDetails {
+  opening_hours?: {
+    weekday_text?: string[];
+    open_now?: boolean;
+  };
+  website?: string;
+  formatted_phone_number?: string;
+}
+
+// Fetch detailed place info including hours, phone, website
+async function fetchPlaceDetails(placeId: string): Promise<PlaceDetails | null> {
+  if (!GOOGLE_PLACES_API_KEY) return null;
+
+  try {
+    const fields = "opening_hours,website,formatted_phone_number";
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=${fields}&key=${GOOGLE_PLACES_API_KEY}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.status === "OK" && data.result) {
+      return data.result;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching place details:", error);
+    return null;
+  }
+}
+
+// Parse Google's weekday_text to our hours format
+function parseHoursFromGoogle(weekdayText?: string[]): Record<string, string> | null {
+  if (!weekdayText || weekdayText.length === 0) return null;
+
+  const dayMap: Record<string, string> = {
+    "Monday": "monday",
+    "Tuesday": "tuesday",
+    "Wednesday": "wednesday",
+    "Thursday": "thursday",
+    "Friday": "friday",
+    "Saturday": "saturday",
+    "Sunday": "sunday",
+  };
+
+  const hours: Record<string, string> = {};
+
+  for (const line of weekdayText) {
+    const colonIndex = line.indexOf(":");
+    if (colonIndex === -1) continue;
+
+    const day = line.substring(0, colonIndex).trim();
+    const time = line.substring(colonIndex + 1).trim();
+
+    const dayKey = dayMap[day];
+    if (dayKey) {
+      hours[dayKey] = time;
+    }
+  }
+
+  return Object.keys(hours).length > 0 ? hours : null;
 }
 
 // Water damage restoration search queries for Google Places API
@@ -175,7 +239,13 @@ export async function POST(request: Request) {
           // Store only thumbnail photo reference
           const thumbnailPhoto = place.photos?.[0]?.photo_reference || null;
 
-          // Insert business (lean data only)
+          // Fetch place details for hours, phone, website
+          const placeDetails = await fetchPlaceDetails(place.place_id);
+          const hours = parseHoursFromGoogle(placeDetails?.opening_hours?.weekday_text);
+          const phone = placeDetails?.formatted_phone_number || null;
+          const website = placeDetails?.website || null;
+
+          // Insert business with hours, phone, website from Place Details API
           // Auto-approve businesses from API (isVerified: true)
           await db.insert(businesses).values({
             googlePlaceId: place.place_id,
@@ -192,11 +262,18 @@ export async function POST(request: Request) {
             reviewCount: place.user_ratings_total || 0,
             priceLevel: place.price_level,
             photos: thumbnailPhoto ? [thumbnailPhoto] : [],
+            // Hours, phone, website from Place Details API
+            hours,
+            phone,
+            website,
             isVerified: true, // Auto-approve businesses from API
             isFeatured: (place.rating || 0) >= 4.5 && (place.user_ratings_total || 0) >= 50,
           });
 
           categoryInserted++;
+
+          // Small delay after details fetch to avoid rate limiting
+          await new Promise((r) => setTimeout(r, 100));
         }
 
         // Rate limiting delay
