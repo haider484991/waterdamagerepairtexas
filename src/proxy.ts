@@ -6,7 +6,7 @@ import { auth } from "@/lib/auth";
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS = 100;
-const MAX_AUTH_ATTEMPTS = 5;
+const MAX_AUTH_ATTEMPTS = 10;
 
 function getRateLimitKey(request: NextRequest): string {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -34,10 +34,11 @@ export async function proxy(request: NextRequest) {
   // Rate limiting for API routes
   if (pathname.startsWith("/api/")) {
     const key = getRateLimitKey(request);
-    const isAuth = pathname.startsWith("/api/auth/");
-    const max = isAuth ? MAX_AUTH_ATTEMPTS : MAX_REQUESTS;
+    // Only rate limit actual login attempts (POST to callback), not session checks
+    const isLoginAttempt = pathname.includes("/api/auth/callback") && request.method === "POST";
+    const max = isLoginAttempt ? MAX_AUTH_ATTEMPTS : MAX_REQUESTS;
 
-    if (!checkRateLimit(isAuth ? `auth:${key}` : key, max)) {
+    if (!checkRateLimit(isLoginAttempt ? `auth:${key}` : key, max)) {
       return new NextResponse(
         JSON.stringify({ error: "Too many requests" }),
         { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
