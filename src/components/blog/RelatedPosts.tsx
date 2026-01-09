@@ -31,9 +31,9 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="p-6 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors group"
+            className="p-6 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors group"
           >
-            <h3 className="font-medium group-hover:text-amber-600 transition-colors line-clamp-2 mb-2">
+            <h3 className="font-medium group-hover:text-blue-600 transition-colors line-clamp-2 mb-2">
               {post.title}
             </h3>
             {post.excerpt && (
@@ -41,7 +41,7 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
                 {post.excerpt}
               </p>
             )}
-            <div className="mt-4 flex items-center gap-2 text-amber-600 text-sm font-medium group-hover:gap-3 transition-all">
+            <div className="mt-4 flex items-center gap-2 text-blue-600 text-sm font-medium group-hover:gap-3 transition-all">
               Read article
               <ArrowRight className="w-4 h-4" />
             </div>

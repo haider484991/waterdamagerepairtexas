@@ -500,7 +500,7 @@ function SearchContent() {
                               <Building2 className="w-4 h-4 text-primary" />
                             )}
                             {suggestion.type === "category" && (
-                              <Tag className="w-4 h-4 text-amber-500" />
+                              <Tag className="w-4 h-4 text-blue-500" />
                             )}
                             {suggestion.type === "search" && (
                               <Search className="w-4 h-4 text-muted-foreground" />
@@ -571,7 +571,7 @@ function SearchContent() {
                       "text-xs",
                       dataSource === "google" && "border-blue-600/50 text-blue-600",
                       dataSource === "database" && "border-green-600/50 text-green-600",
-                      dataSource === "hybrid" && "border-amber-600/50 text-amber-600"
+                      dataSource === "hybrid" && "border-blue-600/50 text-blue-600"
                     )}
                   >
                     {dataSource === "google" && "Live from Google"}

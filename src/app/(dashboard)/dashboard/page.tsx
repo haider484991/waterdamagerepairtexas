@@ -148,7 +148,7 @@ export default function DashboardPage() {
                   Welcome back, {session.user?.name?.split(" ")[0] || "User"}!
                 </h1>
                 {isAdmin && (
-                  <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/30">
+                  <Badge className="bg-blue-500/20 text-blue-500 border-blue-500/30">
                     <Shield className="w-3 h-3 mr-1" />
                     Admin
                   </Badge>
@@ -216,7 +216,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-xl font-bold flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-amber-600" />
+                  <FileText className="w-5 h-5 text-blue-600" />
                   Blog Management
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
@@ -234,9 +234,9 @@ export default function DashboardPage() {
               <Link href="/admin/blog">
                 <motion.div
                   whileHover={{ y: -2 }}
-                  className="glass-card rounded-xl p-5 hover:border-amber-500/30 transition-colors"
+                  className="glass-card rounded-xl p-5 hover:border-blue-500/30 transition-colors"
                 >
-                  <FileText className="w-6 h-6 text-amber-600 mb-2" />
+                  <FileText className="w-6 h-6 text-blue-600 mb-2" />
                   <div className="font-semibold mb-1">Posts</div>
                   <div className="text-sm text-muted-foreground">Manage articles</div>
                 </motion.div>

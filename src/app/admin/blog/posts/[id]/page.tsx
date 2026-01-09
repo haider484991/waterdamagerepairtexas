@@ -77,8 +77,8 @@ export default function PostEditorPage() {
   });
 
   const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
-                  session?.user?.email?.endsWith("@admin.com") ||
-                  session?.user?.email === "admin@test.com";
+    session?.user?.email?.endsWith("@admin.com") ||
+    session?.user?.email === "admin@test.com";
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -101,7 +101,7 @@ export default function PostEditorPage() {
     try {
       setLoading(true);
       const res = await fetch(`/api/blog/posts/${postId}`);
-      
+
       if (!res.ok) {
         if (res.status === 404) {
           toast.error("Post not found");
@@ -153,7 +153,7 @@ export default function PostEditorPage() {
       if (res.ok) {
         const data = await res.json();
         toast.success(isNew ? "Post created!" : "Post saved!");
-        
+
         if (isNew && data.post?.id) {
           router.push(`/admin/blog/posts/${data.post.id}`);
         } else {
@@ -225,7 +225,7 @@ export default function PostEditorPage() {
 
   const seoTitleLength = formData.seoTitle.length;
   const metaDescLength = formData.metaDescription.length;
-  const previewUrl = post.status === "published" 
+  const previewUrl = post.status === "published"
     ? `${SITE_URL}/blog/${formData.slug || post.slug}`
     : null;
 
@@ -241,7 +241,7 @@ export default function PostEditorPage() {
           </Link>
           <div>
             <h1 className="text-2xl font-bold flex items-center gap-2">
-              <FileText className="w-6 h-6 text-amber-600" />
+              <FileText className="w-6 h-6 text-blue-600" />
               {postId === "new" ? "New Post" : "Edit Post"}
             </h1>
           </div>
@@ -351,7 +351,7 @@ export default function PostEditorPage() {
                 <p className="text-xs text-red-600 mt-1">Too long for optimal SEO</p>
               )}
               <div className="mt-2 p-3 bg-muted rounded text-sm">
-                <div className="text-amber-600 font-medium line-clamp-1">
+                <div className="text-blue-600 font-medium line-clamp-1">
                   {formData.seoTitle || formData.title || "Title"}
                 </div>
                 <div className="text-green-600 text-xs mt-1">

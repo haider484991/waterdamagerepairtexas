@@ -183,7 +183,7 @@ export function DynamicBusinessContent({ business }: DynamicContentProps) {
               className="w-full p-5 sm:p-6 flex items-center justify-between hover:bg-secondary/50"
             >
               <div className="flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-amber-500" />
+                <Lightbulb className="w-5 h-5 text-blue-500" />
                 <span className="font-semibold text-lg">Tips for Playing Here</span>
               </div>
               {tipsOpen ? (

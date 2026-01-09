@@ -293,7 +293,7 @@ function ClaimContent() {
                           </div>
                           {business.ratingAvg && (
                             <div className="flex items-center gap-1 text-sm mt-1">
-                              <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                              <Star className="w-3 h-3 fill-blue-500 text-blue-500" />
                               <span>{business.ratingAvg}</span>
                               {business.reviewCount && (
                                 <span className="text-muted-foreground">

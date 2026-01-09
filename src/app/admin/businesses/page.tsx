@@ -141,7 +141,7 @@ export default function AdminBusinessesPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center glass-card rounded-xl p-8 max-w-md">
-          <AlertTriangle className="w-16 h-16 text-amber-500 mx-auto mb-4" />
+          <AlertTriangle className="w-16 h-16 text-blue-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold mb-2">Access Denied</h1>
           <p className="text-muted-foreground mb-4">
             You don&apos;t have permission to access this page.
@@ -199,7 +199,7 @@ export default function AdminBusinessesPage() {
                       <h3 className="font-semibold text-lg">{business.name}</h3>
                       <Badge
                         variant="outline"
-                        className="bg-amber-500/20 text-amber-500 border-amber-500/30"
+                        className="bg-blue-500/20 text-blue-500 border-blue-500/30"
                       >
                         <Clock className="w-3 h-3 mr-1" />
                         Pending Review

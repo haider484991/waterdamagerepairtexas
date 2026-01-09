@@ -200,7 +200,7 @@ function CategoryPageContent() {
   const [priceLevel, setPriceLevel] = useState(searchParams.get("price") || "0");
   const [dataSource, setDataSource] = useState<"database" | "google" | "hybrid" | null>(null);
   const [autoSynced, setAutoSynced] = useState(false);
-  
+
   // Category-specific filter states for water damage services
   const categoryFilters = getCategorySpecificFilters(slug);
   const [serviceType, setServiceType] = useState(searchParams.get("serviceType") || "all");
@@ -208,11 +208,11 @@ function CategoryPageContent() {
   const [certification, setCertification] = useState(searchParams.get("certification") || "all");
   const [responseTime, setResponseTime] = useState(searchParams.get("responseTime") || "all");
   const [damageType, setDamageType] = useState(searchParams.get("damageType") || "all");
-  
+
   // Get states and cities for filters
   const allStates = getAllStates();
-  const availableCities = selectedState !== "all" 
-    ? getCitiesForState(selectedState) 
+  const availableCities = selectedState !== "all"
+    ? getCitiesForState(selectedState)
     : [];
 
   // Fetch data
@@ -225,7 +225,7 @@ function CategoryPageContent() {
       if (minRating !== "0") params.set("rating", minRating);
       if (priceLevel !== "0") params.set("price", priceLevel);
       if (sortBy !== "relevance") params.set("sort", sortBy);
-      
+
       // Add category-specific filters for water damage services
       if (serviceType !== "all") params.set("serviceType", serviceType);
       if (availability !== "all") params.set("availability", availability);
@@ -236,7 +236,7 @@ function CategoryPageContent() {
       // Pagination: 100 businesses per page
       params.set("page", currentPage.toString());
       params.set("limit", "100");
-      
+
       const response = await fetch(`/api/categories/${slug}?${params.toString()}`);
       const data = await response.json();
 
@@ -246,7 +246,7 @@ function CategoryPageContent() {
       setBusinesses(data.businesses || []);
       setDataSource(data.dataSource || null);
       setAutoSynced(data.autoSynced || false);
-      
+
       // Update pagination info
       if (data.pagination) {
         setTotalPages(data.pagination.totalPages || 1);
@@ -806,13 +806,13 @@ function CategoryPageContent() {
                   Showing {businesses.length > 0 ? ((currentPage - 1) * 100 + 1) : 0}-{Math.min(currentPage * 100, totalBusinesses)} of {totalBusinesses} businesses
                 </span>
                 {dataSource && (
-                  <Badge 
-                    variant="outline" 
+                  <Badge
+                    variant="outline"
                     className={cn(
                       "text-xs",
                       dataSource === "google" && "border-blue-500/50 text-blue-500",
                       dataSource === "database" && "border-green-500/50 text-green-500",
-                      dataSource === "hybrid" && "border-amber-500/50 text-amber-500"
+                      dataSource === "hybrid" && "border-blue-500/50 text-blue-500"
                     )}
                   >
                     {dataSource === "google" && "Live from Google"}

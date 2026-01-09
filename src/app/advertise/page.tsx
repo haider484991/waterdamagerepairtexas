@@ -326,7 +326,7 @@ export default function AdvertisePage() {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-1 mb-3">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                      <Star key={i} className="w-4 h-4 fill-blue-500 text-blue-500" />
                     ))}
                   </div>
                   <p className="text-sm text-muted-foreground mb-4 italic">

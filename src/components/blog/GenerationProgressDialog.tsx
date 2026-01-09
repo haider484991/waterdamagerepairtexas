@@ -274,7 +274,7 @@ export function GenerationProgressDialog({
                   <span className="text-muted-foreground opacity-50">[{new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}]</span>
                   <span className={
                     log.level === "error" ? "text-red-500" : 
-                    log.level === "warn" ? "text-amber-500" : 
+                    log.level === "warn" ? "text-blue-500" : 
                     "text-foreground"
                   }>
                     {log.message}

@@ -59,7 +59,7 @@ export function MarkdownEditor({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: "text-amber-600 hover:underline cursor-pointer",
+          class: "text-blue-600 hover:underline cursor-pointer",
         },
       }),
       Image.configure({

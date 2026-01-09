@@ -348,8 +348,8 @@ export default function KeywordsPage() {
                   onClick={() => setSelectedList(list.id)}
                   className={`w-full p-4 rounded-lg text-left transition-colors ${
                     selectedList === list.id
-                      ? "bg-amber-50 border-amber-200 border-2 dark:bg-amber-950/20"
-                      : "bg-card border border-border hover:border-amber-200"
+                      ? "bg-blue-50 border-blue-200 border-2 dark:bg-blue-950/20"
+                      : "bg-card border border-border hover:border-blue-200"
                   }`}
                 >
                   <div className="font-medium">{list.name}</div>

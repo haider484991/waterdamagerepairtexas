@@ -265,7 +265,7 @@ export default function BulkSyncPage() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-amber-500" />
+              <Zap className="w-5 h-5 text-blue-500" />
               Sync Configuration
             </CardTitle>
             <CardDescription>

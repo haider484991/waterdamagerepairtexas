@@ -225,7 +225,7 @@ export default function BlogAdminPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
-            <FileText className="w-8 h-8 text-amber-600" />
+            <FileText className="w-8 h-8 text-blue-600" />
             Blog Admin
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -256,9 +256,9 @@ export default function BlogAdminPage() {
           transition={{ delay: 0.1 }}
         >
           <Link href="/admin/blog/posts">
-            <div className="p-6 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors">
+            <div className="p-6 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors">
               <div className="flex items-center justify-between mb-4">
-                <FileText className="w-8 h-8 text-amber-600" />
+                <FileText className="w-8 h-8 text-blue-600" />
                 <Badge variant="secondary">{stats?.posts.total || 0}</Badge>
               </div>
               <h3 className="font-semibold text-lg mb-1">Posts</h3>
@@ -275,7 +275,7 @@ export default function BlogAdminPage() {
           transition={{ delay: 0.2 }}
         >
           <Link href="/admin/blog/keywords">
-            <div className="p-6 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors">
+            <div className="p-6 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors">
               <div className="flex items-center justify-between mb-4">
                 <Tag className="w-8 h-8 text-green-600" />
                 <Badge variant="secondary">{stats?.keywords.total || 0}</Badge>
@@ -294,7 +294,7 @@ export default function BlogAdminPage() {
           transition={{ delay: 0.3 }}
         >
           <Link href="/admin/blog/topics">
-            <div className="p-6 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors">
+            <div className="p-6 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors">
               <div className="flex items-center justify-between mb-4">
                 <Lightbulb className="w-8 h-8 text-blue-600" />
                 <Badge variant="secondary">{stats?.topics.total || 0}</Badge>
@@ -313,7 +313,7 @@ export default function BlogAdminPage() {
           transition={{ delay: 0.4 }}
         >
           <Link href="/admin/blog/jobs">
-            <div className="p-6 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors">
+            <div className="p-6 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors">
               <div className="flex items-center justify-between mb-4">
                 <BarChart3 className="w-8 h-8 text-purple-600" />
                 <Badge variant={stats?.jobs.running ? "default" : "secondary"}>
@@ -473,7 +473,7 @@ export default function BlogAdminPage() {
                   </span>
                   <span className={
                     log.level === "error" ? "text-red-500 font-bold" : 
-                    log.level === "warn" ? "text-amber-500 font-bold" : 
+                    log.level === "warn" ? "text-blue-500 font-bold" : 
                     "text-foreground"
                   }>
                     {log.message}

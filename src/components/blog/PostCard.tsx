@@ -35,7 +35,7 @@ export function PostCard({
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group block bg-card rounded-xl border border-border hover:border-amber-500/50 transition-all duration-300 overflow-hidden"
+      className="group block bg-card rounded-xl border border-border hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
     >
       {/* Cover Image */}
       {coverImageUrl && (
@@ -64,7 +64,7 @@ export function PostCard({
         )}
 
         {/* Title */}
-        <h2 className="text-xl font-bold mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
+        <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
           {title}
         </h2>
 
@@ -99,7 +99,7 @@ export function PostCard({
         </div>
 
         {/* Read More */}
-        <div className="mt-4 flex items-center gap-2 text-amber-600 font-medium text-sm group-hover:gap-3 transition-all">
+        <div className="mt-4 flex items-center gap-2 text-blue-600 font-medium text-sm group-hover:gap-3 transition-all">
           Read more
           <ArrowRight className="w-4 h-4" />
         </div>

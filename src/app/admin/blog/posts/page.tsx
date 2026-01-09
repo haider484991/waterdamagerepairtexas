@@ -208,7 +208,7 @@ export default function PostsPage() {
         </Link>
         <div className="flex-1">
           <h1 className="text-2xl font-bold flex items-center gap-2">
-            <FileText className="w-6 h-6 text-amber-600" />
+            <FileText className="w-6 h-6 text-blue-600" />
             Blog Posts
           </h1>
         </div>

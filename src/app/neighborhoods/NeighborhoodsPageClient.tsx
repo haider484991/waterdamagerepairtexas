@@ -100,7 +100,7 @@ export function NeighborhoodsPageClient({ neighborhoods }: NeighborhoodsPageClie
                             </div>
                             {parseFloat(neighborhood.avgRating) > 0 && (
                               <div className="flex items-center gap-1">
-                                <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                                <Star className="w-4 h-4 fill-blue-500 text-blue-500" />
                                 <span className="text-foreground font-medium">
                                   {neighborhood.avgRating}
                                 </span>

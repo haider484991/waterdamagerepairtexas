@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  
+
   const [post] = await db
     .select()
     .from(blogPosts)
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   let relatedPosts = internalLinks;
   if (relatedPosts.length < 4) {
     const excludedIds = [post.id, ...internalLinks.map(link => link.targetId)];
-    
+
     const moreRelated = await db
       .select({
         targetId: blogPosts.id,
@@ -286,8 +286,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div
                   className="prose prose-lg dark:prose-invert max-w-none
                     prose-headings:scroll-mt-24 
-                    prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline
-                    prose-blockquote:border-l-amber-500 prose-blockquote:bg-muted/30
+                    prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
+                    prose-blockquote:border-l-blue-500 prose-blockquote:bg-muted/30
                     prose-img:rounded-xl prose-img:shadow-lg
                     prose-pre:bg-muted prose-pre:border prose-pre:border-border"
                   dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }}
@@ -335,9 +335,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <Link
                           key={related.targetSlug}
                           href={`/blog/${related.targetSlug}`}
-                          className="p-4 bg-card rounded-xl border border-border hover:border-amber-500/50 transition-colors group"
+                          className="p-4 bg-card rounded-xl border border-border hover:border-blue-500/50 transition-colors group"
                         >
-                          <h3 className="font-medium group-hover:text-amber-600 transition-colors line-clamp-2">
+                          <h3 className="font-medium group-hover:text-blue-600 transition-colors line-clamp-2">
                             {related.targetTitle}
                           </h3>
                         </Link>

@@ -174,7 +174,7 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center glass-card rounded-xl p-8 max-w-md">
-          <AlertTriangle className="w-16 h-16 text-amber-500 mx-auto mb-4" />
+          <AlertTriangle className="w-16 h-16 text-blue-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold mb-2">Access Denied</h1>
           <p className="text-muted-foreground mb-4">
             You don&apos;t have permission to access the admin panel.
@@ -293,8 +293,8 @@ export default function AdminPage() {
       label: "Categories", 
       value: stats?.categories || 0, 
       icon: Tag,
-      color: "text-amber-500",
-      bgColor: "bg-amber-500/20",
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/20",
     },
     { 
       label: "Total Users", 
@@ -326,7 +326,7 @@ export default function AdminPage() {
       icon: Tag,
       action: handleSyncCategories,
       loading: syncingCategories,
-      color: "text-amber-500",
+      color: "text-blue-500",
     },
     {
       title: "Quick Sync",
@@ -363,8 +363,8 @@ export default function AdminPage() {
           className="flex items-center justify-between mb-8"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center">
-              <Shield className="w-6 h-6 text-amber-500" />
+            <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-blue-500" />
             </div>
             <div>
               <h1 className="text-2xl font-bold">Admin Panel</h1>
@@ -373,7 +373,7 @@ export default function AdminPage() {
               </p>
             </div>
           </div>
-          <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/30">
+          <Badge className="bg-blue-500/20 text-blue-500 border-blue-500/30">
             <CheckCircle2 className="w-3 h-3 mr-1" />
             Admin Access
           </Badge>
@@ -586,7 +586,7 @@ export default function AdminPage() {
                       <div className="text-xs text-muted-foreground">Businesses Added</div>
                     </div>
                     <div className="glass-card rounded-lg p-4">
-                      <div className="text-xl font-bold text-amber-500">
+                      <div className="text-xl font-bold text-blue-500">
                         {syncProgress.businessesSkipped}
                       </div>
                       <div className="text-xs text-muted-foreground">Already Existed</div>

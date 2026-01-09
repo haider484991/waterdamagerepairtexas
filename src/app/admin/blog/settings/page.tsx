@@ -166,8 +166,8 @@ export default function SettingsPage() {
       </div>
 
       {hasChanges && (
-        <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 rounded-lg flex items-center gap-3">
-          <AlertCircle className="w-5 h-5 text-amber-600" />
+        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 rounded-lg flex items-center gap-3">
+          <AlertCircle className="w-5 h-5 text-blue-600" />
           <span className="text-sm">You have unsaved changes</span>
         </div>
       )}

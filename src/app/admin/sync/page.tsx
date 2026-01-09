@@ -167,7 +167,7 @@ export default function AdminSyncPage() {
               </Button>
 
               {!status?.apiConfigured && (
-                <p className="text-sm text-amber-500">
+                <p className="text-sm text-blue-500">
                   ⚠️ Google Places API key not configured. Add GOOGLE_PLACES_API_KEY to your environment variables.
                 </p>
               )}

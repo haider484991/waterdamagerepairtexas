@@ -75,7 +75,7 @@ export function TableOfContents({ items, className = "" }: TableOfContentsProps)
             className={`
               transition-colors
               ${activeId === item.id
-                ? "text-amber-600 font-medium"
+                ? "text-blue-600 font-medium"
                 : "text-muted-foreground hover:text-foreground"
               }
             `}
