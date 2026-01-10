@@ -180,7 +180,7 @@ export function SearchBar({
             <div className="mt-4 pt-4 border-t border-border/50">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Searching across <strong className="text-foreground">Texas</strong></span>
+                <span>Searching across <strong className="text-foreground">the USA</strong></span>
               </div>
             </div>
           </motion.div>

@@ -258,7 +258,7 @@ export class GeminiClient {
   async analyzeIntent(keyword: string): Promise<GenerationResult<IntentAnalysis>> {
     const prompt = `Analyze the search intent for the keyword: "${keyword}"
 
-Consider this is for a water damage restoration website serving Texas (WaterDamageRepairTexas.net).
+Consider this is for a water damage restoration website serving the entire USA.
 
 Return a JSON object with:
 {
@@ -293,7 +293,7 @@ Return a JSON object with:
 
     const prompt = `Generate ${count} unique blog post topic ideas for the keyword: "${keyword}"
 
-This is for WaterDamageRepairTexas.net, a directory and resource site for Texas property owners dealing with water damage.
+This is for a water damage restoration directory and resource site for property owners across the USA dealing with water damage.
 ${existingContext}
 
 Return a JSON array of objects:
@@ -404,7 +404,7 @@ Write naturally for humans, not search engines. Be helpful and informative.
 Do NOT include the title in the output (it will be added separately).
 Do NOT include any JSON wrapping - just return the Markdown content.`;
 
-    const systemInstruction = `You are a professional water damage restoration content writer for WaterDamageRepairTexas.net. Write engaging, helpful articles that provide real value to readers. Your content should be well-researched, accurate, and actionable. Avoid fluff, keyword stuffing, and generic advice. Return only the Markdown article content.`;
+    const systemInstruction = `You are a professional water damage restoration content writer for a national USA audience. Write engaging, helpful articles that provide real value to readers. Your content should be well-researched, accurate, and actionable. Avoid fluff, keyword stuffing, and generic advice. Return only the Markdown article content.`;
 
     const result = await this.makeRequest<string>(
       this.textModel,

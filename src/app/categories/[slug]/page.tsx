@@ -726,7 +726,7 @@ function CategoryPageContent() {
   );
 
   const displayName = category?.name || slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const displayDescription = category?.description || `Browse ${displayName} services across Texas`;
+  const displayDescription = category?.description || `Browse ${displayName} services across the USA`;
   const displaySection = category?.section || "General";
 
   return (

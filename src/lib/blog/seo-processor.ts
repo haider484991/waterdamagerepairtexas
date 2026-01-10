@@ -238,12 +238,12 @@ export function generateArticleSchema(post: {
     dateModified: modifiedDate,
     author: {
       "@type": "Organization",
-      name: post.authorName || "Water Damage Repair Texas",
+      name: post.authorName || "Water Damage Repair USA",
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "Water Damage Repair Texas",
+      name: "Water Damage Repair USA",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",

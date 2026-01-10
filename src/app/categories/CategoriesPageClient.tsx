@@ -111,7 +111,7 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
             Browse All Categories
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore {categories.length} water damage restoration categories covering everything Texas has to offer, from
+            Explore {categories.length} water damage restoration categories covering services across the nation, from
             emergency services to specialized restoration professionals.
           </p>
         </motion.div>

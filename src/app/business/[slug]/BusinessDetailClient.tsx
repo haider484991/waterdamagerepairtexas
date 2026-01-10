@@ -180,7 +180,7 @@ export function BusinessDetailClient({
 
   const handleShare = async (platform?: string) => {
     const url = typeof window !== "undefined" ? window.location.href : "";
-    const text = `Check out ${business.name} on WaterDamageRepairTexas.net`;
+    const text = `Check out ${business.name} on Water Damage Repair USA`;
 
     if (platform === "copy") {
       await navigator.clipboard.writeText(url);

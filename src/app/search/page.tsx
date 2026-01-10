@@ -77,19 +77,58 @@ const categories = [
 ];
 
 const stateFilters = [
-  { value: "all", label: "All Regions" },
-  { value: "DFW", label: "Dallas-Fort Worth" },
-  { value: "HOU", label: "Houston" },
-  { value: "AUS", label: "Austin" },
-  { value: "SAT", label: "San Antonio" },
-  { value: "ELP", label: "El Paso" },
-  { value: "RGV", label: "Rio Grande Valley" },
-  { value: "CRP", label: "Corpus Christi" },
-  { value: "LBB", label: "Lubbock" },
-  { value: "AMA", label: "Amarillo" },
-  { value: "TYL", label: "Tyler/East Texas" },
-  { value: "WF", label: "Wichita Falls" },
-  { value: "MID", label: "Midland/Odessa" },
+  { value: "all", label: "All States" },
+  { value: "AL", label: "Alabama" },
+  { value: "AK", label: "Alaska" },
+  { value: "AZ", label: "Arizona" },
+  { value: "AR", label: "Arkansas" },
+  { value: "CA", label: "California" },
+  { value: "CO", label: "Colorado" },
+  { value: "CT", label: "Connecticut" },
+  { value: "DE", label: "Delaware" },
+  { value: "FL", label: "Florida" },
+  { value: "GA", label: "Georgia" },
+  { value: "HI", label: "Hawaii" },
+  { value: "ID", label: "Idaho" },
+  { value: "IL", label: "Illinois" },
+  { value: "IN", label: "Indiana" },
+  { value: "IA", label: "Iowa" },
+  { value: "KS", label: "Kansas" },
+  { value: "KY", label: "Kentucky" },
+  { value: "LA", label: "Louisiana" },
+  { value: "ME", label: "Maine" },
+  { value: "MD", label: "Maryland" },
+  { value: "MA", label: "Massachusetts" },
+  { value: "MI", label: "Michigan" },
+  { value: "MN", label: "Minnesota" },
+  { value: "MS", label: "Mississippi" },
+  { value: "MO", label: "Missouri" },
+  { value: "MT", label: "Montana" },
+  { value: "NE", label: "Nebraska" },
+  { value: "NV", label: "Nevada" },
+  { value: "NH", label: "New Hampshire" },
+  { value: "NJ", label: "New Jersey" },
+  { value: "NM", label: "New Mexico" },
+  { value: "NY", label: "New York" },
+  { value: "NC", label: "North Carolina" },
+  { value: "ND", label: "North Dakota" },
+  { value: "OH", label: "Ohio" },
+  { value: "OK", label: "Oklahoma" },
+  { value: "OR", label: "Oregon" },
+  { value: "PA", label: "Pennsylvania" },
+  { value: "RI", label: "Rhode Island" },
+  { value: "SC", label: "South Carolina" },
+  { value: "SD", label: "South Dakota" },
+  { value: "TN", label: "Tennessee" },
+  { value: "TX", label: "Texas" },
+  { value: "UT", label: "Utah" },
+  { value: "VT", label: "Vermont" },
+  { value: "VA", label: "Virginia" },
+  { value: "WA", label: "Washington" },
+  { value: "WV", label: "West Virginia" },
+  { value: "WI", label: "Wisconsin" },
+  { value: "WY", label: "Wyoming" },
+  { value: "DC", label: "Washington D.C." },
 ];
 
 const sortOptions = [
@@ -525,7 +564,7 @@ function SearchContent() {
             <p className="text-center mt-4 text-muted-foreground">
               Showing results for &quot;<span className="text-foreground font-medium">{query}</span>&quot;
               {stateFilter !== "all" && ` in ${stateFilters.find((s: { value: string; label: string }) => s.value === stateFilter)?.label}`}
-              {stateFilter === "all" && " across Texas"}
+              {stateFilter === "all" && " across the USA"}
             </p>
           )}
         </motion.div>
