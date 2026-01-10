@@ -28,6 +28,9 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* llms.txt for AI assistants */}
+        <link rel="llms-txt" href="/llms.txt" />
+        <link rel="llms-full-txt" href="/api/llms/full" />
         {/* Global Organization Schema for E-E-A-T signals */}
         <script
           type="application/ld+json"

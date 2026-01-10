@@ -6,9 +6,9 @@ import { db, businesses } from "@/lib/db";
 import { sql } from "drizzle-orm";
 
 export const metadata: Metadata = {
-  title: "Plano Neighborhoods – Explore Businesses by Area | Henry Harrison Plano Texas",
+  title: "Service Areas – Find Water Damage Restoration by Location | Water Damage Repair USA",
   description:
-    "Discover businesses across Plano's vibrant neighborhoods including Legacy West, Downtown Plano, West Plano, and East Plano. Find local businesses near you.",
+    "Browse water damage restoration professionals by service area. Find emergency restoration, flood cleanup, and mold remediation services in your neighborhood.",
 };
 
 async function getNeighborhoods() {

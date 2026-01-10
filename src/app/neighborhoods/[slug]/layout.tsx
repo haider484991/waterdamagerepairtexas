@@ -12,8 +12,8 @@ export async function generateMetadata({
     .join(" ");
 
   return {
-    title: `${neighborhoodName} – Businesses & Services | Henry Harrison Plano Texas`,
-    description: `Discover local businesses in ${neighborhoodName}, Plano, Texas. Find restaurants, shops, services, and more in this vibrant neighborhood.`,
+    title: `${neighborhoodName} Water Damage Restoration Services | Water Damage Repair USA`,
+    description: `Find trusted water damage restoration professionals in ${neighborhoodName}. Emergency flood cleanup, water extraction, and mold remediation services available 24/7.`,
   };
 }
 

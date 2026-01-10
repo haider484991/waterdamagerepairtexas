@@ -56,12 +56,7 @@ export interface Neighborhood {
 }
 
 export const NEIGHBORHOODS: Neighborhood[] = [
-  { name: "Legacy West", slug: "legacy-west", description: "Upscale mixed-use development with dining and shopping" },
-  { name: "West Plano", slug: "west-plano", description: "Affluent area with major retail and residential communities" },
-  { name: "East Plano", slug: "east-plano", description: "Diverse community with family-friendly amenities" },
-  { name: "Downtown Plano", slug: "downtown-plano", description: "Historic arts district with unique shops and restaurants" },
-  { name: "North Plano", slug: "north-plano", description: "Growing area near Frisco border" },
-  { name: "South Plano", slug: "south-plano", description: "Established neighborhoods near Richardson" },
+  // Neighborhoods are now dynamically populated from the database based on business locations
 ];
 
 export interface CategorySection {

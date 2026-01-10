@@ -95,6 +95,9 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       title,
       description,
     },
+    other: {
+      "llms-txt": `/api/llms/category/${category.slug}`,
+    },
   };
 }
 

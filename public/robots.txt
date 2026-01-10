@@ -1,5 +1,5 @@
 # WaterDamageRepairTexas.net - Robots.txt
-# Find water damage restoration services near you in Texas
+# Find water damage restoration services nationwide across the USA
 
 User-agent: *
 Allow: /
@@ -13,11 +13,23 @@ Allow: /search
 # Disallow admin and user-specific pages
 Disallow: /admin
 Disallow: /dashboard
-Disallow: /api/
 Disallow: /_next/
+
+# API access - block most but allow llms endpoints
+Disallow: /api/
+Allow: /api/llms
+Allow: /api/llms/full
+Allow: /api/llms/state/
+Allow: /api/llms/category/
+Allow: /api/llms/business/
 
 # Sitemaps
 Sitemap: https://waterdamagerepairtexas.net/sitemap.xml
+
+# LLMs.txt for AI assistants
+# See https://llmstxt.org for specification
+LLMs-Txt: https://waterdamagerepairtexas.net/llms.txt
+LLMs-Full-Txt: https://waterdamagerepairtexas.net/api/llms/full
 
 # Crawl delay to prevent overload
 Crawl-delay: 1

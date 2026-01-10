@@ -102,11 +102,18 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     };
   }
   
-  return generateBusinessMetadata(
-    data.business, 
+  const metadata = generateBusinessMetadata(
+    data.business,
     data.category,
     data.reviews.length
   );
+
+  return {
+    ...metadata,
+    other: {
+      "llms-txt": `/api/llms/business/${data.business.slug}`,
+    },
+  };
 }
 
 export default async function BusinessLayout({ children, params }: LayoutProps) {

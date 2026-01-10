@@ -29,6 +29,9 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
       `emergency water damage ${city.name}`,
       `${city.name} mold remediation`,
     ],
+    other: {
+      "llms-txt": `/api/llms/state/${stateSlug}/${citySlug}`,
+    },
   };
 }
 

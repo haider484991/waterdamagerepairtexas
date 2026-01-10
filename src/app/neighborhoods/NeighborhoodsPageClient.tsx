@@ -32,11 +32,7 @@ const itemVariants = {
 };
 
 const neighborhoodDescriptions: Record<string, string> = {
-  "Legacy West": "Upscale shopping, dining, and entertainment district with luxury retailers and fine dining.",
-  "Downtown Plano": "Historic downtown area featuring local shops, restaurants, and cultural attractions.",
-  "West Plano": "Modern residential and commercial area with diverse businesses and services.",
-  "East Plano": "Established community with a mix of traditional and contemporary businesses.",
-  "Plano": "Central Plano area with a wide variety of businesses and services.",
+  // Descriptions are now dynamically generated for water damage service areas
 };
 
 export function NeighborhoodsPageClient({ neighborhoods }: NeighborhoodsPageClientProps) {
@@ -50,14 +46,14 @@ export function NeighborhoodsPageClient({ neighborhoods }: NeighborhoodsPageClie
           className="text-center mb-12"
         >
           <Badge variant="secondary" className="mb-4">
-            Explore Plano
+            Service Areas
           </Badge>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Discover Plano Neighborhoods
+            Find Restoration Services by Area
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore businesses across Plano's vibrant neighborhoods. Each area offers unique
-            shopping, dining, and service experiences.
+            Browse water damage restoration professionals by service area. Find emergency
+            flood cleanup, water extraction, and mold remediation near you.
           </p>
         </motion.div>
 
@@ -85,11 +81,9 @@ export function NeighborhoodsPageClient({ neighborhoods }: NeighborhoodsPageClie
                             </h3>
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                           </div>
-                          {neighborhoodDescriptions[neighborhood.name] && (
-                            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                              {neighborhoodDescriptions[neighborhood.name]}
-                            </p>
-                          )}
+                          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                            {neighborhoodDescriptions[neighborhood.name] || `Water damage restoration services in ${neighborhood.name}`}
+                          </p>
                           <div className="flex items-center gap-4 text-sm">
                             <div className="flex items-center gap-1">
                               <Building2 className="w-4 h-4 text-muted-foreground" />
@@ -125,9 +119,9 @@ export function NeighborhoodsPageClient({ neighborhoods }: NeighborhoodsPageClie
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
               <MapPin className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">No neighborhoods found</h3>
+            <h3 className="text-lg font-semibold mb-2">No service areas found</h3>
             <p className="text-muted-foreground">
-              Neighborhoods will appear here once businesses are added to the directory.
+              Service areas will appear here once restoration professionals are added to the directory.
             </p>
           </div>
         )}

@@ -71,11 +71,7 @@ interface TopCategory {
 }
 
 const neighborhoodDescriptions: Record<string, string> = {
-  "Legacy West": "Upscale shopping, dining, and entertainment district with luxury retailers and fine dining. Home to premium shopping centers and acclaimed restaurants.",
-  "Downtown Plano": "Historic downtown area featuring local shops, restaurants, and cultural attractions. The heart of Plano's community with charming streets and local businesses.",
-  "West Plano": "Modern residential and commercial area with diverse businesses and services. A growing community with excellent amenities and convenient access.",
-  "East Plano": "Established community with a mix of traditional and contemporary businesses. Known for its friendly atmosphere and local charm.",
-  "Plano": "Central Plano area with a wide variety of businesses and services. The bustling center of commerce and community activity.",
+  // Generic descriptions for any service area
 };
 
 const sortOptions = [
@@ -266,7 +262,7 @@ function NeighborhoodPageContent() {
   );
 
   const neighborhoodName = neighborhood?.name || slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const neighborhoodDescription = neighborhoodDescriptions[neighborhoodName] || `Explore businesses in ${neighborhoodName}, Plano, TX`;
+  const neighborhoodDescription = neighborhoodDescriptions[neighborhoodName] || `Find trusted water damage restoration professionals serving ${neighborhoodName}. Emergency services available 24/7.`;
 
   return (
     <div className="min-h-screen">
