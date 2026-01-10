@@ -2,7 +2,12 @@
   "crons": [
     {
       "path": "/api/cron/blog-generate",
-      "schedule": "0 */12 * * *"
+      "schedule": "0 9 * * *"
     }
-  ]
+  ],
+  "functions": {
+    "src/app/api/cron/blog-generate/route.ts": {
+      "maxDuration": 300
+    }
+  }
 }
