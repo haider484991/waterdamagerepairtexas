@@ -88,7 +88,7 @@ ${recentReviews.length > 0 ? `## Recent Reviews
 
 ${recentReviews.map((review, i) => `### Review ${i + 1}
 - **Rating**: ${review.rating}/5
-- **Comment**: "${review.comment || 'No comment provided'}"
+- **Comment**: "${review.content || 'No comment provided'}"
 - **Date**: ${new Date(review.createdAt).toLocaleDateString()}
 `).join('\n')}` : ''}
 
