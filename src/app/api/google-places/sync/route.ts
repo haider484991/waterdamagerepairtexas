@@ -107,11 +107,11 @@ const typeToCategory: Record<string, string> = {
 
 // Water damage restoration search queries
 const categorySearchQueries: Record<string, string[]> = {
-  "water-damage-restoration": ["water damage restoration Texas", "water damage repair", "water extraction"],
-  "flood-cleanup": ["flood cleanup Texas", "flood damage restoration", "water removal"],
-  "mold-remediation": ["mold remediation Texas", "mold removal", "mold inspection"],
+  "water-damage-restoration": ["water damage restoration", "water damage repair", "water extraction"],
+  "flood-cleanup": ["flood cleanup", "flood damage restoration", "water removal"],
+  "mold-remediation": ["mold remediation", "mold removal", "mold inspection"],
   "emergency-services": ["24 hour water damage", "emergency restoration", "emergency water extraction"],
-  "storm-damage": ["storm damage repair Texas", "hurricane damage restoration", "hail damage repair"],
+  "storm-damage": ["storm damage repair", "hurricane damage restoration", "hail damage repair"],
 };
 
 async function searchGooglePlaces(query: string, cityName?: string, stateCode?: string, location?: string): Promise<GooglePlace[]> {

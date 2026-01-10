@@ -47,7 +47,7 @@ const defaultSettings: BlogSettings = {
   autopublish: false,
   scheduleFrequency: "daily",
   writingStyle: "professional",
-  brandVoice: "We are experts in water damage restoration, helping Texas property owners navigate the challenges of water damage, flooding, and mold issues. Our goal is to connect you with trusted restoration professionals who can respond quickly and restore your property efficiently.",
+  brandVoice: "We are experts in water damage restoration, helping property owners across the USA navigate the challenges of water damage, flooding, and mold issues. Our goal is to connect you with trusted restoration professionals who can respond quickly and restore your property efficiently.",
   targetWordCountMin: 1500,
   targetWordCountMax: 2500,
   internalLinksMin: 3,

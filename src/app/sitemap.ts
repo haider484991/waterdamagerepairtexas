@@ -258,7 +258,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       "residential water damage",
       "commercial water damage",
       "insurance claim water damage",
-      "water damage Texas",
+      "water damage USA",
     ];
 
     const searchPages: MetadataRoute.Sitemap = waterDamageSearches.map((query) => ({

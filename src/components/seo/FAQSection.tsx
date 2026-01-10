@@ -61,10 +61,10 @@ export function FAQSection({ faqs, title = "Frequently Asked Questions", descrip
  */
 export function generateWaterDamageFAQs(cityName?: string, regionName?: string, categoryName?: string): FAQ[] {
   const location = cityName && regionName
-    ? `${cityName}, Texas`
+    ? `${cityName}, ${regionName}`
     : regionName
     ? regionName
-    : "Texas";
+    : "USA";
 
   const service = categoryName || "water damage restoration services";
 

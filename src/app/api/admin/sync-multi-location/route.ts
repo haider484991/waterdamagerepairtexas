@@ -116,7 +116,7 @@ export async function POST(request: Request) {
     console.log(`💧 Starting multi-location sync for ${categoriesToSync.length} categories across ${citiesToSync.length} cities`);
 
     for (const category of categoriesToSync) {
-      const queries = categorySearchQueries[category.slug] || ["water damage restoration Texas"];
+      const queries = categorySearchQueries[category.slug] || ["water damage restoration"];
       results[category.slug] = {};
 
       for (const city of citiesToSync) {
@@ -218,7 +218,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   return NextResponse.json({
-    message: "POST to sync water damage restoration businesses across Texas locations",
+    message: "POST to sync water damage restoration businesses across USA locations",
     parameters: {
       stateCode: "Optional: 2-letter state code (e.g., 'TX')",
       cityName: "Optional: City name (requires stateCode)",

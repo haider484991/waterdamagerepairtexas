@@ -599,7 +599,7 @@ export async function GET() {
     },
     examples: [
       { description: "Sync all states (full sync)", body: {} },
-      { description: "Sync Texas only", body: { stateCode: "TX" } },
+      { description: "Sync specific state", body: { stateCode: "TX" } },
       { description: "Sync top 10 states, 3 cities each", body: { maxStates: 10, citiesPerState: 3 } },
       { description: "Quick test - 5 states, 2 cities", body: { maxStates: 5, citiesPerState: 2, queriesPerCity: 1 } },
     ],

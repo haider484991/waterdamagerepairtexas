@@ -41,7 +41,7 @@ export function Footer() {
               <Logo size={44} textSize="text-xl" />
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Find trusted water damage restoration services in Texas. The most comprehensive directory of water damage repair, flood cleanup, mold remediation, and emergency restoration services across all Texas regions.
+              Find trusted water damage restoration services across the USA. The most comprehensive directory of water damage repair, flood cleanup, mold remediation, and emergency restoration services nationwide.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -125,7 +125,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} WaterDamageRepairTexas.net. All rights reserved.
+              © {new Date().getFullYear()} Water Damage Repair USA. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               {footerLinks.legal.map((link) => (

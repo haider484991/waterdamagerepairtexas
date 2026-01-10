@@ -127,7 +127,7 @@ export function generateBusinessDescription(
 
   // Rating mention
   if (rating >= 4.5 && reviews >= 20) {
-    parts.push(`Highly rated by Texas property owners with ${rating.toFixed(1)} stars from ${reviews} reviews.`);
+    parts.push(`Highly rated by property owners with ${rating.toFixed(1)} stars from ${reviews} reviews.`);
   } else if (rating >= 4.0 && reviews >= 10) {
     parts.push(`Well-reviewed by customers with a ${rating.toFixed(1)}-star rating.`);
   }

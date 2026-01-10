@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   }
 
   return {
-    title: `Water Damage Restoration in ${city.name}, TX – Emergency Services | Texas Water Damage`,
-    description: `Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services in ${city.name}, Texas. 24/7 emergency response with free estimates.`,
+    title: `Water Damage Restoration in ${city.name}, ${region.code} – Emergency Services | Water Damage Repair USA`,
+    description: `Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services in ${city.name}, ${region.name}. 24/7 emergency response with free estimates.`,
     keywords: [
       `water damage ${city.name}`,
-      `${city.name} TX water damage`,
+      `${city.name} ${region.code} water damage`,
       `flood restoration ${city.name}`,
       `emergency water damage ${city.name}`,
       `${city.name} mold remediation`,
@@ -74,7 +74,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
     <>
       <JsonLd
         data={[
-          generatePlaceSchema(city.name, "City", `Water damage restoration in ${city.name}, Texas`, "TX"),
+          generatePlaceSchema(city.name, "City", `Water damage restoration in ${city.name}, ${region.name}`, region.code),
           ...businessSchemas,
         ]}
         id="city-schema"
@@ -87,13 +87,13 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
             <div className="max-w-4xl mx-auto">
               <Badge className="mb-4">
                 <MapPin className="w-4 h-4 mr-1" />
-                {city.name}, TX
+                {city.name}, {region.code}
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Water Damage Restoration in {city.name}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Find {enrichedBusinesses.length} water damage restoration {enrichedBusinesses.length === 1 ? 'company' : 'companies'} in {city.name}, Texas.
+                Find {enrichedBusinesses.length} water damage restoration {enrichedBusinesses.length === 1 ? 'company' : 'companies'} in {city.name}, {region.name}.
                 24/7 emergency flood cleanup, mold remediation, and insurance claim assistance.
               </p>
             </div>
@@ -130,7 +130,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
         <FAQSection
           faqs={faqs}
           title={`Water Damage Restoration in ${city.name} - FAQ`}
-          description={`Everything you need to know about water damage services in ${city.name}, Texas`}
+          description={`Everything you need to know about water damage services in ${city.name}, ${region.name}`}
         />
       </div>
     </>

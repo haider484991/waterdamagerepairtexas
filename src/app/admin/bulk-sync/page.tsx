@@ -670,7 +670,7 @@ export default function BulkSyncPage() {
               (<code className="bg-secondary px-1 rounded">npx tsx scripts/bulk-sync.ts</code>) which is faster.
             </p>
             <p>
-              <strong>3. Focus on Popular States:</strong> California, Texas, Florida, and Arizona have 
+              <strong>3. Focus on Popular States:</strong> California, Florida, New York, and Arizona have
               the most water damage service activity.
             </p>
             <p>

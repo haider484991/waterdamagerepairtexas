@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   }
 
   return {
-    title: `Water Damage Restoration in ${region.name} – Emergency Services | Texas Water Damage`,
+    title: `Water Damage Restoration in ${region.name} – Emergency Services | Water Damage Repair USA`,
     description: `Find water damage restoration, flood cleanup, mold remediation, and emergency water services in ${region.name}. 24/7 emergency response available.`,
     keywords: [
       `water damage ${region.name}`,
@@ -71,7 +71,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
     .orderBy(categories.displayOrder);
 
   const cityItems = cities.map((city) => ({
-    name: `${city.name}, TX`,
+    name: `${city.name}, ${region.code}`,
     url: `/states/${region.slug}/${city.slug}`,
   }));
 

@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { generateItemListSchema } from "@/lib/seo/schema-markup";
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration by Region - Texas",
-  description: "Browse water damage restoration, flood cleanup, and mold remediation services by Texas region. Find emergency restoration services in DFW, Houston, Austin, San Antonio, and more.",
-  keywords: ["water damage texas", "water damage by region", "texas restoration services", "flood cleanup texas"],
+  title: "Water Damage Restoration by State - USA",
+  description: "Browse water damage restoration, flood cleanup, and mold remediation services by state across the USA. Find emergency restoration services in California, Texas, Florida, New York, and more.",
+  keywords: ["water damage USA", "water damage by state", "restoration services", "flood cleanup"],
 };
 
 export default function StatesPage() {
@@ -24,7 +24,7 @@ export default function StatesPage() {
   return (
     <>
       <JsonLd
-        data={generateItemListSchema(regionItems, "Texas Regions with Water Damage Services")}
+        data={generateItemListSchema(regionItems, "US States with Water Damage Services")}
         id="regions-list-schema"
       />
 
@@ -34,14 +34,14 @@ export default function StatesPage() {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge className="mb-4">
               <MapPin className="w-4 h-4 mr-1" />
-              Browse by Region
+              Browse by State
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Water Damage Services Across Texas
+              Water Damage Services Across the USA
             </h1>
             <p className="text-lg text-muted-foreground">
               Find water damage restoration, flood cleanup, mold remediation, and emergency
-              services in major Texas metropolitan areas. Connect with local certified professionals.
+              services across all US states. Connect with local certified professionals.
             </p>
           </div>
 
@@ -59,7 +59,7 @@ export default function StatesPage() {
                     </div>
                     <CardTitle className="text-xl">{region.name}</CardTitle>
                     <CardDescription>
-                      Texas Region
+                      United States
                     </CardDescription>
                   </CardHeader>
                   <CardContent>

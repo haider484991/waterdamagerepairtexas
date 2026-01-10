@@ -7,7 +7,7 @@ import type { Business, Category } from "@/lib/db/schema";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair Texas";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair USA";
 
 /**
  * Enhanced Organization schema for the main site
@@ -19,7 +19,7 @@ export function generateOrganizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
-    alternateName: "WaterDamageRepairTexas.net",
+    alternateName: "Water Damage Repair",
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
@@ -28,18 +28,14 @@ export function generateOrganizationSchema() {
       contentUrl: `${SITE_URL}/water-damage-logo.png`,
       width: 512,
       height: 512,
-      caption: "Water Damage Repair Texas Logo",
+      caption: "Water Damage Repair USA Logo",
     },
     image: `${SITE_URL}/water-damage-logo.png`,
-    description: "Texas's comprehensive directory for water damage restoration professionals. Find trusted emergency flood cleanup, mold remediation, and water extraction services with verified ratings and reviews.",
+    description: "America's comprehensive directory for water damage restoration professionals. Find trusted emergency flood cleanup, mold remediation, and water extraction services with verified ratings and reviews nationwide.",
     foundingDate: "2024",
     areaServed: {
-      "@type": "State",
-      name: "Texas",
-      containedInPlace: {
-        "@type": "Country",
-        name: "United States",
-      },
+      "@type": "Country",
+      name: "United States",
     },
     knowsAbout: [
       "Water Damage Restoration",
@@ -51,7 +47,7 @@ export function generateOrganizationSchema() {
       "Storm Damage Repair",
       "Insurance Claim Assistance",
     ],
-    slogan: "Find Trusted Water Damage Restoration Professionals in Texas",
+    slogan: "Find Trusted Water Damage Restoration Professionals Nationwide",
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -75,9 +71,9 @@ export function generateWebSiteSchema() {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
-    alternateName: "Water Damage Repair TX",
+    alternateName: "Water Damage Repair",
     url: SITE_URL,
-    description: "Find and compare water damage restoration services across Texas",
+    description: "Find and compare water damage restoration services across the USA",
     publisher: {
       "@id": `${SITE_URL}/#organization`,
     },
@@ -128,7 +124,7 @@ export function generateServiceSchema(category: Category, businessCount: number)
 
   const serviceInfo = serviceTypes[category.slug] || {
     serviceType: "WaterDamageService",
-    description: category.description || `Professional ${category.name} services in Texas.`,
+    description: category.description || `Professional ${category.name} services nationwide.`,
     offers: ["Professional Service", "Licensed Technicians", "Insurance Assistance"],
   };
 
@@ -143,8 +139,8 @@ export function generateServiceSchema(category: Category, businessCount: number)
       "@id": `${SITE_URL}/#organization`,
     },
     areaServed: {
-      "@type": "State",
-      name: "Texas",
+      "@type": "Country",
+      name: "United States",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",

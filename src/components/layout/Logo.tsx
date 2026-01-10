@@ -25,7 +25,7 @@ export function Logo({
       >
         <Image
           src={showText ? "/logo-icon.svg" : "/logo-icon.svg"}
-          alt="Water Damage Repair Texas - Emergency Restoration Services"
+          alt="Water Damage Repair USA - Emergency Restoration Services"
           width={size}
           height={size}
           priority={priority}
@@ -35,7 +35,7 @@ export function Logo({
       {showText && (
         <span className={cn("font-bold leading-tight text-foreground", textSize)}>
           <span className="text-primary">Water Damage</span> Repair
-          <span className="text-primary"> TX</span>
+          <span className="text-primary"> USA</span>
         </span>
       )}
     </div>

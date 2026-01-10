@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     });
 
     const emailSubject = subject && subject.trim().length > 0 ? subject : "Contact Form Submission";
-    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair Texas";
+    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair USA";
 
     // HTML template for business owner
     const ownerEmailHtml = `

@@ -273,7 +273,7 @@ export default function AdvertisePage() {
                 Why Advertise with Us?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Join hundreds of water damage restoration businesses across Texas that trust us to help them grow.
+                Join hundreds of water damage restoration businesses nationwide that trust us to help them grow.
               </p>
             </div>
 

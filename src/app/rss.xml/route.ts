@@ -10,8 +10,8 @@ import { eq, desc } from "drizzle-orm";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
-const SITE_NAME = "Water Damage Repair Texas Blog";
-const SITE_DESCRIPTION = "Expert tips, restoration guides, and the latest water damage news for Texas property owners.";
+const SITE_NAME = "Water Damage Repair USA Blog";
+const SITE_DESCRIPTION = "Expert tips, restoration guides, and the latest water damage news for property owners.";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Cache for 1 hour

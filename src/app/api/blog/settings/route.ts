@@ -17,7 +17,7 @@ const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
       autopublish: false,
       tone: "conversational",
       targetWordCount: { min: 1500, max: 2500 },
-      brandVoice: "We are water damage restoration experts helping Texas property owners navigate the challenges of water damage, flooding, and mold issues. Our content is informative, trustworthy, and focused on helping you find the right restoration professionals.",
+      brandVoice: "We are water damage restoration experts helping property owners across the USA navigate the challenges of water damage, flooding, and mold issues. Our content is informative, trustworthy, and focused on helping you find the right restoration professionals.",
       includeExamples: true,
       includeTips: true,
       maxInternalLinks: 5,
@@ -53,8 +53,8 @@ const DEFAULT_SETTINGS: Record<string, { value: any; description: string }> = {
   seo_config: {
     value: {
       defaultOgImage: "/water-damage-logo.png",
-      siteName: "Water Damage Repair Texas",
-      authorName: "Water Damage Repair Texas Team",
+      siteName: "Water Damage Repair USA",
+      authorName: "Water Damage Repair USA Team",
       enableFAQSchema: true,
       enableArticleSchema: true,
       enableBreadcrumbSchema: true,

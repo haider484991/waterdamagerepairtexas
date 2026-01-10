@@ -337,8 +337,8 @@ export default function AdminPage() {
       color: "text-blue-500",
     },
     {
-      title: "Bulk Sync (All Texas Cities)",
-      description: "Populate database with water damage businesses across all major Texas cities",
+      title: "Bulk Sync (All USA Cities)",
+      description: "Populate database with water damage businesses across all major US cities",
       icon: Database,
       action: handleBulkSync,
       loading: isBulkSyncing,

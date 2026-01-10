@@ -4,23 +4,23 @@ import { generateBusinessDescription, detectAmenities, generateAmenitiesList } f
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_NAME =
-  process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair Texas - Emergency Restoration Services";
+  process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair USA - Emergency Restoration Services";
 const SITE_URL = getSiteUrl();
 
 export function generateSiteMetadata(): Metadata {
   return {
     title: {
-      default: "Water Damage Repair Texas | Emergency Restoration Services - WaterDamageRepairTexas.net",
-      template: `%s | Water Damage Repair Texas`,
+      default: "Water Damage Repair USA | Emergency Restoration Services Nationwide",
+      template: `%s | Water Damage Repair USA`,
     },
     description:
-      "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation, water extraction & storm damage repair. Free directory with ratings, reviews & instant contact.",
+      "Find trusted water damage restoration services across the USA. 24/7 emergency flood cleanup, mold remediation, water extraction & storm damage repair. Free nationwide directory with ratings, reviews & instant contact.",
     keywords: [
-      "water damage repair texas",
+      "water damage repair",
       "water damage restoration",
-      "flood cleanup texas",
+      "flood cleanup",
       "emergency water damage",
-      "mold remediation texas",
+      "mold remediation",
       "water extraction services",
       "storm damage repair",
       "24 hour water damage",
@@ -31,10 +31,10 @@ export function generateSiteMetadata(): Metadata {
       "commercial water damage",
       "water damage contractors",
       "emergency flood cleanup",
-      "water damage houston",
-      "water damage dallas",
-      "water damage austin",
-      "water damage san antonio",
+      "water damage restoration near me",
+      "emergency water removal",
+      "flood damage repair",
+      "water damage services",
     ],
     authors: [{ name: SITE_NAME }],
     creator: SITE_NAME,
@@ -51,10 +51,10 @@ export function generateSiteMetadata(): Metadata {
       type: "website",
       locale: "en_US",
       url: SITE_URL,
-      siteName: "WaterDamageRepairTexas.net",
-      title: "Water Damage Repair Texas | Emergency Restoration Services",
+      siteName: "Water Damage Repair USA",
+      title: "Water Damage Repair USA | Emergency Restoration Services Nationwide",
       description:
-        "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation & storm damage repair. Free directory with ratings & reviews.",
+        "Find trusted water damage restoration services across the USA. 24/7 emergency flood cleanup, mold remediation & storm damage repair. Free nationwide directory with ratings & reviews.",
       images: [
         {
           url: `${SITE_URL}/logo.svg`,
@@ -66,12 +66,12 @@ export function generateSiteMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Water Damage Repair Texas | Emergency Restoration",
+      title: "Water Damage Repair USA | Emergency Restoration",
       description:
-        "Find trusted water damage restoration services in Texas. 24/7 emergency flood cleanup, mold remediation & storm damage repair.",
+        "Find trusted water damage restoration services across the USA. 24/7 emergency flood cleanup, mold remediation & storm damage repair.",
       images: [`${SITE_URL}/logo.svg`],
-      creator: "@waterdamagetx",
-      site: "@waterdamagetx",
+      creator: "@waterdamageusa",
+      site: "@waterdamageusa",
     },
     robots: {
       index: true,
@@ -88,7 +88,7 @@ export function generateSiteMetadata(): Metadata {
       google: process.env.GOOGLE_SITE_VERIFICATION || "",
     },
     category: "home services",
-    applicationName: "WaterDamageRepairTexas.net",
+    applicationName: "Water Damage Repair USA",
     referrer: "origin-when-cross-origin",
     formatDetection: {
       telephone: true,
@@ -122,7 +122,7 @@ export function generateBusinessMetadata(
   const priceRange = business.priceLevel ? "$".repeat(business.priceLevel) : "";
 
   // SEO-optimized title with location
-  const title = `${business.name} - ${categoryName} in ${business.city}, TX | WaterDamageRepairTexas.net`;
+  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state || "USA"} | Water Damage Repair`;
 
   // Generate dynamic description using content generator
   const dynamicDescription = generateBusinessDescription(business, category);
@@ -158,7 +158,7 @@ export function generateBusinessMetadata(
     `best ${categoryName.toLowerCase()} ${business.city}`,
     `${neighborhood} ${categoryName.toLowerCase()}`,
     business.address,
-    `${business.city} Texas ${categoryName.toLowerCase()}`,
+    `${business.city} ${business.state || ""} ${categoryName.toLowerCase()}`,
     `water damage ${business.city}`,
     // Add amenity-based keywords
     ...amenitiesList.map(a => `${a.toLowerCase()} ${business.city}`),
@@ -184,7 +184,7 @@ export function generateBusinessMetadata(
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${business.name} | ${categoryName} in ${business.city}, TX`,
+      title: `${business.name} | ${categoryName} in ${business.city}, ${business.state || "USA"}`,
       description,
       type: "website",
       url: canonicalUrl,
@@ -195,7 +195,7 @@ export function generateBusinessMetadata(
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${business.name} - ${categoryName} in ${business.city}, TX`,
+          alt: `${business.name} - ${categoryName} in ${business.city}, ${business.state || "USA"}`,
         },
       ],
     },
@@ -218,12 +218,12 @@ export function generateBusinessMetadata(
     },
     other: {
       // Additional meta tags for AI and rich snippets
-      "geo.region": "US-TX",
+      "geo.region": business.state ? `US-${business.state}` : "US",
       "geo.placename": business.city,
       "geo.position": business.lat && business.lng ? `${business.lat};${business.lng}` : "",
       "ICBM": business.lat && business.lng ? `${business.lat}, ${business.lng}` : "",
       "business:contact_data:locality": business.city,
-      "business:contact_data:region": "TX",
+      "business:contact_data:region": business.state || "USA",
       "business:contact_data:country_name": "United States",
     },
   };
@@ -239,10 +239,10 @@ export function generateCategoryMetadata(
       ? ` Top picks average ${extras.avgRating.toFixed(1)}★ across ${extras.totalReviews} reviews.`
       : "";
 
-  const title = `${category.name} in Texas | Find ${businessCount}+ Service Providers`;
+  const title = `${category.name} | Find ${businessCount}+ Service Providers Nationwide`;
   const description =
     category.description ||
-    `Find ${category.name.toLowerCase()} in Texas! Browse ${businessCount}+ verified service providers across all Texas regions. Compare ratings, reviews, hours & get directions.${ratingSnippet} Free directory.`;
+    `Find ${category.name.toLowerCase()} across the USA! Browse ${businessCount}+ verified service providers nationwide. Compare ratings, reviews, hours & get directions.${ratingSnippet} Free directory.`;
 
   return {
     title,
@@ -251,11 +251,11 @@ export function generateCategoryMetadata(
       canonical: `${SITE_URL}/categories/${category.slug}`,
     },
     openGraph: {
-      title: `${category.name} in Texas | ${businessCount}+ Providers`,
+      title: `${category.name} | ${businessCount}+ Providers Nationwide`,
       description,
       type: "website",
       url: `${SITE_URL}/categories/${category.slug}`,
-      siteName: "WaterDamageRepairTexas.net",
+      siteName: "Water Damage Repair USA",
       images: [
         {
           url: `${SITE_URL}/logo.svg`,
@@ -267,12 +267,12 @@ export function generateCategoryMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: `${category.name} in Texas`,
+      title: `${category.name} | Nationwide`,
       description: description.substring(0, 200),
       images: [`${SITE_URL}/logo.svg`],
     },
     keywords: [
-      `${category.name} texas`,
+      `${category.name}`,
       `find ${category.name.toLowerCase()}`,
       `${category.name.toLowerCase()} services`,
       `best ${category.name.toLowerCase()}`,
@@ -280,7 +280,7 @@ export function generateCategoryMetadata(
       `local ${category.name.toLowerCase()}`,
       `${category.name.toLowerCase()} near me`,
       `top ${category.name.toLowerCase()}`,
-      `${category.name.toLowerCase()} Texas`,
+      `${category.name.toLowerCase()} USA`,
       `water damage ${category.name.toLowerCase()}`,
     ],
   };
@@ -327,7 +327,7 @@ export function generateLocalBusinessSchema(
     "@type": businessType,
     "@id": `${SITE_URL}/business/${business.slug}#localbusiness`,
     name: business.name,
-    description: business.description || `${business.name} is a ${category?.name || "water damage restoration service"} located in ${business.city}, TX.`,
+    description: business.description || `${business.name} is a ${category?.name || "water damage restoration service"} located in ${business.city}, ${business.state || "USA"}.`,
     url: `${SITE_URL}/business/${business.slug}`,
     telephone: business.phone,
     email: business.email,
@@ -335,7 +335,7 @@ export function generateLocalBusinessSchema(
       "@type": "PostalAddress",
       streetAddress: business.address,
       addressLocality: business.city,
-      addressRegion: "TX",
+      addressRegion: business.state || "USA",
       postalCode: business.zip,
       addressCountry: "US",
     },
@@ -344,7 +344,7 @@ export function generateLocalBusinessSchema(
       name: business.city,
       containedIn: {
         "@type": "State",
-        name: "Texas",
+        name: business.state || "USA",
       },
     },
     priceRange: business.priceLevel ? "$".repeat(business.priceLevel) : undefined,
@@ -536,8 +536,8 @@ export function generateBusinessPageSchema(
     "@type": "WebPage",
     "@id": `${SITE_URL}/business/${business.slug}#webpage`,
     url: `${SITE_URL}/business/${business.slug}`,
-    name: `${business.name} - ${category?.name || "Water Damage Restoration"} in ${business.city}, TX`,
-    description: business.description || `Find ${business.name} in ${business.city}, TX. View hours, reviews, and contact information.`,
+    name: `${business.name} - ${category?.name || "Water Damage Restoration"} in ${business.city}, ${business.state || "USA"}`,
+    description: business.description || `Find ${business.name} in ${business.city}, ${business.state || "USA"}. View hours, reviews, and contact information.`,
     isPartOf: {
       "@type": "WebSite",
       "@id": `${SITE_URL}#website`,
@@ -589,7 +589,7 @@ export function generateBusinessPageSchema(
       name: `Where is ${business.name} located?`,
       acceptedAnswer: {
         "@type": "Answer",
-        text: `${business.name} is located at ${business.address}, ${business.city}, TX ${business.zip || ""}.`,
+        text: `${business.name} is located at ${business.address}, ${business.city}, ${business.state || "USA"} ${business.zip || ""}.`,
       },
     });
   }

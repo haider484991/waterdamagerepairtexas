@@ -6,17 +6,17 @@ import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/layout/Logo";
 
 export const metadata: Metadata = {
-  title: "About Water Damage Repair Texas - Your Guide to Restoration Services",
+  title: "About Water Damage Repair USA - Your Guide to Restoration Services",
   description:
-    "Learn about Water Damage Repair Texas, a dedicated directory connecting Texas property owners with trusted water damage restoration, flood cleanup, and mold remediation professionals.",
+    "Learn about Water Damage Repair USA, a dedicated directory connecting property owners nationwide with trusted water damage restoration, flood cleanup, and mold remediation professionals.",
 };
 
 const highlightPoints = [
-  "Modern, easy-to-use directory for Texas water damage restoration services",
+  "Modern, easy-to-use directory for water damage restoration services nationwide",
   "Mission: connect property owners with trusted, certified restoration professionals",
-  "Coverage across all Texas regions: DFW, Houston, Austin, San Antonio, and more",
+  "Coverage across all 50 US states: California, Texas, Florida, New York, and more",
   "Continuously updated with verified service providers and customer reviews",
-  "Built to help Texans recover quickly from water damage emergencies",
+  "Built to help Americans recover quickly from water damage emergencies",
 ];
 
 export default function AboutPage() {
@@ -30,16 +30,16 @@ export default function AboutPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-6 max-w-2xl">
               <Badge variant="secondary" className="text-sm">
-                About Water Damage Repair Texas
+                About Water Damage Repair USA
               </Badge>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight text-foreground">
-                Your guide to water damage restoration services across Texas.
+                Your guide to water damage restoration services across the USA.
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Water Damage Repair Texas is a comprehensive directory that
+                Water Damage Repair USA is a comprehensive directory that
                 connects property owners with the best water damage restoration
-                professionals across the Lone Star State. Our mission is simple:
-                help Texans quickly find trusted, certified restoration services
+                professionals across the United States. Our mission is simple:
+                help Americans quickly find trusted, certified restoration services
                 when water damage strikes.
               </p>
             </div>
@@ -56,10 +56,10 @@ export default function AboutPage() {
           <CardContent className="p-8 lg:p-10 space-y-8">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                Why Water Damage Repair Texas?
+                Why Water Damage Repair USA?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Texas faces unique water damage challenges—from Gulf Coast hurricanes and
+                Every region of the US faces unique water damage challenges—from hurricanes and
                 tropical storms to flash floods, burst pipes, and appliance failures. When
                 disaster strikes, you need fast access to reliable restoration professionals.
                 Whether you're dealing with emergency flood cleanup, mold remediation, water
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 <p className="text-muted-foreground leading-relaxed">
                   Quick response is critical in water damage situations. By helping
                   restoration companies increase their visibility and helping property
-                  owners find reliable services fast, Water Damage Repair Texas aims
+                  owners find reliable services fast, Water Damage Repair USA aims
                   to be the trusted resource for anyone dealing with water damage emergencies.
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">Find Help Fast. Recover Quickly.</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Water Damage Repair Texas is here to help you find, compare, and connect with
+                Water Damage Repair USA is here to help you find, compare, and connect with
                 the restoration professionals who can get your property back to normal.
                 Whether you're a homeowner facing an emergency or a business owner ready
                 to reach more customers, we're glad you're here.

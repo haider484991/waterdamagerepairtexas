@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: "Post Not Found | Water Damage Repair Texas",
+      title: "Post Not Found | Water Damage Repair USA",
     };
   }
 
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const ogImage = post.ogImageUrl || post.coverImageUrl || `${SITE_URL}/water-damage-logo.png`;
 
   return {
-    title: `${title} | Water Damage Repair Texas`,
+    title: `${title} | Water Damage Repair USA`,
     description,
     alternates: {
       canonical: canonicalUrl,
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description,
       url: canonicalUrl,
       type: "article",
-      siteName: "Water Damage Repair Texas",
+      siteName: "Water Damage Repair USA",
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt?.toISOString(),
       images: [

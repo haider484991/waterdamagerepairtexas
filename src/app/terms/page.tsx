@@ -173,7 +173,7 @@ export default function TermsPage() {
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  Thank you for helping build the most complete water damage restoration directory in Texas!
+                  Thank you for helping build the most complete water damage restoration directory!
                 </p>
               </section>
             </CardContent>

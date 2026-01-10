@@ -113,13 +113,13 @@ async function searchGoogleAndSync(query: string): Promise<{
   }
 
   try {
-    // Search for water damage-related results in Texas only
+    // Search for water damage-related results across the USA
     // Only add "water damage restoration" if it's not already in the query
     const waterDamageTerms = ["water damage", "restoration", "flood", "mold", "remediation"];
     const hasWaterDamageTerm = waterDamageTerms.some(term => query.toLowerCase().includes(term));
     const searchQuery = hasWaterDamageTerm
-      ? `${query} Texas`
-      : `${query} water damage restoration Texas`;
+      ? `${query}`
+      : `${query} water damage restoration`;
 
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
     url.searchParams.set("query", searchQuery);

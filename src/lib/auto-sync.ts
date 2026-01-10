@@ -203,7 +203,7 @@ export async function searchAndSync(
 
   try {
     const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-    url.searchParams.set("query", `${query} water damage restoration Texas`);
+    url.searchParams.set("query", `${query} water damage restoration`);
     url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
 
     const response = await fetch(url.toString());
@@ -253,7 +253,7 @@ export async function getOrCreateCategory(
           name,
           slug,
           icon: "MapPin",
-          description: `${name} - Water damage restoration services across Texas`,
+          description: `${name} - Water damage restoration services across the USA`,
           section: "Restoration",
           displayOrder: 99,
         })
@@ -275,30 +275,30 @@ export async function getOrCreateCategory(
  */
 export const categorySearchQueries: Record<string, string[]> = {
   "water-damage-restoration": [
-    "water damage restoration Texas",
-    "water damage repair Texas",
+    "water damage restoration",
+    "water damage repair",
     "water extraction services",
     "flood restoration company",
   ],
   "flood-cleanup": [
-    "flood cleanup Texas",
+    "flood cleanup",
     "flood damage restoration",
     "emergency flood service",
     "water removal service",
   ],
   "mold-remediation": [
-    "mold remediation Texas",
+    "mold remediation",
     "mold removal service",
     "mold inspection",
     "mold testing",
   ],
   "emergency-services": [
-    "24 hour water damage Texas",
+    "24 hour water damage",
     "emergency restoration service",
     "emergency water extraction",
   ],
   "storm-damage": [
-    "storm damage repair Texas",
+    "storm damage repair",
     "hurricane damage restoration",
     "wind damage repair",
     "hail damage restoration",

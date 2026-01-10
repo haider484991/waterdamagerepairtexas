@@ -32,13 +32,13 @@ interface GooglePlace {
   }>;
 }
 
-// Water damage service categories (5 categories for Texas)
+// Water damage service categories (5 categories for USA)
 const waterDamageCategories = [
   {
     name: "Water Damage Restoration",
     slug: "water-damage-restoration",
     icon: "Droplets",
-    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across Texas",
+    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across the USA",
     section: "Restoration",
     displayOrder: 1,
   },
@@ -70,7 +70,7 @@ const waterDamageCategories = [
     name: "Storm Damage Repair",
     slug: "storm-damage",
     icon: "Wind",
-    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across Texas",
+    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across the USA",
     section: "Repair",
     displayOrder: 5,
   },
@@ -79,30 +79,30 @@ const waterDamageCategories = [
 // Water damage service search queries for Google Places API
 const categorySearchQueries: Record<string, string[]> = {
   "water-damage-restoration": [
-    "water damage restoration Texas",
-    "water damage repair Texas",
+    "water damage restoration",
+    "water damage repair",
     "water extraction services",
     "flood restoration company",
   ],
   "flood-cleanup": [
-    "flood cleanup Texas",
+    "flood cleanup",
     "flood damage restoration",
     "emergency flood service",
     "water removal service",
   ],
   "mold-remediation": [
-    "mold remediation Texas",
+    "mold remediation",
     "mold removal service",
     "mold inspection",
     "mold testing",
   ],
   "emergency-services": [
-    "24 hour water damage Texas",
+    "24 hour water damage",
     "emergency restoration service",
     "emergency water extraction",
   ],
   "storm-damage": [
-    "storm damage repair Texas",
+    "storm damage repair",
     "hurricane damage restoration",
     "wind damage repair",
     "hail damage restoration",

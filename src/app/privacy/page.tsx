@@ -210,7 +210,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  Thank you for using WaterDamageRepairTexas.net — connecting Texas property owners with trusted water damage restoration professionals.
+                  Thank you for using WaterDamageRepairTexas.net — connecting property owners with trusted water damage restoration professionals.
                 </p>
               </section>
             </CardContent>

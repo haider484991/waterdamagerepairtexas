@@ -10,13 +10,13 @@ dotenv.config({ path: ".env.local" });
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
-// Water damage restoration categories (5 categories for Texas)
+// Water damage restoration categories (5 categories for USA)
 const waterDamageCategories = [
   {
     name: "Water Damage Restoration",
     slug: "water-damage-restoration",
     icon: "Droplets",
-    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across Texas",
+    description: "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across the USA",
     section: "Restoration",
     displayOrder: 1,
   },
@@ -48,13 +48,13 @@ const waterDamageCategories = [
     name: "Storm Damage Repair",
     slug: "storm-damage",
     icon: "Wind",
-    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across Texas",
+    description: "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across the USA",
     section: "Repair",
     displayOrder: 5,
   },
 ];
 
-// Sample water damage restoration businesses from Texas cities
+// Sample water damage restoration businesses from US cities
 const sampleWaterDamageBusinesses = [
   {
     name: "Houston Water Damage Pros",
@@ -199,7 +199,7 @@ const sampleWaterDamageBusinesses = [
 ];
 
 async function seed() {
-  console.log("💧 Starting Water Damage Repair Texas database seed...");
+  console.log("💧 Starting Water Damage Repair USA database seed...");
 
   try {
     // Seed states (Top 25 US states)
@@ -282,7 +282,7 @@ async function seed() {
     console.log("\n🔐 Login Credentials:");
     console.log(`   Demo: demo@waterdamagerepairtexas.net / demo123`);
     console.log(`   Admin: admin@waterdamagerepairtexas.net / admin123`);
-    console.log("\n💧 Water Damage Repair Texas is ready!");
+    console.log("\n💧 Water Damage Repair USA is ready!");
     console.log("   Run migrations: npm run db:push");
     console.log("   Then seed: npm run db:seed");
 

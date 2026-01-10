@@ -54,14 +54,14 @@ interface HomePageClientProps {
 }
 
 const topRegions = [
-  { name: "Dallas-Fort Worth", slug: "dallas-fort-worth", description: "Largest metro coverage" },
-  { name: "Houston", slug: "houston", description: "24/7 emergency services" },
-  { name: "Austin", slug: "austin", description: "Fast response times" },
-  { name: "San Antonio", slug: "san-antonio", description: "Certified professionals" },
+  { name: "California", slug: "california", stateCode: "CA", description: "Largest state coverage" },
+  { name: "Texas", slug: "texas", stateCode: "TX", description: "24/7 emergency services" },
+  { name: "Florida", slug: "florida", stateCode: "FL", description: "Fast response times" },
+  { name: "New York", slug: "new-york", stateCode: "NY", description: "Certified professionals" },
 ];
 
 const stats = [
-  { label: "Texas Regions", value: "12+", icon: MapPin },
+  { label: "US States", value: "25+", icon: MapPin },
   { label: "Cities", value: "200+", icon: Building2 },
   { label: "Services", value: "5", icon: TrendingUp },
   { label: "24/7 Available", value: "✓", icon: Clock },
@@ -104,16 +104,16 @@ export function HomePageClient({
           >
             <Badge className="mb-6 px-4 py-1.5 text-sm bg-primary/10 text-primary border-primary/20">
               <MapPin className="w-4 h-4 mr-1.5" />
-              Texas
+              Nationwide
             </Badge>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               Find <span className="text-gradient">Water Damage Repair</span>{" "}
-              Services in Texas
+              Services Nationwide
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              Connect with trusted water damage restoration professionals across Texas. Emergency flood cleanup, mold remediation, and 24/7 restoration services. Free directory with ratings, reviews & instant contact.
+              Connect with trusted water damage restoration professionals across the USA. Emergency flood cleanup, mold remediation, and 24/7 restoration services. Free directory with ratings, reviews & instant contact.
             </p>
 
             <div className="max-w-2xl mx-auto mb-8">
@@ -276,7 +276,7 @@ export function HomePageClient({
               </h2>
               <p className="text-muted-foreground max-w-2xl">
                 {featuredBusinesses.length > 0
-                  ? "Discover top-rated water damage restoration companies across Texas"
+                  ? "Discover top-rated water damage restoration companies across the USA"
                   : "Newly added restoration services in the directory"}
               </p>
             </div>
@@ -383,9 +383,9 @@ export function HomePageClient({
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Browse by Region</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Browse by State</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Find water damage restoration services in major Texas metropolitan areas
+              Find water damage restoration services across the United States
             </p>
           </motion.div>
 
@@ -434,7 +434,7 @@ export function HomePageClient({
             </h2>
             <p className="text-muted-foreground mb-8 text-lg">
               Join trusted restoration companies already listed in our directory.
-              Claim your listing today and reach more customers in Texas.
+              Claim your listing today and reach more customers nationwide.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto">

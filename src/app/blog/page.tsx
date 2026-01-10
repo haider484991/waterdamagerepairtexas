@@ -20,30 +20,30 @@ interface BlogPageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Water Damage Blog | Tips, Guides & News | Water Damage Repair Texas",
-    description: "Explore our water damage blog for expert restoration tips, flood cleanup guides, mold prevention advice, and the latest industry news. Everything you need to protect your Texas property.",
+    title: "Water Damage Blog | Tips, Guides & News | Water Damage Repair USA",
+    description: "Explore our water damage blog for expert restoration tips, flood cleanup guides, mold prevention advice, and the latest industry news. Everything you need to protect your property.",
     alternates: {
       canonical: `${SITE_URL}/blog`,
     },
     openGraph: {
       title: "Water Damage Blog | Tips, Guides & News",
-      description: "Expert tips, restoration guides, and the latest water damage news for Texas property owners.",
+      description: "Expert tips, restoration guides, and the latest water damage news for property owners.",
       url: `${SITE_URL}/blog`,
       type: "website",
-      siteName: "Water Damage Repair Texas",
+      siteName: "Water Damage Repair USA",
       images: [
         {
           url: `${SITE_URL}/water-damage-logo.png`,
           width: 1200,
           height: 630,
-          alt: "Water Damage Repair Texas Blog",
+          alt: "Water Damage Repair USA Blog",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Water Damage Blog | Water Damage Repair Texas",
-      description: "Expert tips, restoration guides, and the latest water damage news for Texas property owners.",
+      title: "Water Damage Blog | Water Damage Repair USA",
+      description: "Expert tips, restoration guides, and the latest water damage news for property owners.",
     },
   };
 }
@@ -84,12 +84,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Water Damage Repair Texas Blog",
-    description: "Expert tips, guides, and news for Texas property owners dealing with water damage",
+    name: "Water Damage Repair USA Blog",
+    description: "Expert tips, guides, and news for property owners dealing with water damage",
     url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",
-      name: "Water Damage Repair Texas",
+      name: "Water Damage Repair USA",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
@@ -122,7 +122,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
                 Expert tips, restoration guides, and everything you need
-                to protect your Texas property from water damage.
+                to protect your property from water damage.
               </p>
             </div>
           </div>
