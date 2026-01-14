@@ -9,10 +9,10 @@ import { StarRating } from "./StarRating";
 import { PriceLevel } from "./PriceLevel";
 import type { Business, Category } from "@/lib/db/schema";
 import { cn } from "@/lib/utils";
-import { getImageUrl } from "@/lib/hybrid-data";
+import { getImageUrl } from "@/lib/business-utils";
 
 interface BusinessCardProps {
-  business: Business & { 
+  business: Business & {
     category?: Category | null;
     isOpenNow?: boolean;
     dataSource?: "hybrid" | "database" | "google";
@@ -111,7 +111,7 @@ export function BusinessCard({
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            
+
             {/* Featured badge */}
             <div className="absolute top-4 left-4">
               <Badge className="bg-primary text-primary-foreground">
@@ -163,7 +163,7 @@ export function BusinessCard({
               <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
               <span className="line-clamp-1">{business.address}</span>
             </div>
-            
+
             {business.category && (
               <Badge variant="secondary" className="mb-3">
                 {business.category.name}
@@ -216,7 +216,7 @@ export function BusinessCard({
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          
+
           {/* Favorite button */}
           {onFavoriteClick && (
             <Button
@@ -292,14 +292,14 @@ export function BusinessCard({
 
 function checkIfOpen(hours?: Record<string, string> | null): boolean {
   if (!hours) return false;
-  
+
   const now = new Date();
   const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   const currentDay = days[now.getDay()];
   const todayHours = hours[currentDay];
-  
+
   if (!todayHours || todayHours.toLowerCase() === "closed") return false;
-  
+
   // Simple check - would need more robust parsing for production
   return true;
 }

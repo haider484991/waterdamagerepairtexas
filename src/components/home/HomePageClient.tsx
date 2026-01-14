@@ -29,7 +29,8 @@ import { Badge } from "@/components/ui/badge";
 import { SearchBar } from "@/components/search";
 import { StarRating } from "@/components/business";
 import type { Category } from "@/lib/db/schema";
-import { getImageUrl, type BusinessData } from "@/lib/hybrid-data";
+import { type BusinessData } from "@/lib/hybrid-data";
+import { getImageUrl } from "@/lib/business-utils";
 
 const iconMap: Record<string, LucideIcon> = {
   Droplets,
