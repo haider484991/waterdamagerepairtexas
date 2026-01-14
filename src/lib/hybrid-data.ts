@@ -158,6 +158,10 @@ export function mergeBusinessWithGoogle(
   };
 }
 
+import { db, businesses } from "@/lib/db";
+import { eq } from "drizzle-orm";
+import { uploadBusinessPhotosToSupabase } from "@/lib/supabase";
+
 /**
  * Enrich a single business with Google data
  * Uses database cache first to minimize API calls
@@ -188,6 +192,12 @@ export async function enrichBusiness(
   const google = await fetchGoogleEnrichment(business.googlePlaceId);
 
   if (google) {
+    // Fire-and-forget: Save to DB and upload images
+    // This ensures next visit (even Card view) costs ZERO API calls
+    saveEnrichmentToDb(business.id, business.googlePlaceId, google).catch(err =>
+      console.error(`[Hybrid] Failed to save cache for ${business.name}:`, err)
+    );
+
     return {
       ...mergeBusinessWithGoogle(business, google),
       isOpenNow: google.isOpenNow,
@@ -196,6 +206,44 @@ export async function enrichBusiness(
   }
 
   return { ...business, dataSource: "database" };
+}
+
+/**
+ * Helper to save Google enrichment to DB and trigger image upload
+ */
+async function saveEnrichmentToDb(businessId: string, googlePlaceId: string, google: GoogleEnrichment) {
+  try {
+    // 1. Save text data immediately
+    await db.update(businesses)
+      .set({
+        cachedPhone: google.phone || null,
+        cachedWebsite: google.website || null,
+        cachedHours: google.hours,
+        lastEnrichedAt: new Date(),
+        updatedAt: new Date(),
+        // We do NOT save cachedImageUrls yet - wait for Supabase upload
+      })
+      .where(eq(businesses.id, businessId));
+
+    // 2. Upload photos to Supabase for PERMANENT storage
+    if (google.photos.length > 0) {
+      // Don't await this - let it run in background
+      uploadBusinessPhotosToSupabase(google.photos, businessId, 5)
+        .then(async (permanentUrls) => {
+          if (permanentUrls.length > 0) {
+            await db.update(businesses)
+              .set({
+                cachedImageUrls: permanentUrls,
+              })
+              .where(eq(businesses.id, businessId));
+            console.log(`[Hybrid] Cached ${permanentUrls.length} Supabase images for ${businessId}`);
+          }
+        })
+        .catch(err => console.error(`[Hybrid] Supabase upload failed for ${businessId}:`, err));
+    }
+  } catch (error) {
+    console.error(`[Hybrid] DB update failed for ${businessId}:`, error);
+  }
 }
 
 /**

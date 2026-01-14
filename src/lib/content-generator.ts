@@ -3,7 +3,10 @@
  * Generates unique, SEO-friendly descriptions and tips for water damage restoration businesses
  */
 
-import type { Business, Category } from "@/lib/db/schema";
+// import type { Business, Category } from "@/lib/db/schema";
+// Using flexible types to support both DB schema and Hybrid Data objects
+type Business = any;
+type Category = any;
 
 // Service detection based on business name, types, and category
 export interface DetectedAmenities {

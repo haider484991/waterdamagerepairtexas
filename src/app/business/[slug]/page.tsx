@@ -3,6 +3,7 @@ import { db, businesses, categories } from "@/lib/db";
 import { eq, and, ne, sql } from "drizzle-orm";
 import { BusinessDetailClient } from "./BusinessDetailClient";
 import { uploadBusinessPhotosToSupabase } from "@/lib/supabase";
+import { generateBusinessContent } from "@/lib/content-generator";
 
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
@@ -376,6 +377,9 @@ export default async function BusinessDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // Generate dynamic content on server
+  const dynamicContent = generateBusinessContent(data.business, data.business.category);
+
   return (
     <BusinessDetailClient
       business={data.business}
@@ -383,6 +387,7 @@ export default async function BusinessDetailPage({ params }: PageProps) {
       similarBusinesses={data.similarBusinesses || []}
       reviewsSource={data.reviewsSource || "none"}
       totalReviewsOnGoogle={data.totalReviewsOnGoogle || 0}
+      dynamicContent={dynamicContent}
     />
   );
 }

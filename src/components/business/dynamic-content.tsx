@@ -47,6 +47,14 @@ interface Business {
 
 interface DynamicContentProps {
   business: Business;
+  content: {
+    description: string;
+    amenitiesList: string[];
+    playingTips: string[];
+    whatToExpect: string[];
+    bestTimes: { time: string; description: string }[];
+    skillRecommendations: { level: string; recommendation: string }[];
+  } | null;
 }
 
 // Amenity icons mapping
@@ -66,69 +74,10 @@ const amenityIcons: Record<string, React.ElementType> = {
   "Wheelchair Accessible": Accessibility,
 };
 
-export function DynamicBusinessContent({ business }: DynamicContentProps) {
-  const [content, setContent] = useState<{
-    description: string;
-    amenitiesList: string[];
-    playingTips: string[];
-    whatToExpect: string[];
-    bestTimes: { time: string; description: string }[];
-    skillRecommendations: { level: string; recommendation: string }[];
-  } | null>(null);
+export function DynamicBusinessContent({ business, content }: DynamicContentProps) {
   const [tipsOpen, setTipsOpen] = useState(true);
   const [timesOpen, setTimesOpen] = useState(false);
   const [skillsOpen, setSkillsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Generate content client-side using slug
-    async function generateContent() {
-      setIsLoading(true);
-      setError(null);
-      try {
-        // Use slug from business object
-        const slug = business.slug;
-        if (!slug) {
-          setError("No business slug available");
-          setIsLoading(false);
-          return;
-        }
-        const response = await fetch(`/api/businesses/${slug}/content`);
-        if (response.ok) {
-          const data = await response.json();
-          setContent(data);
-        } else {
-          const errData = await response.json();
-          setError(errData.error || "Failed to load content");
-        }
-      } catch (error) {
-        console.error("Error fetching content:", error);
-        setError("Failed to load dynamic content");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    generateContent();
-  }, [business.slug]);
-
-  if (isLoading) {
-    return (
-      <div className="glass-card rounded-xl p-6 animate-pulse">
-        <div className="h-6 bg-secondary rounded w-1/3 mb-4"></div>
-        <div className="h-4 bg-secondary rounded w-full mb-2"></div>
-        <div className="h-4 bg-secondary rounded w-2/3"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="glass-card rounded-xl p-6 text-center text-muted-foreground">
-        <p>Unable to load dynamic content</p>
-      </div>
-    );
-  }
 
   if (!content) {
     return null;
