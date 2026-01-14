@@ -22,6 +22,13 @@
       "when": 1767644922724,
       "tag": "0002_burly_spitfire",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1768424533191,
+      "tag": "0003_sturdy_daimon_hellstrom",
+      "breakpoints": true
     }
   ]
 }

@@ -48,31 +48,47 @@ export async function GET() {
         .from(businesses),
     ]);
 
-    // Format featured businesses
+    // Format featured businesses (include cached fields)
     const formattedFeatured: BusinessData[] = featuredResults.map((r) => ({
       ...r.business,
-      photos: (r.business.photos as string[]) || [],
-      hours: r.business.hours as Record<string, string> | null,
+      // Prefer cached image URLs, fallback to photo references
+      photos: ((r.business.cachedImageUrls as string[]) || []).length > 0
+        ? (r.business.cachedImageUrls as string[])
+        : (r.business.photos as string[]) || [],
+      hours: (r.business.cachedHours as Record<string, string>) || (r.business.hours as Record<string, string> | null),
+      cachedImageUrls: r.business.cachedImageUrls as string[] | null,
+      lastEnrichedAt: r.business.lastEnrichedAt,
+      cachedPhone: r.business.cachedPhone,
+      cachedWebsite: r.business.cachedWebsite,
+      cachedHours: r.business.cachedHours as Record<string, string> | null,
       category: r.category
         ? {
-            name: r.category.name,
-            slug: r.category.slug,
-            section: r.category.section,
-          }
+          name: r.category.name,
+          slug: r.category.slug,
+          section: r.category.section,
+        }
         : null,
     }));
 
-    // Format recent businesses
+    // Format recent businesses (include cached fields)
     const formattedRecent: BusinessData[] = recentResults.map((r) => ({
       ...r.business,
-      photos: (r.business.photos as string[]) || [],
-      hours: r.business.hours as Record<string, string> | null,
+      // Prefer cached image URLs, fallback to photo references
+      photos: ((r.business.cachedImageUrls as string[]) || []).length > 0
+        ? (r.business.cachedImageUrls as string[])
+        : (r.business.photos as string[]) || [],
+      hours: (r.business.cachedHours as Record<string, string>) || (r.business.hours as Record<string, string> | null),
+      cachedImageUrls: r.business.cachedImageUrls as string[] | null,
+      lastEnrichedAt: r.business.lastEnrichedAt,
+      cachedPhone: r.business.cachedPhone,
+      cachedWebsite: r.business.cachedWebsite,
+      cachedHours: r.business.cachedHours as Record<string, string> | null,
       category: r.category
         ? {
-            name: r.category.name,
-            slug: r.category.slug,
-            section: r.category.section,
-          }
+          name: r.category.name,
+          slug: r.category.slug,
+          section: r.category.section,
+        }
         : null,
     }));
 

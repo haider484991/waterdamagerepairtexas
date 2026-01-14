@@ -67,6 +67,21 @@ export const businesses = pgTable("wd_businesses", {
   neighborhood: varchar("neighborhood", { length: 100 }),
   hours: jsonb("hours").$type<Record<string, string>>(),
   photos: jsonb("photos").$type<string[]>().default([]),
+  // Cached Google Places data - reduces API calls
+  cachedImageUrls: jsonb("cached_image_urls").$type<string[]>().default([]),
+  lastEnrichedAt: timestamp("last_enriched_at"),
+  cachedPhone: varchar("cached_phone", { length: 50 }),
+  cachedWebsite: text("cached_website"),
+  cachedHours: jsonb("cached_hours").$type<Record<string, string>>(),
+  cachedReviews: jsonb("cached_reviews").$type<Array<{
+    authorName: string;
+    rating: number;
+    text: string;
+    relativeTime: string;
+    time: number;
+    authorPhoto?: string;
+  }>>().default([]),
+  googleMapsUrl: text("google_maps_url"),
   priceLevel: integer("price_level"),
   ratingAvg: decimal("rating_avg", { precision: 3, scale: 2 }).default("0"),
   reviewCount: integer("review_count").default(0),

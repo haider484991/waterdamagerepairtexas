@@ -17,7 +17,7 @@ function parseCityState(formattedAddress: string): { city: string; state: string
   let city = "Unknown";
   let state = "XX";
   let zip: string | null = null;
-  
+
   if (parts.length >= 3) {
     const stateZipPart = parts[parts.length - 2] || parts[parts.length - 1];
     const stateMatch = stateZipPart.match(/\b([A-Z]{2})\b/);
@@ -27,7 +27,7 @@ function parseCityState(formattedAddress: string): { city: string; state: string
     const cityPart = parts[parts.length - 3];
     if (cityPart && !cityPart.match(/^\d/)) city = cityPart;
   }
-  
+
   return { city, state, zip };
 }
 
@@ -154,9 +154,9 @@ async function searchGoogleAndSync(query: string): Promise<{
     const places: GooglePlaceResult[] = allPlaces.filter((place: GooglePlaceResult) => {
       const address = place.formatted_address || "";
       // Check if address contains USA or a US state abbreviation
-      const isUS = address.includes("USA") || 
-                   address.includes("United States") ||
-                   usStates.some(state => address.includes(`, ${state} `) || address.includes(`, ${state},`) || address.endsWith(`, ${state}`));
+      const isUS = address.includes("USA") ||
+        address.includes("United States") ||
+        usStates.some(state => address.includes(`, ${state} `) || address.includes(`, ${state},`) || address.endsWith(`, ${state}`));
       if (!isUS) {
         console.log(`[Search API] Filtered out non-US result: ${place.name} (${address})`);
       }
@@ -177,7 +177,7 @@ async function searchGoogleAndSync(query: string): Promise<{
 
     // AUTO-SYNC: Save to database (await to ensure it completes)
     console.log(`[Search API] Auto-syncing ${places.length} places from search "${query}"`);
-    
+
     let totalSynced = 0;
     for (const [categorySlug, categoryPlaces] of placesByCategory) {
       try {
@@ -200,7 +200,7 @@ async function searchGoogleAndSync(query: string): Promise<{
       const address = place.formatted_address || place.vicinity || "";
       const { city, state, zip } = parseCityState(address);
       const addressParts = address.split(",").map(p => p.trim());
-      
+
       return {
         id: place.place_id, // Use place_id as the ID for linking
         googlePlaceId: place.place_id,
@@ -244,7 +244,7 @@ async function searchGoogleAndSync(query: string): Promise<{
         }
 
         console.log(`[Search API Background] Syncing ${placesForSync.length} places across ${placesByCategory.size} categories`);
-        
+
         let totalSynced = 0;
         for (const [categorySlug, categoryPlaces] of placesByCategory) {
           try {
@@ -294,17 +294,17 @@ export async function GET(request: Request) {
     if (query) {
       // Split query into words for better matching
       const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 1);
-      
+
       if (queryWords.length > 0) {
         // Require ALL words to be present (AND logic) for better relevance
         // Search in name (priority) and description (secondary)
-        const queryConditions = queryWords.map(word => 
+        const queryConditions = queryWords.map(word =>
           or(
             ilike(businesses.name, `%${word}%`),
             ilike(businesses.description, `%${word}%`)
           )
         );
-        
+
         // Use AND to require all words to match
         conditions.push(and(...queryConditions));
       }
@@ -382,17 +382,25 @@ export async function GET(request: Request) {
       .where(whereClause);
     let total = Number(countResult[0]?.count || 0);
 
-    // Format results
+    // Format results with cached fields
     let formattedResults: BusinessData[] = results.map((r) => ({
       ...r.business,
-      photos: (r.business.photos as string[]) || [],
-      hours: r.business.hours as Record<string, string> | null,
+      // Prefer cached image URLs, fallback to photo references
+      photos: ((r.business.cachedImageUrls as string[]) || []).length > 0
+        ? (r.business.cachedImageUrls as string[])
+        : (r.business.photos as string[]) || [],
+      hours: (r.business.cachedHours as Record<string, string>) || (r.business.hours as Record<string, string> | null),
+      cachedImageUrls: r.business.cachedImageUrls as string[] | null,
+      lastEnrichedAt: r.business.lastEnrichedAt,
+      cachedPhone: r.business.cachedPhone,
+      cachedWebsite: r.business.cachedWebsite,
+      cachedHours: r.business.cachedHours as Record<string, string> | null,
       category: r.category
         ? {
-            name: r.category.name,
-            slug: r.category.slug,
-            section: r.category.section,
-          }
+          name: r.category.name,
+          slug: r.category.slug,
+          section: r.category.section,
+        }
         : null,
     }));
 
@@ -402,10 +410,10 @@ export async function GET(request: Request) {
     // Always search Google for new data when there's a query
     // This ensures we continuously grow the database with new searches
     const shouldSearchGoogle = query && GOOGLE_PLACES_API_KEY;
-    
+
     if (shouldSearchGoogle) {
       console.log(`[Search API] DB has ${formattedResults.length} results for "${query}", also searching Google to find new data...`);
-      
+
       const googleData = await searchGoogleAndSync(query);
 
       if (googleData.results.length > 0) {
@@ -450,11 +458,11 @@ export async function GET(request: Request) {
           const existingPlaceIds = new Set(
             formattedResults.map((b) => b.googlePlaceId).filter(Boolean)
           );
-          
+
           const newGoogleResults = googleData.results.filter(
             (b) => !existingPlaceIds.has(b.googlePlaceId)
           );
-          
+
           if (newGoogleResults.length > 0) {
             formattedResults = [...formattedResults, ...newGoogleResults.slice(0, limit - formattedResults.length)];
             total = formattedResults.length;

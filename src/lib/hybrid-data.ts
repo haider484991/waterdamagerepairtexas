@@ -35,6 +35,13 @@ export interface BusinessData {
   isVerified: boolean | null;
   isFeatured: boolean | null;
   category?: { name: string; slug: string; section?: string | null } | null;
+  // Cached Google Places data
+  cachedImageUrls?: string[] | null;
+  lastEnrichedAt?: Date | null;
+  cachedPhone?: string | null;
+  cachedWebsite?: string | null;
+  cachedHours?: Record<string, string> | null;
+  googleMapsUrl?: string | null;
 }
 
 export interface GoogleEnrichment {
@@ -48,9 +55,21 @@ export interface GoogleEnrichment {
   phone: string | null;
 }
 
-// In-memory cache with TTL
+// In-memory cache with TTL (secondary cache, DB is primary)
 const cache = new Map<string, { data: GoogleEnrichment; expiry: number }>();
-const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+const CACHE_TTL = 30 * 60 * 1000; // 30 minutes in-memory
+
+// Database cache duration: 7 days
+export const DB_CACHE_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
+
+/**
+ * Check if database cached data is still valid
+ */
+export function isDbCacheValid(lastEnrichedAt: Date | null | undefined): boolean {
+  if (!lastEnrichedAt) return false;
+  const age = Date.now() - new Date(lastEnrichedAt).getTime();
+  return age < DB_CACHE_DURATION_MS;
+}
 
 /**
  * Fetch enrichment data from Google Places API
@@ -141,17 +160,33 @@ export function mergeBusinessWithGoogle(
 
 /**
  * Enrich a single business with Google data
- * Gracefully handles failures
+ * Uses database cache first to minimize API calls
  */
 export async function enrichBusiness(
   business: BusinessData
-): Promise<BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" }> {
+): Promise<BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" | "cached" }> {
+  // Check if we have valid cached data in database
+  if (isDbCacheValid(business.lastEnrichedAt)) {
+    // Use cached data from database - NO API call needed!
+    return {
+      ...business,
+      // Prefer cached values over live
+      photos: business.cachedImageUrls?.length ? business.cachedImageUrls : business.photos,
+      phone: business.cachedPhone || business.phone,
+      website: business.cachedWebsite || business.website,
+      hours: business.cachedHours || business.hours,
+      dataSource: "cached",
+    };
+  }
+
+  // No googlePlaceId means we can't fetch from Google
   if (!business.googlePlaceId) {
     return { ...business, dataSource: "database" };
   }
 
+  // Fetch from Google API (cache miss)
   const google = await fetchGoogleEnrichment(business.googlePlaceId);
-  
+
   if (google) {
     return {
       ...mergeBusinessWithGoogle(business, google),
@@ -167,11 +202,12 @@ export async function enrichBusiness(
  * Enrich multiple businesses with Google data
  * Rate-limited to avoid API quota issues
  * Only enriches first N items for performance
+ * Uses database cache first to minimize API calls
  */
 export async function enrichBusinesses(
   businesses: BusinessData[],
   options: { limit?: number; parallel?: boolean } = {}
-): Promise<(BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" })[]> {
+): Promise<(BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" | "cached" })[]> {
   const { limit = 8, parallel = false } = options;
 
   if (!GOOGLE_PLACES_API_KEY) {
@@ -179,7 +215,7 @@ export async function enrichBusinesses(
     return businesses.map((b) => ({ ...b, dataSource: "database" as const }));
   }
 
-  const results: (BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" })[] = [];
+  const results: (BusinessData & { isOpenNow?: boolean; dataSource: "hybrid" | "database" | "cached" })[] = [];
 
   if (parallel) {
     // Parallel fetching for first N businesses
