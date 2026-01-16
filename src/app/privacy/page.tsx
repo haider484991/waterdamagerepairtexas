@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | WaterDamageRepairTexas.net",
+  title: "Privacy Policy | WaterDamageRepair.io",
   description:
-    "Privacy policy for WaterDamageRepairTexas.net detailing what information we collect, how we use it, and your choices.",
+    "Privacy policy for WaterDamageRepair.io detailing what information we collect, how we use it, and your choices.",
 };
 
 export default function PrivacyPage() {
@@ -18,10 +18,10 @@ export default function PrivacyPage() {
             <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Privacy Policy</h1>
             <p className="text-muted-foreground leading-relaxed">
-              WaterDamageRepairTexas.net (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a limited liability company based in the United States.
+              WaterDamageRepair.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a limited liability company based in the United States.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit WaterDamageRepairTexas.net or use any of our services (collectively, the "Services").
+              We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit WaterDamageRepair.io or use any of our services (collectively, the "Services").
             </p>
             <p className="text-muted-foreground leading-relaxed">
               By using the Site, you agree to the collection and use of information in accordance with this Privacy Policy.
@@ -210,7 +210,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  Thank you for using WaterDamageRepairTexas.net — connecting property owners with trusted water damage restoration professionals.
+                  Thank you for using WaterDamageRepair.io — connecting property owners with trusted water damage restoration professionals.
                 </p>
               </section>
             </CardContent>

@@ -9,6 +9,9 @@ import { generatePlaceSchema, generateLocalBusinessSchema } from "@/lib/seo/sche
 import { FAQSection, generateWaterDamageFAQs } from "@/components/seo/FAQSection";
 import { Badge } from "@/components/ui/badge";
 import { MapPin } from "lucide-react";
+import { getSiteUrl } from "@/lib/site-url";
+
+const SITE_URL = getSiteUrl();
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string; city: string }> }): Promise<Metadata> {
   const { state: stateSlug, city: citySlug } = await params;
@@ -18,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   if (!region || !city) {
     return { title: "City Not Found" };
   }
+
+  const canonicalUrl = `${SITE_URL}/states/${region.slug}/${city.slug}`;
 
   return {
     title: `Water Damage Restoration in ${city.name}, ${region.code} – Emergency Services | Water Damage Repair USA`,
@@ -29,6 +34,15 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
       `emergency water damage ${city.name}`,
       `${city.name} mold remediation`,
     ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `Water Damage Restoration in ${city.name}, ${region.code}`,
+      description: `Find water damage restoration, flood cleanup, mold remediation in ${city.name}, ${region.name}. 24/7 emergency response.`,
+      url: canonicalUrl,
+      type: "website",
+    },
     other: {
       "llms-txt": `/api/llms/state/${stateSlug}/${citySlug}`,
     },

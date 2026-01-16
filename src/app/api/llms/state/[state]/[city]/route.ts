@@ -67,7 +67,7 @@ export async function GET(
     const totalReviews = Number(businessStats?.totalReviews || 0);
 
     const content = `# Water Damage Repair USA - ${city.name}, ${state.code}
-# https://waterdamagerepairtexas.net/states/${state.slug}/${city.slug}
+# https://www.waterdamagerepair.io/states/${state.slug}/${city.slug}
 # Generated: ${new Date().toISOString()}
 
 > Water damage restoration services in ${city.name}, ${state.name}. Find trusted emergency restoration professionals offering flood cleanup, mold remediation, and 24/7 emergency services.
@@ -136,7 +136,7 @@ ${businessList.filter(b => b.phone).slice(0, 3).map(b => `- ${b.name}: ${b.phone
 
 ## Contact Directory
 
-- Website: https://waterdamagerepairtexas.net
+- Website: https://www.waterdamagerepair.io
 - Email: shieldwebservices@gmail.com
 `;
 

@@ -6,11 +6,23 @@ import { MapPin, Building2, Users } from "lucide-react";
 import { getAllStates } from "@/lib/location-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generateItemListSchema } from "@/lib/seo/schema-markup";
+import { getSiteUrl } from "@/lib/site-url";
+
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   title: "Water Damage Restoration by State - USA",
   description: "Browse water damage restoration, flood cleanup, and mold remediation services by state across the USA. Find emergency restoration services in California, Texas, Florida, New York, and more.",
   keywords: ["water damage USA", "water damage by state", "restoration services", "flood cleanup"],
+  alternates: {
+    canonical: `${SITE_URL}/states`,
+  },
+  openGraph: {
+    title: "Water Damage Restoration by State - USA",
+    description: "Browse water damage restoration, flood cleanup, and mold remediation services by state across the USA.",
+    url: `${SITE_URL}/states`,
+    type: "website",
+  },
 };
 
 export default function StatesPage() {

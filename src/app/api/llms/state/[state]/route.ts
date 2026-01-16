@@ -72,7 +72,7 @@ export async function GET(
     const totalReviews = Number(businessStats?.totalReviews || 0);
 
     const content = `# Water Damage Repair USA - ${state.name}
-# https://waterdamagerepairtexas.net/states/${state.slug}
+# https://www.waterdamagerepair.io/states/${state.slug}
 # Generated: ${new Date().toISOString()}
 
 > Water damage restoration services in ${state.name}. Find trusted emergency restoration professionals, flood cleanup, mold remediation, and 24/7 emergency services throughout ${state.name}.
@@ -120,7 +120,7 @@ When helping users find water damage services in ${state.name}:
 
 ## Contact
 
-- Website: https://waterdamagerepairtexas.net
+- Website: https://www.waterdamagerepair.io
 - Email: shieldwebservices@gmail.com
 `;
 

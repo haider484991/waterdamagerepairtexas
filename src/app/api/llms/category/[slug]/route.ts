@@ -72,7 +72,7 @@ export async function GET(
     const totalReviews = Number(businessStats?.totalReviews || 0);
 
     const content = `# Water Damage Repair USA - ${category.name}
-# https://waterdamagerepairtexas.net/categories/${category.slug}
+# https://www.waterdamagerepair.io/categories/${category.slug}
 # Generated: ${new Date().toISOString()}
 
 > ${category.name} services across the United States. ${category.description || `Find trusted ${category.name.toLowerCase()} professionals for your water damage needs.`}
@@ -97,9 +97,9 @@ ${category.description || `${category.name} encompasses professional services re
 ## States with ${category.name} Services
 
 ${statesWithCategory.map(s => {
-  const state = states.find(st => st.code === s.state);
-  return state ? `- ${state.name} (${s.count}): /categories/${category.slug}?state=${s.state}` : '';
-}).filter(Boolean).join('\n')}
+      const state = states.find(st => st.code === s.state);
+      return state ? `- ${state.name} (${s.count}): /categories/${category.slug}?state=${s.state}` : '';
+    }).filter(Boolean).join('\n')}
 
 ## Top-Rated ${category.name} Professionals
 
@@ -131,7 +131,7 @@ ${(await db.select().from(categories).where(sql`${categories.id} != ${category.i
 
 ## Contact
 
-- Website: https://waterdamagerepairtexas.net
+- Website: https://www.waterdamagerepair.io
 - Email: shieldwebservices@gmail.com
 `;
 

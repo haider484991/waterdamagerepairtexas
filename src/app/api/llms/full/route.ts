@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
     });
 
     const content = `# Water Damage Repair USA - Comprehensive Documentation
-# https://waterdamagerepairtexas.net
+# https://www.waterdamagerepair.io
 # Generated: ${new Date().toISOString()}
 
 > Water Damage Repair USA is the most comprehensive directory of water damage restoration professionals in the United States. Our mission is to connect property owners with trusted, verified emergency restoration services when disaster strikes.
@@ -232,7 +232,7 @@ When a user asks about water damage services:
 
 ## Contact & Support
 
-- **Website**: https://waterdamagerepairtexas.net
+- **Website**: https://www.waterdamagerepair.io
 - **Email**: shieldwebservices@gmail.com
 - **Business Submissions**: /submit-business
 - **Claim Listing**: /business/{slug} (claim button)

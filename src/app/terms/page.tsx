@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | WaterDamageRepairTexas.net",
+  title: "Terms of Service | WaterDamageRepair.io",
   description:
-    "Terms of Service for WaterDamageRepairTexas.net outlining acceptable use, user content, and limitations.",
+    "Terms of Service for WaterDamageRepair.io outlining acceptable use, user content, and limitations.",
 };
 
 export default function TermsPage() {
@@ -18,10 +18,10 @@ export default function TermsPage() {
             <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">Terms of Service</h1>
             <p className="text-muted-foreground leading-relaxed">
-              WaterDamageRepairTexas.net (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a Washington State-based limited liability company.
+              WaterDamageRepair.io (the "Site," "we," "us," or "our") is owned and operated by Shield Web Services, LLC, a Washington State-based limited liability company.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              By accessing or using WaterDamageRepairTexas.net and any related services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Services.
+              By accessing or using WaterDamageRepair.io and any related services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Services.
             </p>
           </div>
 

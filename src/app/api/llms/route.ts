@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     const avgRating = Number(businessStats?.avgRating || 0).toFixed(1);
 
     const content = `# Water Damage Repair USA - llms.txt
-# https://waterdamagerepairtexas.net
+# https://www.waterdamagerepair.io
 # Generated: ${new Date().toISOString()}
 
 > Water Damage Repair USA is a comprehensive directory of water damage restoration professionals serving all 50 US states. We help property owners find trusted emergency restoration services, flood cleanup, mold remediation, and insurance claim assistance.
@@ -85,7 +85,7 @@ When helping users find water damage services:
 
 ## Contact
 
-- Website: https://waterdamagerepairtexas.net
+- Website: https://www.waterdamagerepair.io
 - Email: shieldwebservices@gmail.com
 
 ## More Information

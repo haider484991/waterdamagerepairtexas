@@ -10,6 +10,9 @@ import { eq, and, sql } from "drizzle-orm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateItemListSchema } from "@/lib/seo/schema-markup";
 import { FAQSection, generateWaterDamageFAQs } from "@/components/seo/FAQSection";
+import { getSiteUrl } from "@/lib/site-url";
+
+const SITE_URL = getSiteUrl();
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
   const { state: stateSlug } = await params;
@@ -18,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   if (!region) {
     return { title: "Region Not Found" };
   }
+
+  const canonicalUrl = `${SITE_URL}/states/${region.slug}`;
 
   return {
     title: `Water Damage Restoration in ${region.name} – Emergency Services | Water Damage Repair USA`,
@@ -29,6 +34,15 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
       `emergency water damage ${region.code}`,
       `water damage repair ${region.name}`,
     ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `Water Damage Restoration in ${region.name}`,
+      description: `Find water damage restoration, flood cleanup, mold remediation in ${region.name}. 24/7 emergency response.`,
+      url: canonicalUrl,
+      type: "website",
+    },
     other: {
       "llms-txt": `/api/llms/state/${stateSlug}`,
     },

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db, businesses, categories } from "@/lib/db";
 import { eq, desc, sql } from "drizzle-orm";
-import { enrichBusinesses, BusinessData } from "@/lib/hybrid-data";
+import { BusinessData } from "@/lib/hybrid-data";
 
 export async function GET() {
   try {
@@ -48,7 +48,7 @@ export async function GET() {
         .from(businesses),
     ]);
 
-    // Format featured businesses (include cached fields)
+    // Format featured businesses (use cached data only - NO API calls)
     const formattedFeatured: BusinessData[] = featuredResults.map((r) => ({
       ...r.business,
       // Prefer cached image URLs, fallback to photo references
@@ -68,9 +68,10 @@ export async function GET() {
           section: r.category.section,
         }
         : null,
+      dataSource: "database" as const,
     }));
 
-    // Format recent businesses (include cached fields)
+    // Format recent businesses (use cached data only - NO API calls)
     const formattedRecent: BusinessData[] = recentResults.map((r) => ({
       ...r.business,
       // Prefer cached image URLs, fallback to photo references
@@ -90,32 +91,11 @@ export async function GET() {
           section: r.category.section,
         }
         : null,
+      dataSource: "database" as const,
     }));
 
-    // Hybrid enrichment - get live Google data
-    let enrichedFeatured = formattedFeatured;
-    let enrichedRecent = formattedRecent;
-
-    try {
-      // Enrich featured and recent in parallel
-      const [enrichedF, enrichedR] = await Promise.all([
-        enrichBusinesses(formattedFeatured, { limit: 4, parallel: true }),
-        enrichBusinesses(formattedRecent, { limit: 4, parallel: true }),
-      ]);
-      enrichedFeatured = enrichedF;
-      enrichedRecent = enrichedR;
-    } catch (error) {
-      console.error("Enrichment failed, using database data:", error);
-      // Fallback to DB data
-      enrichedFeatured = formattedFeatured.map((b) => ({
-        ...b,
-        dataSource: "database" as const,
-      }));
-      enrichedRecent = formattedRecent.map((b) => ({
-        ...b,
-        dataSource: "database" as const,
-      }));
-    }
+    // NO hybrid enrichment - saves Google API costs
+    // Data is served directly from database cache
 
     // Get top categories by business count
     const categoriesWithCount = await Promise.all(
@@ -132,8 +112,8 @@ export async function GET() {
     );
 
     return NextResponse.json({
-      featured: enrichedFeatured,
-      recent: enrichedRecent,
+      featured: formattedFeatured,
+      recent: formattedRecent,
       categories: categoriesWithCount,
       stats: {
         totalBusinesses: Number(statsResult[0]?.totalBusinesses || 0),

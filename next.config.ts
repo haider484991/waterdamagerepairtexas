@@ -32,6 +32,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Prevent duplicate URLs (with/without trailing slash)
+  trailingSlash: false,
   async headers() {
     return [
       {

@@ -1,277 +1,11 @@
 import { NextResponse } from "next/server";
 import { db, businesses, categories } from "@/lib/db";
 import { eq, desc, asc, and, gte, sql, ilike, or } from "drizzle-orm";
-import { enrichBusinesses, BusinessData } from "@/lib/hybrid-data";
-import {
-  GooglePlaceResult,
-  autoSyncGooglePlaces,
-  getOrCreateCategory,
-} from "@/lib/auto-sync";
-import slugify from "slugify";
+import { BusinessData } from "@/lib/hybrid-data";
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-
-// Parse city and state from Google Places formatted address
-function parseCityState(formattedAddress: string): { city: string; state: string; zip: string | null } {
-  const parts = formattedAddress.split(",").map(p => p.trim());
-  let city = "Unknown";
-  let state = "XX";
-  let zip: string | null = null;
-
-  if (parts.length >= 3) {
-    const stateZipPart = parts[parts.length - 2] || parts[parts.length - 1];
-    const stateMatch = stateZipPart.match(/\b([A-Z]{2})\b/);
-    if (stateMatch) state = stateMatch[1];
-    const zipMatch = stateZipPart.match(/\b(\d{5})(?:-\d{4})?\b/);
-    if (zipMatch) zip = zipMatch[1];
-    const cityPart = parts[parts.length - 3];
-    if (cityPart && !cityPart.match(/^\d/)) city = cityPart;
-  }
-
-  return { city, state, zip };
-}
-
-// Detect water damage service category from Google place types and name
-function detectCategorySlug(types: string[] | undefined, placeName?: string): string | null {
-  const name = (placeName || "").toLowerCase();
-
-  // Check for water damage-specific keywords in name
-  if (name.includes("mold") || name.includes("mould")) {
-    return "mold-remediation";
-  }
-  if (name.includes("flood") || name.includes("flooding")) {
-    return "flood-cleanup";
-  }
-  if (name.includes("storm") || name.includes("wind") || name.includes("hail")) {
-    return "storm-damage";
-  }
-  if (name.includes("emergency") || name.includes("24 hour") || name.includes("24/7")) {
-    return "emergency-services";
-  }
-  if (name.includes("water damage") || name.includes("restoration") || name.includes("water extraction")) {
-    return "water-damage-restoration";
-  }
-
-  // Check Google place types
-  if (!types) return "water-damage-restoration"; // Default for water damage searches
-
-  const typeToCategory: Record<string, string> = {
-    plumber: "water-damage-restoration",
-    roofing_contractor: "storm-damage",
-    general_contractor: "water-damage-restoration",
-    home_improvement_store: "water-damage-restoration",
-    insurance_agency: "water-damage-restoration",
-    cleaning_service: "flood-cleanup",
-  };
-
-  for (const type of types) {
-    if (typeToCategory[type]) {
-      return typeToCategory[type];
-    }
-  }
-
-  // Default to water damage restoration
-  return "water-damage-restoration";
-}
-
-// Search Google Places and auto-sync to database
-// Helper function to fetch next page of results
-async function fetchNextPage(nextPageToken: string): Promise<{ places: GooglePlaceResult[]; nextPageToken?: string }> {
-  if (!GOOGLE_PLACES_API_KEY) return { places: [] };
-
-  try {
-    // Wait 2 seconds before requesting next page (required by Google)
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-    url.searchParams.set("pagetoken", nextPageToken);
-    url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
-
-    const response = await fetch(url.toString());
-    const data = await response.json();
-
-    if (data.status === "OK") {
-      return {
-        places: data.results || [],
-        nextPageToken: data.next_page_token,
-      };
-    }
-    return { places: [] };
-  } catch (err) {
-    console.error("[Search API] Next page fetch error:", err);
-    return { places: [] };
-  }
-}
-
-async function searchGoogleAndSync(query: string): Promise<{
-  results: BusinessData[];
-  synced: boolean;
-  syncedCount?: number;
-}> {
-  if (!GOOGLE_PLACES_API_KEY || !query) {
-    return { results: [], synced: false };
-  }
-
-  try {
-    // Search for water damage-related results across the USA
-    // Only add "water damage restoration" if it's not already in the query
-    const waterDamageTerms = ["water damage", "restoration", "flood", "mold", "remediation"];
-    const hasWaterDamageTerm = waterDamageTerms.some(term => query.toLowerCase().includes(term));
-    const searchQuery = hasWaterDamageTerm
-      ? `${query}`
-      : `${query} water damage restoration`;
-
-    const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
-    url.searchParams.set("query", searchQuery);
-    url.searchParams.set("region", "us"); // Bias results to USA
-    url.searchParams.set("key", GOOGLE_PLACES_API_KEY);
-
-    const response = await fetch(url.toString());
-    const data = await response.json();
-
-    if (data.status !== "OK" || !data.results) {
-      console.log(`[Search API] Google returned ${data.status} for "${query}"`);
-      return { results: [], synced: false };
-    }
-
-    // Collect all places from multiple pages (up to 3 pages = 60 results)
-    let allPlaces: GooglePlaceResult[] = data.results || [];
-    let nextPageToken = data.next_page_token;
-    let pageCount = 1;
-    const maxPages = 3;
-
-    // Fetch additional pages
-    while (nextPageToken && pageCount < maxPages) {
-      const nextPage = await fetchNextPage(nextPageToken);
-      allPlaces = [...allPlaces, ...nextPage.places];
-      nextPageToken = nextPage.nextPageToken;
-      pageCount++;
-      console.log(`[Search API] Fetched page ${pageCount}, total places: ${allPlaces.length}`);
-    }
-
-    // Filter to only US results
-    const usStates = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'];
-    const places: GooglePlaceResult[] = allPlaces.filter((place: GooglePlaceResult) => {
-      const address = place.formatted_address || "";
-      // Check if address contains USA or a US state abbreviation
-      const isUS = address.includes("USA") ||
-        address.includes("United States") ||
-        usStates.some(state => address.includes(`, ${state} `) || address.includes(`, ${state},`) || address.endsWith(`, ${state}`));
-      if (!isUS) {
-        console.log(`[Search API] Filtered out non-US result: ${place.name} (${address})`);
-      }
-      return isUS;
-    });
-
-    console.log(`[Search API] Found ${places.length} US results out of ${allPlaces.length} total after fetching ${pageCount} pages`);
-
-    // Group places by detected category for sync
-    const placesByCategory = new Map<string | null, GooglePlaceResult[]>();
-    for (const place of places) {
-      const categorySlug = detectCategorySlug(place.types, place.name);
-      if (!placesByCategory.has(categorySlug)) {
-        placesByCategory.set(categorySlug, []);
-      }
-      placesByCategory.get(categorySlug)!.push(place);
-    }
-
-    // AUTO-SYNC: Save to database (await to ensure it completes)
-    console.log(`[Search API] Auto-syncing ${places.length} places from search "${query}"`);
-
-    let totalSynced = 0;
-    for (const [categorySlug, categoryPlaces] of placesByCategory) {
-      try {
-        let categoryId: string | null = null;
-        if (categorySlug) {
-          categoryId = await getOrCreateCategory(categorySlug);
-          console.log(`[Search API] Got category ID ${categoryId} for ${categorySlug}`);
-        }
-        const syncResult = await autoSyncGooglePlaces(categoryPlaces, categoryId || undefined);
-        totalSynced += syncResult.saved;
-        console.log(`[Search API] Synced ${syncResult.saved} new, ${syncResult.skipped} existing for category ${categorySlug}`);
-      } catch (err) {
-        console.error("[Search API] Auto-sync error:", err);
-      }
-    }
-    console.log(`[Search API] Total new businesses synced: ${totalSynced}`);
-
-    // Format for immediate display - don't slice, return all results
-    const results: BusinessData[] = places.map((place) => {
-      const address = place.formatted_address || place.vicinity || "";
-      const { city, state, zip } = parseCityState(address);
-      const addressParts = address.split(",").map(p => p.trim());
-
-      return {
-        id: place.place_id, // Use place_id as the ID for linking
-        googlePlaceId: place.place_id,
-        name: place.name,
-        slug: place.place_id, // Use place_id as slug for detail page linking
-        description: null,
-        address: addressParts[0] || address,
-        city,
-        state,
-        zip,
-        phone: null,
-        website: null,
-        email: null,
-        lat: place.geometry.location.lat.toString(),
-        lng: place.geometry.location.lng.toString(),
-        neighborhood: null,
-        hours: null,
-        photos: place.photos?.slice(0, 3).map((p) => p.photo_reference) || [],
-        priceLevel: place.price_level ?? null,
-        ratingAvg: place.rating?.toString() || "0",
-        reviewCount: place.user_ratings_total || 0,
-        isVerified: false,
-        isFeatured: (place.rating || 0) >= 4.5,
-        category: null,
-        isOpenNow: place.opening_hours?.open_now,
-        dataSource: "google" as const,
-      };
-    });
-
-    // AUTO-SYNC: Group and sync to database in background AFTER returning results
-    const placesForSync = [...places]; // Capture copy for async closure
-    setImmediate(async () => {
-      try {
-        const placesByCategory = new Map<string | null, GooglePlaceResult[]>();
-        for (const place of placesForSync) {
-          const categorySlug = detectCategorySlug(place.types || [], place.name);
-          if (!placesByCategory.has(categorySlug)) {
-            placesByCategory.set(categorySlug, []);
-          }
-          placesByCategory.get(categorySlug)!.push(place);
-        }
-
-        console.log(`[Search API Background] Syncing ${placesForSync.length} places across ${placesByCategory.size} categories`);
-
-        let totalSynced = 0;
-        for (const [categorySlug, categoryPlaces] of placesByCategory) {
-          try {
-            let categoryId: string | null = null;
-            if (categorySlug) {
-              categoryId = await getOrCreateCategory(categorySlug);
-            }
-            const syncResult = await autoSyncGooglePlaces(categoryPlaces, categoryId || undefined);
-            totalSynced += syncResult.saved;
-            console.log(`[Search API Background] Synced ${syncResult.saved} new for ${categorySlug}`);
-          } catch (err) {
-            console.error("[Search API Background] Sync error:", err);
-          }
-        }
-        console.log(`[Search API Background] ✅ Complete: ${totalSynced} new businesses synced`);
-      } catch (error) {
-        console.error("[Search API Background] Error:", error);
-      }
-    });
-
-    // Return immediately - database sync happens in background
-    return { results, synced: true, syncedCount: 0 }; // syncedCount will be 0 since sync is async now
-  } catch (error) {
-    console.error("[Search API] Google search error:", error);
-    return { results: [], synced: false };
-  }
-}
+// NOTE: Google API integration removed from search to save costs
+// Database is now the primary and only source for search
+// This eliminates costly API calls on every search query
 
 export async function GET(request: Request) {
   try {
@@ -284,7 +18,6 @@ export async function GET(request: Request) {
     const sortBy = searchParams.get("sort") || "relevance";
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "50");
-    const enrichPhotos = searchParams.get("enrich") !== "false";
 
     const offset = (page - 1) * limit;
 
@@ -296,12 +29,14 @@ export async function GET(request: Request) {
       const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 1);
 
       if (queryWords.length > 0) {
-        // Require ALL words to be present (AND logic) for better relevance
-        // Search in name (priority) and description (secondary)
+        // Search in name, description, city, state, and address
         const queryConditions = queryWords.map(word =>
           or(
             ilike(businesses.name, `%${word}%`),
-            ilike(businesses.description, `%${word}%`)
+            ilike(businesses.description, `%${word}%`),
+            ilike(businesses.city, `%${word}%`),
+            ilike(businesses.state, `%${word}%`),
+            ilike(businesses.address, `%${word}%`)
           )
         );
 
@@ -340,21 +75,12 @@ export async function GET(request: Request) {
         orderByClause = [desc(businesses.createdAt)];
         break;
       default:
-        // Relevance sorting: prioritize exact name matches, then rating
-        if (query) {
-          // Sort by relevance: name match quality, then featured, then rating
-          orderByClause = [
-            desc(businesses.isFeatured),
-            desc(businesses.ratingAvg),
-            desc(businesses.reviewCount)
-          ];
-        } else {
-          orderByClause = [
-            desc(businesses.isFeatured),
-            desc(businesses.ratingAvg),
-            desc(businesses.reviewCount)
-          ];
-        }
+        // Relevance sorting: prioritize featured, then rating
+        orderByClause = [
+          desc(businesses.isFeatured),
+          desc(businesses.ratingAvg),
+          desc(businesses.reviewCount)
+        ];
     }
 
     // Build and execute query
@@ -380,10 +106,11 @@ export async function GET(request: Request) {
       .from(businesses)
       .leftJoin(categories, eq(businesses.categoryId, categories.id))
       .where(whereClause);
-    let total = Number(countResult[0]?.count || 0);
+    const total = Number(countResult[0]?.count || 0);
 
-    // Format results with cached fields
-    let formattedResults: BusinessData[] = results.map((r) => ({
+    // Format results with cached fields - NO Google API enrichment
+    // This saves API costs by using only database data
+    const formattedResults: BusinessData[] = results.map((r) => ({
       ...r.business,
       // Prefer cached image URLs, fallback to photo references
       photos: ((r.business.cachedImageUrls as string[]) || []).length > 0
@@ -404,101 +131,14 @@ export async function GET(request: Request) {
         : null,
     }));
 
-    let dataSource: "database" | "google" | "hybrid" = "database";
-    let autoSynced = false;
-
-    // Always search Google for new data when there's a query
-    // This ensures we continuously grow the database with new searches
-    const shouldSearchGoogle = query && GOOGLE_PLACES_API_KEY;
-
-    if (shouldSearchGoogle) {
-      console.log(`[Search API] DB has ${formattedResults.length} results for "${query}", also searching Google to find new data...`);
-
-      const googleData = await searchGoogleAndSync(query);
-
-      if (googleData.results.length > 0) {
-        if (formattedResults.length === 0) {
-          // No DB results, use Google results
-          let filtered = googleData.results;
-
-          // Filter by state if specified
-          if (stateFilter && stateFilter !== "all") {
-            filtered = filtered.filter((b) => b.state === stateFilter);
-          }
-
-          if (minRating > 0) {
-            filtered = filtered.filter((b) => parseFloat(b.ratingAvg || "0") >= minRating);
-          }
-
-          // Apply sorting
-          switch (sortBy) {
-            case "rating":
-              filtered.sort(
-                (a, b) => parseFloat(b.ratingAvg || "0") - parseFloat(a.ratingAvg || "0")
-              );
-              break;
-            case "reviews":
-              filtered.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
-              break;
-            case "name":
-              filtered.sort((a, b) => a.name.localeCompare(b.name));
-              break;
-            default:
-              filtered.sort(
-                (a, b) => parseFloat(b.ratingAvg || "0") - parseFloat(a.ratingAvg || "0")
-              );
-          }
-
-          formattedResults = filtered.slice(offset, offset + limit);
-          total = filtered.length;
-          dataSource = "google";
-          autoSynced = googleData.synced;
-        } else {
-          // Merge Google results with DB results (avoiding duplicates)
-          const existingPlaceIds = new Set(
-            formattedResults.map((b) => b.googlePlaceId).filter(Boolean)
-          );
-
-          const newGoogleResults = googleData.results.filter(
-            (b) => !existingPlaceIds.has(b.googlePlaceId)
-          );
-
-          if (newGoogleResults.length > 0) {
-            formattedResults = [...formattedResults, ...newGoogleResults.slice(0, limit - formattedResults.length)];
-            total = formattedResults.length;
-            dataSource = "hybrid";
-            autoSynced = googleData.synced;
-          }
-        }
-      }
-    }
-
-    // Enrich with Google data if from database
-    let enrichedResults = formattedResults;
-    if (enrichPhotos && formattedResults.length > 0 && dataSource === "database") {
-      try {
-        enrichedResults = await enrichBusinesses(formattedResults, {
-          limit: 8,
-          parallel: true,
-        });
-        dataSource = "hybrid";
-      } catch (error) {
-        console.error("Enrichment failed, using database data:", error);
-        enrichedResults = formattedResults.map((b) => ({
-          ...b,
-          dataSource: "database" as const,
-        }));
-      }
-    }
-
     return NextResponse.json({
-      data: enrichedResults,
+      data: formattedResults,
       pagination: {
         page,
         limit,
         total,
         totalPages: Math.ceil(total / limit),
-        hasMore: offset + enrichedResults.length < total,
+        hasMore: offset + formattedResults.length < total,
       },
       meta: {
         query,
@@ -509,8 +149,8 @@ export async function GET(request: Request) {
         },
         sort: sortBy,
       },
-      dataSource,
-      autoSynced,
+      dataSource: "database",
+      autoSynced: false,
     });
   } catch (error) {
     console.error("Search error:", error);

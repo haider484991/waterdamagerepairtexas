@@ -47,7 +47,7 @@ export async function GET(
     const hours = business.hours as Record<string, string> | null;
 
     const content = `# ${business.name}
-# https://waterdamagerepairtexas.net/business/${business.slug}
+# https://www.waterdamagerepair.io/business/${business.slug}
 # Generated: ${new Date().toISOString()}
 
 > ${business.description || `${business.name} provides professional water damage restoration services in ${business.city}, ${business.state}.`}
@@ -120,7 +120,7 @@ ${business.email ? `- Email: ${business.email}` : ''}
 
 ## Contact Directory
 
-- Website: https://waterdamagerepairtexas.net
+- Website: https://www.waterdamagerepair.io
 - Email: shieldwebservices@gmail.com
 `;
 

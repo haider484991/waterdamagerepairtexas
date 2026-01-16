@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "DMCA Policy | WaterDamageRepairTexas.net",
+  title: "DMCA Policy | WaterDamageRepair.io",
   description:
-    "DMCA policy for WaterDamageRepairTexas.net explaining how to submit copyright notices and counter-notifications.",
+    "DMCA policy for WaterDamageRepair.io explaining how to submit copyright notices and counter-notifications.",
 };
 
 export default function DmcaPage() {
@@ -18,7 +18,7 @@ export default function DmcaPage() {
             <p className="text-sm text-muted-foreground">Effective Date: December 11, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">DMCA Policy</h1>
             <p className="text-muted-foreground leading-relaxed">
-              WaterDamageRepairTexas.net is owned and operated by Shield Web Services, LLC.
+              WaterDamageRepair.io is owned and operated by Shield Web Services, LLC.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               We respect the intellectual property rights of others and expect our users to do the same. It is our policy to respond to clear notices of alleged copyright infringement in accordance with the Digital Millennium Copyright Act ("DMCA"), 17 U.S.C. § 512.
@@ -30,12 +30,12 @@ export default function DmcaPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-foreground">Reporting Claims of Copyright Infringement</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  If you believe that any content appearing on WaterDamageRepairTexas.net infringes your copyright, please send a written notice to our Designated DMCA Agent containing the following information:
+                  If you believe that any content appearing on WaterDamageRepair.io infringes your copyright, please send a written notice to our Designated DMCA Agent containing the following information:
                 </p>
                 <ol className="list-decimal pl-5 space-y-2 text-muted-foreground ml-4">
                   <li>A physical or electronic signature of the copyright owner or a person authorized to act on their behalf;</li>
                   <li>Identification of the copyrighted work claimed to have been infringed (or, if multiple works are involved, a representative list);</li>
-                  <li>Identification of the material that is claimed to be infringing or to be the subject of infringing activity, including the specific URL(s) on WaterDamageRepairTexas.net where the material appears;</li>
+                  <li>Identification of the material that is claimed to be infringing or to be the subject of infringing activity, including the specific URL(s) on WaterDamageRepair.io where the material appears;</li>
                   <li>Your contact information, including your name, address, telephone number, and email address;</li>
                   <li>A statement that you have a good-faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law;</li>
                   <li>A statement, made under penalty of perjury, that the information in the notification is accurate and that you are the copyright owner or authorized to act on behalf of the owner.</li>
@@ -69,7 +69,7 @@ export default function DmcaPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-foreground">Counter-Notification</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  If you believe that material you posted on WaterDamageRepairTexas.net was removed or disabled by mistake or misidentification, you may file a counter-notification with our DMCA Agent. Your counter-notification must include:
+                  If you believe that material you posted on WaterDamageRepair.io was removed or disabled by mistake or misidentification, you may file a counter-notification with our DMCA Agent. Your counter-notification must include:
                 </p>
                 <ol className="list-decimal pl-5 space-y-2 text-muted-foreground ml-4">
                   <li>Your physical or electronic signature;</li>
