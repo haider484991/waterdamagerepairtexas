@@ -8,7 +8,9 @@ import {
 import { generateCategoryMetadata } from "@/lib/seo";
 import { generateServiceSchema } from "@/lib/seo/schema-markup";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://waterdamagerepairusa.com";
+import { getSiteUrl } from "@/lib/site-url";
+
+const SITE_URL = getSiteUrl();
 
 type LayoutProps = {
   children: ReactNode;

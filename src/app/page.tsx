@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { HomePageClient } from "@/components/home/HomePageClient";
 import {
   getFeaturedBusinesses,
@@ -6,6 +7,36 @@ import {
   getCategories,
   getStats,
 } from "@/lib/local-data";
+import { getSiteUrl } from "@/lib/site-url";
+
+const SITE_URL = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Water Damage Repair USA — Find Trusted Restoration Services Nationwide",
+  description:
+    "Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services across the USA. 24/7 emergency response with free estimates from certified professionals.",
+  keywords: [
+    "water damage restoration",
+    "flood cleanup",
+    "mold remediation",
+    "emergency water damage",
+    "water damage repair",
+    "water extraction",
+    "storm damage repair",
+    "water damage restoration near me",
+  ],
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: "Water Damage Repair USA — Find Trusted Restoration Services",
+    description:
+      "Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services across the USA. 24/7 emergency response.",
+    url: SITE_URL,
+    type: "website",
+    siteName: "Water Damage Repair USA",
+  },
+};
 
 async function getHomePageData() {
   try {

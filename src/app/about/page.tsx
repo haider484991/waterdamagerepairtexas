@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   title: "About Water Damage Repair USA - Your Guide to Restoration Services",
   description:
     "Learn about Water Damage Repair USA, a dedicated directory connecting property owners nationwide with trusted water damage restoration, flood cleanup, and mold remediation professionals.",
+  keywords: [
+    "water damage directory",
+    "restoration services directory",
+    "water damage repair company",
+    "flood cleanup services",
+    "mold remediation directory",
+    "emergency restoration services",
+  ],
+  openGraph: {
+    title: "About Water Damage Repair USA",
+    description:
+      "A comprehensive directory connecting property owners with trusted water damage restoration, flood cleanup, and mold remediation professionals nationwide.",
+    type: "website",
+  },
 };
 
 const highlightPoints = [
