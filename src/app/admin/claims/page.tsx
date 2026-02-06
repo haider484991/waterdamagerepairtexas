@@ -59,10 +59,7 @@ export default function AdminClaimsPage() {
   const [selectedClaim, setSelectedClaim] = useState<Claim | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const isAdmin =
-    session?.user?.email === "admin@waterdamagerepairtexas.net" ||
-    session?.user?.email?.endsWith("@admin.com") ||
-    session?.user?.email === "admin@test.com";
+  const isAdmin = (session?.user as any)?.role === "admin";
 
   useEffect(() => {
     async function fetchClaims() {

@@ -2,22 +2,44 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MapPin, Clock, Heart, Building2 } from "lucide-react";
+import { MapPin, Clock, Heart, Building2, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StarRating } from "./StarRating";
 import { PriceLevel } from "./PriceLevel";
-import type { Business, Category } from "@/lib/db/schema";
 import { cn } from "@/lib/utils";
 import { getImageUrl } from "@/lib/business-utils";
 
+interface CardBusiness {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  address: string;
+  city: string;
+  state: string;
+  neighborhood?: string | null;
+  phone?: string | null;
+  website?: string | null;
+  email?: string | null;
+  lat?: string | null;
+  lng?: string | null;
+  photos?: string[] | null;
+  priceLevel?: number | null;
+  ratingAvg?: string | null;
+  reviewCount?: number | null;
+  isVerified?: boolean | null;
+  isFeatured?: boolean | null;
+  isOpenNow?: boolean;
+  hours?: Record<string, string> | null;
+  googlePlaceId?: string | null;
+  logo?: string | null;
+  category?: { name: string; slug: string; section?: string | null } | null;
+  dataSource?: string;
+}
+
 interface BusinessCardProps {
-  business: Business & {
-    category?: Category | null;
-    isOpenNow?: boolean;
-    dataSource?: "hybrid" | "database" | "google";
-    googlePlaceId?: string | null;
-  };
+  business: CardBusiness;
   variant?: "default" | "compact" | "featured";
   onFavoriteClick?: (businessId: string) => void;
   isFavorited?: boolean;
@@ -65,7 +87,7 @@ export function BusinessCard({
           <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-secondary">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={mainImage}
+              src={mainImage || (business.logo || "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image")}
               alt={business.name}
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
@@ -74,14 +96,20 @@ export function BusinessCard({
             />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground line-clamp-1">
-              {business.name}
-            </h3>
+            <div className="flex items-center gap-1.5">
+              <h3 className="font-semibold text-foreground line-clamp-1">
+                {business.name}
+              </h3>
+              {business.isVerified && (
+                <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0" />
+              )}
+            </div>
             <div className="flex items-center gap-2 mt-1">
               <StarRating
                 rating={Number(business.ratingAvg) || 0}
                 size="sm"
                 showValue
+                reviewCount={business.reviewCount || 0}
               />
             </div>
             <p className="text-sm text-muted-foreground line-clamp-1 mt-1">
@@ -103,7 +131,7 @@ export function BusinessCard({
           <div className="relative h-56 bg-secondary">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={mainImage}
+              src={mainImage || (business.logo || "https://placehold.co/800x600/f5f5f4/a3a3a3?text=No+Image")}
               alt={business.name}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               onError={(e) => {
@@ -208,7 +236,7 @@ export function BusinessCard({
         <div className="relative h-44 bg-secondary">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={mainImage}
+            src={mainImage || (business.logo || "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image")}
             alt={business.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
@@ -255,9 +283,14 @@ export function BusinessCard({
 
         <div className="p-4">
           <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-semibold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
-              {business.name}
-            </h3>
+            <div className="flex items-center gap-1.5 min-w-0">
+              <h3 className="font-semibold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+                {business.name}
+              </h3>
+              {business.isVerified && (
+                <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0" />
+              )}
+            </div>
             {business.priceLevel && (
               <PriceLevel level={business.priceLevel} size="sm" />
             )}

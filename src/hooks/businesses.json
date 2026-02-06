@@ -1,0 +1,4583 @@
+[
+    {
+        "id": "biz-1770413188749-00001",
+        "googlePlaceId": "ChIJ6SCpKDe_woARdZB2mDJSSHc",
+        "googleId": "0x80c2bf3728a920e9:0x7748523298769075",
+        "cid": "8595210266096341109",
+        "name": "Mr Water Damage Restoration Los Angeles",
+        "slug": "mr-water-damage-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "6565 Sunset Blvd",
+        "street": "6565 Sunset Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90028",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-606-6780",
+        "website": null,
+        "email": null,
+        "lat": "34.0984585",
+        "lng": "-118.33309059999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Mr+Water+Damage+Restoration+Los+Angeles/@34.0984585,-118.33309059999999,14z/data=!4m8!1m2!2m1!1sMr+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80c2bf3728a920e9:0x7748523298769075!8m2!3d34.0984585!4d-118.33309059999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 63,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 61
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJ6SCpKDe_woARdZB2mDJSSHc&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipNGQrQ2cRymLRhfn1DZd8I2ce8E3RaziamjgXVw=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipNGQrQ2cRymLRhfn1DZd8I2ce8E3RaziamjgXVw=w1600-h1000-k-no"
+        ],
+        "photosCount": 18,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipNGQrQ2cRymLRhfn1DZd8I2ce8E3RaziamjgXVw=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-xUMLkmD8ekk/AAAAAAAAAAI/AAAAAAAAAAA/V4pIethr-94/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104816040895267728021",
+        "ownerTitle": "Mr Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/104816040895267728021",
+        "hours": {
+            "friday": "6:30AM-11PM",
+            "monday": "6:30AM-11PM",
+            "saturday": "6:30AM-11PM",
+            "sunday": "6:30AM-11PM",
+            "thursday": "6:30AM-11PM",
+            "tuesday": "6:30AM-11PM",
+            "wednesday": "6:30AM-11PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "6:30AM-11PM"
+            ],
+            "Monday": [
+                "6:30AM-11PM"
+            ],
+            "Saturday": [
+                "6:30AM-11PM"
+            ],
+            "Sunday": [
+                "6:30AM-11PM"
+            ],
+            "Thursday": [
+                "6:30AM-11PM"
+            ],
+            "Tuesday": [
+                "6:30AM-11PM"
+            ],
+            "Wednesday": [
+                "6:30AM-11PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.749Z",
+        "updatedAt": "2026-02-06T21:26:28.750Z"
+    },
+    {
+        "id": "biz-1770413188751-00002",
+        "googlePlaceId": "ChIJwX80OVC9woAR33jl58UCH_o",
+        "googleId": "0x80c2bd5039347fc1:0xfa1f02c5e7e578df",
+        "cid": "18023127282782402783",
+        "name": "24/7 Water Damage Restoration Los Angeles",
+        "slug": "247-water-damage-restoration-los-angeles-beverly-hills-california",
+        "description": null,
+        "address": "civic center dr, stu B",
+        "street": "civic center dr, stu B",
+        "city": "Beverly Hills",
+        "state": "California",
+        "zip": "90210",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 951-462-5893",
+        "website": null,
+        "email": null,
+        "lat": "34.074805399999995",
+        "lng": "-118.39831649999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/24%2F7+Water+Damage+Restoration+Los+Angeles/@34.074805399999995,-118.39831649999999,14z/data=!4m8!1m2!2m1!1s24%2F7+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80c2bd5039347fc1:0xfa1f02c5e7e578df!8m2!3d34.074805399999995!4d-118.39831649999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Carpet cleaning service",
+            "Wood floor refinishing service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-emergency-services",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 43,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 42
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJwX80OVC9woAR33jl58UCH_o&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOGtp3ole4qNnYTZEKhJx2tZBx3W1N3b-xER1og=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOGtp3ole4qNnYTZEKhJx2tZBx3W1N3b-xER1og=w1600-h1000-k-no"
+        ],
+        "photosCount": 379,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOGtp3ole4qNnYTZEKhJx2tZBx3W1N3b-xER1og=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-MNcKeV_p00k/AAAAAAAAAAI/AAAAAAAAAAA/33SOHfDr9x4/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104674189944232361157",
+        "ownerTitle": "24/7 Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/104674189944232361157",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188751-00003",
+        "googlePlaceId": "ChIJB7DpKLm3woARggoXfNcgBNw",
+        "googleId": "0x80c2b7b928e9b007:0xdc0420d77c170a82",
+        "cid": "15853832698122930818",
+        "name": "AAA Water Damage Restoration Los Angeles",
+        "slug": "aaa-water-damage-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "3212 W Slauson Ave",
+        "street": "3212 W Slauson Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90043",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-658-3161",
+        "website": null,
+        "email": null,
+        "lat": "33.9885845",
+        "lng": "-118.3289217",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/AAA+Water+Damage+Restoration+Los+Angeles/@33.9885845,-118.3289217,14z/data=!4m8!1m2!2m1!1sAAA+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80c2b7b928e9b007:0xdc0420d77c170a82!8m2!3d33.9885845!4d-118.3289217",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.80",
+        "reviewCount": 22,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 21
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJB7DpKLm3woARggoXfNcgBNw&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMkyafu3MgzNiiFuIsLHk9ThmZ7rBhWWOflrjnJ=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMkyafu3MgzNiiFuIsLHk9ThmZ7rBhWWOflrjnJ=w1600-h1000-k-no"
+        ],
+        "photosCount": 40,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMkyafu3MgzNiiFuIsLHk9ThmZ7rBhWWOflrjnJ=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-tJGn-dznJr0/AAAAAAAAAAI/AAAAAAAAAAA/XzJ7N85lyLU/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "107703469223864658846",
+        "ownerTitle": "AAA Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/107703469223864658846",
+        "hours": {
+            "friday": "8AM-8PM",
+            "monday": "8AM-8PM",
+            "saturday": "8AM-8PM",
+            "sunday": "8AM-8PM",
+            "thursday": "8AM-8PM",
+            "tuesday": "8AM-8PM",
+            "wednesday": "8AM-8PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "8AM-8PM"
+            ],
+            "Monday": [
+                "8AM-8PM"
+            ],
+            "Saturday": [
+                "8AM-8PM"
+            ],
+            "Sunday": [
+                "8AM-8PM"
+            ],
+            "Thursday": [
+                "8AM-8PM"
+            ],
+            "Tuesday": [
+                "8AM-8PM"
+            ],
+            "Wednesday": [
+                "8AM-8PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188751-00004",
+        "googlePlaceId": "ChIJzbXDlJvHwoARvYot4et4MGs",
+        "googleId": "0x80c2c79b94c3b5cd:0x6b3078ebe12d8abd",
+        "cid": "7723806315430906557",
+        "name": "911 Restoration of Central LA",
+        "slug": "911-restoration-of-central-la-los-angeles-california",
+        "description": null,
+        "address": "5801 W Pico Blvd",
+        "street": "5801 W Pico Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90019",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-369-0894",
+        "website": null,
+        "email": null,
+        "lat": "34.0512993",
+        "lng": "-118.36479109999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/911+Restoration+of+Central+LA/@34.0512993,-118.36479109999999,14z/data=!4m8!1m2!2m1!1s911+Restoration+of+Central+LA!3m4!1s0x80c2c79b94c3b5cd:0x6b3078ebe12d8abd!8m2!3d34.0512993!4d-118.36479109999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Cleaning service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "From the business": {
+                "Identifies as women-owned": true
+            },
+            "Other": {
+                "Identifies as women-owned": true
+            },
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 95,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 94
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJzbXDlJvHwoARvYot4et4MGs&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOe_UsDPXoByDPa30WkoQDklUrLWaDs2VCc-YJP=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOe_UsDPXoByDPa30WkoQDklUrLWaDs2VCc-YJP=w1600-h1000-k-no"
+        ],
+        "photosCount": 23,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOe_UsDPXoByDPa30WkoQDklUrLWaDs2VCc-YJP=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-FNRprUOVWTo/AAAAAAAAAAI/AAAAAAAAAAA/RdgM2Hb4_fM/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "111286343229678468814",
+        "ownerTitle": "911 Restoration of Central LA",
+        "ownerLink": "https://www.google.com/maps/contrib/111286343229678468814",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188751-00005",
+        "googlePlaceId": "ChIJC7EveElZ3AMRIOQkFCP-P-0",
+        "googleId": "0x3dc5949782fb10b:0xed3ffe231424e420",
+        "cid": "17095662137136964640",
+        "name": "Water in Los Angeles",
+        "slug": "water-in-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "4707 7th Ave",
+        "street": "4707 7th Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90043",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 818-447-6359",
+        "website": null,
+        "email": null,
+        "lat": "34.0007713",
+        "lng": "-118.32498989999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Water+in+Los+Angeles/@34.0007713,-118.32498989999999,14z/data=!4m8!1m2!2m1!1sWater+in+Los+Angeles!3m4!1s0x3dc5949782fb10b:0xed3ffe231424e420!8m2!3d34.0007713!4d-118.32498989999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Online estimates": false,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 27,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 26
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJC7EveElZ3AMRIOQkFCP-P-0&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepoUNjaCRVrj2wyojV7MFifyyp2kYI72HErRMoLcG_xZmFEIzTMhlOchBjj1qYUMehsJJcy0gt2wzrAHcMU25qde6NFcfhxab2a89DEYyowHV_BrsnxJqWAskqoS01ooKWOE9CX=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepoUNjaCRVrj2wyojV7MFifyyp2kYI72HErRMoLcG_xZmFEIzTMhlOchBjj1qYUMehsJJcy0gt2wzrAHcMU25qde6NFcfhxab2a89DEYyowHV_BrsnxJqWAskqoS01ooKWOE9CX=w1600-h1000-k-no"
+        ],
+        "photosCount": 76,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepoUNjaCRVrj2wyojV7MFifyyp2kYI72HErRMoLcG_xZmFEIzTMhlOchBjj1qYUMehsJJcy0gt2wzrAHcMU25qde6NFcfhxab2a89DEYyowHV_BrsnxJqWAskqoS01ooKWOE9CX=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-jKfpcUNavNE/AAAAAAAAAAI/AAAAAAAAAAA/K-B0qaXmo2I/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "112014414043495848775",
+        "ownerTitle": "Water in Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/112014414043495848775",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188751-00006",
+        "googlePlaceId": "ChIJiRoCeDaNmYARBufLpozuE-c",
+        "googleId": "0x80998d3678021a89:0xe713ee8ca6cbe706",
+        "cid": "16650914535180068614",
+        "name": "Lucky Water Damage Restoration Los Angeles",
+        "slug": "lucky-water-damage-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "6600 Sunset Blvd",
+        "street": "6600 Sunset Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90028",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-894-2578",
+        "website": null,
+        "email": null,
+        "lat": "34.097727299999995",
+        "lng": "-118.33345589999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Lucky+Water+Damage+Restoration+Los+Angeles/@34.097727299999995,-118.33345589999999,14z/data=!4m8!1m2!2m1!1sLucky+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80998d3678021a89:0xe713ee8ca6cbe706!8m2!3d34.097727299999995!4d-118.33345589999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 22,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 22
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJiRoCeDaNmYARBufLpozuE-c&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipORjVrIoY0b6yL6RnuZJX4Wy0vGwZ_d1esPatMe=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipORjVrIoY0b6yL6RnuZJX4Wy0vGwZ_d1esPatMe=w1600-h1000-k-no"
+        ],
+        "photosCount": 4,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipORjVrIoY0b6yL6RnuZJX4Wy0vGwZ_d1esPatMe=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-UsLjgDjkL0Y/AAAAAAAAAAI/AAAAAAAAAAA/-KaW_T4cf5Q/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "109524014826053840063",
+        "ownerTitle": "Lucky Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/109524014826053840063",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188751-00007",
+        "googlePlaceId": "ChIJLQuEuUO_woARahbLAWUKxy4",
+        "googleId": "0x80c2bf43b9840b2d:0x2ec70a6501cb166a",
+        "cid": "3370674275048167018",
+        "name": "ASAP Water Damage Restoration Los Angeles",
+        "slug": "asap-water-damage-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "925 N La Brea Ave",
+        "street": "925 N La Brea Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90038",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-677-2811",
+        "website": null,
+        "email": null,
+        "lat": "34.0878802",
+        "lng": "-118.34467029999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/ASAP+Water+Damage+Restoration+Los+Angeles/@34.0878802,-118.34467029999999,14z/data=!4m8!1m2!2m1!1sASAP+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80c2bf43b9840b2d:0x2ec70a6501cb166a!8m2!3d34.0878802!4d-118.34467029999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Assistive hearing loop": true,
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true,
+                "Wheelchair accessible restroom": true,
+                "Wheelchair accessible seating": true
+            },
+            "Amenities": {
+                "Gender-neutral restroom": true
+            },
+            "Crowd": {
+                "LGBTQ+ friendly": true,
+                "Transgender safespace": true
+            },
+            "From the business": {
+                "Identifies as veteran-owned": true
+            },
+            "Other": {
+                "Identifies as veteran-owned": true,
+                "LGBTQ+ friendly": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 38,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 38
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJLQuEuUO_woARahbLAWUKxy4&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOXBlSis4-0Glo4GJXkgFY0iE_bTAeFGyw9Uno6=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOXBlSis4-0Glo4GJXkgFY0iE_bTAeFGyw9Uno6=w1600-h1000-k-no"
+        ],
+        "photosCount": 123,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOXBlSis4-0Glo4GJXkgFY0iE_bTAeFGyw9Uno6=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-Neh_PJjTtRY/AAAAAAAAAAI/AAAAAAAAAAA/YMq6z_sEVYM/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "102167463727360907997",
+        "ownerTitle": "ASAP Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/102167463727360907997",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.751Z",
+        "updatedAt": "2026-02-06T21:26:28.751Z"
+    },
+    {
+        "id": "biz-1770413188752-00008",
+        "googlePlaceId": "ChIJO9kdhTRc5mcRMOzFtyLOfH4",
+        "googleId": "0x67e65c34851dd93b:0x7e7cce22b7c5ec30",
+        "cid": "9114386394398452784",
+        "name": "Coast Los Angeles CA",
+        "slug": "coast-los-angeles-ca-los-angeles-california",
+        "description": null,
+        "address": "8018 W 3rd St",
+        "street": "8018 W 3rd St",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90048",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-594-4173",
+        "website": null,
+        "email": null,
+        "lat": "34.0717439",
+        "lng": "-118.36447969999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Coast+Los+Angeles+CA/@34.0717439,-118.36447969999999,14z/data=!4m8!1m2!2m1!1sCoast+Los+Angeles+CA!3m4!1s0x67e65c34851dd93b:0x7e7cce22b7c5ec30!8m2!3d34.0717439!4d-118.36447969999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible restroom": false
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 50,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 50
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJO9kdhTRc5mcRMOzFtyLOfH4&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipPvkJSxnxvZZiH006vEhSAYnEkjao1ts9c2DVYw=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipPvkJSxnxvZZiH006vEhSAYnEkjao1ts9c2DVYw=w1600-h1000-k-no"
+        ],
+        "photosCount": 12,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPvkJSxnxvZZiH006vEhSAYnEkjao1ts9c2DVYw=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-pwk6bxqiTIo/AAAAAAAAAAI/AAAAAAAAAAA/q1Uqw6Fn6SM/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "105208306889505723104",
+        "ownerTitle": "Coast Los Angeles CA",
+        "ownerLink": "https://www.google.com/maps/contrib/105208306889505723104",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00009",
+        "googlePlaceId": "ChIJ1wHOUwDHwoAR_3ZEw0H3h2A",
+        "googleId": "0x80c2c70053ce01d7:0x6087f741c34476ff",
+        "cid": "6955800011317999359",
+        "name": "Los Angeles Water Damage Restoration.",
+        "slug": "los-angeles-water-damage-restoration-los-angeles-california",
+        "description": null,
+        "address": "140 Japanese Village Plaza Mall",
+        "street": "140 Japanese Village Plaza Mall",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90012",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-719-4566",
+        "website": null,
+        "email": null,
+        "lat": "34.04868",
+        "lng": "-118.24052999999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Los+Angeles+Water+Damage+Restoration./@34.04868,-118.24052999999999,14z/data=!4m8!1m2!2m1!1sLos+Angeles+Water+Damage+Restoration.!3m4!1s0x80c2c70053ce01d7:0x6087f741c34476ff!8m2!3d34.04868!4d-118.24052999999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "0",
+        "reviewCount": 0,
+        "reviewsPerScore": null,
+        "reviewsLink": null,
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Bl25gXDvjo8cYgapDXsPNw&cb_client=search.gws-prod.gps&w=800&h=500&yaw=36.23959&pitch=0&thumbfov=100",
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Bl25gXDvjo8cYgapDXsPNw&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=36.23959&pitch=0&thumbfov=100"
+        ],
+        "photosCount": 1,
+        "streetView": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Bl25gXDvjo8cYgapDXsPNw&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=36.23959&pitch=0&thumbfov=100",
+        "logo": "https://lh5.googleusercontent.com/-pHSSZubm_10/AAAAAAAAAAI/AAAAAAAAAAA/EXeh_9THLto/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "112249566192998414611",
+        "ownerTitle": "Los Angeles Water Damage Restoration.",
+        "ownerLink": "https://www.google.com/maps/contrib/112249566192998414611",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00010",
+        "googlePlaceId": "ChIJn8yxLba7woARtOq9578Fl7w",
+        "googleId": "0x80c2bbb62db1cc9f:0xbc9705bfe7bdeab4",
+        "cid": "13589336722398636724",
+        "name": "911 Restoration of West Los Angeles",
+        "slug": "911-restoration-of-west-los-angeles-culver-city-california",
+        "description": null,
+        "address": "11958 Lindblade St #2",
+        "street": "11958 Lindblade St #2",
+        "city": "Culver City",
+        "state": "California",
+        "zip": "90230",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-369-0846",
+        "website": null,
+        "email": null,
+        "lat": "33.9939703",
+        "lng": "-118.4156029",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/911+Restoration+of+West+Los+Angeles/@33.9939703,-118.4156029,14z/data=!4m8!1m2!2m1!1s911+Restoration+of+West+Los+Angeles!3m4!1s0x80c2bbb62db1cc9f:0xbc9705bfe7bdeab4!8m2!3d33.9939703!4d-118.4156029",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "From the business": {
+                "Identifies as women-owned": true
+            },
+            "Other": {
+                "Identifies as women-owned": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 258,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 1,
+            "4": 1,
+            "5": 255
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJn8yxLba7woARtOq9578Fl7w&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMADdzzf6Y-gHuXnwpcVsULgUabhdlPaB-hl__Q=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMADdzzf6Y-gHuXnwpcVsULgUabhdlPaB-hl__Q=w1600-h1000-k-no"
+        ],
+        "photosCount": 17,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMADdzzf6Y-gHuXnwpcVsULgUabhdlPaB-hl__Q=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-kbyFfrdDR-E/AAAAAAAAAAI/AAAAAAAAAAA/9vnr3JzvYq8/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "108007222332027821190",
+        "ownerTitle": "911 Restoration of West Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/108007222332027821190",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00011",
+        "googlePlaceId": "ChIJRwgzBwnHwoAR2U7hbgxu4Vk",
+        "googleId": "0x80c2c70907330847:0x59e16e0c6ee14ed9",
+        "cid": "6476578738814406361",
+        "name": "Los Angeles Water Damage",
+        "slug": "los-angeles-water-damage-los-angeles-california",
+        "description": null,
+        "address": "901 Venice Blvd.",
+        "street": "901 Venice Blvd.",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90015",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-421-1122",
+        "website": null,
+        "email": null,
+        "lat": "34.0401078",
+        "lng": "-118.275134",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Los+Angeles+Water+Damage/@34.0401078,-118.275134,14z/data=!4m8!1m2!2m1!1sLos+Angeles+Water+Damage!3m4!1s0x80c2c70907330847:0x59e16e0c6ee14ed9!8m2!3d34.0401078!4d-118.275134",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible restroom": false,
+                "Wheelchair accessible seating": false
+            },
+            "Crowd": {
+                "LGBTQ+ friendly": true,
+                "Transgender safespace": true
+            },
+            "From the business": {
+                "Identifies as Black-owned": true
+            },
+            "Other": {
+                "Identifies as Black-owned": true,
+                "LGBTQ+ friendly": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 4,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 4
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJRwgzBwnHwoAR2U7hbgxu4Vk&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOxKBqFLIAEFXIRGsBmLejz2g4felq9DTuxArLg=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOxKBqFLIAEFXIRGsBmLejz2g4felq9DTuxArLg=w1600-h1000-k-no"
+        ],
+        "photosCount": 12,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOxKBqFLIAEFXIRGsBmLejz2g4felq9DTuxArLg=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-BasCG_3deWY/AAAAAAAAAAI/AAAAAAAAAAA/CQ_h_Y71Jd4/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "101110939912668147354",
+        "ownerTitle": "Los Angeles Water Damage",
+        "ownerLink": "https://www.google.com/maps/contrib/101110939912668147354",
+        "hours": {
+            "friday": "6AM-9PM",
+            "monday": "6AM-9PM",
+            "saturday": "8AM-8PM",
+            "sunday": "8AM-8PM",
+            "thursday": "6AM-9PM",
+            "tuesday": "6AM-9PM",
+            "wednesday": "6AM-9PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "6AM-9PM"
+            ],
+            "Monday": [
+                "6AM-9PM"
+            ],
+            "Saturday": [
+                "8AM-8PM"
+            ],
+            "Sunday": [
+                "8AM-8PM"
+            ],
+            "Thursday": [
+                "6AM-9PM"
+            ],
+            "Tuesday": [
+                "6AM-9PM"
+            ],
+            "Wednesday": [
+                "6AM-9PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00012",
+        "googlePlaceId": "ChIJgz-ndd8p3YAR4LpluY5u8So",
+        "googleId": "0x80dd29df75a73f83:0x2af16e8eb965bae0",
+        "cid": "3094375978255104736",
+        "name": "Los Angeles Water Damage",
+        "slug": "los-angeles-water-damage-los-angeles-california-1",
+        "description": null,
+        "address": "1303 E 7th St",
+        "street": "1303 E 7th St",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90021",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-490-1612",
+        "website": null,
+        "email": null,
+        "lat": "34.036809999999996",
+        "lng": "-118.24094",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Los+Angeles+Water+Damage/@34.036809999999996,-118.24094,14z/data=!4m8!1m2!2m1!1sLos+Angeles+Water+Damage!3m4!1s0x80dd29df75a73f83:0x2af16e8eb965bae0!8m2!3d34.036809999999996!4d-118.24094",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible restroom": false,
+                "Wheelchair accessible seating": false
+            },
+            "Crowd": {
+                "LGBTQ+ friendly": true,
+                "Transgender safespace": true
+            },
+            "From the business": {
+                "Identifies as Black-owned": true
+            },
+            "Other": {
+                "Identifies as Black-owned": true,
+                "LGBTQ+ friendly": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 1,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 1
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJgz-ndd8p3YAR4LpluY5u8So&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerwq-dfUc4daDrfGiZi9ZLMJ_255-yLLLd8-u09NJB4bBlJv9MbUCQGlyXgbN2GkceIay4fO1NjhZryRIBrtXhpE4_28CmexgE4y01WhvDk2j2JLgV_KO8oOMg3x9R1UnJTNsBa=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerwq-dfUc4daDrfGiZi9ZLMJ_255-yLLLd8-u09NJB4bBlJv9MbUCQGlyXgbN2GkceIay4fO1NjhZryRIBrtXhpE4_28CmexgE4y01WhvDk2j2JLgV_KO8oOMg3x9R1UnJTNsBa=w1600-h1000-k-no"
+        ],
+        "photosCount": 3,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerwq-dfUc4daDrfGiZi9ZLMJ_255-yLLLd8-u09NJB4bBlJv9MbUCQGlyXgbN2GkceIay4fO1NjhZryRIBrtXhpE4_28CmexgE4y01WhvDk2j2JLgV_KO8oOMg3x9R1UnJTNsBa=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-VV2XHCTUIN4/AAAAAAAAAAI/AAAAAAAAAAA/dxJ22ASeuHM/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "111107330243476548305",
+        "ownerTitle": "Los Angeles Water Damage",
+        "ownerLink": "https://www.google.com/maps/contrib/111107330243476548305",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00013",
+        "googlePlaceId": "ChIJGaW2iOW_woARbEAM1k7Za6o",
+        "googleId": "0x80c2bfe588b6a519:0xaa6bd94ed60c406c",
+        "cid": "12280147741577592940",
+        "name": "SERVPRO of Hollywood Hills/Los Feliz",
+        "slug": "servpro-of-hollywood-hillslos-feliz-los-angeles-california",
+        "description": null,
+        "address": "5107 Hollywood Blvd Ste 104",
+        "street": "5107 Hollywood Blvd Ste 104",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90027",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-667-3100",
+        "website": null,
+        "email": null,
+        "lat": "34.1019542",
+        "lng": "-118.3008787",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SERVPRO+of+Hollywood+Hills%2FLos+Feliz/@34.1019542,-118.3008787,14z/data=!4m8!1m2!2m1!1sSERVPRO+of+Hollywood+Hills%2FLos+Feliz!3m4!1s0x80c2bfe588b6a519:0xaa6bd94ed60c406c!8m2!3d34.1019542!4d-118.3008787",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Air duct cleaning service",
+            "Building restoration service",
+            "Carpet cleaning service",
+            "Cleaners",
+            "Crime victim service",
+            "Debris removal service",
+            "Fire damage restoration service",
+            "Waste management service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 45,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 45
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJGaW2iOW_woARbEAM1k7Za6o&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMcTpGiVRJ-dC6hnEJ4fCjqrfPfcpYLvNThNC-o=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMcTpGiVRJ-dC6hnEJ4fCjqrfPfcpYLvNThNC-o=w1600-h1000-k-no"
+        ],
+        "photosCount": 57,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMcTpGiVRJ-dC6hnEJ4fCjqrfPfcpYLvNThNC-o=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-k74u5PWGmlM/AAAAAAAAAAI/AAAAAAAAAAA/i0PKzf7_jfk/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104931691919623092634",
+        "ownerTitle": "SERVPRO of Hollywood Hills/Los Feliz",
+        "ownerLink": "https://www.google.com/maps/contrib/104931691919623092634",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.servpro.com/locations/ca/servpro-of-hollywood-hills-los-feliz?utm_medium=organic&utm_source=gbp"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00014",
+        "googlePlaceId": "ChIJuUxyO2bFd4gRs_ACT43BUvE",
+        "googleId": "0x8877c5663b724cb9:0xf152c18d4f02f0b3",
+        "cid": "17389173923891048627",
+        "name": "Reliable Water Damage Restoration",
+        "slug": "reliable-water-damage-restoration-los-angeles-california",
+        "description": null,
+        "address": "365 E Jefferson Blvd #115",
+        "street": "365 E Jefferson Blvd #115",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90011",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-472-9088",
+        "website": null,
+        "email": null,
+        "lat": "34.0169097",
+        "lng": "-118.2678407",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Reliable+Water+Damage+Restoration/@34.0169097,-118.2678407,14z/data=!4m8!1m2!2m1!1sReliable+Water+Damage+Restoration!3m4!1s0x8877c5663b724cb9:0xf152c18d4f02f0b3!8m2!3d34.0169097!4d-118.2678407",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {},
+        "ratingAvg": "5.00",
+        "reviewCount": 12,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 12
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJuUxyO2bFd4gRs_ACT43BUvE&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Ksq8_u6QNj-asn7XTpwYqg&cb_client=search.gws-prod.gps&w=800&h=500&yaw=29.81037&pitch=0&thumbfov=100",
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Ksq8_u6QNj-asn7XTpwYqg&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=29.81037&pitch=0&thumbfov=100"
+        ],
+        "photosCount": 1,
+        "streetView": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Ksq8_u6QNj-asn7XTpwYqg&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=29.81037&pitch=0&thumbfov=100",
+        "logo": "https://lh6.googleusercontent.com/-jAbvwHTI2MU/AAAAAAAAAAI/AAAAAAAAAAA/C0MAOUMG8QM/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104254203146899754973",
+        "ownerTitle": "Reliable Water Damage Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/104254203146899754973",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00015",
+        "googlePlaceId": "ChIJT_LHgUnHwoARsuiqY0cCyvY",
+        "googleId": "0x80c2c74981c7f24f:0xf6ca024763aae8b2",
+        "cid": "17783028584263903410",
+        "name": "Blue Water Damage Services",
+        "slug": "blue-water-damage-services-los-angeles-california",
+        "description": null,
+        "address": "600 S New Hampshire Ave #44",
+        "street": "600 S New Hampshire Ave #44",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90005",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-417-2360",
+        "website": null,
+        "email": null,
+        "lat": "34.0634577",
+        "lng": "-118.29262999999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Blue+Water+Damage+Services/@34.0634577,-118.29262999999999,14z/data=!4m8!1m2!2m1!1sBlue+Water+Damage+Services!3m4!1s0x80c2c74981c7f24f:0xf6ca024763aae8b2!8m2!3d34.0634577!4d-118.29262999999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "4.70",
+        "reviewCount": 42,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 9,
+            "5": 32
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJT_LHgUnHwoARsuiqY0cCyvY&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoQ7RouBkYcAgXCNMDwxWcgd3HPfsRJbnN4vkA2HzhbJ3F6v-hQ8Moyn32ee2mt2ykoWNPYbF4ZehhTeR3iUq31jQAgYleXZrNmDnxYnBVl_sHGMkUyoni7mQN2_aJ_R0t0HO1ZX2f447s=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoQ7RouBkYcAgXCNMDwxWcgd3HPfsRJbnN4vkA2HzhbJ3F6v-hQ8Moyn32ee2mt2ykoWNPYbF4ZehhTeR3iUq31jQAgYleXZrNmDnxYnBVl_sHGMkUyoni7mQN2_aJ_R0t0HO1ZX2f447s=w1600-h1000-k-no"
+        ],
+        "photosCount": 22,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoQ7RouBkYcAgXCNMDwxWcgd3HPfsRJbnN4vkA2HzhbJ3F6v-hQ8Moyn32ee2mt2ykoWNPYbF4ZehhTeR3iUq31jQAgYleXZrNmDnxYnBVl_sHGMkUyoni7mQN2_aJ_R0t0HO1ZX2f447s=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-f_GgZWvWagg/AAAAAAAAAAI/AAAAAAAAAAA/8ARGyYbAoNY/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "109883336112703419156",
+        "ownerTitle": "Blue Water Damage Services",
+        "ownerLink": "https://www.google.com/maps/contrib/109883336112703419156",
+        "hours": {
+            "friday": "7AM-7PM",
+            "monday": "7AM-7PM",
+            "saturday": "7AM-7PM",
+            "sunday": "7AM-7PM",
+            "thursday": "7AM-7PM",
+            "tuesday": "7AM-7PM",
+            "wednesday": "7AM-7PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "7AM-7PM"
+            ],
+            "Monday": [
+                "7AM-7PM"
+            ],
+            "Saturday": [
+                "7AM-7PM"
+            ],
+            "Sunday": [
+                "7AM-7PM"
+            ],
+            "Thursday": [
+                "7AM-7PM"
+            ],
+            "Tuesday": [
+                "7AM-7PM"
+            ],
+            "Wednesday": [
+                "7AM-7PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188752-00016",
+        "googlePlaceId": "ChIJxcrWza3JwoARhcNCYOYVbpc",
+        "googleId": "0x80c2c9adcdd6cac5:0x976e15e66042c385",
+        "cid": "10911683026366940037",
+        "name": "Go Green Restoration Los Angeles",
+        "slug": "go-green-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "6901 McKinley Ave",
+        "street": "6901 McKinley Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90001",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 800-667-7955",
+        "website": null,
+        "email": null,
+        "lat": "33.9763306",
+        "lng": "-118.26190059999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Go+Green+Restoration+Los+Angeles/@33.9763306,-118.26190059999999,14z/data=!4m8!1m2!2m1!1sGo+Green+Restoration+Los+Angeles!3m4!1s0x80c2c9adcdd6cac5:0x976e15e66042c385!8m2!3d33.9763306!4d-118.26190059999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Language assistance": "American Sign Language, English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 15,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 15
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJxcrWza3JwoARhcNCYOYVbpc&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOaYzzgyovhEgv_XcjTXiJk3UZx_ZLdrIYexoSq=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOaYzzgyovhEgv_XcjTXiJk3UZx_ZLdrIYexoSq=w1600-h1000-k-no"
+        ],
+        "photosCount": 4,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOaYzzgyovhEgv_XcjTXiJk3UZx_ZLdrIYexoSq=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-ZMN2Pfe4YoQ/AAAAAAAAAAI/AAAAAAAAAAA/vC1mJoONiXA/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "107195263285182123038",
+        "ownerTitle": "Go Green Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/107195263285182123038",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.752Z",
+        "updatedAt": "2026-02-06T21:26:28.752Z"
+    },
+    {
+        "id": "biz-1770413188753-00017",
+        "googlePlaceId": "ChIJnwkCyVvGwoARAfSGi2v3F_8",
+        "googleId": "0x80c2c65bc902099f:0xff17f76b8b86f401",
+        "cid": "18381432445410407425",
+        "name": "SERVPRO of Silver Lake / Echo Park",
+        "slug": "servpro-of-silver-lake-echo-park-los-angeles-california",
+        "description": null,
+        "address": "840 N Broadway Suite 202E",
+        "street": "840 N Broadway Suite 202E",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90012",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-522-7448",
+        "website": null,
+        "email": null,
+        "lat": "34.06325",
+        "lng": "-118.23738999999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SERVPRO+of+Silver+Lake+%2F+Echo+Park/@34.06325,-118.23738999999999,14z/data=!4m8!1m2!2m1!1sSERVPRO+of+Silver+Lake+%2F+Echo+Park!3m4!1s0x80c2c65bc902099f:0xff17f76b8b86f401!8m2!3d34.06325!4d-118.23738999999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Air duct cleaning service",
+            "Building restoration service",
+            "Carpet cleaning service",
+            "Cleaners",
+            "Crime victim service",
+            "Debris removal service",
+            "Fire damage restoration service",
+            "Waste management service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.70",
+        "reviewCount": 40,
+        "reviewsPerScore": {
+            "1": 3,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 36
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJnwkCyVvGwoARAfSGi2v3F_8&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipPOx9da_IgZZUOqFAseZ5A7GqZz8y5aggTy4ZW8=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipPOx9da_IgZZUOqFAseZ5A7GqZz8y5aggTy4ZW8=w1600-h1000-k-no"
+        ],
+        "photosCount": 249,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPOx9da_IgZZUOqFAseZ5A7GqZz8y5aggTy4ZW8=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-JR6_fvUj5nc/AAAAAAAAAAI/AAAAAAAAAAA/W4uKPrETATk/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "112834876262551067074",
+        "ownerTitle": "SERVPRO of Silver Lake / Echo Park",
+        "ownerLink": "https://www.google.com/maps/contrib/112834876262551067074",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.servpro.com/locations/ca/servpro-of-silver-lake-echo-park?utm_medium=organic&utm_source=gbp"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00018",
+        "googlePlaceId": "ChIJZ5jnVZy5woAR8VwuDmOsEyc",
+        "googleId": "0x80c2b99c55e79867:0x2713ac630e2e5cf1",
+        "cid": "2815783733476351217",
+        "name": "SOS",
+        "slug": "sos-los-angeles-california",
+        "description": null,
+        "address": "723 S Windsor Blvd",
+        "street": "723 S Windsor Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90005",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 888-538-3155",
+        "website": null,
+        "email": null,
+        "lat": "34.061211799999995",
+        "lng": "-118.3221166",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SOS/@34.061211799999995,-118.3221166,14z/data=!4m8!1m2!2m1!1sSOS!3m4!1s0x80c2b99c55e79867:0x2713ac630e2e5cf1!8m2!3d34.061211799999995!4d-118.3221166",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 70,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 68
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJZ5jnVZy5woAR8VwuDmOsEyc&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipO4EzJFUqamF-H19SDK1UAVTFV13ocj9CJVxTRW=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipO4EzJFUqamF-H19SDK1UAVTFV13ocj9CJVxTRW=w1600-h1000-k-no"
+        ],
+        "photosCount": 75,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipO4EzJFUqamF-H19SDK1UAVTFV13ocj9CJVxTRW=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-CG41M0pnMxE/AAAAAAAAAAI/AAAAAAAAAAA/IXvSWZhOaMw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "112041832136467054231",
+        "ownerTitle": "SOS",
+        "ownerLink": "https://www.google.com/maps/contrib/112041832136467054231",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00019",
+        "googlePlaceId": "ChIJAStp3iC5woAR1Bc5-JfpVv4",
+        "googleId": "0x80c2b920de692b01:0xfe56e997f83917d4",
+        "cid": "18327092572544636884",
+        "name": "SERVPRO of Park La Brea",
+        "slug": "servpro-of-park-la-brea-los-angeles-california",
+        "description": null,
+        "address": "6535 Wilshire Blvd suite 255",
+        "street": "6535 Wilshire Blvd suite 255",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90048",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-741-2120",
+        "website": null,
+        "email": null,
+        "lat": "34.0645324",
+        "lng": "-118.37116909999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SERVPRO+of+Park+La+Brea/@34.0645324,-118.37116909999999,14z/data=!4m8!1m2!2m1!1sSERVPRO+of+Park+La+Brea!3m4!1s0x80c2b920de692b01:0xfe56e997f83917d4!8m2!3d34.0645324!4d-118.37116909999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Air duct cleaning service",
+            "Building restoration service",
+            "Carpet cleaning service",
+            "Cleaners",
+            "Crime victim service",
+            "Debris removal service",
+            "Fire damage restoration service",
+            "Waste management service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Amenities": {
+                "Gender-neutral restroom": true
+            },
+            "Crowd": {
+                "LGBTQ+ friendly": true,
+                "Transgender safespace": true
+            },
+            "From the business": {
+                "Identifies as LGBTQ+ owned": true,
+                "Identifies as women-owned": true
+            },
+            "Other": {
+                "Identifies as LGBTQ+ owned": true,
+                "Identifies as women-owned": true,
+                "LGBTQ+ friendly": true
+            },
+            "Service options": {
+                "Language assistance": "Arabic, Spanish",
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 135,
+        "reviewsPerScore": {
+            "1": 2,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 132
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJAStp3iC5woAR1Bc5-JfpVv4&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMUzB-OV8eYOmpDLMQYdZ1aS3OHStNEWPgBmylM=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMUzB-OV8eYOmpDLMQYdZ1aS3OHStNEWPgBmylM=w1600-h1000-k-no"
+        ],
+        "photosCount": 71,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMUzB-OV8eYOmpDLMQYdZ1aS3OHStNEWPgBmylM=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-BSyf0LceCWc/AAAAAAAAAAI/AAAAAAAAAAA/yDnS9g9riaw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "113055913239649234322",
+        "ownerTitle": "SERVPRO of Park La Brea",
+        "ownerLink": "https://www.google.com/maps/contrib/113055913239649234322",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.servpro.com/locations/ca/servpro-of-park-la-brea?utm_medium=organic&utm_source=gbp"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00020",
+        "googlePlaceId": "ChIJ1wtOYLBZmUwRZFLCycaKC-U",
+        "googleId": "0x4c9959b0604e0bd7:0xe50b8ac6c9c25264",
+        "cid": "16504437845822427748",
+        "name": "FastFix",
+        "slug": "fastfix-los-angeles-california",
+        "description": null,
+        "address": "360 Burnside Ave",
+        "street": "360 Burnside Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90036",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 818-717-7431",
+        "website": null,
+        "email": null,
+        "lat": "34.0688183",
+        "lng": "-118.3530926",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/FastFix/@34.0688183,-118.3530926,14z/data=!4m8!1m2!2m1!1sFastFix!3m4!1s0x4c9959b0604e0bd7:0xe50b8ac6c9c25264!8m2!3d34.0688183!4d-118.3530926",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Language assistance": "English, Russian, Ukrainian",
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 32,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 32
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJ1wtOYLBZmUwRZFLCycaKC-U&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipO3EialO4uebkaI9Up6Tsl0QmUsBQ2bQIz1mxuA=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipO3EialO4uebkaI9Up6Tsl0QmUsBQ2bQIz1mxuA=w1600-h1000-k-no"
+        ],
+        "photosCount": 113,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipO3EialO4uebkaI9Up6Tsl0QmUsBQ2bQIz1mxuA=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-sJyRDtnqfl0/AAAAAAAAAAI/AAAAAAAAAAA/-vssnaeUbRw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "103328372851508807040",
+        "ownerTitle": "FastFix",
+        "ownerLink": "https://www.google.com/maps/contrib/103328372851508807040",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00021",
+        "googlePlaceId": "ChIJkxoA6lPGwoARmQ4N1As5V9k",
+        "googleId": "0x80c2c653ea001a93:0xd957390bd40d0e99",
+        "cid": "15661048952169238169",
+        "name": "Full Restoration Service Company LLC",
+        "slug": "full-restoration-service-company-llc-los-angeles-california",
+        "description": null,
+        "address": "909 W Temple St #333a",
+        "street": "909 W Temple St #333a",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90012",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-574-1377",
+        "website": null,
+        "email": null,
+        "lat": "34.0609508",
+        "lng": "-118.2493185",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Full+Restoration+Service+Company+LLC/@34.0609508,-118.2493185,14z/data=!4m8!1m2!2m1!1sFull+Restoration+Service+Company+LLC!3m4!1s0x80c2c653ea001a93:0xd957390bd40d0e99!8m2!3d34.0609508!4d-118.2493185",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "From the business": {
+                "Identifies as Asian-owned": true
+            },
+            "Other": {
+                "Identifies as Asian-owned": true
+            },
+            "Service options": {
+                "Language assistance": "English"
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 23,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 23
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJkxoA6lPGwoARmQ4N1As5V9k&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqfy77efn9p7D6-wSgUt77vgMOB4v1roFa8K1ofUEs6L6XW-Aij-WpnPuyShsXxU62tISCg-qL9OnGFK0Ac_XDCkHwV1DxCA4zy8_cvifn62YonddyEYfl_07NzVzH8JzqYa5EV=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqfy77efn9p7D6-wSgUt77vgMOB4v1roFa8K1ofUEs6L6XW-Aij-WpnPuyShsXxU62tISCg-qL9OnGFK0Ac_XDCkHwV1DxCA4zy8_cvifn62YonddyEYfl_07NzVzH8JzqYa5EV=w1600-h1000-k-no"
+        ],
+        "photosCount": 68,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqfy77efn9p7D6-wSgUt77vgMOB4v1roFa8K1ofUEs6L6XW-Aij-WpnPuyShsXxU62tISCg-qL9OnGFK0Ac_XDCkHwV1DxCA4zy8_cvifn62YonddyEYfl_07NzVzH8JzqYa5EV=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-hLaT2OV7n9w/AAAAAAAAAAI/AAAAAAAAAAA/kJDAojn51m0/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "107730851377500319556",
+        "ownerTitle": "Full Restoration Service Company LLC",
+        "ownerLink": "https://www.google.com/maps/contrib/107730851377500319556",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00022",
+        "googlePlaceId": "ChIJd8T6jpy5woART6h1ERcUA9U",
+        "googleId": "0x80c2b99c8efac477:0xd50314171175a84f",
+        "cid": "15349134044318509135",
+        "name": "Best Elite",
+        "slug": "best-elite-los-angeles-california",
+        "description": null,
+        "address": "421 S Van Ness Ave APT 20",
+        "street": "421 S Van Ness Ave APT 20",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90020",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-478-4018",
+        "website": null,
+        "email": null,
+        "lat": "34.0664418",
+        "lng": "-118.315709",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Best+Elite/@34.0664418,-118.315709,14z/data=!4m8!1m2!2m1!1sBest+Elite!3m4!1s0x80c2b99c8efac477:0xd50314171175a84f!8m2!3d34.0664418!4d-118.315709",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {},
+        "ratingAvg": "4.70",
+        "reviewCount": 43,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 11,
+            "5": 32
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJd8T6jpy5woART6h1ERcUA9U&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepk1AkKOjSRtwoQLgp-XdChGZNcHATT46puYve7Scu_0p9eDxzg6yQdtJDFeESZESdorhClCzC7G6geqSYqTrlKOIhqc5KjO0sBujMo8g81Qh-UbMdR4dQurNuDRhHQYCxFnFV9lSdkEGGY=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepk1AkKOjSRtwoQLgp-XdChGZNcHATT46puYve7Scu_0p9eDxzg6yQdtJDFeESZESdorhClCzC7G6geqSYqTrlKOIhqc5KjO0sBujMo8g81Qh-UbMdR4dQurNuDRhHQYCxFnFV9lSdkEGGY=w1600-h1000-k-no"
+        ],
+        "photosCount": 6,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepk1AkKOjSRtwoQLgp-XdChGZNcHATT46puYve7Scu_0p9eDxzg6yQdtJDFeESZESdorhClCzC7G6geqSYqTrlKOIhqc5KjO0sBujMo8g81Qh-UbMdR4dQurNuDRhHQYCxFnFV9lSdkEGGY=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-sSobpvubnPg/AAAAAAAAAAI/AAAAAAAAAAA/lRwrSNNBDTc/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "112995231673333082088",
+        "ownerTitle": "Best Elite",
+        "ownerLink": "https://www.google.com/maps/contrib/112995231673333082088",
+        "hours": {
+            "friday": "5AM-9PM",
+            "monday": "5AM-9PM",
+            "saturday": "5AM-9PM",
+            "sunday": "5AM-9PM",
+            "thursday": "5AM-9PM",
+            "tuesday": "5AM-9PM",
+            "wednesday": "5AM-9PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "5AM-9PM"
+            ],
+            "Monday": [
+                "5AM-9PM"
+            ],
+            "Saturday": [
+                "5AM-9PM"
+            ],
+            "Sunday": [
+                "5AM-9PM"
+            ],
+            "Thursday": [
+                "5AM-9PM"
+            ],
+            "Tuesday": [
+                "5AM-9PM"
+            ],
+            "Wednesday": [
+                "5AM-9PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00023",
+        "googlePlaceId": "ChIJxRqKJMq5woAR3VliDUj_qec",
+        "googleId": "0x80c2b9ca248a1ac5:0xe7a9ff480d6259dd",
+        "cid": "16693154178752731613",
+        "name": "SERVPRO of Westlake",
+        "slug": "servpro-of-westlake-los-angeles-california",
+        "description": null,
+        "address": "1022 Venice Blvd.",
+        "street": "1022 Venice Blvd.",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90015",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-315-5136",
+        "website": null,
+        "email": null,
+        "lat": "34.040949",
+        "lng": "-118.2783439",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SERVPRO+of+Westlake/@34.040949,-118.2783439,14z/data=!4m8!1m2!2m1!1sSERVPRO+of+Westlake!3m4!1s0x80c2b9ca248a1ac5:0xe7a9ff480d6259dd!8m2!3d34.040949!4d-118.2783439",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Air duct cleaning service",
+            "Building restoration service",
+            "Carpet cleaning service",
+            "Cleaners",
+            "Crime victim service",
+            "Debris removal service",
+            "Fire damage restoration service",
+            "Waste management service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true,
+                "Wheelchair accessible restroom": false,
+                "Wheelchair accessible seating": false
+            },
+            "Amenities": {
+                "Gender-neutral restroom": true
+            },
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 74,
+        "reviewsPerScore": {
+            "1": 2,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 71
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJxRqKJMq5woAR3VliDUj_qec&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipN576akxkOhL50TgAsLUKAaUHseaeqR1_pji4l3=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipN576akxkOhL50TgAsLUKAaUHseaeqR1_pji4l3=w1600-h1000-k-no"
+        ],
+        "photosCount": 106,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipN576akxkOhL50TgAsLUKAaUHseaeqR1_pji4l3=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-y7MZv8T4mqk/AAAAAAAAAAI/AAAAAAAAAAA/hxaaDhlUwOs/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "107163409071906150537",
+        "ownerTitle": "SERVPRO of Westlake",
+        "ownerLink": "https://www.google.com/maps/contrib/107163409071906150537",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.servpro.com/locations/ca/servpro-of-westlake?utm_medium=organic&utm_source=gbp"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00024",
+        "googlePlaceId": "ChIJiazWgSTHwoARSo6hbR6nc9s",
+        "googleId": "0x80c2c72481d6ac89:0xdb73a71e6da18e4a",
+        "cid": "15813166465758105162",
+        "name": "Mold Remediation Los Angeles Experts",
+        "slug": "mold-remediation-los-angeles-experts-los-angeles-california",
+        "description": null,
+        "address": "527 W 7th St #1495",
+        "street": "527 W 7th St #1495",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90014",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-479-7915",
+        "website": null,
+        "email": null,
+        "lat": "34.0472852",
+        "lng": "-118.25608849999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Mold+Remediation+Los+Angeles+Experts/@34.0472852,-118.25608849999999,14z/data=!4m8!1m2!2m1!1sMold+Remediation+Los+Angeles+Experts!3m4!1s0x80c2c72481d6ac89:0xdb73a71e6da18e4a!8m2!3d34.0472852!4d-118.25608849999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-mold-remediation",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 10,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 10
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJiazWgSTHwoARSo6hbR6nc9s&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOjXTVHmDFtUuOxtRK0N14E3U_y9jIOjOZt21B4=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOjXTVHmDFtUuOxtRK0N14E3U_y9jIOjOZt21B4=w1600-h1000-k-no"
+        ],
+        "photosCount": 7,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOjXTVHmDFtUuOxtRK0N14E3U_y9jIOjOZt21B4=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-pt4MGsZ12U8/AAAAAAAAAAI/AAAAAAAAAAA/fpb1h9pdaHs/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "106074725056715034928",
+        "ownerTitle": "Mold Remediation Los Angeles Experts",
+        "ownerLink": "https://www.google.com/maps/contrib/106074725056715034928",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00025",
+        "googlePlaceId": "ChIJgXqGfWPHwoARWXBXrFvqVH8",
+        "googleId": "0x80c2c7637d867a81:0x7f54ea5bac577059",
+        "cid": "9175216020314878041",
+        "name": "SERVPRO of Wilshire Center",
+        "slug": "servpro-of-wilshire-center-los-angeles-california",
+        "description": null,
+        "address": "3183 Wilshire Blvd #196E7",
+        "street": "3183 Wilshire Blvd #196E7",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90010",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-263-2292",
+        "website": null,
+        "email": null,
+        "lat": "34.062325099999995",
+        "lng": "-118.29085239999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/SERVPRO+of+Wilshire+Center/@34.062325099999995,-118.29085239999999,14z/data=!4m8!1m2!2m1!1sSERVPRO+of+Wilshire+Center!3m4!1s0x80c2c7637d867a81:0x7f54ea5bac577059!8m2!3d34.062325099999995!4d-118.29085239999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Building restoration service",
+            "Cleaners",
+            "Crime victim service",
+            "Debris removal service",
+            "Fire damage restoration service",
+            "Waste management service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 23,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 22
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJgXqGfWPHwoARWXBXrFvqVH8&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOAj6rwFNQqbxeQRG_iBjGfrE0Lh-bpjpJSWC6h=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOAj6rwFNQqbxeQRG_iBjGfrE0Lh-bpjpJSWC6h=w1600-h1000-k-no"
+        ],
+        "photosCount": 77,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOAj6rwFNQqbxeQRG_iBjGfrE0Lh-bpjpJSWC6h=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-jKfZaMX8B8M/AAAAAAAAAAI/AAAAAAAAAAA/oF-kBUu0KuI/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "101657324796953627951",
+        "ownerTitle": "SERVPRO of Wilshire Center",
+        "ownerLink": "https://www.google.com/maps/contrib/101657324796953627951",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.servpro.com/locations/ca/servpro-of-wilshire-center?utm_medium=organic&utm_source=gbp"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00026",
+        "googlePlaceId": "ChIJO6PmYBGaMW8RTwhnyHIKy28",
+        "googleId": "0x6f319a1160e6a33b:0x6fcb0a72c867084f",
+        "cid": "8055543846587009103",
+        "name": "Aqua Concierge Restoration",
+        "slug": "aqua-concierge-restoration-los-angeles-california",
+        "description": null,
+        "address": "500 S Sepulveda Blvd Ste. 410",
+        "street": "500 S Sepulveda Blvd Ste. 410",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90049",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-485-0045",
+        "website": null,
+        "email": null,
+        "lat": "34.0660939",
+        "lng": "-118.4598298",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Aqua+Concierge+Restoration/@34.0660939,-118.4598298,14z/data=!4m8!1m2!2m1!1sAqua+Concierge+Restoration!3m4!1s0x6f319a1160e6a33b:0x6fcb0a72c867084f!8m2!3d34.0660939!4d-118.4598298",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Building restoration service",
+            "Contractor",
+            "Fire damage restoration service",
+            "General contractor"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 78,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 77
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJO6PmYBGaMW8RTwhnyHIKy28&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMvpa41DItKX0j-uw4H1wQJoo3s4cMB1-uBjVdU=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMvpa41DItKX0j-uw4H1wQJoo3s4cMB1-uBjVdU=w1600-h1000-k-no"
+        ],
+        "photosCount": 31,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMvpa41DItKX0j-uw4H1wQJoo3s4cMB1-uBjVdU=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-lILYAzHaACA/AAAAAAAAAAI/AAAAAAAAAAA/mM_iAaoSNnw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "116369558053818819596",
+        "ownerTitle": "Aqua Concierge Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/116369558053818819596",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00027",
+        "googlePlaceId": "ChIJ__-UVh3GwoARxZhi2mEupAg",
+        "googleId": "0x80c2c61d5694ffff:0x8a42e61da6298c5",
+        "cid": "622673646294571205",
+        "name": "JDS Water Damage Los Angeles",
+        "slug": "jds-water-damage-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "955 S Breed St",
+        "street": "955 S Breed St",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90023",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-615-1119",
+        "website": null,
+        "email": null,
+        "lat": "34.0335789",
+        "lng": "-118.2180199",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/JDS+Water+Damage+Los+Angeles/@34.0335789,-118.2180199,14z/data=!4m8!1m2!2m1!1sJDS+Water+Damage+Los+Angeles!3m4!1s0x80c2c61d5694ffff:0x8a42e61da6298c5!8m2!3d34.0335789!4d-118.2180199",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {},
+        "ratingAvg": "5.00",
+        "reviewCount": 6,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 6
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJ__-UVh3GwoARxZhi2mEupAg&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipPF5IapqfsoCiXLW52wC5K1-K7VKkxzcbPO7yG6=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipPF5IapqfsoCiXLW52wC5K1-K7VKkxzcbPO7yG6=w1600-h1000-k-no"
+        ],
+        "photosCount": 15,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPF5IapqfsoCiXLW52wC5K1-K7VKkxzcbPO7yG6=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-x1lVs3v1uAA/AAAAAAAAAAI/AAAAAAAAAAA/is94NQkglNg/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "111739117210677699187",
+        "ownerTitle": "JDS Water Damage Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/111739117210677699187",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00028",
+        "googlePlaceId": "ChIJxZ4wuYKbRWkRYErct3bKgPk",
+        "googleId": "0x69459b82b9309ec5:0xf980ca76b7dc4a60",
+        "cid": "17978592323702639200",
+        "name": "Pristine Restoration",
+        "slug": "pristine-restoration-los-angeles-california",
+        "description": null,
+        "address": "1220 Maple Ave",
+        "street": "1220 Maple Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90015",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-405-9721",
+        "website": null,
+        "email": null,
+        "lat": "34.0348866",
+        "lng": "-118.2565298",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Pristine+Restoration/@34.0348866,-118.2565298,14z/data=!4m8!1m2!2m1!1sPristine+Restoration!3m4!1s0x69459b82b9309ec5:0xf980ca76b7dc4a60!8m2!3d34.0348866!4d-118.2565298",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 9,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 9
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJxZ4wuYKbRWkRYErct3bKgPk&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipPR_OCzk8V0SY2YSHF5IkEPkUVP14Oy0TAdz8Hz=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipPR_OCzk8V0SY2YSHF5IkEPkUVP14Oy0TAdz8Hz=w1600-h1000-k-no"
+        ],
+        "photosCount": 17,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPR_OCzk8V0SY2YSHF5IkEPkUVP14Oy0TAdz8Hz=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-26kkUK87oaA/AAAAAAAAAAI/AAAAAAAAAAA/yf-IPjGQggw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "113782362208407973135",
+        "ownerTitle": "Pristine Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/113782362208407973135",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00029",
+        "googlePlaceId": "ChIJbUaRBwDHwoARpeppvkT-3T0",
+        "googleId": "0x80c2c7000791466d:0x3dddfe44be69eaa5",
+        "cid": "4457998777372502693",
+        "name": "Arin Water Damage Restoration.",
+        "slug": "arin-water-damage-restoration-los-angeles-california",
+        "description": null,
+        "address": "3069 W 8th St",
+        "street": "3069 W 8th St",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90005",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 213-719-4565",
+        "website": null,
+        "email": null,
+        "lat": "34.0578901",
+        "lng": "-118.2937185",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Arin+Water+Damage+Restoration./@34.0578901,-118.2937185,14z/data=!4m8!1m2!2m1!1sArin+Water+Damage+Restoration.!3m4!1s0x80c2c7000791466d:0x3dddfe44be69eaa5!8m2!3d34.0578901!4d-118.2937185",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 2,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 2
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJbUaRBwDHwoARpeppvkT-3T0&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=AW7AsI_ojRU9xiOfFamU2Q&cb_client=search.gws-prod.gps&w=800&h=500&yaw=11.691553&pitch=0&thumbfov=100",
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=AW7AsI_ojRU9xiOfFamU2Q&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=11.691553&pitch=0&thumbfov=100"
+        ],
+        "photosCount": 1,
+        "streetView": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=AW7AsI_ojRU9xiOfFamU2Q&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=11.691553&pitch=0&thumbfov=100",
+        "logo": "https://lh6.googleusercontent.com/-wf73jYRtiEg/AAAAAAAAAAI/AAAAAAAAAAA/Lw4ozHBtzMw/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "110864031899166767446",
+        "ownerTitle": "Arin Water Damage Restoration.",
+        "ownerLink": "https://www.google.com/maps/contrib/110864031899166767446",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00030",
+        "googlePlaceId": "ChIJ6xbetrPHwoARcX_w1QPFV3U",
+        "googleId": "0x80c2c7b3b6de16eb:0x7557c503d5f07f71",
+        "cid": "8455443445676277617",
+        "name": "Property Damage Specialists",
+        "slug": "property-damage-specialists-los-angeles-california",
+        "description": null,
+        "address": "515 Flower St",
+        "street": "515 Flower St",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90071",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 866-394-7363",
+        "website": null,
+        "email": null,
+        "lat": "34.0508972",
+        "lng": "-118.2572534",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Property+Damage+Specialists/@34.0508972,-118.2572534,14z/data=!4m8!1m2!2m1!1sProperty+Damage+Specialists!3m4!1s0x80c2c7b3b6de16eb:0x7557c503d5f07f71!8m2!3d34.0508972!4d-118.2572534",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Building restoration service",
+            "Construction company",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 7,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 7
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJ6xbetrPHwoARcX_w1QPFV3U&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipPCsz9Do6bIrQfh-el75jv795KRmpi3-kYWCEhD=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipPCsz9Do6bIrQfh-el75jv795KRmpi3-kYWCEhD=w1600-h1000-k-no"
+        ],
+        "photosCount": 43,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPCsz9Do6bIrQfh-el75jv795KRmpi3-kYWCEhD=w1600-h1000-k-no",
+        "logo": "https://lh6.googleusercontent.com/-wLiHnQ3vtbU/AAAAAAAAAAI/AAAAAAAAAAA/RUEIY8dunEQ/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "111616373362301011309",
+        "ownerTitle": "Property Damage Specialists",
+        "ownerLink": "https://www.google.com/maps/contrib/111616373362301011309",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00031",
+        "googlePlaceId": "ChIJI11Uxay_woARJlpjOiOHmw8",
+        "googleId": "0x80c2bfacc5545d23:0xf9b87233a635a26",
+        "cid": "1124641117332265510",
+        "name": "Los Angeles Water LLC",
+        "slug": "los-angeles-water-llc-los-angeles-california",
+        "description": null,
+        "address": "8410 Melrose Ave #7700",
+        "street": "8410 Melrose Ave #7700",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90069",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-472-9090",
+        "website": null,
+        "email": null,
+        "lat": "34.0831422",
+        "lng": "-118.3735643",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Los+Angeles+Water+LLC/@34.0831422,-118.3735643,14z/data=!4m8!1m2!2m1!1sLos+Angeles+Water+LLC!3m4!1s0x80c2bfacc5545d23:0xf9b87233a635a26!8m2!3d34.0831422!4d-118.3735643",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible restroom": false,
+                "Wheelchair accessible seating": false
+            },
+            "Crowd": {
+                "LGBTQ+ friendly": true,
+                "Transgender safespace": true
+            },
+            "From the business": {
+                "Identifies as women-owned": true
+            },
+            "Other": {
+                "Identifies as women-owned": true,
+                "LGBTQ+ friendly": true
+            },
+            "Service options": {
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 3,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 3
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJI11Uxay_woARJlpjOiOHmw8&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipNb9I8xnpt09o96vStOvlKUIMPg5ROWM8PBJlHV=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipNb9I8xnpt09o96vStOvlKUIMPg5ROWM8PBJlHV=w1600-h1000-k-no"
+        ],
+        "photosCount": 7,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipNb9I8xnpt09o96vStOvlKUIMPg5ROWM8PBJlHV=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-MZhNg_gUVJQ/AAAAAAAAAAI/AAAAAAAAAAA/D60SHUZArrA/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "108694111001414057893",
+        "ownerTitle": "Los Angeles Water LLC",
+        "ownerLink": "https://www.google.com/maps/contrib/108694111001414057893",
+        "hours": {
+            "friday": "6AM-9PM",
+            "monday": "6AM-9PM",
+            "saturday": "8AM-8PM",
+            "sunday": "8AM-8PM",
+            "thursday": "6AM-9PM",
+            "tuesday": "6AM-9PM",
+            "wednesday": "6AM-9PM"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "6AM-9PM"
+            ],
+            "Monday": [
+                "6AM-9PM"
+            ],
+            "Saturday": [
+                "8AM-8PM"
+            ],
+            "Sunday": [
+                "8AM-8PM"
+            ],
+            "Thursday": [
+                "6AM-9PM"
+            ],
+            "Tuesday": [
+                "6AM-9PM"
+            ],
+            "Wednesday": [
+                "6AM-9PM"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00032",
+        "googlePlaceId": "ChIJe29LK4vFwoARihq5v6hYrbs",
+        "googleId": "0x80c2c58b2b4b6f7b:0xbbad58a8bfb91a8a",
+        "cid": "13523562737857796746",
+        "name": "C3 Restoration Services",
+        "slug": "c3-restoration-services-los-angeles-california",
+        "description": null,
+        "address": "1145 S Ford Blvd",
+        "street": "1145 S Ford Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90022",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-775-2746",
+        "website": null,
+        "email": null,
+        "lat": "34.0195183",
+        "lng": "-118.1724864",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/C3+Restoration+Services/@34.0195183,-118.1724864,14z/data=!4m8!1m2!2m1!1sC3+Restoration+Services!3m4!1s0x80c2c58b2b4b6f7b:0xbbad58a8bfb91a8a!8m2!3d34.0195183!4d-118.1724864",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Online estimates": true
+            }
+        },
+        "ratingAvg": "4.80",
+        "reviewCount": 26,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 24
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJe29LK4vFwoARihq5v6hYrbs&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMw8ttImTXeGPUDxd5h7itidaWt_BHMw4a_zWDb=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMw8ttImTXeGPUDxd5h7itidaWt_BHMw4a_zWDb=w1600-h1000-k-no"
+        ],
+        "photosCount": 232,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMw8ttImTXeGPUDxd5h7itidaWt_BHMw4a_zWDb=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-sHP3RXQWrHM/AAAAAAAAAAI/AAAAAAAAAAA/FAPxLyCVZm0/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "116791749820580935747",
+        "ownerTitle": "C3 Restoration Services",
+        "ownerLink": "https://www.google.com/maps/contrib/116791749820580935747",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188753-00033",
+        "googlePlaceId": "ChIJa9Kq6wqxwoARVQCQ0KyNQY8",
+        "googleId": "0x80c2b10aebaad26b:0x8f418dacd0900055",
+        "cid": "10322687594282877013",
+        "name": "Paul Davis Restoration of West Los Angeles",
+        "slug": "paul-davis-restoration-of-west-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "5345 McConnell Ave",
+        "street": "5345 McConnell Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90066",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-588-3725",
+        "website": null,
+        "email": null,
+        "lat": "33.978907899999996",
+        "lng": "-118.4208575",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Paul+Davis+Restoration+of+West+Los+Angeles/@33.978907899999996,-118.4208575,14z/data=!4m8!1m2!2m1!1sPaul+Davis+Restoration+of+West+Los+Angeles!3m4!1s0x80c2b10aebaad26b:0x8f418dacd0900055!8m2!3d33.978907899999996!4d-118.4208575",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Bathroom remodeler",
+            "Building restoration service",
+            "Fire damage restoration service",
+            "Kitchen remodeler"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "From the business": {
+                "Identifies as women-owned": true
+            },
+            "Other": {
+                "Identifies as women-owned": true
+            },
+            "Service options": {
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 53,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 51
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJa9Kq6wqxwoARVQCQ0KyNQY8&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipNo5H3rVjKE2WGLPOSKr_AbyiRjbItyBiSMS_gD=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipNo5H3rVjKE2WGLPOSKr_AbyiRjbItyBiSMS_gD=w1600-h1000-k-no"
+        ],
+        "photosCount": 62,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipNo5H3rVjKE2WGLPOSKr_AbyiRjbItyBiSMS_gD=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-97JNgHUg508/AAAAAAAAAAI/AAAAAAAAAAA/sYn1RS3YbHU/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "100661392982936738611",
+        "ownerTitle": "Paul Davis Restoration of West Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/100661392982936738611",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://westlosangeles.pauldavis.com/contact/"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.753Z",
+        "updatedAt": "2026-02-06T21:26:28.753Z"
+    },
+    {
+        "id": "biz-1770413188754-00034",
+        "googlePlaceId": "ChIJCzJ-AJzHwoARZ0HWh23Zj24",
+        "googleId": "0x80c2c79c007e320b:0x6e8fd96d87d64167",
+        "cid": "7966825330295325031",
+        "name": "Legacy Mold Removal & Remediation Los Angeles CA",
+        "slug": "legacy-mold-removal-and-remediation-los-angeles-ca-los-angeles-california",
+        "description": null,
+        "address": "205 S Broadway #701",
+        "street": "205 S Broadway #701",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90012",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 424-566-9778",
+        "website": null,
+        "email": null,
+        "lat": "34.0523222",
+        "lng": "-118.24704659999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Legacy+Mold+Removal+%26+Remediation+Los+Angeles+CA/@34.0523222,-118.24704659999999,14z/data=!4m8!1m2!2m1!1sLegacy+Mold+Removal+%26+Remediation+Los+Angeles+CA!3m4!1s0x80c2c79c007e320b:0x6e8fd96d87d64167!8m2!3d34.0523222!4d-118.24704659999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-mold-remediation",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 4,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 4
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJCzJ-AJzHwoARZ0HWh23Zj24&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipNxDuPLMU869PGGOpfxohd65d49Z_5V03tFyhcw=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipNxDuPLMU869PGGOpfxohd65d49Z_5V03tFyhcw=w1600-h1000-k-no"
+        ],
+        "photosCount": 15,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipNxDuPLMU869PGGOpfxohd65d49Z_5V03tFyhcw=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-pREEQVrDYSY/AAAAAAAAAAI/AAAAAAAAAAA/aU4EpRJ1hqs/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "117915280692270485367",
+        "ownerTitle": "Legacy Mold Removal & Remediation Los Angeles CA",
+        "ownerLink": "https://www.google.com/maps/contrib/117915280692270485367",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00035",
+        "googlePlaceId": "ChIJN2ev_tvAwoARRNdO0XuTg50",
+        "googleId": "0x80c2c0dbfeaf6737:0x9d83937bd14ed744",
+        "cid": "11350077645905647428",
+        "name": "Drymaster Restoration",
+        "slug": "drymaster-restoration-los-angeles-california",
+        "description": null,
+        "address": "5007 Eagle View Cir",
+        "street": "5007 Eagle View Cir",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90041",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-487-1065",
+        "website": null,
+        "email": null,
+        "lat": "34.1381972",
+        "lng": "-118.21903999999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Drymaster+Restoration/@34.1381972,-118.21903999999999,14z/data=!4m8!1m2!2m1!1sDrymaster+Restoration!3m4!1s0x80c2c0dbfeaf6737:0x9d83937bd14ed744!8m2!3d34.1381972!4d-118.21903999999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 90,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 89
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJN2ev_tvAwoARRNdO0XuTg50&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipOl_ZGYSPEfKQ4Uuubqo6psjfB-oR-2FQlmxQHF=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipOl_ZGYSPEfKQ4Uuubqo6psjfB-oR-2FQlmxQHF=w1600-h1000-k-no"
+        ],
+        "photosCount": 148,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipOl_ZGYSPEfKQ4Uuubqo6psjfB-oR-2FQlmxQHF=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-XPSHQgoCxFY/AAAAAAAAAAI/AAAAAAAAAAA/L5HJvq65pVo/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "105078020850276717784",
+        "ownerTitle": "Drymaster Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/105078020850276717784",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00036",
+        "googlePlaceId": "ChIJh631HRMjkYoR-7Tj0wRtlgQ",
+        "googleId": "0x8a9123131df5ad87:0x4966d04d3e3b4fb",
+        "cid": "330571490160522491",
+        "name": "Endswell Restoration",
+        "slug": "endswell-restoration-los-angeles-california",
+        "description": null,
+        "address": "1560 N San Fernando Rd #100",
+        "street": "1560 N San Fernando Rd #100",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90065",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 818-724-7911",
+        "website": null,
+        "email": null,
+        "lat": "34.097548599999996",
+        "lng": "-118.2329731",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Endswell+Restoration/@34.097548599999996,-118.2329731,14z/data=!4m8!1m2!2m1!1sEndswell+Restoration!3m4!1s0x8a9123131df5ad87:0x4966d04d3e3b4fb!8m2!3d34.097548599999996!4d-118.2329731",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Building restoration service",
+            "Fire damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true,
+                "Wheelchair accessible parking lot": true
+            },
+            "Service options": {
+                "Language assistance": "English, Russian, Spanish",
+                "Online estimates": true,
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 31,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 31
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJh631HRMjkYoR-7Tj0wRtlgQ&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipMVmawBNKwMuqSXnDDACxy7UhdxPxPJbSueNEin=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipMVmawBNKwMuqSXnDDACxy7UhdxPxPJbSueNEin=w1600-h1000-k-no"
+        ],
+        "photosCount": 54,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipMVmawBNKwMuqSXnDDACxy7UhdxPxPJbSueNEin=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-1l__pYZaAPE/AAAAAAAAAAI/AAAAAAAAAAA/nHiDdvlSgB4/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "117439094473257539933",
+        "ownerTitle": "Endswell Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/117439094473257539933",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://www.endswellusa.com/contact-us"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00037",
+        "googlePlaceId": "ChIJ3xarIkC5woARlnFpDyScYLU",
+        "googleId": "0x80c2b94022ab16df:0xb5609c240f697196",
+        "cid": "13069617797320503702",
+        "name": "City Los Angeles",
+        "slug": "city-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "7162 Beverly Blvd No.145",
+        "street": "7162 Beverly Blvd No.145",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90036",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-400-4988",
+        "website": null,
+        "email": null,
+        "lat": "34.0758133",
+        "lng": "-118.34560259999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/City+Los+Angeles/@34.0758133,-118.34560259999999,14z/data=!4m8!1m2!2m1!1sCity+Los+Angeles!3m4!1s0x80c2b94022ab16df:0xb5609c240f697196!8m2!3d34.0758133!4d-118.34560259999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible parking lot": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 1,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 1
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJ3xarIkC5woARlnFpDyScYLU&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SHDqfNORFFBEyZxDl9oBAA&cb_client=search.gws-prod.gps&w=800&h=500&yaw=344.17538&pitch=0&thumbfov=100",
+            "https://lh3.googleusercontent.com/p/AF1QipPb8mi6jriGhs3tiMtkkDf1tNm3MURejGUo3rHL=w1600-h1000-k-no"
+        ],
+        "photosCount": 2,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipPb8mi6jriGhs3tiMtkkDf1tNm3MURejGUo3rHL=w1600-h1000-k-no",
+        "logo": "https://lh3.googleusercontent.com/-SaJaBvxiPPk/AAAAAAAAAAI/AAAAAAAAAAA/cOdL9bOubDk/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104120486207504703933",
+        "ownerTitle": "City Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/104120486207504703933",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00038",
+        "googlePlaceId": "ChIJocQ1tD65woARc5Ai4UEJXHc",
+        "googleId": "0x80c2b93eb435c4a1:0x775c0941e1229073",
+        "cid": "8600759566925467763",
+        "name": "Ripple Water Damage Restoration Los Angeles",
+        "slug": "ripple-water-damage-restoration-los-angeles-los-angeles-california",
+        "description": null,
+        "address": "6245 Wilshire Blvd",
+        "street": "6245 Wilshire Blvd",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90048",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 323-210-8247",
+        "website": null,
+        "email": null,
+        "lat": "34.063709599999996",
+        "lng": "-118.3648686",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Ripple+Water+Damage+Restoration+Los+Angeles/@34.063709599999996,-118.3648686,14z/data=!4m8!1m2!2m1!1sRipple+Water+Damage+Restoration+Los+Angeles!3m4!1s0x80c2b93eb435c4a1:0x775c0941e1229073!8m2!3d34.063709599999996!4d-118.3648686",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service",
+            "Building restoration service"
+        ],
+        "googleCategory": "Building restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Service options": {
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "5.00",
+        "reviewCount": 7,
+        "reviewsPerScore": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 7
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJocQ1tD65woARc5Ai4UEJXHc&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/p/AF1QipO9OBEyu68COSwcpmZJ8TRuYhWeJ-Zr6DLSQTNj=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/p/AF1QipO9OBEyu68COSwcpmZJ8TRuYhWeJ-Zr6DLSQTNj=w1600-h1000-k-no"
+        ],
+        "photosCount": 5,
+        "streetView": "https://lh3.googleusercontent.com/p/AF1QipO9OBEyu68COSwcpmZJ8TRuYhWeJ-Zr6DLSQTNj=w1600-h1000-k-no",
+        "logo": "https://lh4.googleusercontent.com/-CmmILQeQhrc/AAAAAAAAAAI/AAAAAAAAAAA/npMyPTk1SSU/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "104837476771145085816",
+        "ownerTitle": "Ripple Water Damage Restoration Los Angeles",
+        "ownerLink": "https://www.google.com/maps/contrib/104837476771145085816",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Closed",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Closed"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00039",
+        "googlePlaceId": "ChIJDytfjQiP100RgNcDSsT8txk",
+        "googleId": "0x4dd78f088d5f2b0f:0x19b7fcc44a03d780",
+        "cid": "1853227691671803776",
+        "name": "Royalty Water Damage & Restoration",
+        "slug": "royalty-water-damage-and-restoration-los-angeles-california",
+        "description": null,
+        "address": "9939 Canoga Ave",
+        "street": "9939 Canoga Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "91311",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": "+1 818-698-5505",
+        "website": null,
+        "email": null,
+        "lat": "34.2510727",
+        "lng": "-118.59794699999999",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Royalty+Water+Damage+%26+Restoration/@34.2510727,-118.59794699999999,14z/data=!4m8!1m2!2m1!1sRoyalty+Water+Damage+%26+Restoration!3m4!1s0x4dd78f088d5f2b0f:0x19b7fcc44a03d780!8m2!3d34.2510727!4d-118.59794699999999",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true
+            },
+            "From the business": {
+                "Identifies as Latino-owned": true
+            },
+            "Other": {
+                "Identifies as Latino-owned": true
+            },
+            "Service options": {
+                "Language assistance": "English, Spanish",
+                "Onsite services": true
+            }
+        },
+        "ratingAvg": "4.90",
+        "reviewCount": 37,
+        "reviewsPerScore": {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 36
+        },
+        "reviewsLink": "https://search.google.com/local/reviews?placeid=ChIJDytfjQiP100RgNcDSsT8txk&q=*&authuser=0&hl=en&gl=US",
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweo0IqFOjXm-ncsC-mujst5ZmhFm-6-0InXlPSVMSQrQlCbtAJgjRMOzJP2212FnG8TJHj9Vg15KyoPgoyDIB-2ughms6ZRSC5lZz8353M1k26e9JQogx1V8vUmZjfLm-YXgCNT9a7Hijj9B=w800-h500-k-no",
+            "https://lh3.googleusercontent.com/gps-cs-s/AHVAweo0IqFOjXm-ncsC-mujst5ZmhFm-6-0InXlPSVMSQrQlCbtAJgjRMOzJP2212FnG8TJHj9Vg15KyoPgoyDIB-2ughms6ZRSC5lZz8353M1k26e9JQogx1V8vUmZjfLm-YXgCNT9a7Hijj9B=w1600-h1000-k-no"
+        ],
+        "photosCount": 17,
+        "streetView": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweo0IqFOjXm-ncsC-mujst5ZmhFm-6-0InXlPSVMSQrQlCbtAJgjRMOzJP2212FnG8TJHj9Vg15KyoPgoyDIB-2ughms6ZRSC5lZz8353M1k26e9JQogx1V8vUmZjfLm-YXgCNT9a7Hijj9B=w1600-h1000-k-no",
+        "logo": "https://lh5.googleusercontent.com/-pqqXzD7bdDA/AAAAAAAAAAI/AAAAAAAAAAA/-YorjpqST00/s44-p-k-no-ns-nd/photo.jpg",
+        "businessStatus": "OPERATIONAL",
+        "isVerified": true,
+        "isFeatured": false,
+        "ownerId": "113660854977431253898",
+        "ownerTitle": "Royalty Water Damage & Restoration",
+        "ownerLink": "https://www.google.com/maps/contrib/113660854977431253898",
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [
+            "https://go.thryv.com/site/kzhikg8qm8qnvain/online-scheduling?show_rwg_address=true&o=rwg_redirect&rwg_token=AFd1xnFVu25yIESUjYueNnKtqlucMA7SFnpyzUVAa-S6YPkkED41ze0Zsv2N0F1etJkHL86bOhrmSE3dkqT1qNnmgsjIavkdUI4U2nAP0jGD6XNjuVcSFA8%3D"
+        ],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    },
+    {
+        "id": "biz-1770413188754-00040",
+        "googlePlaceId": "ChIJeSQm3ofHwoARKGdSi2JZ3Aw",
+        "googleId": "0x80c2c787de262479:0xcdc59628b526728",
+        "cid": "926713903110580008",
+        "name": "Dry Masters Water Damage Restoration Service LLC",
+        "slug": "dry-masters-water-damage-restoration-service-llc-los-angeles-california",
+        "description": null,
+        "address": "2847 Leeward Ave",
+        "street": "2847 Leeward Ave",
+        "city": "Los Angeles",
+        "state": "California",
+        "zip": "90005",
+        "country": "United States of America",
+        "countryCode": "US",
+        "neighborhood": null,
+        "areaService": false,
+        "phone": null,
+        "website": null,
+        "email": null,
+        "lat": "34.0590368",
+        "lng": "-118.2856109",
+        "plusCode": null,
+        "googleMapsUrl": "https://www.google.com/maps/place/Dry+Masters+Water+Damage+Restoration+Service+LLC/@34.0590368,-118.2856109,14z/data=!4m8!1m2!2m1!1sDry+Masters+Water+Damage+Restoration+Service+LLC!3m4!1s0x80c2c787de262479:0xcdc59628b526728!8m2!3d34.0590368!4d-118.2856109",
+        "type": "Water damage restoration service",
+        "subtypes": [
+            "Water damage restoration service"
+        ],
+        "googleCategory": "Water damage restoration service",
+        "categoryId": "cat-water-damage-restoration",
+        "about": {
+            "Accessibility": {
+                "Wheelchair accessible entrance": true
+            }
+        },
+        "ratingAvg": "0",
+        "reviewCount": 0,
+        "reviewsPerScore": null,
+        "reviewsLink": null,
+        "reviewsTags": [],
+        "reviewsData": [],
+        "photos": [
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Mc3RumNverlJEp75QnC_eg&cb_client=search.gws-prod.gps&w=800&h=500&yaw=328.4812&pitch=0&thumbfov=100",
+            "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Mc3RumNverlJEp75QnC_eg&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=328.4812&pitch=0&thumbfov=100"
+        ],
+        "photosCount": 1,
+        "streetView": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Mc3RumNverlJEp75QnC_eg&cb_client=search.gws-prod.gps&w=1600&h=1000&yaw=328.4812&pitch=0&thumbfov=100",
+        "logo": null,
+        "businessStatus": "OPERATIONAL",
+        "isVerified": false,
+        "isFeatured": false,
+        "ownerId": null,
+        "ownerTitle": "Dry Masters Water Damage Restoration Service LLC",
+        "ownerLink": null,
+        "hours": {
+            "friday": "Open 24 hours",
+            "monday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours"
+        },
+        "hoursRaw": {
+            "Friday": [
+                "Open 24 hours"
+            ],
+            "Monday": [
+                "Open 24 hours"
+            ],
+            "Saturday": [
+                "Open 24 hours"
+            ],
+            "Sunday": [
+                "Open 24 hours"
+            ],
+            "Thursday": [
+                "Open 24 hours"
+            ],
+            "Tuesday": [
+                "Open 24 hours"
+            ],
+            "Wednesday": [
+                "Open 24 hours"
+            ]
+        },
+        "hoursOldFormat": null,
+        "priceLevel": null,
+        "priceRange": null,
+        "popularTimes": [],
+        "reservationLink": null,
+        "menuLink": null,
+        "orderLinks": [],
+        "locatedIn": null,
+        "locatedGoogleId": null,
+        "facebook": null,
+        "instagram": null,
+        "twitter": null,
+        "linkedin": null,
+        "createdAt": "2026-02-06T21:26:28.754Z",
+        "updatedAt": "2026-02-06T21:26:28.754Z"
+    }
+]

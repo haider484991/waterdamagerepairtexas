@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getStateBySlug, getCityBySlug } from "@/lib/location-data";
-import { db, businesses, categories } from "@/lib/db";
-import { eq, and } from "drizzle-orm";
+import { getBusinessesByCity } from "@/lib/local-data";
 import { BusinessCard } from "@/components/business";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateLocalBusinessSchema } from "@/lib/seo/schema-markup";
@@ -58,28 +57,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
     notFound();
   }
 
-  // Get all businesses in this city
-  const businessResults = await db
-    .select({
-      business: businesses,
-      category: categories,
-    })
-    .from(businesses)
-    .leftJoin(categories, eq(businesses.categoryId, categories.id))
-    .where(
-      and(
-        eq(businesses.city, city.name),
-        eq(businesses.state, region.code)
-      )
-    )
-    .orderBy(businesses.isFeatured, businesses.ratingAvg);
-
-  const enrichedBusinesses = businessResults.map((result) => ({
-    ...result.business,
-    photos: (result.business.photos as string[]) || [],
-    hours: result.business.hours as Record<string, string> | null,
-    category: result.category ?? null,
-  }));
+  const enrichedBusinesses = getBusinessesByCity(city.name, region.code);
 
   const faqs = generateWaterDamageFAQs(city.name, region.name);
 

@@ -5,8 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Building2, Droplets, Phone } from "lucide-react";
 import { getStateBySlug, getCitiesForState } from "@/lib/location-data";
-import { db, businesses, categories } from "@/lib/db";
-import { eq, and, sql } from "drizzle-orm";
+import { getStateStats } from "@/lib/local-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateItemListSchema } from "@/lib/seo/schema-markup";
 import { FAQSection, generateWaterDamageFAQs } from "@/components/seo/FAQSection";
@@ -57,35 +56,8 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
     notFound();
   }
 
-  // Get cities in this region
   const cities = getCitiesForState(region.code);
-
-  // Get business statistics for this region
-  const [businessStats] = await db
-    .select({
-      total: sql<number>`count(*)`,
-    })
-    .from(businesses)
-    .where(eq(businesses.state, region.code));
-
-  const totalBusinesses = Number(businessStats?.total || 0);
-
-  // Get categories with business counts
-  const categoriesWithCounts = await db
-    .select({
-      category: categories,
-      count: sql<number>`count(${businesses.id})`,
-    })
-    .from(categories)
-    .leftJoin(
-      businesses,
-      and(
-        eq(businesses.categoryId, categories.id),
-        eq(businesses.state, region.code)
-      )
-    )
-    .groupBy(categories.id)
-    .orderBy(categories.displayOrder);
+  const stateData = getStateStats(region.code);
 
   const cityItems = cities.map((city) => ({
     name: `${city.name}, ${region.code}`,
@@ -128,7 +100,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
                     <Building2 className="w-4 h-4" />
                     Businesses
                   </div>
-                  <div className="text-2xl font-bold">{totalBusinesses}</div>
+                  <div className="text-2xl font-bold">{stateData.businessCount}</div>
                 </div>
                 <div className="bg-card p-4 rounded-lg border">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
@@ -161,7 +133,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8">Water Damage Services in {region.name}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoriesWithCounts.map(({ category, count }) => (
+              {stateData.categories.map(({ category, count }) => (
                 <Link
                   key={category.id}
                   href={`/categories/${category.slug}?state=${region.code}`}
@@ -170,7 +142,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
                     <CardHeader>
                       <CardTitle className="text-lg flex items-center justify-between">
                         <span>{category.name}</span>
-                        <Badge>{Number(count)}</Badge>
+                        <Badge>{count}</Badge>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

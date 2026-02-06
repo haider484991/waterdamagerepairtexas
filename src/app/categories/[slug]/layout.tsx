@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { db, categories, businesses } from "@/lib/db";
-import { eq, desc, sql } from "drizzle-orm";
+import {
+  getCategoryBySlug,
+  getBusinessesByCategory,
+} from "@/lib/local-data";
 import { generateCategoryMetadata } from "@/lib/seo";
 import { generateServiceSchema } from "@/lib/seo/schema-markup";
 
@@ -13,49 +15,45 @@ type LayoutProps = {
   params: Promise<{ slug: string }>;
 };
 
-async function getCategorySeoData(slug: string) {
-  const [category] = await db.select().from(categories).where(eq(categories.slug, slug));
+function getCategorySeoData(slug: string) {
+  const category = getCategoryBySlug(slug);
   if (!category) return null;
 
-  const [stats] = await db
-    .select({
-      count: sql<number>`count(*)`,
-      avgRating: sql<number>`COALESCE(AVG(${businesses.ratingAvg}), 0)`,
-      totalReviews: sql<number>`COALESCE(SUM(${businesses.reviewCount}), 0)`,
-    })
-    .from(businesses)
-    .where(eq(businesses.categoryId, category.id));
+  const bizList = getBusinessesByCategory(slug, { sort: "rating", limit: 10 });
 
-  const topBusinesses = await db
-    .select({
-      id: businesses.id,
-      name: businesses.name,
-      slug: businesses.slug,
-      address: businesses.address,
-      city: businesses.city,
-      state: businesses.state,
-      rating: businesses.ratingAvg,
-      reviews: businesses.reviewCount,
-    })
-    .from(businesses)
-    .where(eq(businesses.categoryId, category.id))
-    .orderBy(desc(businesses.ratingAvg))
-    .limit(10);
+  let totalRating = 0;
+  let totalReviews = 0;
+  for (const b of bizList) {
+    totalRating += parseFloat(b.ratingAvg);
+    totalReviews += b.reviewCount;
+  }
+
+  // Get total count (not just top 10)
+  const allBiz = getBusinessesByCategory(slug);
 
   return {
     category,
     stats: {
-      count: Number(stats?.count || 0),
-      avgRating: Number(stats?.avgRating || 0),
-      totalReviews: Number(stats?.totalReviews || 0),
+      count: allBiz.length,
+      avgRating: allBiz.length > 0 ? totalRating / Math.min(allBiz.length, bizList.length) : 0,
+      totalReviews,
     },
-    topBusinesses,
+    topBusinesses: bizList.map((b) => ({
+      id: b.id,
+      name: b.name,
+      slug: b.slug,
+      address: b.address,
+      city: b.city,
+      state: b.state,
+      rating: b.ratingAvg,
+      reviews: b.reviewCount,
+    })),
   };
 }
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = await getCategorySeoData(slug);
+  const data = getCategorySeoData(slug);
 
   if (!data) {
     return {
@@ -103,92 +101,81 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
 export default async function CategoryLayout({ children, params }: LayoutProps) {
   const { slug } = await params;
-  const data = await getCategorySeoData(slug);
+  const data = getCategorySeoData(slug);
 
-  // Return proper 404 if category not found
   if (!data) {
     notFound();
   }
 
-  // Schema data for SEO
   const itemListSchema =
-    data && data.topBusinesses.length > 0
+    data.topBusinesses.length > 0
       ? {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: `${data.category.name} Directory`,
-        itemListOrder: "Descending",
-        numberOfItems: data.topBusinesses.length,
-        itemListElement: data.topBusinesses.map((b, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          url: `${SITE_URL}/business/${b.slug}`,
-          name: b.name,
-          address: `${b.address}, ${b.city}, ${b.state}`,
-          aggregateRating: b.rating
-            ? {
-              "@type": "AggregateRating",
-              ratingValue: Number(b.rating),
-              reviewCount: b.reviews || 0,
-            }
-            : undefined,
-        })),
-      }
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: `${data.category.name} Directory`,
+          itemListOrder: "Descending",
+          numberOfItems: data.topBusinesses.length,
+          itemListElement: data.topBusinesses.map((b, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${SITE_URL}/business/${b.slug}`,
+            name: b.name,
+            address: `${b.address}, ${b.city}, ${b.state}`,
+            aggregateRating: b.rating
+              ? {
+                  "@type": "AggregateRating",
+                  ratingValue: Number(b.rating),
+                  reviewCount: b.reviews || 0,
+                }
+              : undefined,
+          })),
+        }
       : null;
 
-  const breadcrumbSchema = data
-    ? {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: SITE_URL,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Categories",
-          item: `${SITE_URL}/categories`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: `${data.category.name} Directory`,
-          item: `${SITE_URL}/categories/${data.category.slug}`,
-        },
-      ],
-    }
-    : null;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Categories",
+        item: `${SITE_URL}/categories`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${data.category.name} Directory`,
+        item: `${SITE_URL}/categories/${data.category.slug}`,
+      },
+    ],
+  };
 
-  // Service schema for AI search engines to understand service offerings
-  const serviceSchema = data
-    ? generateServiceSchema(data.category, data.stats.count)
-    : null;
+  const serviceSchema = generateServiceSchema(data.category, data.stats.count);
 
   return (
     <>
       {itemListSchema && (
         <script
           type="application/ld+json"
-           
           dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
       )}
       {breadcrumbSchema && (
         <script
           type="application/ld+json"
-           
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       )}
-      {/* Service schema for AI search engines */}
       {serviceSchema && (
         <script
           type="application/ld+json"
-           
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
       )}
@@ -196,4 +183,3 @@ export default async function CategoryLayout({ children, params }: LayoutProps) 
     </>
   );
 }
-

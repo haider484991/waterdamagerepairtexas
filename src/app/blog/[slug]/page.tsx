@@ -22,15 +22,20 @@ interface BlogPostPageProps {
 
 // Generate static params for published posts
 export async function generateStaticParams() {
-  const posts = await db
-    .select({ slug: blogPosts.slug })
-    .from(blogPosts)
-    .where(eq(blogPosts.status, "published"))
-    .limit(100);
+  try {
+    const posts = await db
+      .select({ slug: blogPosts.slug })
+      .from(blogPosts)
+      .where(eq(blogPosts.status, "published"))
+      .limit(100);
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch {
+    // DB not available — generate all pages on demand
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {

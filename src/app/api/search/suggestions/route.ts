@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { db, businesses, categories } from "@/lib/db";
-import { ilike, or, sql } from "drizzle-orm";
+import { getSearchSuggestions, getCategories } from "@/lib/local-data";
 
 export async function GET(request: Request) {
   try {
@@ -11,36 +10,19 @@ export async function GET(request: Request) {
       return NextResponse.json({ suggestions: [] });
     }
 
-    // Get business name suggestions
-    const businessSuggestions = await db
-      .select({
-        id: businesses.id,
-        name: businesses.name,
-        slug: businesses.slug,
-        googlePlaceId: businesses.googlePlaceId,
-        type: sql<string>`'business'`.as("type"),
-      })
-      .from(businesses)
-      .where(ilike(businesses.name, `%${query}%`))
-      .orderBy(businesses.ratingAvg)
-      .limit(5);
+    // Get business name suggestions from local data
+    const businessSuggestions = getSearchSuggestions(query, 5);
 
     // Get category suggestions
-    const categorySuggestions = await db
-      .select({
-        id: categories.id,
-        name: categories.name,
-        slug: categories.slug,
-        type: sql<string>`'category'`.as("type"),
-      })
-      .from(categories)
-      .where(
-        or(
-          ilike(categories.name, `%${query}%`),
-          ilike(categories.description, `%${query}%`)
-        )
+    const allCategories = getCategories();
+    const queryLower = query.toLowerCase();
+    const categorySuggestions = allCategories
+      .filter(
+        (c) =>
+          c.name.toLowerCase().includes(queryLower) ||
+          (c.description || "").toLowerCase().includes(queryLower)
       )
-      .limit(3);
+      .slice(0, 3);
 
     // Common search terms for water damage restoration
     const popularSearches = [
@@ -56,14 +38,14 @@ export async function GET(request: Request) {
       "fire damage restoration",
       "24 hour emergency",
       "insurance claim help",
-    ].filter((term) => term.toLowerCase().includes(query.toLowerCase()));
+    ].filter((term) => term.toLowerCase().includes(queryLower));
 
     return NextResponse.json({
       suggestions: [
         ...businessSuggestions.map((b) => ({
-          id: b.id,
+          id: b.slug,
           name: b.name,
-          slug: b.googlePlaceId || b.slug,
+          slug: b.slug,
           type: "business",
         })),
         ...categorySuggestions.map((c) => ({
@@ -85,4 +67,3 @@ export async function GET(request: Request) {
     return NextResponse.json({ suggestions: [] });
   }
 }
-

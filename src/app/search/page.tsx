@@ -215,8 +215,8 @@ function SearchContent() {
       if (searchParams.get("category") && searchParams.get("category") !== "all") {
         params.set("category", searchParams.get("category")!);
       }
-      if (searchParams.get("stateFilter") && searchParams.get("stateFilter") !== "all") {
-        params.set("stateFilter", searchParams.get("stateFilter")!);
+      if (searchParams.get("state") && searchParams.get("state") !== "all") {
+        params.set("state", searchParams.get("state")!);
       }
       if (searchParams.get("rating") && searchParams.get("rating") !== "0") {
         params.set("rating", searchParams.get("rating")!);
@@ -252,7 +252,7 @@ function SearchContent() {
   useEffect(() => {
     setQuery(searchParams.get("q") || "");
     setCategory(searchParams.get("category") || "all");
-    setStateFilter(searchParams.get("stateFilter") || "all");
+    setStateFilter(searchParams.get("state") || "all");
     setMinRating(searchParams.get("rating") || "0");
     setSortBy(searchParams.get("sort") || "relevance");
   }, [searchParams]);
@@ -263,7 +263,7 @@ function SearchContent() {
     const params = new URLSearchParams();
     if (query) params.set("q", query);
     if (category !== "all") params.set("category", category);
-    if (stateFilter !== "all") params.set("stateFilter", stateFilter);
+    if (stateFilter !== "all") params.set("state", stateFilter);
     if (minRating !== "0") params.set("rating", minRating);
     if (sortBy !== "relevance") params.set("sort", sortBy);
     router.push(`/search?${params.toString()}`);

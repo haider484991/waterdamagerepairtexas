@@ -21,9 +21,14 @@ import {
   Copy,
   Facebook,
   Twitter,
+  Instagram,
+  Linkedin,
   Building2,
   Loader2,
   X,
+  Check,
+  ShieldCheck,
+  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -66,12 +71,26 @@ interface Business {
   isVerified: boolean | null;
   isFeatured: boolean | null;
   googlePlaceId: string | null;
+  googleMapsUrl?: string | null;
   isOpenNow?: boolean;
   category: {
     name: string;
     slug: string;
     section: string | null;
   } | null;
+  // Rich Outscraper data
+  reviewsPerScore: Record<string, number> | null;
+  reviewsLink: string | null;
+  logo: string | null;
+  subtypes: string[];
+  about: Record<string, Record<string, boolean>> | null;
+  businessStatus: string | null;
+  facebook: string | null;
+  instagram: string | null;
+  twitter: string | null;
+  linkedin: string | null;
+  streetView: string | null;
+  priceRange: string | null;
 }
 
 interface Review {
@@ -140,7 +159,18 @@ export function BusinessDetailClient({
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [reviewsSource, setReviewsSource] = useState(initialReviewsSource);
   const [googleReviewsTotal] = useState(totalReviewsOnGoogle);
-  const [ratingDistribution, setRatingDistribution] = useState<Record<number, number>>(() => {
+  const [ratingDistribution] = useState<Record<number, number>>(() => {
+    // Use real reviewsPerScore data from Outscraper if available
+    if (business.reviewsPerScore) {
+      return {
+        1: business.reviewsPerScore["1"] || 0,
+        2: business.reviewsPerScore["2"] || 0,
+        3: business.reviewsPerScore["3"] || 0,
+        4: business.reviewsPerScore["4"] || 0,
+        5: business.reviewsPerScore["5"] || 0,
+      };
+    }
+    // Fallback: compute from reviews array
     const dist: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
     initialReviews.forEach((r) => {
       if (r.rating >= 1 && r.rating <= 5) {
@@ -227,6 +257,12 @@ export function BusinessDetailClient({
 
   const rating = Number(business.ratingAvg) || 0;
   const totalDistribution = Object.values(ratingDistribution).reduce((a, b) => a + b, 0);
+  const satisfiedCount = (ratingDistribution[4] || 0) + (ratingDistribution[5] || 0);
+  const satisfactionPct = totalDistribution > 0 ? Math.round((satisfiedCount / totalDistribution) * 100) : 0;
+  const ratingLabel = rating >= 4.5 ? "Excellent" : rating >= 4.0 ? "Very Good" : rating >= 3.5 ? "Good" : rating >= 3.0 ? "Average" : "Below Average";
+  const ratingBarColors: Record<number, string> = { 5: "bg-green-500", 4: "bg-lime-500", 3: "bg-yellow-500", 2: "bg-orange-500", 1: "bg-red-500" };
+  const googleReviewsUrl = business.reviewsLink || (business.googlePlaceId ? `https://search.google.com/local/reviews?placeid=${business.googlePlaceId}&q=*&authuser=0&hl=en&gl=US` : null);
+  const googleMapsLink = business.googleMapsUrl || (business.googlePlaceId ? `https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}` : null);
 
   // Calculate if open (simple check)
   const now = new Date();
@@ -437,11 +473,32 @@ export function BusinessDetailClient({
                       </Badge>
                     )}
                   </div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 break-words">{business.name}</h1>
+                  <div className="flex items-center gap-3 mb-2 sm:mb-3">
+                    {business.logo && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={business.logo}
+                        alt={`${business.name} logo`}
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover border border-border/50 shrink-0"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                      />
+                    )}
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold break-words">{business.name}</h1>
+                  </div>
                   <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
                     <StarRating rating={rating} showValue reviewCount={business.reviewCount || 0} />
                     <PriceLevel level={business.priceLevel || 0} />
                   </div>
+                  {/* Subtypes as service tags */}
+                  {business.subtypes && business.subtypes.length > 0 && (
+                    <div className="flex items-center gap-1.5 mt-2 flex-wrap">
+                      {business.subtypes.map((subtype: string) => (
+                        <Badge key={subtype} variant="outline" className="text-xs font-normal">
+                          {subtype}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Action Buttons */}
@@ -504,6 +561,73 @@ export function BusinessDetailClient({
               )}
             </motion.div>
 
+            {/* Rating Summary Card - Always visible above tabs */}
+            {rating > 0 && totalDistribution > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6"
+              >
+                <div className="flex flex-col sm:flex-row sm:flex-wrap items-center sm:items-start gap-4 sm:gap-6">
+                  <div className="text-center w-full sm:w-auto">
+                    <div className="text-4xl sm:text-5xl font-bold text-foreground mb-1 sm:mb-2">
+                      {rating.toFixed(1)}
+                    </div>
+                    <StarRating rating={rating} size="lg" />
+                    <p className="text-sm font-medium text-muted-foreground mt-1">{ratingLabel}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-1 px-2">
+                      {googleReviewsUrl ? (
+                        <a
+                          href={googleReviewsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors underline underline-offset-2"
+                        >
+                          {business.reviewCount || totalDistribution} reviews on Google
+                        </a>
+                      ) : (
+                        `${business.reviewCount || totalDistribution} reviews`
+                      )}
+                    </p>
+                  </div>
+                  <Separator orientation="vertical" className="hidden sm:block h-20 sm:h-28" />
+                  <Separator className="sm:hidden w-full" />
+                  <div className="flex-1 space-y-1.5 sm:space-y-2 w-full sm:w-auto min-w-[240px]">
+                    {[5, 4, 3, 2, 1].map((stars) => {
+                      const count = ratingDistribution[stars] || 0;
+                      const percentage = totalDistribution > 0
+                        ? Math.round((count / totalDistribution) * 100)
+                        : 0;
+                      return (
+                        <div key={stars} className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-xs sm:text-sm w-4 sm:w-3">{stars}</span>
+                          <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary fill-primary shrink-0" />
+                          <div className="flex-1 h-2 sm:h-2.5 bg-secondary rounded-full overflow-hidden">
+                            <div
+                              className={cn("h-full rounded-full transition-all", ratingBarColors[stars])}
+                              style={{ width: `${percentage}%` }}
+                            />
+                          </div>
+                          <span className="text-xs sm:text-sm text-muted-foreground w-16 sm:w-20 text-right shrink-0">
+                            {count} ({percentage}%)
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {/* Satisfaction badge */}
+                  <div className="text-center sm:text-left w-full sm:w-auto">
+                    <div className="inline-flex flex-col items-center gap-1 px-4 py-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                      <Users className="w-5 h-5 text-green-500" />
+                      <span className="text-2xl font-bold text-green-500">{satisfactionPct}%</span>
+                      <span className="text-xs text-muted-foreground">Customer Satisfaction</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
             {/* Tabs */}
             <Tabs defaultValue="reviews" className="w-full">
               <TabsList className="w-full justify-start h-auto flex-wrap gap-2 sm:gap-3">
@@ -517,49 +641,6 @@ export function BusinessDetailClient({
               </TabsList>
 
               <TabsContent value="reviews" className="mt-4 sm:mt-6">
-                {/* Rating Summary */}
-                <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
-                  <div className="flex flex-col sm:flex-row sm:flex-wrap items-center sm:items-start gap-4 sm:gap-6">
-                    <div className="text-center w-full sm:w-auto">
-                      <div className="text-4xl sm:text-5xl font-bold text-foreground mb-1 sm:mb-2">
-                        {rating.toFixed(1)}
-                      </div>
-                      <StarRating rating={rating} size="lg" />
-                      <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 px-2">
-                        {reviewsSource === "google"
-                          ? `${googleReviewsTotal || business.reviewCount || 0} reviews on Google`
-                          : `${reviewsTotal || business.reviewCount || 0} reviews`
-                        }
-                      </p>
-                    </div>
-                    <Separator orientation="vertical" className="hidden sm:block h-20 sm:h-24" />
-                    <Separator className="sm:hidden w-full" />
-                    <div className="flex-1 space-y-1.5 sm:space-y-2 w-full sm:w-auto min-w-[240px]">
-                      {[5, 4, 3, 2, 1].map((stars) => {
-                        const count = ratingDistribution[stars] || 0;
-                        const percentage = totalDistribution > 0
-                          ? Math.round((count / totalDistribution) * 100)
-                          : 0;
-                        return (
-                          <div key={stars} className="flex items-center gap-2 sm:gap-3">
-                            <span className="text-xs sm:text-sm w-4 sm:w-3">{stars}</span>
-                            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary fill-primary shrink-0" />
-                            <div className="flex-1 h-1.5 sm:h-2 bg-secondary rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-primary rounded-full transition-all"
-                                style={{ width: `${percentage}%` }}
-                              />
-                            </div>
-                            <span className="text-xs sm:text-sm text-muted-foreground w-14 sm:w-12 text-right shrink-0">
-                              {count} ({percentage}%)
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
                 {/* Source indicator for Google reviews */}
                 {reviewsSource === "google" && reviews.length > 0 && (
                   <div className="mb-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center gap-2">
@@ -575,7 +656,7 @@ export function BusinessDetailClient({
                   </div>
                 )}
 
-                {/* Write Review Button */}
+                {/* Write Review Buttons */}
                 <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                   <Button asChild className="w-full sm:w-auto">
                     <Link href={`/business/${slug}/review`}>
@@ -669,14 +750,10 @@ export function BusinessDetailClient({
                     </div>
 
                     {/* View more on Google */}
-                    {reviewsSource === "google" && business.googlePlaceId && googleReviewsTotal > 5 && (
+                    {googleMapsLink && googleReviewsTotal > 5 && (
                       <div className="text-center mt-6">
                         <Button variant="outline" asChild>
-                          <a
-                            href={`https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                          <a href={googleReviewsUrl || googleMapsLink} target="_blank" rel="noopener noreferrer">
                             View all {googleReviewsTotal} reviews on Google
                             <ExternalLink className="w-4 h-4 ml-2" />
                           </a>
@@ -685,35 +762,102 @@ export function BusinessDetailClient({
                     )}
                   </>
                 ) : (
-                  <div className="text-center py-8 glass-card rounded-xl">
-                    <MessageSquare className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">No reviews yet</h3>
-                    <p className="text-muted-foreground mb-4">Be the first to review this business!</p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                      <Button asChild>
-                        <Link href={`/business/${slug}/review`}>
-                          <Star className="w-4 h-4 mr-2" />
-                          Write the First Review
-                        </Link>
-                      </Button>
-                      {business.googlePlaceId && (
-                        <Button variant="outline" asChild>
-                          <a
-                            href={`https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View on Google Maps
-                            <ExternalLink className="w-4 h-4 ml-2" />
-                          </a>
-                        </Button>
-                      )}
-                    </div>
+                  /* Review Snapshot when we have aggregate data but no individual reviews */
+                  <div className="space-y-4">
+                    {totalDistribution > 0 ? (
+                      <>
+                        {/* Review Snapshot */}
+                        <div className="glass-card rounded-xl p-4 sm:p-6">
+                          <div className="flex items-center gap-2 mb-4">
+                            <ShieldCheck className="w-5 h-5 text-green-500" />
+                            <h3 className="font-semibold">Review Snapshot</h3>
+                            <Badge variant="outline" className="text-xs ml-auto">Google Verified</Badge>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="text-center p-3 rounded-lg bg-secondary/50">
+                              <div className="text-2xl font-bold">{business.reviewCount || totalDistribution}</div>
+                              <div className="text-xs text-muted-foreground">Total Reviews</div>
+                            </div>
+                            <div className="text-center p-3 rounded-lg bg-secondary/50">
+                              <div className="text-2xl font-bold text-green-500">{satisfactionPct}%</div>
+                              <div className="text-xs text-muted-foreground">Satisfaction Rate</div>
+                            </div>
+                            <div className="text-center p-3 rounded-lg bg-secondary/50">
+                              <div className="text-2xl font-bold">{rating.toFixed(1)}</div>
+                              <div className="text-xs text-muted-foreground">Average Rating</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-wrap justify-center gap-3">
+                          {googleReviewsUrl && (
+                            <Button variant="default" asChild>
+                              <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer">
+                                <MessageSquare className="w-4 h-4 mr-2" />
+                                Read All {business.reviewCount || totalDistribution} Reviews on Google
+                                <ExternalLink className="w-4 h-4 ml-2" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-center py-8 glass-card rounded-xl">
+                        <MessageSquare className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                        <h3 className="font-semibold mb-2">No reviews yet</h3>
+                        <p className="text-muted-foreground mb-4">Be the first to review this business!</p>
+                        <div className="flex flex-wrap justify-center gap-3">
+                          <Button asChild>
+                            <Link href={`/business/${slug}/review`}>
+                              <Star className="w-4 h-4 mr-2" />
+                              Write the First Review
+                            </Link>
+                          </Button>
+                          {googleMapsLink && (
+                            <Button variant="outline" asChild>
+                              <a href={googleMapsLink} target="_blank" rel="noopener noreferrer">
+                                View on Google Maps
+                                <ExternalLink className="w-4 h-4 ml-2" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </TabsContent>
 
               <TabsContent value="about" className="mt-6">
+                {/* Google "About" Amenities */}
+                {business.about && Object.keys(business.about).length > 0 && (
+                  <div className="glass-card rounded-xl p-4 sm:p-6 mb-6">
+                    <h3 className="font-semibold mb-4">Business Features</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {Object.entries(business.about).map(([groupName, items]) => (
+                        <div key={groupName} className="space-y-2">
+                          <h4 className="text-sm font-medium text-muted-foreground">{groupName}</h4>
+                          <div className="space-y-1">
+                            {Object.entries(items as Record<string, boolean>).map(([featureName, isAvailable]) => (
+                              <div key={featureName} className="flex items-center gap-2 text-sm">
+                                {isAvailable ? (
+                                  <Check className="w-4 h-4 text-green-500 shrink-0" />
+                                ) : (
+                                  <X className="w-4 h-4 text-red-400 shrink-0" />
+                                )}
+                                <span className={isAvailable ? "text-foreground" : "text-muted-foreground line-through"}>
+                                  {featureName}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Dynamic Content - Tips, Amenities, Best Times */}
                 <DynamicBusinessContent business={business} content={dynamicContent} />
 
@@ -737,15 +881,11 @@ export function BusinessDetailClient({
                       <h4 className="font-medium mb-2">Price Range</h4>
                       <PriceLevel level={business.priceLevel || 0} />
                     </div>
-                    {business.googlePlaceId && (
+                    {googleMapsLink && (
                       <div>
                         <h4 className="font-medium mb-2">View on Google</h4>
                         <Button variant="outline" size="sm" asChild>
-                          <a
-                            href={`https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                          <a href={googleMapsLink} target="_blank" rel="noopener noreferrer">
                             Open in Google Maps
                             <ExternalLink className="w-4 h-4 ml-2" />
                           </a>
@@ -883,6 +1023,46 @@ export function BusinessDetailClient({
                     </Button>
                   )}
                 </div>
+
+                {/* Social Links */}
+                {(business.facebook || business.instagram || business.twitter || business.linkedin) && (
+                  <>
+                    <Separator />
+                    <div>
+                      <span className="text-sm font-medium mb-2 block">Follow</span>
+                      <div className="flex items-center gap-2">
+                        {business.facebook && (
+                          <Button variant="outline" size="icon" asChild className="h-9 w-9">
+                            <a href={business.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                              <Facebook className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        {business.instagram && (
+                          <Button variant="outline" size="icon" asChild className="h-9 w-9">
+                            <a href={business.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                              <Instagram className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        {business.twitter && (
+                          <Button variant="outline" size="icon" asChild className="h-9 w-9">
+                            <a href={business.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                              <Twitter className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        {business.linkedin && (
+                          <Button variant="outline" size="icon" asChild className="h-9 w-9">
+                            <a href={business.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                              <Linkedin className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
 
                 {/* Claim Business */}
                 <div className="pt-4 border-t border-border/50">

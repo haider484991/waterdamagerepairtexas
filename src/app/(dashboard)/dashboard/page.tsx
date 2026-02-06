@@ -123,8 +123,7 @@ export default function DashboardPage() {
   ];
 
   // Check if user is admin
-  const isAdmin = session.user?.email === "admin@waterdamagerepairtexas.net" || 
-                  session.user?.email?.endsWith("@admin.com");
+  const isAdmin = (session.user as any)?.role === "admin";
 
   return (
     <div className="min-h-screen py-8">

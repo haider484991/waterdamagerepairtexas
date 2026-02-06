@@ -64,9 +64,7 @@ export default function JobsPage() {
   const [showDetailsDialog, setShowDetailsDialog] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
-  const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
-                  session?.user?.email?.endsWith("@admin.com") ||
-                  session?.user?.email === "admin@test.com";
+  const isAdmin = (session?.user as any)?.role === "admin";
 
   useEffect(() => {
     if (status === "unauthenticated") {

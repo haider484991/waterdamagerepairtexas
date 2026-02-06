@@ -69,9 +69,7 @@ export default function TopicsPage() {
   const [showProgressDialog, setShowProgressDialog] = useState(false);
   const [activeJobId, setActiveJobId] = useState<string | null>(null);
 
-  const isAdmin = session?.user?.email === "admin@waterdamagerepairtexas.net" ||
-                  session?.user?.email?.endsWith("@admin.com") ||
-                  session?.user?.email === "admin@test.com";
+  const isAdmin = (session?.user as any)?.role === "admin";
 
   useEffect(() => {
     if (status === "unauthenticated") {

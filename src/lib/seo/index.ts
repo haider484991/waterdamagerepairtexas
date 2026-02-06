@@ -131,7 +131,20 @@ export function generateBusinessMetadata(
   const descriptionParts = [];
 
   if (rating > 0 && reviews > 0) {
-    descriptionParts.push(`${rating.toFixed(1)}★ rated with ${reviews} reviews.`);
+    // Calculate satisfaction % if reviewsPerScore is available
+    const rps = (business as any).reviewsPerScore;
+    if (rps) {
+      const satisfied = (rps["4"] || 0) + (rps["5"] || 0);
+      const total = Object.values(rps as Record<string, number>).reduce((a: number, b: number) => a + b, 0);
+      if (total > 0) {
+        const satPct = Math.round((satisfied / total) * 100);
+        descriptionParts.push(`Rated ${rating.toFixed(1)}/5 from ${reviews} reviews. ${satPct}% customer satisfaction.`);
+      } else {
+        descriptionParts.push(`${rating.toFixed(1)}★ rated with ${reviews} reviews.`);
+      }
+    } else {
+      descriptionParts.push(`${rating.toFixed(1)}★ rated with ${reviews} reviews.`);
+    }
   }
 
   descriptionParts.push(dynamicDescription);
@@ -366,24 +379,57 @@ export function generateLocalBusinessSchema(
     schema.hasMap = `https://www.google.com/maps?q=${business.lat},${business.lng}`;
   }
 
-  // Add website and Google Maps as sameAs for social signals
+  // Add website, Google Maps, and social profiles as sameAs for social signals
   const sameAsLinks: string[] = [];
   if (business.website) {
     sameAsLinks.push(business.website);
   }
-  if (business.googlePlaceId) {
+  if ((business as any).googleMapsUrl) {
+    sameAsLinks.push((business as any).googleMapsUrl);
+  } else if (business.googlePlaceId) {
     sameAsLinks.push(`https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}`);
   }
+  // Social links (from Outscraper enriched data)
+  const biz = business as any;
+  if (biz.facebook) sameAsLinks.push(biz.facebook);
+  if (biz.instagram) sameAsLinks.push(biz.instagram);
+  if (biz.twitter) sameAsLinks.push(biz.twitter);
+  if (biz.linkedin) sameAsLinks.push(biz.linkedin);
   if (sameAsLinks.length > 0) {
     schema.sameAs = sameAsLinks;
   }
 
-  // Add aggregate rating
+  // Add service catalog from subtypes
+  if (biz.subtypes && biz.subtypes.length > 0) {
+    schema.hasOfferCatalog = {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: biz.subtypes.map((subtype: string) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: subtype,
+        },
+      })),
+    };
+  }
+
+  // Add logo (from Outscraper enriched data)
+  if ((business as any).logo) {
+    schema.logo = (business as any).logo;
+  }
+
+  // Add aggregate rating with ratingCount
   if (rating > 0 && business.reviewCount && business.reviewCount > 0) {
+    const rps = (business as any).reviewsPerScore;
+    const ratingCount = rps
+      ? Object.values(rps as Record<string, number>).reduce((a: number, b: number) => a + b, 0)
+      : business.reviewCount;
     schema.aggregateRating = {
       "@type": "AggregateRating",
       ratingValue: rating.toFixed(1),
       reviewCount: business.reviewCount,
+      ratingCount,
       bestRating: "5",
       worstRating: "1",
     };
@@ -605,6 +651,32 @@ export function generateBusinessPageSchema(
           business.priceLevel === 2 ? "Moderate" :
           business.priceLevel === 3 ? "Premium" : "Premium+"
         }).`,
+      },
+    });
+  }
+
+  // Rating FAQ
+  const bRating = Number(business.ratingAvg) || 0;
+  if (bRating > 0 && business.reviewCount && business.reviewCount > 0) {
+    faqItems.push({
+      "@type": "Question",
+      name: `What is ${business.name}'s rating?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `${business.name} is rated ${bRating.toFixed(1)} out of 5 stars based on ${business.reviewCount} customer reviews.`,
+      },
+    });
+  }
+
+  // Services FAQ from subtypes
+  const subtypes = (business as any).subtypes;
+  if (subtypes && subtypes.length > 1) {
+    faqItems.push({
+      "@type": "Question",
+      name: `What services does ${business.name} offer?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `${business.name} offers: ${subtypes.join(", ")}.`,
       },
     });
   }

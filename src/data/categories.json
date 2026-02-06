@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cat-water-damage-restoration",
+    "name": "Water Damage Restoration",
+    "slug": "water-damage-restoration",
+    "icon": "Droplets",
+    "description": "Professional water damage restoration services including water extraction, structural drying, dehumidification, and property restoration across the USA",
+    "section": "Restoration",
+    "displayOrder": 1
+  },
+  {
+    "id": "cat-flood-cleanup",
+    "name": "Flood Cleanup",
+    "slug": "flood-cleanup",
+    "icon": "Waves",
+    "description": "Emergency flood cleanup services, water removal, sewage cleanup, and flood damage repair for residential and commercial properties",
+    "section": "Emergency",
+    "displayOrder": 2
+  },
+  {
+    "id": "cat-mold-remediation",
+    "name": "Mold Remediation",
+    "slug": "mold-remediation",
+    "icon": "ShieldCheck",
+    "description": "Professional mold inspection, testing, removal, and remediation services to ensure safe and healthy indoor environments",
+    "section": "Health",
+    "displayOrder": 3
+  },
+  {
+    "id": "cat-emergency-services",
+    "name": "Emergency Services",
+    "slug": "emergency-services",
+    "icon": "AlertTriangle",
+    "description": "24/7 emergency water damage response, immediate water extraction, and rapid disaster recovery services available around the clock",
+    "section": "Emergency",
+    "displayOrder": 4
+  },
+  {
+    "id": "cat-storm-damage",
+    "name": "Storm Damage Repair",
+    "slug": "storm-damage",
+    "icon": "Wind",
+    "description": "Storm damage repair services including wind damage, hail damage, hurricane damage, and tornado damage restoration across the USA",
+    "section": "Repair",
+    "displayOrder": 5
+  }
+]

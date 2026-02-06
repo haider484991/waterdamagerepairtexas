@@ -13,7 +13,24 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "WebFetch(domain:www.waterdamagerepair.io)",
-      "Bash(Select-Object -ExpandProperty FullName)"
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(git -C \"C:\\\\Projects\\\\waterdamagedirectory\" log --oneline -20)",
+      "WebSearch",
+      "WebFetch(domain:app.outscraper.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:outscraper.com)",
+      "WebFetch(domain:community.outscraper.com)",
+      "WebFetch(domain:mixedanalytics.com)",
+      "WebFetch(domain:pipedream.com)",
+      "WebFetch(domain:outscraper.medium.com)",
+      "WebFetch(domain:scraper.systems)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npx tsc:*)",
+      "Bash(if not exist \"C:\\\\Projects\\\\waterdamagedirectory\\\\src\\\\data\" mkdir \"C:\\\\Projects\\\\waterdamagedirectory\\\\src\\\\data\")",
+      "Bash(npx next build:*)",
+      "Bash(node -e:*)",
+      "Bash(grep:*)"
     ]
   }
 }

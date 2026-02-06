@@ -28,30 +28,44 @@ export interface DetectedAmenities {
   servesRuralAreas: boolean;
 }
 
-// Detect services from business data
+// Detect services from business data, augmented with Google "about" data
 export function detectAmenities(business: Business, category?: Category | null): DetectedAmenities {
   const name = business.name.toLowerCase();
   const description = (business.description || "").toLowerCase();
   const categorySlug = category?.slug || "";
   const combined = `${name} ${description}`;
 
+  // Flatten Google "about" data into a searchable string
+  const aboutFeatures = new Set<string>();
+  if (business.about && typeof business.about === "object") {
+    for (const [, items] of Object.entries(business.about)) {
+      if (items && typeof items === "object") {
+        for (const [featureName, isAvailable] of Object.entries(items as Record<string, boolean>)) {
+          if (isAvailable) aboutFeatures.add(featureName.toLowerCase());
+        }
+      }
+    }
+  }
+  const aboutStr = Array.from(aboutFeatures).join(" ");
+  const combinedAll = `${combined} ${aboutStr}`;
+
   return {
-    offers24HourService: /24.?hour|24\/7|round.?the.?clock|always.?available/i.test(combined),
-    offersEmergencyService: /emergency|urgent|immediate|rapid|fast.?response/i.test(combined),
-    hasInsuranceAssistance: /insurance|claim|billing|direct.?bill/i.test(combined),
-    offersMoldRemediation: /mold|mildew|fungus|remediation/i.test(combined) || categorySlug.includes("mold"),
-    offersFloodCleanup: /flood|storm|hurricane|natural.?disaster/i.test(combined) || categorySlug.includes("flood"),
-    offersWaterExtraction: /extraction|pump|remove.?water|water.?removal/i.test(combined),
-    offersStructuralDrying: /dry|dehumidif|structural|air.?mover/i.test(combined),
-    offersContentRestoration: /content|furniture|belong|personal.?item/i.test(combined),
-    hasCertifiedTechnicians: /certified|iicrc|license|trained|professional/i.test(combined),
-    hasCommercialServices: /commercial|business|office|industrial/i.test(combined),
-    hasResidentialServices: /residential|home|house|apartment/i.test(combined) || !(/commercial/i.test(combined)),
-    offersFreeEstimates: /free.?estimate|free.?quote|free.?inspection|no.?cost/i.test(combined),
-    isLocallyOwned: /local|family.?owned|community|neighborhood/i.test(combined),
-    isNationalCompany: /national|franchise|servpro|servicemaster|belfor/i.test(combined),
-    hasWarranty: /warranty|guarantee|satisfaction/i.test(combined),
-    servesRuralAreas: /rural|county|region|surrounding/i.test(combined),
+    offers24HourService: /24.?hour|24\/7|round.?the.?clock|always.?available/i.test(combinedAll),
+    offersEmergencyService: /emergency|urgent|immediate|rapid|fast.?response/i.test(combinedAll),
+    hasInsuranceAssistance: /insurance|claim|billing|direct.?bill/i.test(combinedAll),
+    offersMoldRemediation: /mold|mildew|fungus|remediation/i.test(combinedAll) || categorySlug.includes("mold"),
+    offersFloodCleanup: /flood|storm|hurricane|natural.?disaster/i.test(combinedAll) || categorySlug.includes("flood"),
+    offersWaterExtraction: /extraction|pump|remove.?water|water.?removal/i.test(combinedAll),
+    offersStructuralDrying: /dry|dehumidif|structural|air.?mover/i.test(combinedAll),
+    offersContentRestoration: /content|furniture|belong|personal.?item/i.test(combinedAll),
+    hasCertifiedTechnicians: /certified|iicrc|license|trained|professional/i.test(combinedAll),
+    hasCommercialServices: /commercial|business|office|industrial/i.test(combinedAll),
+    hasResidentialServices: /residential|home|house|apartment/i.test(combinedAll) || !(/commercial/i.test(combinedAll)),
+    offersFreeEstimates: /free.?estimate|free.?quote|free.?inspection|no.?cost/i.test(combinedAll),
+    isLocallyOwned: /local|family.?owned|community|neighborhood/i.test(combinedAll),
+    isNationalCompany: /national|franchise|servpro|servicemaster|belfor/i.test(combinedAll),
+    hasWarranty: /warranty|guarantee|satisfaction/i.test(combinedAll),
+    servesRuralAreas: /rural|county|region|surrounding/i.test(combinedAll),
   };
 }
 
