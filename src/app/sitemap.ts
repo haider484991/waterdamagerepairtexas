@@ -1,6 +1,11 @@
 import { MetadataRoute } from "next";
-import { getAllStates, getAllCities } from "@/lib/location-data";
-import { getCategories, getAllBusinessesForSitemap } from "@/lib/local-data";
+import {
+  getCategories,
+  getAllBusinessesForSitemap,
+  getStatesWithBusinesses,
+  getCitiesWithBusinessesForState,
+  getBusinessesByCategory,
+} from "@/lib/local-data";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
@@ -26,47 +31,54 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { url: `${SITE_URL}/add-business`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     ];
 
-    // Category pages
+    // Category pages (only categories with businesses)
     const allCategories = getCategories();
-    const categoryPages: MetadataRoute.Sitemap = allCategories.map((category) => ({
-      url: `${SITE_URL}/categories/${category.slug}`,
-      lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    }));
+    const categoryPages: MetadataRoute.Sitemap = allCategories
+      .filter((cat) => {
+        const businesses = getBusinessesByCategory(cat.slug);
+        return businesses.length > 0;
+      })
+      .map((category) => ({
+        url: `${SITE_URL}/categories/${category.slug}`,
+        lastModified: now,
+        changeFrequency: "daily" as const,
+        priority: 0.9,
+      }));
 
-    // State pages
-    const statesData = getAllStates();
-    const statePages: MetadataRoute.Sitemap = statesData.map((state) => ({
+    // Only states with actual businesses
+    const statesWithBiz = getStatesWithBusinesses();
+
+    const statePages: MetadataRoute.Sitemap = statesWithBiz.map((state) => ({
       url: `${SITE_URL}/states/${state.slug}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.85,
     }));
 
-    // City pages
-    const citiesData = getAllCities();
-    const cityPages: MetadataRoute.Sitemap = citiesData
-      .map((city) => {
-        const state = statesData.find((s) => s.code === city.stateCode);
-        if (!state) return null;
-        return {
-          url: `${SITE_URL}/states/${state.slug}/${city.slug}`,
-          lastModified: now,
-          changeFrequency: "weekly" as const,
-          priority: 0.75,
-        };
-      })
-      .filter(Boolean) as MetadataRoute.Sitemap;
-
-    // State + Category combination pages
-    const stateCategoryPages: MetadataRoute.Sitemap = statesData.flatMap((state) =>
-      allCategories.map((category) => ({
-        url: `${SITE_URL}/categories/${category.slug}?state=${state.code}`,
+    // Only cities with actual businesses
+    const cityPages: MetadataRoute.Sitemap = statesWithBiz.flatMap((state) => {
+      const cities = getCitiesWithBusinessesForState(state.code);
+      return cities.map((city) => ({
+        url: `${SITE_URL}/states/${state.slug}/${city.slug}`,
         lastModified: now,
         changeFrequency: "weekly" as const,
-        priority: 0.7,
-      }))
+        priority: 0.75,
+      }));
+    });
+
+    // State + Category combos (only where businesses exist)
+    const stateCategoryPages: MetadataRoute.Sitemap = statesWithBiz.flatMap((state) =>
+      allCategories
+        .filter((cat) => {
+          const businesses = getBusinessesByCategory(cat.slug, { state: state.code });
+          return businesses.length > 0;
+        })
+        .map((category) => ({
+          url: `${SITE_URL}/categories/${category.slug}?state=${state.code}`,
+          lastModified: now,
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+        }))
     );
 
     // Business pages from local JSON
@@ -85,28 +97,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     });
 
-    // Search pages
-    const waterDamageSearches = [
-      "water damage restoration",
-      "emergency flood cleanup",
-      "mold remediation",
-      "water extraction services",
-      "flood damage repair",
-      "storm damage restoration",
-      "24 hour water damage",
-      "water damage near me",
-      "residential water damage",
-      "commercial water damage",
-      "insurance claim water damage",
-      "water damage USA",
-    ];
-    const searchPages: MetadataRoute.Sitemap = waterDamageSearches.map((query) => ({
-      url: `${SITE_URL}/search?q=${encodeURIComponent(query)}`,
-      lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: 0.65,
-    }));
-
     return [
       ...staticPages,
       ...statePages,
@@ -114,7 +104,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...cityPages,
       ...stateCategoryPages,
       ...businessPages,
-      ...searchPages,
     ];
   } catch (error) {
     console.error("Error generating sitemap:", error);

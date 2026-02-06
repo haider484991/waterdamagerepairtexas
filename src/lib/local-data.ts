@@ -496,13 +496,16 @@ export function getBusinessesByState(
 /** Get businesses by category */
 export function getBusinessesByCategory(
   categorySlug: string,
-  options: { sort?: string; limit?: number } = {}
+  options: { sort?: string; limit?: number; state?: string } = {}
 ): BusinessWithCategory[] {
-  const { sort = "rating", limit: max } = options;
+  const { sort = "rating", limit: max, state } = options;
   const cat = categoryBySlug.get(categorySlug);
   if (!cat) return [];
 
   let filtered = allBusinesses.filter((b) => b.categoryId === cat.id);
+  if (state) {
+    filtered = filtered.filter((b) => matchesState(b.state, state));
+  }
   filtered = sortBusinesses(filtered, sort);
   if (max) filtered = filtered.slice(0, max);
 
@@ -775,6 +778,38 @@ export function getCityNameFromSlug(
   const cities = getCitiesWithBusinessesForState(stateCode);
   const match = cities.find((c) => c.slug === citySlug);
   return match ? match.name : null;
+}
+
+/** Get states that have at least one business (for sitemap) */
+export function getStatesWithBusinesses(): Array<{
+  code: string;
+  name: string;
+  slug: string;
+  businessCount: number;
+}> {
+  const stateMap = new Map<string, number>();
+
+  for (const biz of allBusinesses) {
+    // Normalize state to code
+    const bizLower = biz.state.toLowerCase();
+    let code = biz.state.toUpperCase();
+    // If it's a full name, convert to code
+    const maybeCode = stateNameToCode[bizLower];
+    if (maybeCode) code = maybeCode.toUpperCase();
+    stateMap.set(code, (stateMap.get(code) || 0) + 1);
+  }
+
+  return Array.from(stateMap.entries())
+    .map(([code, count]) => {
+      const name = stateCodeToName[code] || code;
+      return {
+        code,
+        name,
+        slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        businessCount: count,
+      };
+    })
+    .sort((a, b) => b.businessCount - a.businessCount);
 }
 
 /** Get top businesses across all data (for llms.txt etc.) */
