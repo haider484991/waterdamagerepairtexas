@@ -29,10 +29,24 @@ import {
   Monitor,
   Building,
   ChevronRight,
-  LucideIcon,
+  Droplets,
+  Waves,
+  ShieldCheck,
+  AlertTriangle,
+  Wind,
+  type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { Category } from "@/lib/db/schema";
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  icon: string | null;
+  description: string | null;
+  section: string | null;
+  displayOrder: number | null;
+}
 
 const iconMap: Record<string, LucideIcon> = {
   Utensils,
@@ -60,6 +74,11 @@ const iconMap: Record<string, LucideIcon> = {
   Bus,
   Monitor,
   Building,
+  Droplets,
+  Waves,
+  ShieldCheck,
+  AlertTriangle,
+  Wind,
 };
 
 interface CategoriesPageClientProps {

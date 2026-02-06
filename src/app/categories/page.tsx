@@ -1,24 +1,10 @@
 import { Suspense } from "react";
-import { db, categories } from "@/lib/db";
-import { asc } from "drizzle-orm";
+import { getCategories } from "@/lib/local-data";
 import { CategoriesPageClient } from "./CategoriesPageClient";
 import { Skeleton } from "@/components/ui/skeleton";
 
-async function getCategories() {
-  try {
-    const allCategories = await db
-      .select()
-      .from(categories)
-      .orderBy(asc(categories.displayOrder), asc(categories.name));
-    return allCategories;
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
-  }
-}
-
 export default async function CategoriesPage() {
-  const allCategories = await getCategories();
+  const allCategories = getCategories();
 
   return (
     <Suspense fallback={<CategoriesPageSkeleton />}>

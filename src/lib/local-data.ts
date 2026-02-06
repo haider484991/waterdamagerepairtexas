@@ -262,6 +262,45 @@ for (const cat of allCategories) {
 // Helpers
 // ============================================================================
 
+// State code ↔ full name mapping for flexible state filtering.
+// Businesses store full names ("California") but filters often pass codes ("CA").
+const stateCodeToName: Record<string, string> = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+  HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+  KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+  MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi",
+  MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire",
+  NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina",
+  ND: "North Dakota", OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania",
+  RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota", TN: "Tennessee",
+  TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia", WA: "Washington",
+  WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming", DC: "District of Columbia",
+};
+const stateNameToCode: Record<string, string> = {};
+for (const [code, name] of Object.entries(stateCodeToName)) {
+  stateNameToCode[name.toLowerCase()] = code.toLowerCase();
+}
+
+/** Check if a business's state matches a state filter (handles both codes and full names) */
+function matchesState(bizState: string, filterState: string): boolean {
+  const bizLower = bizState.toLowerCase();
+  const filterLower = filterState.toLowerCase();
+
+  // Direct match (both full names or both codes)
+  if (bizLower === filterLower) return true;
+
+  // Filter is a code (e.g. "CA"), biz has full name (e.g. "California")
+  const fullName = stateCodeToName[filterState.toUpperCase()];
+  if (fullName && bizLower === fullName.toLowerCase()) return true;
+
+  // Filter is a full name, biz has a code
+  const code = stateNameToCode[filterLower];
+  if (code && bizLower === code) return true;
+
+  return false;
+}
+
 function attachCategory(biz: LocalBusiness): BusinessWithCategory {
   return { ...biz, category: categoryById.get(biz.categoryId) || null };
 }
@@ -379,12 +418,7 @@ export function searchBusinesses(
   }
 
   if (state) {
-    const stateLower = state.toLowerCase();
-    filtered = filtered.filter(
-      (b) =>
-        b.state.toLowerCase() === stateLower ||
-        b.state.toLowerCase() === stateLower
-    );
+    filtered = filtered.filter((b) => matchesState(b.state, state));
   }
 
   if (neighborhood && neighborhood !== "all") {
@@ -429,12 +463,11 @@ export function getBusinessesByCity(
 ): BusinessWithCategory[] {
   const { sort = "rating", limit: max } = options;
   const cityLower = city.toLowerCase();
-  const stateLower = state.toLowerCase();
 
   let filtered = allBusinesses.filter(
     (b) =>
       b.city.toLowerCase() === cityLower &&
-      b.state.toLowerCase() === stateLower
+      matchesState(b.state, state)
   );
 
   filtered = sortBusinesses(filtered, sort);
@@ -449,10 +482,9 @@ export function getBusinessesByState(
   options: { sort?: string; limit?: number } = {}
 ): BusinessWithCategory[] {
   const { sort = "rating", limit: max } = options;
-  const stateLower = state.toLowerCase();
 
   let filtered = allBusinesses.filter(
-    (b) => b.state.toLowerCase() === stateLower
+    (b) => matchesState(b.state, state)
   );
 
   filtered = sortBusinesses(filtered, sort);
@@ -641,9 +673,8 @@ export function getStateStats(
   cities: Array<{ city: string; count: number }>;
   categories: Array<{ category: LocalCategory; count: number }>;
 } {
-  const stateLower = stateCode.toLowerCase();
   const stateBusinesses = allBusinesses.filter(
-    (b) => b.state.toLowerCase() === stateLower
+    (b) => matchesState(b.state, stateCode)
   );
 
   const cityMap = new Map<string, number>();
@@ -704,6 +735,46 @@ export function getCitiesWithBusinesses(): Map<
   }
 
   return result;
+}
+
+/** Convert a city name to a URL slug */
+export function cityToSlug(city: string): string {
+  return city
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Get cities with actual businesses for a given state (uses real data, not hardcoded list) */
+export function getCitiesWithBusinessesForState(
+  stateCode: string
+): Array<{ name: string; slug: string; count: number }> {
+  const stateBusinesses = allBusinesses.filter((b) =>
+    matchesState(b.state, stateCode)
+  );
+
+  const cityMap = new Map<string, number>();
+  for (const biz of stateBusinesses) {
+    cityMap.set(biz.city, (cityMap.get(biz.city) || 0) + 1);
+  }
+
+  return Array.from(cityMap.entries())
+    .map(([city, count]) => ({
+      name: city,
+      slug: cityToSlug(city),
+      count,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+/** Resolve a city slug back to a city name for a given state (from real business data) */
+export function getCityNameFromSlug(
+  stateCode: string,
+  citySlug: string
+): string | null {
+  const cities = getCitiesWithBusinessesForState(stateCode);
+  const match = cities.find((c) => c.slug === citySlug);
+  return match ? match.name : null;
 }
 
 /** Get top businesses across all data (for llms.txt etc.) */

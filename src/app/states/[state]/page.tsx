@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Building2, Droplets, Phone } from "lucide-react";
-import { getStateBySlug, getCitiesForState } from "@/lib/location-data";
-import { getStateStats } from "@/lib/local-data";
+import { getStateBySlug } from "@/lib/location-data";
+import { getStateStats, getCitiesWithBusinessesForState } from "@/lib/local-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateItemListSchema } from "@/lib/seo/schema-markup";
 import { FAQSection, generateWaterDamageFAQs } from "@/components/seo/FAQSection";
@@ -56,7 +56,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
     notFound();
   }
 
-  const cities = getCitiesForState(region.code);
+  const cities = getCitiesWithBusinessesForState(region.code);
   const stateData = getStateStats(region.code);
 
   const cityItems = cities.map((city) => ({
@@ -161,20 +161,26 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
         <section className="py-12 bg-muted/30">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8">Cities in {region.name}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {cities.map((city) => (
-                <Link
-                  key={city.slug}
-                  href={`/states/${region.slug}/${city.slug}`}
-                  className="p-4 bg-card border rounded-lg hover:shadow-md transition-all hover:border-primary/50"
-                >
-                  <div className="font-semibold">{city.name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {(city.population / 1000).toFixed(0)}K residents
-                  </div>
-                </Link>
-              ))}
-            </div>
+            {cities.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {cities.map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/states/${region.slug}/${city.slug}`}
+                    className="p-4 bg-card border rounded-lg hover:shadow-md transition-all hover:border-primary/50"
+                  >
+                    <div className="font-semibold">{city.name}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {city.count} {city.count === 1 ? "business" : "businesses"}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted-foreground text-center py-8">
+                No water damage businesses listed in {region.name} yet. Check back soon.
+              </p>
+            )}
           </div>
         </section>
 

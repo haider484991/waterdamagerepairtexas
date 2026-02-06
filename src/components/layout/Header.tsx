@@ -18,7 +18,6 @@ import { Logo } from "@/components/layout/Logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/blog", label: "Blog" },
   { href: "/categories", label: "Categories" },
   { href: "/states", label: "States" },
   { href: "/search", label: "Search" },

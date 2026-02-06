@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getStateBySlug, getCityBySlug } from "@/lib/location-data";
-import { getBusinessesByCity } from "@/lib/local-data";
+import { getStateBySlug } from "@/lib/location-data";
+import { getBusinessesByCity, getCityNameFromSlug } from "@/lib/local-data";
 import { BusinessCard } from "@/components/business";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateLocalBusinessSchema } from "@/lib/seo/schema-markup";
@@ -15,30 +15,30 @@ const SITE_URL = getSiteUrl();
 export async function generateMetadata({ params }: { params: Promise<{ state: string; city: string }> }): Promise<Metadata> {
   const { state: stateSlug, city: citySlug } = await params;
   const region = getStateBySlug(stateSlug);
-  const city = region ? getCityBySlug(region.code, citySlug) : undefined;
+  const cityName = region ? getCityNameFromSlug(region.code, citySlug) : null;
 
-  if (!region || !city) {
+  if (!region || !cityName) {
     return { title: "City Not Found" };
   }
 
-  const canonicalUrl = `${SITE_URL}/states/${region.slug}/${city.slug}`;
+  const canonicalUrl = `${SITE_URL}/states/${region.slug}/${citySlug}`;
 
   return {
-    title: `Water Damage Restoration in ${city.name}, ${region.code} – Emergency Services | Water Damage Repair USA`,
-    description: `Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services in ${city.name}, ${region.name}. 24/7 emergency response with free estimates.`,
+    title: `Water Damage Restoration in ${cityName}, ${region.code} – Emergency Services | Water Damage Repair USA`,
+    description: `Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services in ${cityName}, ${region.name}. 24/7 emergency response with free estimates.`,
     keywords: [
-      `water damage ${city.name}`,
-      `${city.name} ${region.code} water damage`,
-      `flood restoration ${city.name}`,
-      `emergency water damage ${city.name}`,
-      `${city.name} mold remediation`,
+      `water damage ${cityName}`,
+      `${cityName} ${region.code} water damage`,
+      `flood restoration ${cityName}`,
+      `emergency water damage ${cityName}`,
+      `${cityName} mold remediation`,
     ],
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `Water Damage Restoration in ${city.name}, ${region.code}`,
-      description: `Find water damage restoration, flood cleanup, mold remediation in ${city.name}, ${region.name}. 24/7 emergency response.`,
+      title: `Water Damage Restoration in ${cityName}, ${region.code}`,
+      description: `Find water damage restoration, flood cleanup, mold remediation in ${cityName}, ${region.name}. 24/7 emergency response.`,
       url: canonicalUrl,
       type: "website",
     },
@@ -51,15 +51,15 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
 export default async function CityPage({ params }: { params: Promise<{ state: string; city: string }> }) {
   const { state: stateSlug, city: citySlug } = await params;
   const region = getStateBySlug(stateSlug);
-  const city = region ? getCityBySlug(region.code, citySlug) : undefined;
+  const cityName = region ? getCityNameFromSlug(region.code, citySlug) : null;
 
-  if (!region || !city) {
+  if (!region || !cityName) {
     notFound();
   }
 
-  const enrichedBusinesses = getBusinessesByCity(city.name, region.code);
+  const enrichedBusinesses = getBusinessesByCity(cityName, region.code);
 
-  const faqs = generateWaterDamageFAQs(city.name, region.name);
+  const faqs = generateWaterDamageFAQs(cityName, region.name);
 
   const businessSchemas = enrichedBusinesses.slice(0, 10).map((business) =>
     generateLocalBusinessSchema(business)
@@ -69,7 +69,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
     <>
       <JsonLd
         data={[
-          generatePlaceSchema(city.name, "City", `Water damage restoration in ${city.name}, ${region.name}`, region.code),
+          generatePlaceSchema(cityName, "City", `Water damage restoration in ${cityName}, ${region.name}`, region.code),
           ...businessSchemas,
         ]}
         id="city-schema"
@@ -82,13 +82,13 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
             <div className="max-w-4xl mx-auto">
               <Badge className="mb-4">
                 <MapPin className="w-4 h-4 mr-1" />
-                {city.name}, {region.code}
+                {cityName}, {region.code}
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Water Damage Restoration in {city.name}
+                Water Damage Restoration in {cityName}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Find {enrichedBusinesses.length} water damage restoration {enrichedBusinesses.length === 1 ? 'company' : 'companies'} in {city.name}, {region.name}.
+                Find {enrichedBusinesses.length} water damage restoration {enrichedBusinesses.length === 1 ? 'company' : 'companies'} in {cityName}, {region.name}.
                 24/7 emergency flood cleanup, mold remediation, and insurance claim assistance.
               </p>
             </div>
@@ -99,7 +99,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
         <section className="py-12">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8">
-              Water Damage Services in {city.name}
+              Water Damage Services in {cityName}
             </h2>
 
             {enrichedBusinesses.length > 0 ? (
@@ -111,7 +111,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
             ) : (
               <div className="text-center py-12">
                 <p className="text-lg text-muted-foreground mb-4">
-                  No water damage restoration services found in {city.name} yet.
+                  No water damage restoration services found in {cityName} yet.
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Check back soon or explore nearby cities for water damage services.
@@ -124,8 +124,8 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
         {/* FAQ */}
         <FAQSection
           faqs={faqs}
-          title={`Water Damage Restoration in ${city.name} - FAQ`}
-          description={`Everything you need to know about water damage services in ${city.name}, ${region.name}`}
+          title={`Water Damage Restoration in ${cityName} - FAQ`}
+          description={`Everything you need to know about water damage services in ${cityName}, ${region.name}`}
         />
       </div>
     </>

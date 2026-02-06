@@ -30,7 +30,8 @@
       "Bash(if not exist \"C:\\\\Projects\\\\waterdamagedirectory\\\\src\\\\data\" mkdir \"C:\\\\Projects\\\\waterdamagedirectory\\\\src\\\\data\")",
       "Bash(npx next build:*)",
       "Bash(node -e:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(powershell:*)"
     ]
   }
 }
