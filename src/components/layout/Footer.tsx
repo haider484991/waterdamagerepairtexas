@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Twitter, Instagram, Phone } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 
 const footerLinks = {
@@ -39,9 +39,20 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Logo size={44} textSize="text-xl" />
             </Link>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-muted-foreground mb-4 max-w-md">
               Find trusted water damage restoration services across the USA. The most comprehensive directory of water damage repair, flood cleanup, mold remediation, and emergency restoration services nationwide.
             </p>
+            <div className="mb-6">
+              <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-1.5">Our Website&apos;s Helpline</p>
+              <a
+                href="tel:+18667759098"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors group"
+              >
+                <Phone className="w-4 h-4 text-primary" />
+                <span className="font-bold text-primary text-lg group-hover:underline">(866) 775-9098</span>
+              </a>
+              <p className="text-xs text-muted-foreground mt-1.5">Call us and we&apos;ll match you with a trusted local restoration company.</p>
+            </div>
             <div className="flex items-center gap-4">
               <a
                 href="#"

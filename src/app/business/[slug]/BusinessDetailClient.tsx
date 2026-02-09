@@ -1000,6 +1000,37 @@ export function BusinessDetailClient({
                   </>
                 )}
 
+                {/* Website brand ad — clearly separated from business info */}
+                <div className="relative overflow-hidden rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+                  {/* Ad label bar */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-extrabold text-sm text-foreground leading-none">
+                        Water Damage Repair<span className="text-primary"> USA</span>
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-blue-500 bg-blue-200/60 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
+                      Ad
+                    </span>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-3 border border-blue-200/60 mb-3">
+                    <p className="text-foreground font-semibold text-sm mb-0.5">Need help now? Call our helpline.</p>
+                    <p className="text-muted-foreground text-xs">This is <span className="font-semibold">our website&apos;s number</span>, not the business above. We match you with trusted local pros 24/7.</p>
+                  </div>
+
+                  <a
+                    href="tel:+18667759098"
+                    className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all text-sm shadow-md shadow-blue-600/20"
+                  >
+                    <Phone className="w-4 h-4" />
+                    (866) 775-9098
+                  </a>
+                  <p className="text-muted-foreground text-[11px] text-center mt-2">Free &bull; 24/7 &bull; No obligation</p>
+                </div>
+
+                <Separator />
+
                 {/* Actions */}
                 <div className="space-y-2 sm:space-y-3">
                   <Button onClick={getDirections} className="w-full gap-2 text-sm sm:text-base h-9 sm:h-10">

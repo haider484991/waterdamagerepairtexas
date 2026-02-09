@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Menu, X, User, Heart, LogIn, ChevronDown } from "lucide-react";
+import { Search, Menu, X, User, Heart, LogIn, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -51,6 +51,16 @@ export function Header() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
+            {/* Our helpline - Desktop */}
+            <a
+              href="tel:+18667759098"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors text-sm"
+            >
+              <Phone className="w-3.5 h-3.5 text-primary" />
+              <span className="text-muted-foreground font-medium">Our Helpline</span>
+              <span className="font-bold text-primary">(866) 775-9098</span>
+            </a>
+
             {/* Search Toggle */}
             <Button
               variant="ghost"
@@ -129,6 +139,23 @@ export function Header() {
                       </Link>
                     ))}
                   </nav>
+                  {/* Website brand helpline */}
+                  <div className="pt-4 border-t border-border">
+                    <div className="flex items-center justify-between mb-2 px-1">
+                      <span className="font-bold text-sm text-foreground">
+                        Water Damage Repair<span className="text-primary"> USA</span>
+                      </span>
+                      <span className="text-[10px] text-muted-foreground bg-secondary px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Ad</span>
+                    </div>
+                    <a
+                      href="tel:+18667759098"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold hover:from-blue-700 hover:to-blue-800 transition-all"
+                    >
+                      <Phone className="w-4 h-4" />
+                      (866) 775-9098
+                    </a>
+                    <p className="text-xs text-center text-muted-foreground mt-1.5">Our website&apos;s helpline &mdash; we match you with local pros</p>
+                  </div>
                   {!session && (
                     <div className="pt-4 border-t border-border">
                       <Button asChild className="w-full">

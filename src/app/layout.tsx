@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
-import { Header, Footer, MobileNav } from "@/components/layout";
+import { Header, Footer, MobileNav, EmergencyPhoneBanner, FloatingCallButton } from "@/components/layout";
 import { generateSiteMetadata } from "@/lib/seo";
 import { generateOrganizationSchema, generateWebSiteSchema, generateHowToSchema } from "@/lib/seo/schema-markup";
 import { Analytics } from "@vercel/analytics/next";
@@ -65,10 +65,12 @@ export default function RootLayout({
       />
       <body className="min-h-screen flex flex-col">
         <SessionProvider>
+          <EmergencyPhoneBanner />
           <Header />
           <main className="flex-1 pb-20 md:pb-0">{children}</main>
           <Footer />
           <MobileNav />
+          <FloatingCallButton />
           <Toaster position="top-right" />
           <Analytics />
         </SessionProvider>

@@ -31,7 +31,8 @@
       "Bash(npx next build:*)",
       "Bash(node -e:*)",
       "Bash(grep:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(node scripts/check-sitemap.js:*)"
     ]
   }
 }
