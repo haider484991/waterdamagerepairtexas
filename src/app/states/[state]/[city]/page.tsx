@@ -59,6 +59,11 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
 
   const enrichedBusinesses = getBusinessesByCity(cityName, region.code);
 
+  // Avoid soft 404 if city has no businesses
+  if (enrichedBusinesses.length === 0) {
+    notFound();
+  }
+
   const faqs = generateWaterDamageFAQs(cityName, region.name);
 
   const businessSchemas = enrichedBusinesses.slice(0, 10).map((business) =>

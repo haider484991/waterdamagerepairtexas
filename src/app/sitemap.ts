@@ -66,21 +66,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }));
     });
 
-    // State + Category combos (only where businesses exist)
-    const stateCategoryPages: MetadataRoute.Sitemap = statesWithBiz.flatMap((state) =>
-      allCategories
-        .filter((cat) => {
-          const businesses = getBusinessesByCategory(cat.slug, { state: state.code });
-          return businesses.length > 0;
-        })
-        .map((category) => ({
-          url: `${SITE_URL}/categories/${category.slug}?state=${state.code}`,
-          lastModified: now,
-          changeFrequency: "weekly" as const,
-          priority: 0.7,
-        }))
-    );
-
     // Business pages from local JSON
     const allBusinesses = getAllBusinessesForSitemap();
     const businessPages: MetadataRoute.Sitemap = allBusinesses.map((business) => {
@@ -102,7 +87,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...statePages,
       ...categoryPages,
       ...cityPages,
-      ...stateCategoryPages,
       ...businessPages,
     ];
   } catch (error) {

@@ -1,4 +1,4 @@
-# WaterDamageRepairTexas.net - Robots.txt
+# waterdamagerepair.io - Robots.txt
 # Find water damage restoration services nationwide across the USA
 
 User-agent: *
@@ -15,6 +15,22 @@ Disallow: /admin
 Disallow: /dashboard
 Disallow: /_next/
 
+# Disallow review submission forms (duplicate content)
+Disallow: /business/*/review
+
+# Disallow filtered URLs (canonical points to unfiltered version)
+Disallow: /*?state=
+Disallow: /*?city=
+Disallow: /*?rating=
+Disallow: /*?price=
+Disallow: /*?sort=
+Disallow: /*?serviceType=
+Disallow: /*?availability=
+Disallow: /*?certification=
+Disallow: /*?responseTime=
+Disallow: /*?damageType=
+Disallow: /*?page=
+
 # API access - block most but allow llms endpoints
 Disallow: /api/
 Allow: /api/llms
@@ -24,12 +40,12 @@ Allow: /api/llms/category/
 Allow: /api/llms/business/
 
 # Sitemaps
-Sitemap: https://waterdamagerepairtexas.net/sitemap.xml
+Sitemap: https://www.waterdamagerepair.io/sitemap.xml
 
 # LLMs.txt for AI assistants
 # See https://llmstxt.org for specification
-LLMs-Txt: https://waterdamagerepairtexas.net/llms.txt
-LLMs-Full-Txt: https://waterdamagerepairtexas.net/api/llms/full
+LLMs-Txt: https://www.waterdamagerepair.io/llms.txt
+LLMs-Full-Txt: https://www.waterdamagerepair.io/api/llms/full
 
 # Crawl delay to prevent overload
 Crawl-delay: 1
@@ -37,10 +53,23 @@ Crawl-delay: 1
 # Special instructions for major search engines
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /business/*/review
+Disallow: /*?state=
+Disallow: /*?city=
+Disallow: /*?rating=
+Disallow: /*?price=
+Disallow: /*?sort=
+Disallow: /*?page=
 Crawl-delay: 0.5
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /business/*/review
+Disallow: /*?state=
 Crawl-delay: 1
 
 User-agent: Slurp

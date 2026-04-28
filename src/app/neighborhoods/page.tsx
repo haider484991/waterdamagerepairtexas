@@ -12,6 +12,9 @@ export const metadata: Metadata = {
 };
 
 async function getNeighborhoods() {
+  if (!process.env.DATABASE_URL) {
+    return [];
+  }
   try {
     // Get all unique neighborhoods with business counts and stats
     const neighborhoodStats = await db

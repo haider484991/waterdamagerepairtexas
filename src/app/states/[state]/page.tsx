@@ -59,6 +59,11 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
   const cities = getCitiesWithBusinessesForState(region.code);
   const stateData = getStateStats(region.code);
 
+  // Avoid soft 404: if no businesses in this state, treat as not found
+  if (stateData.businessCount === 0) {
+    notFound();
+  }
+
   const cityItems = cities.map((city) => ({
     name: `${city.name}, ${region.code}`,
     url: `/states/${region.slug}/${city.slug}`,

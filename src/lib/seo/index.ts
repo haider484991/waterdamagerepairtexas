@@ -9,6 +9,7 @@ const SITE_URL = getSiteUrl();
 
 export function generateSiteMetadata(): Metadata {
   return {
+    metadataBase: new URL(SITE_URL),
     title: {
       default: "Water Damage Repair USA | Emergency Restoration Services Nationwide",
       template: `%s | Water Damage Repair USA`,

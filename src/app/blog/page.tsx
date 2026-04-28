@@ -7,7 +7,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { db, blogPosts } from "@/lib/db";
-import { eq, desc, count, sql } from "drizzle-orm";
+import { eq, desc, count } from "drizzle-orm";
 import { getSiteUrl } from "@/lib/site-url";
 import { Clock, Calendar, ArrowRight, BookOpen } from "lucide-react";
 
@@ -48,37 +48,62 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+type BlogPostListItem = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  coverImageUrl: string | null;
+  coverImageAlt: string | null;
+  readingTime: number | null;
+  publishedAt: Date | null;
+};
+
+async function fetchBlogData(currentPage: number) {
+  const offset = (currentPage - 1) * POSTS_PER_PAGE;
+
+  if (!process.env.DATABASE_URL) {
+    return { posts: [] as BlogPostListItem[], totalPages: 0 };
+  }
+
+  try {
+    const [totalResult] = await db
+      .select({ count: count() })
+      .from(blogPosts)
+      .where(eq(blogPosts.status, "published"));
+
+    const total = totalResult?.count || 0;
+    const totalPages = Math.ceil(total / POSTS_PER_PAGE);
+
+    const posts = await db
+      .select({
+        id: blogPosts.id,
+        title: blogPosts.title,
+        slug: blogPosts.slug,
+        excerpt: blogPosts.excerpt,
+        coverImageUrl: blogPosts.coverImageUrl,
+        coverImageAlt: blogPosts.coverImageAlt,
+        readingTime: blogPosts.readingTime,
+        publishedAt: blogPosts.publishedAt,
+      })
+      .from(blogPosts)
+      .where(eq(blogPosts.status, "published"))
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(POSTS_PER_PAGE)
+      .offset(offset);
+
+    return { posts: posts as BlogPostListItem[], totalPages };
+  } catch (error) {
+    console.error("Blog DB query failed:", error);
+    return { posts: [] as BlogPostListItem[], totalPages: 0 };
+  }
+}
+
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const params = await searchParams;
   const currentPage = parseInt(params.page || "1", 10);
-  const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
-  // Get total count
-  const [totalResult] = await db
-    .select({ count: count() })
-    .from(blogPosts)
-    .where(eq(blogPosts.status, "published"));
-
-  const total = totalResult?.count || 0;
-  const totalPages = Math.ceil(total / POSTS_PER_PAGE);
-
-  // Get posts
-  const posts = await db
-    .select({
-      id: blogPosts.id,
-      title: blogPosts.title,
-      slug: blogPosts.slug,
-      excerpt: blogPosts.excerpt,
-      coverImageUrl: blogPosts.coverImageUrl,
-      coverImageAlt: blogPosts.coverImageAlt,
-      readingTime: blogPosts.readingTime,
-      publishedAt: blogPosts.publishedAt,
-    })
-    .from(blogPosts)
-    .where(eq(blogPosts.status, "published"))
-    .orderBy(desc(blogPosts.publishedAt))
-    .limit(POSTS_PER_PAGE)
-    .offset(offset);
+  const { posts, totalPages } = await fetchBlogData(currentPage);
 
   // JSON-LD for blog listing
   const jsonLd = {
