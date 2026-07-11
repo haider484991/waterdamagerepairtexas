@@ -178,8 +178,26 @@ export interface SearchFilters {
 // Data loading (cached in memory at module level)
 // ============================================================================
 
+// Off-vertical businesses picked up by broad scraping (auto dent shops,
+// janitorial, phone repair, …) dilute topical focus and Google's quality
+// assessment of the directory, so they are excluded at the data layer —
+// listings, sitemap, search, and static params all inherit this.
+const DENY_TYPE = /\bauto\b|dent removal|auto body|phone repair|janitorial|house cleaning|crime victim|body shop|landscap|lawn/i;
+const ALLOW_VERTICAL = /restoration|water damage|mold|flood|fire damage|waterproof|remediation|environmental|sewage|biohazard|asbestos|home inspector|roofing|storm/i;
+function isRestorationBusiness(b: any): boolean {
+  // Some off-vertical businesses carry a restoration type on Google —
+  // catch the obvious ones by name too (e.g. "D&J Landscaping").
+  if (DENY_TYPE.test(b.type ?? "") || DENY_TYPE.test(b.name ?? "")) return false;
+  const haystack = [b.type, b.googleCategory, ...(b.subtypes ?? [])]
+    .filter(Boolean)
+    .join(" ");
+  return ALLOW_VERTICAL.test(haystack);
+}
+
 // Hydrate raw JSON with compat fields, defaults, and Date objects
-const allBusinesses: LocalBusiness[] = (businessesJson as any[]).map((b) => ({
+const allBusinesses: LocalBusiness[] = (businessesJson as any[])
+  .filter(isRestorationBusiness)
+  .map((b) => ({
   ...b,
   // Ensure new fields have defaults for backwards compat with old JSON
   googleId: b.googleId ?? null,
@@ -819,4 +837,25 @@ export function getTopBusinesses(
   return sortBusinesses([...allBusinesses], "rating")
     .slice(0, limit)
     .map(attachCategory);
+}
+
+/** Top cities across all states by business count (for home page links) */
+export function getTopCities(limit = 30): Array<{
+  name: string;
+  slug: string;
+  count: number;
+  stateCode: string;
+  stateName: string;
+  stateSlug: string;
+}> {
+  const states = getStatesWithBusinesses();
+  const cities = states.flatMap((state) =>
+    getCitiesWithBusinessesForState(state.code).map((city) => ({
+      ...city,
+      stateCode: state.code,
+      stateName: state.name,
+      stateSlug: state.slug,
+    }))
+  );
+  return cities.sort((a, b) => b.count - a.count).slice(0, limit);
 }

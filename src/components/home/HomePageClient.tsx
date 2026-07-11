@@ -48,10 +48,20 @@ const iconMap: Record<string, LucideIcon> = {
   Building,
 };
 
+interface TopCity {
+  name: string;
+  slug: string;
+  count: number;
+  stateCode: string;
+  stateName: string;
+  stateSlug: string;
+}
+
 interface HomePageClientProps {
   featuredBusinesses: BusinessData[];
   categories: Category[];
   recentBusinesses: BusinessData[];
+  topCities?: TopCity[];
 }
 
 const topRegions = [
@@ -85,6 +95,7 @@ export function HomePageClient({
   featuredBusinesses,
   categories,
   recentBusinesses,
+  topCities = [],
 }: HomePageClientProps) {
   // Use featured businesses if available, otherwise use recent
   const displayBusinesses = featuredBusinesses.length > 0 ? featuredBusinesses : recentBusinesses.slice(0, 4);
@@ -420,6 +431,42 @@ export function HomePageClient({
           </motion.div>
         </div>
       </section>
+
+      {/* Top Cities — direct paths to the city hub pages */}
+      {topCities.length > 0 && (
+        <section className="py-16 md:py-24 bg-card/30">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Top Cities for Water Damage Restoration</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Compare rated restoration companies in the most-served cities in our directory
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {topCities.map((city) => (
+                <Link
+                  key={`${city.stateSlug}-${city.slug}`}
+                  href={`/states/${city.stateSlug}/${city.slug}`}
+                  className="group p-4 rounded-xl bg-card border border-border/50 hover:border-primary/30 transition-all"
+                >
+                  <div className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {city.name}, {city.stateCode}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {city.count} {city.count === 1 ? "company" : "companies"}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-card/50 to-background">

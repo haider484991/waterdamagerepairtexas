@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: "Post Not Found | Water Damage Repair USA",
+      title: "Post Not Found",
     };
   }
 
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const ogImage = post.ogImageUrl || post.coverImageUrl || `${SITE_URL}/water-damage-logo.png`;
 
   return {
-    title: `${title} | Water Damage Repair USA`,
+    title: `${title}`,
     description,
     alternates: {
       canonical: canonicalUrl,

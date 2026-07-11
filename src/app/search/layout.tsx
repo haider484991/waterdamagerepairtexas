@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "Search Water Damage Services — Find Restoration Professionals | Water Damage Repair USA",
+  title: "Search Water Damage Services — Find Restoration Professionals",
   description:
     "Search for water damage restoration, flood cleanup, mold remediation, and emergency water services across the USA. Filter by state, category, and rating.",
   keywords: [

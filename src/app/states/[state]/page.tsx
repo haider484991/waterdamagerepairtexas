@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   const canonicalUrl = `${SITE_URL}/states/${region.slug}`;
 
   return {
-    title: `Water Damage Restoration in ${region.name} – Emergency Services | Water Damage Repair USA`,
+    title: `Water Damage Restoration in ${region.name} – Emergency Services`,
     description: `Find water damage restoration, flood cleanup, mold remediation, and emergency water services in ${region.name}. 24/7 emergency response available.`,
     keywords: [
       `water damage ${region.name}`,

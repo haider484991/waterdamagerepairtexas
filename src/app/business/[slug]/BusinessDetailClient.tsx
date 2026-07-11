@@ -48,6 +48,14 @@ import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
+// Matches the slug format used by /states/[state]/[city] routes
+function slugifyLocation(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 interface Business {
   id: string;
   name: string;
@@ -151,6 +159,7 @@ export function BusinessDetailClient({
   const [isFavorited, setIsFavorited] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
 
   // Reviews state
   const [reviewsPage, setReviewsPage] = useState(1);
@@ -933,6 +942,34 @@ export function BusinessDetailClient({
 
                 <Separator />
 
+                {/* 24/7 helpline — primary call path, shown before the business's own contact info */}
+                <div className="relative overflow-hidden rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-extrabold text-sm text-foreground leading-none">
+                      Water Damage Repair<span className="text-primary"> USA</span>
+                    </span>
+                    <span className="text-[10px] text-blue-500 bg-blue-200/60 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
+                      Ad
+                    </span>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 border border-blue-200/60 mb-3">
+                    <p className="text-foreground font-semibold text-sm mb-0.5">Talk to a water damage pro now</p>
+                    <p className="text-muted-foreground text-xs">
+                      Free 24/7 helpline — we connect you with an available, vetted local pro serving {business.city} in minutes.
+                    </p>
+                  </div>
+                  <a
+                    href="tel:+18667759098"
+                    className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all text-sm shadow-md shadow-blue-600/20"
+                  >
+                    <Phone className="w-4 h-4" />
+                    (866) 775-9098
+                  </a>
+                  <p className="text-muted-foreground text-[11px] text-center mt-2">Free &bull; 24/7 &bull; No obligation</p>
+                </div>
+
+                <Separator />
+
                 {/* Address */}
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
@@ -944,16 +981,26 @@ export function BusinessDetailClient({
                   </div>
                 </div>
 
-                {/* Phone */}
-                {business.phone && (
-                  <a
-                    href={`tel:${business.phone}`}
-                    className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
-                  >
-                    <Phone className="w-5 h-5 text-muted-foreground" />
-                    <span>{business.phone}</span>
-                  </a>
-                )}
+                {/* Phone — revealed on click so the 24/7 helpline stays the primary call path */}
+                {business.phone &&
+                  (showPhone ? (
+                    <a
+                      href={`tel:${business.phone}`}
+                      className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+                    >
+                      <Phone className="w-5 h-5 text-muted-foreground" />
+                      <span>{business.phone}</span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowPhone(true)}
+                      className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+                    >
+                      <Phone className="w-5 h-5 text-muted-foreground" />
+                      <span className="underline underline-offset-2">Show phone number</span>
+                    </button>
+                  ))}
 
                 {/* Website */}
                 {business.website && (
@@ -1000,37 +1047,6 @@ export function BusinessDetailClient({
                   </>
                 )}
 
-                {/* Website brand ad — clearly separated from business info */}
-                <div className="relative overflow-hidden rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
-                  {/* Ad label bar */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-1.5">
-                      <span className="font-extrabold text-sm text-foreground leading-none">
-                        Water Damage Repair<span className="text-primary"> USA</span>
-                      </span>
-                    </div>
-                    <span className="text-[10px] text-blue-500 bg-blue-200/60 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
-                      Ad
-                    </span>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-3 border border-blue-200/60 mb-3">
-                    <p className="text-foreground font-semibold text-sm mb-0.5">Need help now? Call our helpline.</p>
-                    <p className="text-muted-foreground text-xs">This is <span className="font-semibold">our website&apos;s number</span>, not the business above. We match you with trusted local pros 24/7.</p>
-                  </div>
-
-                  <a
-                    href="tel:+18667759098"
-                    className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all text-sm shadow-md shadow-blue-600/20"
-                  >
-                    <Phone className="w-4 h-4" />
-                    (866) 775-9098
-                  </a>
-                  <p className="text-muted-foreground text-[11px] text-center mt-2">Free &bull; 24/7 &bull; No obligation</p>
-                </div>
-
-                <Separator />
-
                 {/* Actions */}
                 <div className="space-y-2 sm:space-y-3">
                   <Button onClick={getDirections} className="w-full gap-2 text-sm sm:text-base h-9 sm:h-10">
@@ -1045,13 +1061,19 @@ export function BusinessDetailClient({
                       </a>
                     </Button>
                   )}
-                  {business.phone && (
-                    <Button variant="outline" asChild className="w-full gap-2 text-sm sm:text-base h-9 sm:h-10">
-                      <a href={`tel:${business.phone}`}>
-                        <Phone className="w-4 h-4" />
-                        Call Now
-                      </a>
-                    </Button>
+                  <Button variant="outline" asChild className="w-full gap-2 text-sm sm:text-base h-9 sm:h-10">
+                    <a href="tel:+18667759098">
+                      <Phone className="w-4 h-4" />
+                      Call 24/7 Helpline
+                    </a>
+                  </Button>
+                  {business.city && business.state && business.state.length > 2 && (
+                    <Link
+                      href={`/states/${slugifyLocation(business.state)}/${slugifyLocation(business.city)}`}
+                      className="block text-center text-sm text-primary hover:underline pt-1"
+                    >
+                      More water damage pros in {business.city} →
+                    </Link>
                   )}
                 </div>
 

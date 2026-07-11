@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   if (!data) {
     return {
-      title: "Category Not Found | Water Damage Repair USA",
+      title: "Category Not Found",
       description: "The category you are looking for could not be found.",
     };
   }

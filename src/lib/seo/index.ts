@@ -122,8 +122,8 @@ export function generateBusinessMetadata(
   const reviews = reviewCount || business.reviewCount || 0;
   const priceRange = business.priceLevel ? "$".repeat(business.priceLevel) : "";
 
-  // SEO-optimized title with location
-  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state || "USA"} | Water Damage Repair`;
+  // SEO-optimized title with location (root layout template appends the brand)
+  const title = `${business.name} - ${categoryName} in ${business.city}, ${business.state || "USA"}`;
 
   // Generate dynamic description using content generator
   const dynamicDescription = generateBusinessDescription(business, category);

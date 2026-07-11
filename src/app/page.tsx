@@ -6,13 +6,14 @@ import {
   getRecentBusinesses,
   getCategories,
   getStats,
+  getTopCities,
 } from "@/lib/local-data";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "Water Damage Repair USA — Find Trusted Restoration Services Nationwide",
+  title: { absolute: "Water Damage Repair USA — Find Trusted Restoration Services Nationwide" },
   description:
     "Find the best water damage restoration, flood cleanup, mold remediation, and emergency water services across the USA. 24/7 emergency response with free estimates from certified professionals.",
   keywords: [
@@ -44,11 +45,13 @@ async function getHomePageData() {
     const recentBusinesses = getRecentBusinesses(8);
     const categories = getCategories();
     const stats = getStats();
+    const topCities = getTopCities(24);
 
     return {
       featuredBusinesses,
       recentBusinesses,
       categories,
+      topCities,
       stats: {
         totalBusinesses: stats.totalBusinesses,
         totalReviews: stats.totalReviews,
@@ -61,6 +64,7 @@ async function getHomePageData() {
       featuredBusinesses: [],
       recentBusinesses: [],
       categories: [],
+      topCities: [],
       stats: {
         totalBusinesses: 0,
         totalReviews: 0,
@@ -79,6 +83,7 @@ export default async function HomePage() {
         featuredBusinesses={data.featuredBusinesses}
         categories={data.categories}
         recentBusinesses={data.recentBusinesses}
+        topCities={data.topCities}
       />
     </Suspense>
   );

@@ -6,7 +6,7 @@ import { db, businesses } from "@/lib/db";
 import { sql } from "drizzle-orm";
 
 export const metadata: Metadata = {
-  title: "Service Areas – Find Water Damage Restoration by Location | Water Damage Repair USA",
+  title: "Service Areas – Find Water Damage Restoration by Location",
   description:
     "Browse water damage restoration professionals by service area. Find emergency restoration, flood cleanup, and mold remediation services in your neighborhood.",
 };

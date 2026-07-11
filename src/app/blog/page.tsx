@@ -20,7 +20,7 @@ interface BlogPageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Water Damage Blog | Tips, Guides & News | Water Damage Repair USA",
+    title: "Water Damage Blog | Tips, Guides & News",
     description: "Explore our water damage blog for expert restoration tips, flood cleanup guides, mold prevention advice, and the latest industry news. Everything you need to protect your property.",
     alternates: {
       canonical: `${SITE_URL}/blog`,
@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Water Damage Blog | Water Damage Repair USA",
+      title: "Water Damage Blog",
       description: "Expert tips, restoration guides, and the latest water damage news for property owners.",
     },
   };

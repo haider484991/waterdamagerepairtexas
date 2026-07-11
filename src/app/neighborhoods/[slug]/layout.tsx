@@ -12,7 +12,7 @@ export async function generateMetadata({
     .join(" ");
 
   return {
-    title: `${neighborhoodName} Water Damage Restoration Services | Water Damage Repair USA`,
+    title: `${neighborhoodName} Water Damage Restoration Services`,
     description: `Find trusted water damage restoration professionals in ${neighborhoodName}. Emergency flood cleanup, water extraction, and mold remediation services available 24/7.`,
   };
 }

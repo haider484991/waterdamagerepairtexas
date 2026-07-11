@@ -55,10 +55,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.85,
     }));
 
-    // Only cities with actual businesses
+    // Only cities with enough businesses to make a substantial page —
+    // thinner city pages are noindexed and stay out of the sitemap
     const cityPages: MetadataRoute.Sitemap = statesWithBiz.flatMap((state) => {
       const cities = getCitiesWithBusinessesForState(state.code);
-      return cities.map((city) => ({
+      return cities.filter((city) => city.count >= 3).map((city) => ({
         url: `${SITE_URL}/states/${state.slug}/${city.slug}`,
         lastModified: now,
         changeFrequency: "weekly" as const,
