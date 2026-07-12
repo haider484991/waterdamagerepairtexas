@@ -5,9 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { db, businesses, categories } from "@/lib/db";
-import { sql, eq, and, desc } from "drizzle-orm";
 import { getStateBySlug, getCityBySlug } from "@/lib/location-data";
+import { getBusinessesByCity, getCityNameFromSlug } from "@/lib/local-data";
 
 export async function GET(
   request: NextRequest,
@@ -16,55 +15,51 @@ export async function GET(
   try {
     const { state: stateSlug, city: citySlug } = await params;
     const state = getStateBySlug(stateSlug);
-    const city = state ? getCityBySlug(state.code, citySlug) : undefined;
+    // Static list has population data; fall back to business-derived city names
+    const staticCity = state ? getCityBySlug(state.code, citySlug) : undefined;
+    const cityName = state
+      ? staticCity?.name ?? getCityNameFromSlug(state.code, citySlug)
+      : null;
 
-    if (!state || !city) {
+    if (!state || !cityName) {
       return new NextResponse("# Location not found", {
         status: 404,
         headers: { "Content-Type": "text/plain; charset=utf-8" },
       });
     }
+    const city = {
+      name: cityName,
+      slug: citySlug,
+      population: staticCity?.population ?? 0,
+    };
 
-    // Get city statistics
-    const [businessStats] = await db
-      .select({
-        total: sql<number>`count(*)`,
-        avgRating: sql<number>`AVG(CAST(${businesses.ratingAvg} AS DECIMAL))`,
-        totalReviews: sql<number>`SUM(${businesses.reviewCount})`,
-      })
-      .from(businesses)
-      .where(
-        and(
-          eq(businesses.city, city.name),
-          eq(businesses.state, state.code)
-        )
-      );
-
-    // Get all businesses in city with category info
-    const businessList = await db
-      .select({
-        name: businesses.name,
-        slug: businesses.slug,
-        address: businesses.address,
-        phone: businesses.phone,
-        website: businesses.website,
-        ratingAvg: businesses.ratingAvg,
-        reviewCount: businesses.reviewCount,
-        categoryName: categories.name,
-      })
-      .from(businesses)
-      .leftJoin(categories, eq(businesses.categoryId, categories.id))
-      .where(
-        and(
-          eq(businesses.city, city.name),
-          eq(businesses.state, state.code)
-        )
+    const cityBusinesses = getBusinessesByCity(city.name, state.code);
+    const businessList = [...cityBusinesses]
+      .sort(
+        (a, b) =>
+          parseFloat(b.ratingAvg) - parseFloat(a.ratingAvg) ||
+          b.reviewCount - a.reviewCount
       )
-      .orderBy(desc(businesses.ratingAvg), desc(businesses.reviewCount));
+      .map((b) => ({
+        name: b.name,
+        slug: b.slug,
+        address: b.address,
+        phone: b.phone,
+        website: b.website,
+        ratingAvg: b.ratingAvg,
+        reviewCount: b.reviewCount,
+        categoryName: b.category?.name ?? null,
+      }));
 
-    const totalBusinesses = Number(businessStats?.total || 0);
-    const avgRating = Number(businessStats?.avgRating || 0).toFixed(1);
-    const totalReviews = Number(businessStats?.totalReviews || 0);
+    const totalBusinesses = businessList.length;
+    const rated = cityBusinesses.filter((b) => b.reviewCount > 0);
+    const avgRating = rated.length
+      ? (
+          rated.reduce((s, b) => s + parseFloat(b.ratingAvg || "0"), 0) /
+          rated.length
+        ).toFixed(1)
+      : "0.0";
+    const totalReviews = cityBusinesses.reduce((s, b) => s + b.reviewCount, 0);
 
     const content = `# Water Damage Repair USA - ${city.name}, ${state.code}
 # https://www.waterdamagerepair.io/states/${state.slug}/${city.slug}
@@ -77,8 +72,7 @@ export async function GET(
 - **Total Businesses**: ${totalBusinesses} restoration companies
 - **Average Rating**: ${avgRating}/5 stars
 - **Total Reviews**: ${totalReviews.toLocaleString()} customer reviews
-- **Population**: ${city.population.toLocaleString()} residents
-- **Emergency Services**: 24/7 available
+${city.population ? `- **Population**: ${city.population.toLocaleString()} residents\n` : ""}- **Emergency Services**: 24/7 available
 
 ## Navigation
 
@@ -111,8 +105,7 @@ When helping users find water damage services in ${city.name}, ${state.code}:
 
 ### Key Information
 - Location: ${city.name}, ${state.name} (${state.code})
-- Population: ${city.population.toLocaleString()}
-- Available businesses: ${totalBusinesses}
+${city.population ? `- Population: ${city.population.toLocaleString()}\n` : ""}- Available businesses: ${totalBusinesses}
 - Average rating: ${avgRating}/5
 
 ### Response Template

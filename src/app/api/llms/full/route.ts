@@ -6,62 +6,42 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { db, businesses, categories, blogPosts } from "@/lib/db";
-import { sql, eq, desc } from "drizzle-orm";
-import { getAllStates, getCitiesForState } from "@/lib/location-data";
+import {
+  getStats,
+  getCategories,
+  getTopBusinesses,
+  getStatesWithBusinesses,
+  getCitiesWithBusinessesForState,
+} from "@/lib/local-data";
 
 export async function GET(request: NextRequest) {
   try {
-    // Get comprehensive statistics
-    const [businessStats] = await db
-      .select({
-        total: sql<number>`count(*)`,
-        avgRating: sql<number>`AVG(CAST(${businesses.ratingAvg} AS DECIMAL))`,
-        totalReviews: sql<number>`SUM(${businesses.reviewCount})`,
-      })
-      .from(businesses);
+    // Comprehensive statistics from the static dataset
+    const stats = getStats();
+    const categoryList = getCategories();
 
-    const categoryList = await db.select().from(categories).orderBy(categories.displayOrder);
+    // Blog is not populated yet — template handles the empty list
+    const recentPosts: Array<{ title: string; slug: string; excerpt: string | null }> = [];
 
-    // Get recent blog posts
-    const recentPosts = await db
-      .select({
-        title: blogPosts.title,
-        slug: blogPosts.slug,
-        excerpt: blogPosts.excerpt,
-      })
-      .from(blogPosts)
-      .where(eq(blogPosts.status, "published"))
-      .orderBy(desc(blogPosts.publishedAt))
-      .limit(10);
+    const topBusinesses = getTopBusinesses(20).map((b) => ({
+      name: b.name,
+      slug: b.slug,
+      city: b.city,
+      state: b.state,
+      ratingAvg: b.ratingAvg,
+      reviewCount: b.reviewCount,
+    }));
 
-    // Get top businesses by rating
-    const topBusinesses = await db
-      .select({
-        name: businesses.name,
-        slug: businesses.slug,
-        city: businesses.city,
-        state: businesses.state,
-        ratingAvg: businesses.ratingAvg,
-        reviewCount: businesses.reviewCount,
-      })
-      .from(businesses)
-      .orderBy(desc(businesses.ratingAvg), desc(businesses.reviewCount))
-      .limit(20);
+    // Only states/cities that actually have listed businesses
+    const states = getStatesWithBusinesses();
+    const totalBusinesses = stats.totalBusinesses;
+    const avgRating = stats.avgRating;
+    const totalReviews = stats.totalReviews;
 
-    const states = getAllStates();
-    const totalBusinesses = Number(businessStats?.total || 0);
-    const avgRating = Number(businessStats?.avgRating || 0).toFixed(1);
-    const totalReviews = Number(businessStats?.totalReviews || 0);
-
-    // Build state/city structure
-    const stateStructure = states.map(state => {
-      const cities = getCitiesForState(state.code);
-      return {
-        ...state,
-        cities: cities.slice(0, 10), // Top 10 cities per state
-      };
-    });
+    const stateStructure = states.map((state) => ({
+      ...state,
+      cities: getCitiesWithBusinessesForState(state.code).slice(0, 10),
+    }));
 
     const content = `# Water Damage Repair USA - Comprehensive Documentation
 # https://www.waterdamagerepair.io

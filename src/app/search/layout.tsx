@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/search`,
   },
+  // Internal search results should not be indexed (Google already reports
+  // this URL as "Crawled - currently not indexed"); keep links followable.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Search Water Damage Services — Water Damage Repair USA",
     description:

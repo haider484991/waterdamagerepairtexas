@@ -5,9 +5,12 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { db, businesses, categories } from "@/lib/db";
-import { sql, eq, and, desc } from "drizzle-orm";
-import { getStateBySlug, getCitiesForState } from "@/lib/location-data";
+import { getStateBySlug } from "@/lib/location-data";
+import {
+  getBusinessesByState,
+  getStateStats,
+  getCitiesWithBusinessesForState,
+} from "@/lib/local-data";
 
 export async function GET(
   request: NextRequest,
@@ -25,51 +28,41 @@ export async function GET(
     }
 
     // Get state statistics
-    const [businessStats] = await db
-      .select({
-        total: sql<number>`count(*)`,
-        avgRating: sql<number>`AVG(CAST(${businesses.ratingAvg} AS DECIMAL))`,
-        totalReviews: sql<number>`SUM(${businesses.reviewCount})`,
-      })
-      .from(businesses)
-      .where(eq(businesses.state, state.code));
+    const stateBusinesses = getBusinessesByState(state.code);
+    const stateStats = getStateStats(state.code);
 
-    // Get categories with counts for this state
-    const categoriesWithCounts = await db
-      .select({
-        name: categories.name,
-        slug: categories.slug,
-        count: sql<number>`count(${businesses.id})`,
-      })
-      .from(categories)
-      .leftJoin(
-        businesses,
-        and(
-          eq(businesses.categoryId, categories.id),
-          eq(businesses.state, state.code)
-        )
+    const categoriesWithCounts = stateStats.categories.map((c) => ({
+      name: c.category.name,
+      slug: c.category.slug,
+      count: c.count,
+    }));
+
+    const topBusinesses = [...stateBusinesses]
+      .sort(
+        (a, b) =>
+          parseFloat(b.ratingAvg) - parseFloat(a.ratingAvg) ||
+          b.reviewCount - a.reviewCount
       )
-      .groupBy(categories.id, categories.name, categories.slug)
-      .orderBy(desc(sql`count(${businesses.id})`));
+      .slice(0, 10)
+      .map((b) => ({
+        name: b.name,
+        slug: b.slug,
+        city: b.city,
+        ratingAvg: b.ratingAvg,
+        reviewCount: b.reviewCount,
+      }));
 
-    // Get top businesses in state
-    const topBusinesses = await db
-      .select({
-        name: businesses.name,
-        slug: businesses.slug,
-        city: businesses.city,
-        ratingAvg: businesses.ratingAvg,
-        reviewCount: businesses.reviewCount,
-      })
-      .from(businesses)
-      .where(eq(businesses.state, state.code))
-      .orderBy(desc(businesses.ratingAvg), desc(businesses.reviewCount))
-      .limit(10);
-
-    const cities = getCitiesForState(state.code);
-    const totalBusinesses = Number(businessStats?.total || 0);
-    const avgRating = Number(businessStats?.avgRating || 0).toFixed(1);
-    const totalReviews = Number(businessStats?.totalReviews || 0);
+    // Only cities that actually have listed businesses
+    const cities = getCitiesWithBusinessesForState(state.code);
+    const totalBusinesses = stateBusinesses.length;
+    const rated = stateBusinesses.filter((b) => b.reviewCount > 0);
+    const avgRating = rated.length
+      ? (
+          rated.reduce((s, b) => s + parseFloat(b.ratingAvg || "0"), 0) /
+          rated.length
+        ).toFixed(1)
+      : "0.0";
+    const totalReviews = stateBusinesses.reduce((s, b) => s + b.reviewCount, 0);
 
     const content = `# Water Damage Repair USA - ${state.name}
 # https://www.waterdamagerepair.io/states/${state.slug}
