@@ -69,10 +69,33 @@ function getBusinessData(slug: string) {
       priceRange: business.priceRange || null,
     };
 
+    // Map stored Google reviews into the shape the detail client renders,
+    // so review text is server-rendered (unique content + SEO) instead of
+    // relying on a client-side fetch that never populated.
+    const reviews = (business.reviewsData || [])
+      .filter((r) => r && (r.text || r.authorName))
+      .map((r, i) => ({
+        id: r.reviewId || `rv-${business.id}-${i}`,
+        rating: typeof r.rating === "number" ? r.rating : 0,
+        title: null,
+        content: r.text || null,
+        photos: Array.isArray(r.imageUrls) ? r.imageUrls : [],
+        helpfulCount: r.likes || 0,
+        createdAt: r.datetimeUtc || "",
+        relativeTime: r.timestamp || undefined,
+        source: "google" as const,
+        user: {
+          id: r.authorId || `author-${business.id}-${i}`,
+          name: r.authorName || "Google User",
+          avatar: r.authorImage || null,
+          profileUrl: r.authorLink || null,
+        },
+      }));
+
     return {
       business: hybridBusiness,
-      reviews: [],
-      reviewsSource: "none" as const,
+      reviews,
+      reviewsSource: (reviews.length ? "google" : "none") as "google" | "none",
       totalReviewsOnGoogle: reviewCount,
       similarBusinesses: similarBusinesses.map((b) => ({
         id: b.id,

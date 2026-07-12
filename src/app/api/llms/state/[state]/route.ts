@@ -10,6 +10,7 @@ import {
   getBusinessesByState,
   getStateStats,
   getCitiesWithBusinessesForState,
+  getStateBySlugData,
 } from "@/lib/local-data";
 
 export async function GET(
@@ -18,7 +19,7 @@ export async function GET(
 ) {
   try {
     const { state: stateSlug } = await params;
-    const state = getStateBySlug(stateSlug);
+    const state = getStateBySlug(stateSlug) ?? getStateBySlugData(stateSlug);
 
     if (!state) {
       return new NextResponse("# State not found", {

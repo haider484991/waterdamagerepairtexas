@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getStateBySlug, getCityBySlug } from "@/lib/location-data";
-import { getBusinessesByCity, getCityNameFromSlug } from "@/lib/local-data";
+import { getBusinessesByCity, getCityNameFromSlug, getStateBySlugData } from "@/lib/local-data";
 
 export async function GET(
   request: NextRequest,
@@ -14,7 +14,7 @@ export async function GET(
 ) {
   try {
     const { state: stateSlug, city: citySlug } = await params;
-    const state = getStateBySlug(stateSlug);
+    const state = getStateBySlug(stateSlug) ?? getStateBySlugData(stateSlug);
     // Static list has population data; fall back to business-derived city names
     const staticCity = state ? getCityBySlug(state.code, citySlug) : undefined;
     const cityName = state

@@ -6,6 +6,7 @@ import {
   getBusinessesByCity,
   getCityNameFromSlug,
   getCitiesWithBusinessesForState,
+  getStateBySlugData,
 } from "@/lib/local-data";
 import { BusinessCard } from "@/components/business";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -27,7 +28,7 @@ const INDEX_MIN_BUSINESSES = 3;
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string; city: string }> }): Promise<Metadata> {
   const { state: stateSlug, city: citySlug } = await params;
-  const region = getStateBySlug(stateSlug);
+  const region = getStateBySlug(stateSlug) ?? getStateBySlugData(stateSlug);
   const cityName = region ? getCityNameFromSlug(region.code, citySlug) : null;
 
   if (!region || !cityName) {
@@ -72,7 +73,7 @@ function is24x7(hours: Record<string, string> | null | undefined): boolean {
 
 export default async function CityPage({ params }: { params: Promise<{ state: string; city: string }> }) {
   const { state: stateSlug, city: citySlug } = await params;
-  const region = getStateBySlug(stateSlug);
+  const region = getStateBySlug(stateSlug) ?? getStateBySlugData(stateSlug);
   const cityName = region ? getCityNameFromSlug(region.code, citySlug) : null;
 
   if (!region || !cityName) {

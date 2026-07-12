@@ -830,6 +830,19 @@ export function getStatesWithBusinesses(): Array<{
     .sort((a, b) => b.businessCount - a.businessCount);
 }
 
+/**
+ * Resolve a state slug against the states that actually have businesses.
+ * The static location-data list only covers ~25 states, but the dataset
+ * (and the sitemap) spans all states with listings — use this so every
+ * indexed city/state URL resolves instead of 404-ing.
+ */
+export function getStateBySlugData(
+  slug: string
+): { code: string; name: string; slug: string } | null {
+  const match = getStatesWithBusinesses().find((s) => s.slug === slug);
+  return match ? { code: match.code, name: match.name, slug: match.slug } : null;
+}
+
 /** Get top businesses across all data (for llms.txt etc.) */
 export function getTopBusinesses(
   limit = 20
