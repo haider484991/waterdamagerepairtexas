@@ -30,6 +30,13 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="google-site-verification" content="Ucsy_pX1VcrKew6hbDNoC4eeLF8TzSMcZTpJGFSP3-M" />
         <meta name="msvalidate.01" content="C8FD9198C51EC8508FDB432351CAA90E" />
+        {/* Ahrefs Web Analytics — plain <script> in <head> so it is server-rendered
+            into the raw HTML exactly as Ahrefs' installer/verifier expects. */}
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="bxE1ThqvkFH8Sdbzd6zfIQ"
+          async
+        />
         {/* llms.txt for AI assistants */}
         <link rel="llms-txt" href="/llms.txt" />
         <link rel="llms-full-txt" href="/api/llms/full" />
@@ -59,11 +66,6 @@ export default function RootLayout({
           gtag('config', 'G-DTHG4XX0GK');
         `}
       </Script>
-      <Script
-        src="https://analytics.ahrefs.com/analytics.js"
-        data-key="DWNLXGPmrWIQQPPXr+HyLQ"
-        async
-      />
       <body className="min-h-screen flex flex-col">
         <SessionProvider>
           <EmergencyPhoneBanner />
