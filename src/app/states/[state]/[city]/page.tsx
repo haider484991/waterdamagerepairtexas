@@ -7,7 +7,11 @@ import {
   getCityNameFromSlug,
   getCitiesWithBusinessesForState,
   getStateBySlugData,
+  getStatesWithBusinesses,
 } from "@/lib/local-data";
+import { CallLink } from "@/components/CallLink";
+import { HELPLINE_DISPLAY } from "@/lib/call-tracking";
+import { toCardBusiness } from "@/lib/business-utils";
 import { BusinessCard } from "@/components/business";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -25,6 +29,26 @@ const SITE_URL = getSiteUrl();
 // City pages need enough real data to stand on their own in search;
 // thinner ones stay reachable but noindexed until they fill in.
 const INDEX_MIN_BUSINESSES = 3;
+
+/**
+ * Pre-render every indexable city page at build time.
+ *
+ * Without this, Next served city pages dynamically on every request, so Vercel
+ * returned `Cache-Control: private, no-cache, no-store` with a cache MISS —
+ * every visitor and every Googlebot hit re-rendered a page whose data only
+ * changes when we re-run a scrape. TTFB was 0.67s.
+ */
+export async function generateStaticParams() {
+  return getStatesWithBusinesses().flatMap((state) =>
+    getCitiesWithBusinessesForState(state.code)
+      .filter((city) => city.count >= INDEX_MIN_BUSINESSES)
+      .map((city) => ({ state: state.slug, city: city.slug }))
+  );
+}
+
+// Cities below the threshold still render on demand, then cache.
+export const dynamicParams = true;
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string; city: string }> }): Promise<Metadata> {
   const { state: stateSlug, city: citySlug } = await params;
@@ -108,6 +132,13 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
         b.reviewCount - a.reviewCount
     )
     .slice(0, 5);
+
+  // Only the first slice renders as image cards; the rest become a text list
+  // further down. Houston has 92 listings and every card carried an eagerly
+  // loaded Google-hosted photo.
+  const CARD_LIMIT = 24;
+  const featuredBusinesses = enrichedBusinesses.slice(0, CARD_LIMIT).map(toCardBusiness);
+  const remainingBusinesses = enrichedBusinesses.slice(CARD_LIMIT);
 
   const nearbyCities = getCitiesWithBusinessesForState(region.code)
     .filter((c) => c.slug !== citySlug)
@@ -213,6 +244,39 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
           </div>
         </section>
 
+        {/* Primary in-page call path. City pages previously carried no CTA of
+            their own — the only helpline links came from the shared header,
+            footer and floating button. */}
+        <section className="pb-4">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 dark:border-blue-900 dark:from-blue-950 dark:to-blue-900/40 p-5 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                <div className="flex-1">
+                  <p className="font-bold text-lg text-foreground mb-1">
+                    Water in your home right now?
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Call the free 24/7 helpline and we&apos;ll connect you with an available,
+                    vetted pro serving {cityName} in minutes. Mould can start within 24&ndash;48 hours,
+                    so same-day drying matters.
+                  </p>
+                </div>
+                <CallLink
+                  placement="city_hero"
+                  context={{ city: cityName, state: region.code }}
+                  className="flex items-center justify-center gap-2 shrink-0 px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md shadow-blue-600/20"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span className="text-lg">{HELPLINE_DISPLAY}</span>
+                </CallLink>
+              </div>
+              <p className="text-[11px] text-muted-foreground mt-3">
+                Free &bull; 24/7 &bull; No obligation &bull; Referral line, we may be paid by the pro you&apos;re matched with
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Top rated — quick decision shortlist */}
         {topRated.length >= 3 && (
           <section className="py-12">
@@ -269,20 +333,40 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
               Water Damage Services in {cityName}
             </h2>
 
-            {enrichedBusinesses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {enrichedBusinesses.map((business) => (
-                  <BusinessCard key={business.id} business={business} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-lg text-muted-foreground mb-4">
-                  No water damage restoration services found in {cityName} yet.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Check back soon or explore nearby cities for water damage services.
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredBusinesses.map((business) => (
+                <BusinessCard key={business.id} business={business} />
+              ))}
+            </div>
+
+            {/* Remaining companies as a compact list. Big metros carry 90+
+                listings; rendering them all as image cards pushed the Houston
+                page past 1.4 MB. This keeps every internal link for crawling
+                while dropping the images. */}
+            {remainingBusinesses.length > 0 && (
+              <div className="mt-10">
+                <h3 className="text-xl font-bold mb-4">
+                  More water damage companies in {cityName}
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1">
+                  {remainingBusinesses.map((b) => (
+                    <li key={b.id} className="py-2 border-b border-border/60">
+                      <Link
+                        href={`/business/${b.slug}`}
+                        className="flex items-baseline justify-between gap-3 group"
+                      >
+                        <span className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                          {b.name}
+                        </span>
+                        {b.reviewCount > 0 && (
+                          <span className="text-sm text-muted-foreground whitespace-nowrap tabular-nums">
+                            {parseFloat(b.ratingAvg).toFixed(1)}&#9733; ({b.reviewCount})
+                          </span>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>
@@ -325,6 +409,14 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
                 </tbody>
               </table>
             </div>
+            <p className="mt-4">
+              <Link
+                href="/water-damage-restoration-cost"
+                className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+              >
+                Estimate your own job with the cost calculator &rarr;
+              </Link>
+            </p>
             <p className="text-sm text-muted-foreground mt-4">
               <Phone className="w-3.5 h-3.5 inline mr-1" />
               Homeowners insurance usually covers sudden events (burst pipes, appliance failures) but not gradual leaks or external flooding. Ask each company about free inspections and direct insurance billing.

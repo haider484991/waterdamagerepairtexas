@@ -275,10 +275,14 @@ export function generateLocalBusinessSchema(business: Business, _category?: Cate
     };
   }
 
-  // Add phone number if available
-  if (business.phone) {
-    schema.telephone = business.phone;
-  }
+  // Deliberately NOT emitting `telephone`.
+  //
+  // We are a directory listing someone else's business. Publishing their number
+  // in structured data let Google and AI Overviews answer "what is X's phone
+  // number?" straight from the SERP, so the visitor never reached us — and it
+  // contradicted the visible page, which gates the number behind a click.
+  // Structured data is supposed to represent visible content, so omitting it is
+  // both the correct policy call and the one that keeps the visit.
 
   // Add opening hours if available
   if (business.hours && Object.keys(business.hours).length > 0) {

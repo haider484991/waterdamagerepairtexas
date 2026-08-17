@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Facebook, Twitter, Instagram, Phone } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
+import { CallLink } from "@/components/CallLink";
+import { HELPLINE_DISPLAY } from "@/lib/call-tracking";
 
 const footerLinks = {
   categories: [
@@ -13,6 +15,10 @@ const footerLinks = {
   locations: [
     { href: "/states", label: "Browse by Region" },
     { href: "/categories", label: "Browse by Service" },
+  ],
+  guides: [
+    { href: "/water-damage-restoration-cost", label: "Cost Calculator" },
+    { href: "/does-homeowners-insurance-cover-water-damage", label: "Insurance Guide" },
   ],
   company: [
     { href: "/", label: "Home" },
@@ -43,15 +49,15 @@ export function Footer() {
               Find trusted water damage restoration services across the USA. The most comprehensive directory of water damage repair, flood cleanup, mold remediation, and emergency restoration services nationwide.
             </p>
             <div className="mb-6">
-              <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-1.5">Our Website&apos;s Helpline</p>
-              <a
-                href="tel:+18667759098"
+              <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-1.5">Free 24/7 Helpline</p>
+              <CallLink
+                placement="footer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors group"
               >
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="font-bold text-primary text-lg group-hover:underline">(866) 775-9098</span>
-              </a>
-              <p className="text-xs text-muted-foreground mt-1.5">Call us and we&apos;ll match you with a trusted local restoration company.</p>
+                <span className="font-bold text-primary text-lg group-hover:underline">{HELPLINE_DISPLAY}</span>
+              </CallLink>
+              <p className="text-xs text-muted-foreground mt-1.5">Call and we&apos;ll match you with a trusted local restoration company. Referral line &mdash; we may be paid by the pro you&apos;re matched with.</p>
             </div>
             <div className="flex items-center gap-4">
               <a
@@ -98,7 +104,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Browse</h3>
             <ul className="space-y-3">
-              {footerLinks.locations.map((link) => (
+              {[...footerLinks.locations, ...footerLinks.guides].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

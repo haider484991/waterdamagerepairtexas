@@ -13,11 +13,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
+import { CallLink } from "@/components/CallLink";
+import { HELPLINE_DISPLAY } from "@/lib/call-tracking";
 import { useSession, signOut } from "next-auth/react";
 import { Logo } from "@/components/layout/Logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/water-damage-restoration-cost", label: "Cost Calculator" },
+  { href: "/does-homeowners-insurance-cover-water-damage", label: "Insurance" },
   { href: "/categories", label: "Categories" },
   { href: "/states", label: "States" },
   { href: "/search", label: "Search" },
@@ -52,14 +56,14 @@ export function Header() {
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
             {/* Our helpline - Desktop */}
-            <a
-              href="tel:+18667759098"
+            <CallLink
+              placement="header_desktop"
               className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors text-sm"
             >
               <Phone className="w-3.5 h-3.5 text-primary" />
-              <span className="text-muted-foreground font-medium">Our Helpline</span>
-              <span className="font-bold text-primary">(866) 775-9098</span>
-            </a>
+              <span className="text-muted-foreground font-medium">Free 24/7 Helpline</span>
+              <span className="font-bold text-primary">{HELPLINE_DISPLAY}</span>
+            </CallLink>
 
             {/* Search Toggle */}
             <Button
@@ -141,20 +145,19 @@ export function Header() {
                   </nav>
                   {/* Website brand helpline */}
                   <div className="pt-4 border-t border-border">
-                    <div className="flex items-center justify-between mb-2 px-1">
+                    <div className="mb-2 px-1">
                       <span className="font-bold text-sm text-foreground">
-                        Water Damage Repair<span className="text-primary"> USA</span>
+                        Talk to a water damage pro now
                       </span>
-                      <span className="text-[10px] text-muted-foreground bg-secondary px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Ad</span>
                     </div>
-                    <a
-                      href="tel:+18667759098"
+                    <CallLink
+                      placement="header_mobile_menu"
                       className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold hover:from-blue-700 hover:to-blue-800 transition-all"
                     >
                       <Phone className="w-4 h-4" />
-                      (866) 775-9098
-                    </a>
-                    <p className="text-xs text-center text-muted-foreground mt-1.5">Our website&apos;s helpline &mdash; we match you with local pros</p>
+                      {HELPLINE_DISPLAY}
+                    </CallLink>
+                    <p className="text-xs text-center text-muted-foreground mt-1.5">Free 24/7 &mdash; we match you with a vetted local pro. Referral line; we may be paid by the pro you&apos;re matched with.</p>
                   </div>
                   {!session && (
                     <div className="pt-4 border-t border-border">

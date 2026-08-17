@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { Business, Category, Review } from "@/lib/db/schema";
 import { generateBusinessDescription, detectAmenities, generateAmenitiesList } from "@/lib/content-generator";
 import { getSiteUrl } from "@/lib/site-url";
+import { HELPLINE_DISPLAY } from "@/lib/call-tracking";
 
 const SITE_NAME =
   process.env.NEXT_PUBLIC_SITE_NAME || "Water Damage Repair USA - Emergency Restoration Services";
@@ -343,7 +344,9 @@ export function generateLocalBusinessSchema(
     name: business.name,
     description: business.description || `${business.name} is a ${category?.name || "water damage restoration service"} located in ${business.city}, ${business.state || "USA"}.`,
     url: `${SITE_URL}/business/${business.slug}`,
-    telephone: business.phone,
+    // `telephone` intentionally omitted — see generateLocalBusinessSchema in
+    // schema-markup.ts. Publishing the listed company's number here let the SERP
+    // answer the query without a visit, and contradicted the gated visible page.
     email: business.email,
     address: {
       "@type": "PostalAddress",
@@ -619,16 +622,18 @@ export function generateBusinessPageSchema(
     });
   }
 
-  if (business.phone) {
-    faqItems.push({
-      "@type": "Question",
-      name: `What is ${business.name}'s phone number?`,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `You can reach ${business.name} at ${business.phone}.`,
-      },
-    });
-  }
+  // The old "What is X's phone number?" entry handed the listed company's real
+  // number to Google and AI Overviews, answering the query without a visit.
+  // Replaced with the question a homeowner in an emergency actually needs
+  // answered, which our helpline can answer.
+  faqItems.push({
+    "@type": "Question",
+    name: `How do I get emergency water damage help in ${business.city} right now?`,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: `Call the free 24/7 helpline on ${HELPLINE_DISPLAY} and we will connect you with an available, vetted water damage restoration pro serving ${business.city}${business.state ? `, ${business.state}` : ""}. Water damage spreads fast — mould can begin developing within 24 to 48 hours — so it is worth getting a professional on site the same day.`,
+    },
+  });
 
   if (business.address) {
     faqItems.push({

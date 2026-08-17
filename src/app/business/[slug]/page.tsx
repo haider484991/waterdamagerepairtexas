@@ -1,5 +1,6 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { BusinessDetailClient } from "./BusinessDetailClient";
+import { resolveRemovedListingRedirect } from "@/lib/removed-listing-redirect";
 import { generateBusinessContent } from "@/lib/content-generator";
 import { getBusinessBySlug, getBusinessByPlaceId, getSimilarBusinesses } from "@/lib/local-data";
 
@@ -30,7 +31,11 @@ function getBusinessData(slug: string) {
       city: business.city,
       state: business.state,
       zip: business.zip,
-      phone,
+      // The real number is NOT serialised into the page — it would land in the
+      // RSC flight payload where crawlers and AI assistants can read it. The
+      // client fetches it from /api/businesses/[slug]/phone on reveal.
+      phone: null as string | null,
+      hasPhone: Boolean(phone),
       website,
       email: business.email,
       lat: business.lat,
@@ -129,6 +134,12 @@ export default async function BusinessDetailPage({ params }: PageProps) {
   const data = getBusinessData(slug);
 
   if (!data?.business) {
+    // A removed listing still carries its city in the slug, so send Google and
+    // the visitor to that city page rather than burning the ranking on a 404.
+    const cityUrl = resolveRemovedListingRedirect(slug);
+    if (cityUrl) {
+      permanentRedirect(cityUrl);
+    }
     notFound();
   }
 

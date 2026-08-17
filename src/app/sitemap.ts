@@ -29,6 +29,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { url: `${SITE_URL}/states`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
       { url: `${SITE_URL}/search`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
       { url: `${SITE_URL}/add-business`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+      // Cost and insurance guides — the pages targeting the keyword cluster we
+      // can realistically rank for, so they sit at the top of the priority list.
+      {
+        url: `${SITE_URL}/water-damage-restoration-cost`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 1.0,
+      },
+      {
+        url: `${SITE_URL}/does-homeowners-insurance-cover-water-damage`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.95,
+      },
     ];
 
     // Category pages (only categories with businesses)

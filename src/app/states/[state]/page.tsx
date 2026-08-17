@@ -5,13 +5,30 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Building2, Droplets, Phone } from "lucide-react";
 import { getStateBySlug } from "@/lib/location-data";
-import { getStateStats, getCitiesWithBusinessesForState, getStateBySlugData } from "@/lib/local-data";
+import {
+  getStateStats,
+  getCitiesWithBusinessesForState,
+  getStateBySlugData,
+  getStatesWithBusinesses,
+} from "@/lib/local-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generatePlaceSchema, generateItemListSchema } from "@/lib/seo/schema-markup";
 import { FAQSection, generateWaterDamageFAQs } from "@/components/seo/FAQSection";
 import { getSiteUrl } from "@/lib/site-url";
 
 const SITE_URL = getSiteUrl();
+
+/**
+ * State pages were the other route rendering on demand — /states/texas returned
+ * `Cache-Control: no-store` with a Vercel cache MISS on every hit despite being
+ * the site's highest-impression page (2,363 impressions in 90 days).
+ */
+export async function generateStaticParams() {
+  return getStatesWithBusinesses().map((state) => ({ state: state.slug }));
+}
+
+export const dynamicParams = true;
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
   const { state: stateSlug } = await params;

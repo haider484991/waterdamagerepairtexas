@@ -94,3 +94,49 @@ export function isBusinessOpen(hours: Record<string, string> | null): boolean {
     // Simple check - for production, parse time ranges properly
     return true;
 }
+
+/**
+ * Shape a full business record down to just the fields BusinessCard renders.
+ *
+ * BusinessCard is a client component, so every business handed to it gets
+ * serialised into the RSC flight payload. The scraped records carry
+ * `reviewsData` (six full review bodies), eight `photos`, `reviewsPerScore`,
+ * `about` and `plusCode` — none of which the card displays. On a big city page
+ * that was tens of kilobytes of dead JSON per screenful.
+ */
+export function toCardBusiness<
+    T extends {
+        id: string;
+        name: string;
+        slug: string;
+        address: string;
+        city: string;
+        state: string;
+    },
+>(business: T) {
+    const b = business as T & Record<string, unknown>;
+    return {
+        id: b.id,
+        name: b.name,
+        slug: b.slug,
+        address: b.address,
+        city: b.city,
+        state: b.state,
+        description: (b.description ?? null) as string | null,
+        neighborhood: (b.neighborhood ?? null) as string | null,
+        // The card only ever renders photos[0].
+        photos: Array.isArray(b.photos) && b.photos.length > 0 ? [b.photos[0] as string] : null,
+        priceLevel: (b.priceLevel ?? null) as number | null,
+        ratingAvg: (b.ratingAvg ?? null) as string | null,
+        reviewCount: (b.reviewCount ?? null) as number | null,
+        isVerified: (b.isVerified ?? null) as boolean | null,
+        isFeatured: (b.isFeatured ?? null) as boolean | null,
+        isOpenNow: b.isOpenNow as boolean | undefined,
+        hours: (b.hours ?? null) as Record<string, string> | null,
+        googlePlaceId: (b.googlePlaceId ?? null) as string | null,
+        logo: (b.logo ?? null) as string | null,
+        category: (b.category ?? null) as
+            | { name: string; slug: string; section?: string | null }
+            | null,
+    };
+}

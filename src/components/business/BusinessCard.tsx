@@ -89,6 +89,10 @@ export function BusinessCard({
             <img
               src={mainImage || (business.logo || "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image")}
               alt={business.name}
+              loading="lazy"
+              decoding="async"
+              width={80}
+              height={80}
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image";
@@ -133,6 +137,10 @@ export function BusinessCard({
             <img
               src={mainImage || (business.logo || "https://placehold.co/800x600/f5f5f4/a3a3a3?text=No+Image")}
               alt={business.name}
+              loading="lazy"
+              decoding="async"
+              width={800}
+              height={600}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://placehold.co/800x600/f5f5f4/a3a3a3?text=No+Image";
@@ -238,6 +246,10 @@ export function BusinessCard({
           <img
             src={mainImage || (business.logo || "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image")}
             alt={business.name}
+            loading="lazy"
+            decoding="async"
+            width={400}
+            height={300}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "https://placehold.co/400x300/f5f5f4/a3a3a3?text=No+Image";

@@ -47,6 +47,12 @@ import { StarRating, PriceLevel, BusinessCard, DynamicBusinessContent } from "@/
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
+import { CallLink } from "@/components/CallLink";
+import {
+  HELPLINE_DISPLAY,
+  trackListingPhoneReveal,
+  trackListingPhoneClick,
+} from "@/lib/call-tracking";
 
 // Matches the slug format used by /states/[state]/[city] routes
 function slugifyLocation(value: string): string {
@@ -66,6 +72,8 @@ interface Business {
   state: string;
   zip: string | null;
   phone: string | null;
+  /** Whether a number exists at all — the value itself is fetched on reveal. */
+  hasPhone?: boolean;
   website: string | null;
   email: string | null;
   lat: string | null;
@@ -160,6 +168,10 @@ export function BusinessDetailClient({
   const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [showPhone, setShowPhone] = useState(false);
+  // Holds the listed company's own number once the visitor asks for it. It is
+  // never rendered into the server HTML, so crawlers can't read it.
+  const [revealedPhone, setRevealedPhone] = useState<string | null>(null);
+  const [phoneLoading, setPhoneLoading] = useState(false);
 
   // Reviews state
   const [reviewsPage, setReviewsPage] = useState(1);
@@ -944,28 +956,23 @@ export function BusinessDetailClient({
 
                 {/* 24/7 helpline — primary call path, shown before the business's own contact info */}
                 <div className="relative overflow-hidden rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-extrabold text-sm text-foreground leading-none">
-                      Water Damage Repair<span className="text-primary"> USA</span>
-                    </span>
-                    <span className="text-[10px] text-blue-500 bg-blue-200/60 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
-                      Ad
-                    </span>
-                  </div>
                   <div className="bg-white rounded-lg p-3 border border-blue-200/60 mb-3">
                     <p className="text-foreground font-semibold text-sm mb-0.5">Talk to a water damage pro now</p>
                     <p className="text-muted-foreground text-xs">
                       Free 24/7 helpline — we connect you with an available, vetted local pro serving {business.city} in minutes.
                     </p>
                   </div>
-                  <a
-                    href="tel:+18667759098"
+                  <CallLink
+                    placement="business_helpline_card"
+                    context={{ city: business.city, state: business.state, businessSlug: slug }}
                     className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all text-sm shadow-md shadow-blue-600/20"
                   >
                     <Phone className="w-4 h-4" />
-                    (866) 775-9098
-                  </a>
-                  <p className="text-muted-foreground text-[11px] text-center mt-2">Free &bull; 24/7 &bull; No obligation</p>
+                    {HELPLINE_DISPLAY}
+                  </CallLink>
+                  <p className="text-muted-foreground text-[11px] text-center mt-2">
+                    Free &bull; 24/7 &bull; No obligation &bull; Referral line, we may be paid by the pro you&apos;re matched with
+                  </p>
                 </div>
 
                 <Separator />
@@ -982,23 +989,42 @@ export function BusinessDetailClient({
                 </div>
 
                 {/* Phone — revealed on click so the 24/7 helpline stays the primary call path */}
-                {business.phone &&
-                  (showPhone ? (
+                {(business.hasPhone ?? Boolean(business.phone)) &&
+                  (showPhone && revealedPhone ? (
                     <a
-                      href={`tel:${business.phone}`}
+                      href={`tel:${revealedPhone}`}
+                      onClick={() => trackListingPhoneClick(slug, business.city, business.state)}
                       className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
                     >
                       <Phone className="w-5 h-5 text-muted-foreground" />
-                      <span>{business.phone}</span>
+                      <span>{revealedPhone}</span>
                     </a>
                   ) : (
                     <button
                       type="button"
-                      onClick={() => setShowPhone(true)}
-                      className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+                      disabled={phoneLoading}
+                      onClick={async () => {
+                        setShowPhone(true);
+                        setPhoneLoading(true);
+                        trackListingPhoneReveal(slug, business.city, business.state);
+                        try {
+                          const res = await fetch(`/api/businesses/${slug}/phone`);
+                          if (res.ok) {
+                            const data = await res.json();
+                            setRevealedPhone(data.phone ?? null);
+                          }
+                        } catch {
+                          /* leave the button in place so they can retry */
+                        } finally {
+                          setPhoneLoading(false);
+                        }
+                      }}
+                      className="flex items-center gap-3 text-foreground hover:text-primary transition-colors disabled:opacity-60"
                     >
                       <Phone className="w-5 h-5 text-muted-foreground" />
-                      <span className="underline underline-offset-2">Show phone number</span>
+                      <span className="underline underline-offset-2">
+                        {phoneLoading ? "Loading…" : "Show phone number"}
+                      </span>
                     </button>
                   ))}
 
@@ -1062,10 +1088,13 @@ export function BusinessDetailClient({
                     </Button>
                   )}
                   <Button variant="outline" asChild className="w-full gap-2 text-sm sm:text-base h-9 sm:h-10">
-                    <a href="tel:+18667759098">
+                    <CallLink
+                      placement="business_sidebar"
+                      context={{ city: business.city, state: business.state, businessSlug: slug }}
+                    >
                       <Phone className="w-4 h-4" />
-                      Call 24/7 Helpline
-                    </a>
+                      Call Free 24/7 Helpline
+                    </CallLink>
                   </Button>
                   {business.city && business.state && business.state.length > 2 && (
                     <Link
