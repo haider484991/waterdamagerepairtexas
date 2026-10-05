@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MapPin, Clock, Heart, Building2, CheckCircle2 } from "lucide-react";
+import { MapPin, Heart, Building2, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StarRating } from "./StarRating";
@@ -30,8 +30,6 @@ interface CardBusiness {
   reviewCount?: number | null;
   isVerified?: boolean | null;
   isFeatured?: boolean | null;
-  isOpenNow?: boolean;
-  hours?: Record<string, string> | null;
   googlePlaceId?: string | null;
   logo?: string | null;
   category?: { name: string; slug: string; section?: string | null } | null;
@@ -72,8 +70,10 @@ export function BusinessCard({
 }: BusinessCardProps) {
   const mainImage = getImageUrl(business.photos?.[0]);
 
-  // Use live isOpenNow from hybrid data, or check manually
-  const isOpen = business.isOpenNow ?? checkIfOpen(business.hours);
+  // No "Open"/"Closed" badge on cards. The old check called a company "Open"
+  // all day whenever its listing had any hours for today (and used the
+  // server's clock, frozen into cached HTML), so it was wrong for most
+  // listings most of the time. The detail page shows the posted hours.
 
   const businessLink = getBusinessLink(business);
 
@@ -212,18 +212,7 @@ export function BusinessCard({
               </p>
             )}
 
-            <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-muted-foreground" />
-                <span
-                  className={cn(
-                    "text-sm font-medium",
-                    isOpen ? "text-green-600" : "text-red-600"
-                  )}
-                >
-                  {isOpen ? "Open Now" : "Closed"}
-                </span>
-              </div>
+            <div className="flex items-center justify-end mt-4 pt-4 border-t border-border/50">
               <span className="text-sm text-primary font-medium group-hover:underline">
                 View Details
               </span>
@@ -276,21 +265,6 @@ export function BusinessCard({
               />
             </Button>
           )}
-
-          {/* Status badge */}
-          <div className="absolute bottom-3 left-3">
-            <Badge
-              variant="secondary"
-              className={cn(
-                "text-xs",
-                isOpen
-                  ? "bg-green-500/90 text-white border-green-600"
-                  : "bg-red-500/90 text-white border-red-600"
-              )}
-            >
-              {isOpen ? "Open" : "Closed"}
-            </Badge>
-          </div>
         </div>
 
         <div className="p-4">
@@ -334,18 +308,3 @@ export function BusinessCard({
     </Link>
   );
 }
-
-function checkIfOpen(hours?: Record<string, string> | null): boolean {
-  if (!hours) return false;
-
-  const now = new Date();
-  const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-  const currentDay = days[now.getDay()];
-  const todayHours = hours[currentDay];
-
-  if (!todayHours || todayHours.toLowerCase() === "closed") return false;
-
-  // Simple check - would need more robust parsing for production
-  return true;
-}
-

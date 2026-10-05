@@ -71,31 +71,6 @@ export function getImageUrl(
 }
 
 /**
- * Check if a business is currently open
- */
-export function isBusinessOpen(hours: Record<string, string> | null): boolean {
-    if (!hours) return false;
-
-    const now = new Date();
-    const days = [
-        "sunday",
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-    ];
-    const currentDay = days[now.getDay()];
-    const todayHours = hours[currentDay];
-
-    if (!todayHours || todayHours.toLowerCase() === "closed") return false;
-
-    // Simple check - for production, parse time ranges properly
-    return true;
-}
-
-/**
  * Shape a full business record down to just the fields BusinessCard renders.
  *
  * BusinessCard is a client component, so every business handed to it gets
@@ -131,8 +106,8 @@ export function toCardBusiness<
         reviewCount: (b.reviewCount ?? null) as number | null,
         isVerified: (b.isVerified ?? null) as boolean | null,
         isFeatured: (b.isFeatured ?? null) as boolean | null,
-        isOpenNow: b.isOpenNow as boolean | undefined,
-        hours: (b.hours ?? null) as Record<string, string> | null,
+        // No `isOpenNow` / `hours`: the card no longer shows an open/closed
+        // badge (it was a guess), and nothing else on the card reads hours.
         googlePlaceId: (b.googlePlaceId ?? null) as string | null,
         logo: (b.logo ?? null) as string | null,
         category: (b.category ?? null) as
