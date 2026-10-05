@@ -1077,6 +1077,7 @@ export function BusinessDetailClient({
                         {weeklyHours.map(([day, hours]) => (
                           <div
                             key={day}
+                            aria-current={day.toLowerCase() === currentDay ? "date" : undefined}
                             className={cn(
                               "flex justify-between",
                               day.toLowerCase() === currentDay && "text-primary font-medium"
