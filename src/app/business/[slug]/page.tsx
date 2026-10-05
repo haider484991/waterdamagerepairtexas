@@ -50,7 +50,10 @@ function getBusinessData(slug: string) {
       isFeatured: business.isFeatured,
       googlePlaceId: business.googlePlaceId,
       googleMapsUrl: business.googleMapsUrl,
-      isOpenNow: false,
+      // No open/closed flag. The listings carry a scraped weekly schedule but no
+      // timezone, and the page HTML is cached, so any "Open"/"Closed" we
+      // rendered would be a guess about a named company. The client shows the
+      // posted hours instead.
       category: business.category
         ? {
             name: business.category.name,

@@ -296,16 +296,16 @@ export function generateBestTimes(
     });
   }
 
-  // Business hours
+  // Business hours. Deliberately no clock times: this used to print
+  // "8 AM - 6 PM" (and an "8-10 AM, same-day appointments" slot) for every
+  // company, whatever its real hours. The listing's posted hours are shown
+  // on the same page.
+  const hasPostedHours = Boolean(business.hours && Object.keys(business.hours).length > 0);
   times.push({
-    time: "Business Hours (8 AM - 6 PM)",
-    description: "Best time for scheduling inspections, getting estimates, and discussing non-emergency repairs.",
-  });
-
-  // Morning
-  times.push({
-    time: "Early Morning (8-10 AM)",
-    description: "Ideal for scheduling same-day appointments and getting quick responses to your inquiry.",
+    time: "During Business Hours",
+    description: hasPostedHours
+      ? "Best time for scheduling inspections, getting estimates, and discussing non-emergency repairs. Check the posted hours on this page."
+      : "Best time for scheduling inspections, getting estimates, and discussing non-emergency repairs.",
   });
 
   // Off-peak

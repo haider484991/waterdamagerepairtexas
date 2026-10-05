@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -54,6 +54,15 @@ import {
   trackListingPhoneClick,
 } from "@/lib/call-tracking";
 
+const WEEK_DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+// Google's own listing status, as scraped. This is a fact about the listing,
+// not a guess from the clock, so it is the only status the page shows.
+const LISTING_STATUS_LABELS: Record<string, string> = {
+  CLOSED_TEMPORARILY: "Listed as temporarily closed",
+  CLOSED_PERMANENTLY: "Listed as permanently closed",
+};
+
 // Matches the slug format used by /states/[state]/[city] routes
 function slugifyLocation(value: string): string {
   return value
@@ -88,7 +97,6 @@ interface Business {
   isFeatured: boolean | null;
   googlePlaceId: string | null;
   googleMapsUrl?: string | null;
-  isOpenNow?: boolean;
   category: {
     name: string;
     slug: string;
@@ -285,12 +293,29 @@ export function BusinessDetailClient({
   const googleReviewsUrl = business.reviewsLink || (business.googlePlaceId ? `https://search.google.com/local/reviews?placeid=${business.googlePlaceId}&q=*&authuser=0&hl=en&gl=US` : null);
   const googleMapsLink = business.googleMapsUrl || (business.googlePlaceId ? `https://www.google.com/maps/place/?q=place_id:${business.googlePlaceId}` : null);
 
-  // Calculate if open (simple check)
-  const now = new Date();
-  const dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-  const currentDay = dayNames[now.getDay()];
-  const todayHours = business.hours?.[currentDay];
-  const isOpen = business.isOpenNow ?? (todayHours && todayHours.toLowerCase() !== "closed");
+  // No "Open"/"Closed" badge. The listing gives a weekly schedule but no
+  // timezone, and this page's HTML is cached, so a status computed here would
+  // be a guess about a named company — previously it read "Closed" at all
+  // hours. We show the posted hours and let the visitor read them.
+  const listingStatus = business.businessStatus
+    ? LISTING_STATUS_LABELS[business.businessStatus] ?? null
+    : null;
+
+  // Posted hours in week order (the scraped object is keyed alphabetically).
+  const dayOrder = (day: string) => {
+    const i = WEEK_DAYS.indexOf(day.toLowerCase());
+    return i === -1 ? WEEK_DAYS.length : i;
+  };
+  const weeklyHours = business.hours
+    ? Object.entries(business.hours).sort(([a], [b]) => dayOrder(a) - dayOrder(b))
+    : [];
+
+  // Highlight the visitor's "today" only after mount: the server HTML is cached
+  // and would otherwise freeze whichever day it was first rendered on.
+  const [currentDay, setCurrentDay] = useState<string | null>(null);
+  useEffect(() => {
+    setCurrentDay(WEEK_DAYS[(new Date().getDay() + 6) % 7]);
+  }, []);
 
   return (
     <div className="min-h-screen pb-8">
@@ -940,19 +965,13 @@ export function BusinessDetailClient({
               className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:sticky lg:top-24"
             >
               <div className="space-y-4">
-                {/* Status */}
-                <div className="flex items-center justify-between">
-                  <span className={cn("font-medium", isOpen ? "text-green-500" : "text-red-500")}>
-                    {isOpen ? "Open" : "Closed"}
-                  </span>
-                  {todayHours && (
-                    <Badge variant="outline" className="text-xs">
-                      {todayHours}
-                    </Badge>
-                  )}
-                </div>
-
-                <Separator />
+                {/* Listing status — only when the listing itself says it is closed */}
+                {listingStatus && (
+                  <>
+                    <p className="font-medium text-muted-foreground">{listingStatus}</p>
+                    <Separator />
+                  </>
+                )}
 
                 {/* 24/7 helpline — primary call path, shown before the business's own contact info */}
                 <div className="relative overflow-hidden rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
@@ -1047,7 +1066,7 @@ export function BusinessDetailClient({
                 <Separator />
 
                 {/* Hours */}
-                {business.hours && Object.keys(business.hours).length > 0 && (
+                {weeklyHours.length > 0 && (
                   <>
                     <div>
                       <div className="flex items-center gap-2 mb-3">
@@ -1055,12 +1074,13 @@ export function BusinessDetailClient({
                         <span className="font-medium">Hours</span>
                       </div>
                       <div className="space-y-1.5 text-sm">
-                        {Object.entries(business.hours).map(([day, hours]) => (
+                        {weeklyHours.map(([day, hours]) => (
                           <div
                             key={day}
+                            aria-current={day.toLowerCase() === currentDay ? "date" : undefined}
                             className={cn(
                               "flex justify-between",
-                              day === currentDay && "text-primary font-medium"
+                              day.toLowerCase() === currentDay && "text-primary font-medium"
                             )}
                           >
                             <span className="capitalize">{day}</span>

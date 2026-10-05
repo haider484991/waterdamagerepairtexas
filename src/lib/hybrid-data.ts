@@ -298,7 +298,7 @@ export async function enrichBusinesses(
 }
 
 
-import { formatHours, getImageUrl, isBusinessOpen } from "./business-utils";
-export { formatHours, getImageUrl, isBusinessOpen };
+import { formatHours, getImageUrl } from "./business-utils";
+export { formatHours, getImageUrl };
 
 

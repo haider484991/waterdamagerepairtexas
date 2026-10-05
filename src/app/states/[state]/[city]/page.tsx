@@ -90,9 +90,14 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   };
 }
 
+const WEEK_DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+// A company counts as 24/7 only when its listing shows "Open 24 hours" on every
+// day of the week. Matching any single day marked 71 companies "24/7" whose
+// listings are 24 hours on some days and shorter (or closed) on others.
 function is24x7(hours: Record<string, string> | null | undefined): boolean {
   if (!hours) return false;
-  return Object.values(hours).some((v) => /24 hours/i.test(String(v)));
+  return WEEK_DAYS.every((day) => /^open 24 hours$/i.test(String(hours[day] ?? "").trim()));
 }
 
 export default async function CityPage({ params }: { params: Promise<{ state: string; city: string }> }) {
@@ -150,7 +155,7 @@ export default async function CityPage({ params }: { params: Promise<{ state: st
   const cityFaqs = [
     {
       question: `How many water damage restoration companies serve ${cityName}, ${region.code}?`,
-      answer: `Our directory currently lists ${enrichedBusinesses.length} water damage restoration ${enrichedBusinesses.length === 1 ? "company" : "companies"} serving ${cityName}, ${region.name}${topRated[0] ? `, with ${topRated[0].name} as the highest rated (${parseFloat(topRated[0].ratingAvg).toFixed(1)} stars from ${topRated[0].reviewCount} reviews)` : ""}. ${alwaysOpenCount > 0 ? `${alwaysOpenCount} of them ${alwaysOpenCount === 1 ? "offers" : "offer"} 24/7 emergency response.` : ""}`,
+      answer: `Our directory currently lists ${enrichedBusinesses.length} water damage restoration ${enrichedBusinesses.length === 1 ? "company" : "companies"} serving ${cityName}, ${region.name}${topRated[0] ? `, with ${topRated[0].name} as the highest rated (${parseFloat(topRated[0].ratingAvg).toFixed(1)} stars from ${topRated[0].reviewCount} reviews)` : ""}. ${alwaysOpenCount > 0 ? `${alwaysOpenCount} of them ${alwaysOpenCount === 1 ? "lists its" : "list their"} hours as open 24 hours, seven days a week.` : ""}`,
     },
     {
       question: `How much does water damage restoration cost in ${cityName}?`,
